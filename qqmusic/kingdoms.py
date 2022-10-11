@@ -4,6 +4,7 @@ from sklearn.ensemble import RandomForestClassifier
 from pandas import DataFrame, array
 from numpy import *
 import copy
+import joblib
 
 
 class DataAnalytics:
@@ -65,7 +66,7 @@ def calcPositionSort_8_nodivi(offsets:list) -> list:
     输入：乐器已知概率与目标概率的偏移量，形如：[xx.x, xx.x, xx.x, xx.x, xx.x, xx.x, xx.x, xx.x]，左右对应顺序 = 钢琴->圆号
     输出：[乐器编号, 位序值] 的2d数组，形如：[[x, y], [x, y], [x, y], [x, y], [x, y], [x, y], [x, y], [x, y]]，左右对应顺序 = 钢琴->圆号
     '''
-    items = ['钢琴','小提琴','吉他','贝斯','架子鼓','竖琴','萨克斯','圆号']
+    items = ['钢琴','小提琴','吉他','贝斯','架子鼓','竖琴','萨克斯风','圆号']
 
     # 多维列表的排序问题解决方法：https://www.youtube.com/watch?v=EPIUxGOynE0
     items_offsets = [list(t) for t in zip(items,offsets)]    
@@ -79,7 +80,7 @@ def calcPositionSort_8_divi(offsets:list) -> list:
     输入：乐器已知概率与目标概率的偏移量，形如：[xx.x, xx.x, xx.x, xx.x, xx.x, xx.x, xx.x, xx.x]，左右对应顺序 = 钢琴->圆号
     输出：[乐器编号, 偏移值] 的2d数组，形如：[[大, y], [大, y], [小, y], [小, y], [小, y], [小, y], [大, y], [大, y]]
     '''
-    items = ['钢琴','小提琴','吉他','贝斯','架子鼓','竖琴','萨克斯','圆号']
+    items = ['钢琴','小提琴','吉他','贝斯','架子鼓','竖琴','萨克斯风','圆号']
 
     # 多维列表的排序问题解决方法：https://www.youtube.com/watch?v=EPIUxGOynE0
     # 把8种乐器分为两组，分别进行排序，排序后把结果合并到一个数组里：
@@ -113,7 +114,7 @@ def calcPosition(items_postion_sort:list) -> list:
         temp[i][1] = i + 1
     
     output = []
-    items = ['钢琴','小提琴','吉他','贝斯','架子鼓','竖琴','萨克斯','圆号']
+    items = ['钢琴','小提琴','吉他','贝斯','架子鼓','竖琴','萨克斯风','圆号']
     for each in items:
         for x in temp:
             if each in x:
@@ -123,10 +124,10 @@ def calcPosition(items_postion_sort:list) -> list:
 
 # 输入：([[钢琴, y], [小提琴, y] ... [圆号, y]],上一次乐器对应的位序值)
 def calDiffSort_8_divi(items_position:list,last_pos:int):
-    items = ['钢琴','小提琴','吉他','贝斯','架子鼓','竖琴','萨克斯','圆号']
+    items = ['钢琴','小提琴','吉他','贝斯','架子鼓','竖琴','萨克斯风','圆号']
     diff_init = [0,0,0,0,0,0,0,0]
     items_diff = [list(x) for x in zip(items,diff_init)]
-    # 合成的结果是 [['钢琴',0],['小提琴',0],['吉他',0],['贝斯',0],['架子鼓',0],['竖琴',0],['萨克斯',0],['圆号',0]]
+    # 合成的结果是 [['钢琴',0],['小提琴',0],['吉他',0],['贝斯',0],['架子鼓',0],['竖琴',0],['萨克斯风',0],['圆号',0]]
     
     for each in items_position:
         if each[0] == '钢琴':
@@ -141,7 +142,7 @@ def calDiffSort_8_divi(items_position:list,last_pos:int):
             items_diff[4][1] = each[1] - last_pos
         elif each[0] == '竖琴':
             items_diff[5][1] = each[1] - last_pos
-        elif each[0] == '萨克斯':
+        elif each[0] == '萨克斯风':
             items_diff[6][1] = each[1] - last_pos
         elif each[0] == '圆号':
             items_diff[7][1] = each[1] - last_pos
@@ -242,7 +243,7 @@ def rf_clf(train_set:DataFrame, predict_data:list, column_name:str) -> array:
 def rf_clf_proba(train_set:DataFrame,predict_data,column_name:str) -> array:
     X = train_set.drop(columns=column_name)
     y = train_set[column_name]
-    model = RandomForestClassifier(n_estimators=1000, max_leaf_nodes=16, n_jobs=-1)
+    model = RandomForestClassifier(n_estimators=300, max_leaf_nodes=20, n_jobs=-1)
     model.fit(X.values, y.values)
 
     rnd_clf_prediction_proba = model.predict_proba([predict_data]).tolist()[0]
@@ -263,3 +264,30 @@ def rf_clf_proba(train_set:DataFrame,predict_data,column_name:str) -> array:
     # return [rnd_clf_prediction.tolist()[0], rnd_clf_prediction_proba.tolist()[0]]
     return output_list
 
+def random_forest_reg_train(train_set:DataFrame,dir_name:str,column_name:str):
+    X = train_set.drop(columns=column_name)
+    y = train_set[column_name]
+    model = RandomForestClassifier(n_estimators=300, max_leaf_nodes=20, n_jobs=-1)
+    model.fit(X.values, y.values)
+
+    joblib.dump(model, dir_name+"./model/rf_reg.m")
+
+def load_rf_reg_model(model_path:str, predict_data,column_name:str):
+    reg = joblib.load(model_path)
+    rnd_reg_prediction_proba = reg.predict_proba([predict_data]).tolist()[0]
+
+    # 提取随机森林投票的标签  clf.classes_
+    labels_list = []
+    for each in reg.classes_:
+        labels_list.append(each)
+    
+    proba_list = []
+    for each in rnd_reg_prediction_proba:
+        proba_list.append(round(each,2))
+   
+    output_list = list(t for t in zip(labels_list, proba_list))
+    output_list.sort(key=lambda x: x[1],reverse=1)
+
+    # 返回值的形式：
+    # return [rnd_clf_prediction.tolist()[0], rnd_clf_prediction_proba.tolist()[0]]
+    return output_list

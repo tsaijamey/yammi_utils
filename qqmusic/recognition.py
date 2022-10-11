@@ -1,24 +1,12 @@
-import pretty_errors
-pretty_errors.configure(
- separator_character = '*',
- filename_display    = pretty_errors.FILENAME_EXTENDED,
- line_number_first   = True,
- display_link        = True,
- lines_before        = 5,
- lines_after         = 2,
- line_color          = pretty_errors.RED + '> ' + pretty_errors.default_config.line_color,
- code_color          = '  ' + pretty_errors.default_config.line_color,
- truncate_code       = True,
- display_locals      = True
- )
-pretty_errors.blacklist('c:/python310')
-
 import os
 import control_scrcpy_lib as csl
 import pyautogui
 import time
 import win32gui,win32ui,win32con
 from ocr import result_recognition
+from rich.console import Console
+
+console = Console()
 
 def background_screenshot(hwnd):
     wDC = win32gui.GetWindowDC(hwnd)
@@ -38,29 +26,34 @@ def background_screenshot(hwnd):
 def get_latest_result():
     dirname_ = os.path.dirname(__file__)
     hwnd = csl.get_hwd('qqmusic')
+    
     record_button_pos = csl.find_element(hwnd, dirname_+'./find_treasure_button.png', 0.80)
     if record_button_pos != [0,0]:
         (x, y) = record_button_pos
-        pyautogui.moveTo(x, y)
-        time.sleep(1)
-        pyautogui.click()
-        time.sleep(3)
+        csl.pyautogui_click(hwnd,x,y)
+        time.sleep(2)
         
         # 为识别结果进行的截图，存为同目录下的screenshot.bmp
         background_screenshot(hwnd)
 
-        records = result_recognition(dirname_+'./screenshot.bmp')
-    
+        try:
+            records = result_recognition(dirname_+'./screenshot.bmp')
+        except Exception as e:
+            console.print(e)
+            console.print('未检测到数据')
+            exit(-1)
+
         # 返回无记录的界面
         kingdom_title_pos = csl.find_element(hwnd, dirname_+'./kingdom_title.png', 0.80)
         if kingdom_title_pos != [0,0]:
             (x, y) = kingdom_title_pos
-            pyautogui.moveTo(x, y)
-            time.sleep(1)
-            pyautogui.click()
-            time.sleep(3)
-        print(records)
-        name = ['钢琴','小提琴','吉他','贝斯','架子鼓','竖琴','萨克斯','圆号']
+            csl.pyautogui_click(hwnd,x,y)
+            time.sleep(.5)     
+        else:
+            console.print('界面异常')
+            exit(-1)
+    
+        name = ['钢琴','小提琴','吉他','贝斯','架子鼓','竖琴','萨克斯风','圆号']
         result = name.index(records[0][0]) + 1
 
     return [str(result), records[0][1]]
@@ -70,15 +63,14 @@ def get_latest_result():
 if __name__ == '__main__':
     dirname_ = os.path.dirname(__file__)
     hwnd = csl.get_hwd('qqmusic')
+    background_screenshot(hwnd)
 
     # 循环记录
     while True:
         record_button_pos = csl.find_element(hwnd, dirname_+'./find_treasure_button.png', 0.80)
         if record_button_pos != [0,0]:
             (x, y) = record_button_pos
-            pyautogui.moveTo(x, y)
-            time.sleep(1)
-            pyautogui.click()
+            csl.pyautogui_click(hwnd,x,y)
             time.sleep(3)
             
             # 为识别结果进行的截图，存为同目录下的screenshot.bmp
@@ -90,9 +82,7 @@ if __name__ == '__main__':
             kingdom_title_pos = csl.find_element(hwnd, dirname_+'./kingdom_title.png', 0.80)
             if kingdom_title_pos != [0,0]:
                 (x, y) = kingdom_title_pos
-                pyautogui.moveTo(x, y)
-                time.sleep(1)
-                pyautogui.click()
+                csl.pyautogui_click(hwnd,x,y)
                 time.sleep(3)
             print(records)
 

@@ -24,10 +24,13 @@ def find_element(hwnd:int, element_path:str, conf:float) -> list:
 
     # 首先需要激活这个窗口，否则pyautogui无法找到。它只能找到屏幕顶层的内容。
     # 激活后要等1-2秒，因为激活的动作有时间延迟。
+    # win32gui.ShowWindow(hwnd,1)
     win32gui.SetForegroundWindow(hwnd)
     time.sleep(2)
     element = Image.open(element_path)
     locs_list = list(pyautogui.locateAllOnScreen(element, confidence=conf))
+    time.sleep(.5)
+    # win32gui.ShowWindow(hwnd,0)
 
     # 这里要判断找的结果是否存在，因为可能返回空值
     if len(locs_list) > 0:
@@ -35,3 +38,13 @@ def find_element(hwnd:int, element_path:str, conf:float) -> list:
         return [left+int(width/2), top+int(height/2)]
     else:
         return [0,0]
+
+def pyautogui_click(hwnd,x,y):
+    # win32gui.ShowWindow(hwnd,1)
+    # win32gui.SetForegroundWindow(hwnd)
+
+    pyautogui.moveTo(x, y)
+    time.sleep(.5)
+    pyautogui.click()
+
+    # win32gui.ShowWindow(hwnd,0)
