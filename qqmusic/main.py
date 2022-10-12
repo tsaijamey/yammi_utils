@@ -1,11 +1,8 @@
-#! python
-
 import pandas as pd
 from numpy import *
 import logging
 import os
 
-from sympy import EX
 from kingdoms import DataAnalytics, counters_8, calcOffset_8, calcPositionSort_8_divi, calcPosition, calDiffSort_8_divi, load_rf_reg_model
 import copy
 import control_scrcpy_lib as csl
@@ -282,7 +279,7 @@ while True:
         predict_data.append(each[1])        
 
     # 根据diff值的中文化标签，进行随机森林分类器的预测
-    clf_n_r_proba_diff = load_rf_reg_model(r'C:\Users\yammi\OneDrive\0_caijia\1_code\python\yammi_utils\yammi_utils\qqmusic\model\rf_reg.m',predict_data,'item_num')
+    clf_n_r_proba_diff = load_rf_reg_model(DIR+'\\model\\rf_reg.m',predict_data)
     diff_proba_trans_list = []
     # proba_trans_list 变量用来对 clf_n_r_proba_diff 的输出结果进行翻译，转译成 以物品名方式显示的结果
     for each in clf_n_r_proba_diff:

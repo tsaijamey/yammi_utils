@@ -1,5 +1,5 @@
 '''
-测试ocr识别
+<模块> OCR识别
 文档：https://zhuanlan.zhihu.com/p/384620684
 库：pip install cnocr (https://pypi.org/project/cnocr/)
 库依赖：https://visualstudio.microsoft.com/zh-hans/visual-cpp-build-tools/，安装第一项（解决问题的文档：https://cloud.tencent.com/developer/article/1997666）
@@ -7,7 +7,6 @@
 
 from cnocr import CnOcr
 from rich.console import Console
-import os
 
 console = Console()
 

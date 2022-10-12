@@ -1,6 +1,5 @@
 import control_scrcpy_lib as csl
 import os
-import pyautogui
 import time
 import keyboard
 import random

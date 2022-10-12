@@ -272,7 +272,7 @@ def random_forest_reg_train(train_set:DataFrame,dir_name:str,column_name:str):
 
     joblib.dump(model, dir_name+"./model/rf_reg.m")
 
-def load_rf_reg_model(model_path:str, predict_data,column_name:str):
+def load_rf_reg_model(model_path:str, predict_data):
     reg = joblib.load(model_path)
     rnd_reg_prediction_proba = reg.predict_proba([predict_data]).tolist()[0]
 
