@@ -15,7 +15,7 @@ hwnd = csl.get_hwd('qqmusic')
 # 找图标，如果存在会返回中心坐标[int,int]，如果不存在，会返回[0,0]，所以要判断一下返回的值具体是什么
 t = 0
 while t < 3:
-    app_icon_pos = csl.find_element(hwnd, dirname_+'./qqmusic.png', 0.80)
+    app_icon_pos = csl.find_element(hwnd, dirname_+'./img/qqmusic.png', 0.80)
     if app_icon_pos == [0,0]:
         console.print("没找到QQ音乐App的图标")
         # 当图标没找到，无论当前屏幕处于什么样的情况，只考虑返回到桌面，所以按scrcpy的快捷键alt+h
@@ -36,8 +36,8 @@ if t == 3:
     console.print("失败于找qq音乐图标的环节，退出运行。")
     exit(-1)
 
-zhibo_icon_1_pos = csl.find_element(hwnd, dirname_+'./zhibo_channel.png', 0.80)
-zhibo_icon_2_pos = csl.find_element(hwnd, dirname_+'./zhibo_channel_activated.png', 0.80)
+zhibo_icon_1_pos = csl.find_element(hwnd, dirname_+'./img/zhibo_channel.png', 0.80)
+zhibo_icon_2_pos = csl.find_element(hwnd, dirname_+'./img/zhibo_channel_activated.png', 0.80)
 if zhibo_icon_1_pos != [0,0]:
     console.print(f"直播频道图标中心点在：{zhibo_icon_1_pos}")
     (x, y) = zhibo_icon_1_pos
@@ -52,7 +52,7 @@ else:
     console.print('没找到直播频道图标')
 
 
-hot_channel_pos = csl.find_element(hwnd, dirname_+'./hot_channel.png', 0.80)
+hot_channel_pos = csl.find_element(hwnd, dirname_+'./img/hot_channel.png', 0.80)
 if hot_channel_pos != [0,0]:
     (x, y) = hot_channel_pos
     console.print(f'热门标签的坐标：{x} | {y}')
@@ -63,7 +63,7 @@ if hot_channel_pos != [0,0]:
         console.print(f'无关注的房间在线，将点击位置：{x} | {y}')
         csl.pyautogui_click(hwnd,x,y)
     else:
-        more_room_pos = csl.find_element(hwnd, dirname_+'./more_room.png', 0.80)
+        more_room_pos = csl.find_element(hwnd, dirname_+'./img/more_room.png', 0.80)
         (x, y) = more_room_pos
         x = x - 100
         console.print(f'有关注的房间在线，将点击位置：{x} | {y}')
@@ -71,7 +71,7 @@ if hot_channel_pos != [0,0]:
 else:
     console.print('没找到“热门”标签')
 
-kingdom_pos = csl.find_element(hwnd, dirname_+'./kingdom.png', 0.80)
+kingdom_pos = csl.find_element(hwnd, dirname_+'./img/kingdom.png', 0.80)
 if kingdom_pos != [0,0]:
     (x, y) = kingdom_pos
     console.print(f'找到音乐王国入口，将点击位置：{x} | {y}')

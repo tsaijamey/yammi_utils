@@ -1,6 +1,6 @@
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.tree import DecisionTreeRegressor
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier,RandomForestRegressor
 from pandas import DataFrame, array
 from numpy import *
 import copy
@@ -264,13 +264,43 @@ def rf_clf_proba(train_set:DataFrame,predict_data,column_name:str) -> array:
     # return [rnd_clf_prediction.tolist()[0], rnd_clf_prediction_proba.tolist()[0]]
     return output_list
 
-def random_forest_reg_train(train_set:DataFrame,dir_name:str,column_name:str):
+def random_forest_clf_train(train_set:DataFrame,dir_name:str,column_name:str):
     X = train_set.drop(columns=column_name)
     y = train_set[column_name]
     model = RandomForestClassifier(n_estimators=300, max_leaf_nodes=20, n_jobs=-1)
     model.fit(X.values, y.values)
 
+    joblib.dump(model, dir_name+"./model/rf_clf.m")
+
+def load_rf_clf_model(model_path:str, predict_data):
+    clf = joblib.load(model_path)
+    rnd_clf_prediction_proba = clf.predict_proba([predict_data]).tolist()[0]
+
+    # 提取随机森林投票的标签  clf.classes_
+    labels_list = []
+    for each in clf.classes_:
+        labels_list.append(each)
+    
+    proba_list = []
+    for each in rnd_clf_prediction_proba:
+        proba_list.append(round(each,2))
+   
+    output_list = list(t for t in zip(labels_list, proba_list))
+    output_list.sort(key=lambda x: x[1],reverse=1)
+
+    # 返回值的形式：
+    # return [rnd_clf_prediction.tolist()[0], rnd_clf_prediction_proba.tolist()[0]]
+    return output_list
+
+
+def random_forest_reg_train(train_set:DataFrame,dir_name:str,column_name:str):
+    X = train_set.drop(columns=column_name)
+    y = train_set[column_name]
+    model = RandomForestRegressor(n_estimators=300, criterion='mse', max_leaf_nodes=20, n_jobs=1)
+    model.fit(X.values, y.values)
+
     joblib.dump(model, dir_name+"./model/rf_reg.m")
+
 
 def load_rf_reg_model(model_path:str, predict_data):
     reg = joblib.load(model_path)
@@ -278,7 +308,7 @@ def load_rf_reg_model(model_path:str, predict_data):
 
     # 提取随机森林投票的标签  clf.classes_
     labels_list = []
-    for each in reg.classes_:
+    for each in clf.classes_:
         labels_list.append(each)
     
     proba_list = []

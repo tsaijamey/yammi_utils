@@ -2,15 +2,15 @@ import pandas as pd
 from numpy import *
 import logging
 import os
-
-from kingdoms import DataAnalytics, counters_8, calcOffset_8, calcPositionSort_8_divi, calcPosition, calDiffSort_8_divi, load_rf_reg_model
 import copy
-import control_scrcpy_lib as csl
-import pyautogui
 import time
-from ocr import result_recognition
-from recognition import background_screenshot,get_latest_result
 from rich.console import Console
+
+# 自定义库
+from kingdoms import DataAnalytics, counters_8, calcOffset_8, calcPositionSort_8_divi, calcPosition, calDiffSort_8_divi, load_rf_clf_model, load_rf_reg_model
+import control_scrcpy_lib as csl
+from ocr import result_recognition,background_screenshot,get_latest_result
+
 
 console = Console()
 
@@ -33,9 +33,6 @@ NAME = ['钢琴','小提琴','吉他','贝斯','架子鼓','竖琴','萨克斯�
 DIFF_NUM = [-7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7]
 DIFF_TEXT = ['负七', '负六', '负五', '负四', '负三', '负二', '负一', '零', '一', '二', '三', '四', '五', '六', '七']
 
-CLF_DF = pd.read_csv(DATA_PATH+'all_name_datasets_rebuilt.csv')
-REG_DF = pd.read_csv(DATA_PATH+'all_num_datasets_rebuilt.csv')
-
 history = ''
 
 # 步骤一：进入QQ音乐直播房间
@@ -44,7 +41,7 @@ import go_into_qqmusic_room             # 这部分代码找时间要封装一�
 # 步骤二：找到“寻宝记录”的元素位置，然后点开
 dirname_ = os.path.dirname(__file__)
 hwnd = csl.get_hwd('qqmusic')
-record_button_pos = csl.find_element(hwnd, dirname_+'./find_treasure_button.png', 0.80)
+record_button_pos = csl.find_element(hwnd, dirname_+'./img/find_treasure_button.png', 0.80)
 if record_button_pos != [0,0]:
     (x, y) = record_button_pos
     csl.pyautogui_click(hwnd,x,y)
@@ -54,7 +51,7 @@ if record_button_pos != [0,0]:
     background_screenshot(hwnd)
 
     try:
-        records = result_recognition(dirname_+'./screenshot.bmp')
+        records = result_recognition(dirname_+'./img/screenshot.bmp')
         history = str(NAME.index(records[0][0]) + 1)
         s_time = records[0][1]
         latest_time = records[0][1]
@@ -64,7 +61,7 @@ if record_button_pos != [0,0]:
         exit(-1)
 
     # 返回无记录的界面
-    kingdom_title_pos = csl.find_element(hwnd, dirname_+'./kingdom_title.png', 0.80)
+    kingdom_title_pos = csl.find_element(hwnd, dirname_+'./img/kingdom_title.png', 0.80)
     if kingdom_title_pos != [0,0]:
         (x, y) = kingdom_title_pos
         csl.pyautogui_click(hwnd,x,y)
@@ -161,16 +158,12 @@ while True:
     single_line = []
     single_line2 = []
 
-    # 构建一个空的DataFrame，用来格式化训练数据
-    trainset = pd.DataFrame()
-    trainset2 = pd.DataFrame()
-
     for x in range(len(history)):
         
         # 将当前回合之前的历史结果，存入 current_history        
         current_history = history[:x+1]
         
-        # 当 history的长度超过31时，始终只取其右侧的31位数据
+        # 当 history的长度超过20时，始终只取其右侧的20位数据
         format_history = DataAnalytics(current_history,20).formatted()
         
         result.append(NAME[int(format_history[-1]) - 1])
@@ -198,13 +191,6 @@ while True:
         
         single_line.append(result[-1])
         single_line2.append(d)
-        
-        # 单行数据构建成DataFrame
-        line = pd.DataFrame([single_line], columns=NAME_HEADER)
-        line2 = pd.DataFrame([single_line2], columns=NUM_HEADER)
-        
-        trainset    = pd.concat([trainset,line])        
-        trainset2   = pd.concat([trainset2,line2])
         
         # 对当前格式化的 历史数据 进行分类统计
         counter_list.append(counters_8(format_history))
@@ -247,7 +233,7 @@ while True:
                     diff_text_header = ''
         
         front_counter = selected_rate_diff_text[-20:].count('前')
-        back_counter = selected_rate_diff_text[-20:].count('后')                   
+        back_counter = selected_rate_diff_text[-20:].count('后')
     
         console.print(f'预测位置历史值：\n{selected_rate_diff[-20:]}\n{selected_rate_diff_text[-20:]}\n均值：{mean(selected_rate_diff[-20:])}\n前排总数：{front_counter}\t后排总数：{back_counter}')
         console.print(f'排位变化：{selected_rate_diff_text_change_pair[-5:]}')
@@ -257,9 +243,6 @@ while True:
         r.write(str(latest_time)+'\n位置值历史：'+str(selected_rate_diff[-20:])+'\n位置：'+str(selected_rate_diff_text[-20:])+'\n均值：'+str(mean(selected_rate_diff[-20:]))+'\n前排总数：'+str(front_counter)+'\n后排总数：'+str(back_counter)+'\n')
         r.close()
     
-
-    trainset    = pd.concat([CLF_DF,trainset])
-    trainset2   = pd.concat([REG_DF,trainset2])
 
     console.print(f'\n输入的结果：[red]{result[-1]}[/red]\n差分历史值：{result2[-20:]}')
 
@@ -279,13 +262,10 @@ while True:
         predict_data.append(each[1])        
 
     # 根据diff值的中文化标签，进行随机森林分类器的预测
-    clf_n_r_proba_diff = load_rf_reg_model(DIR+'\\model\\rf_reg.m',predict_data)
+    clf_n_r_proba_diff = load_rf_clf_model(DIR+'\\model\\rf_clf.m',predict_data)
     diff_proba_trans_list = []
     # proba_trans_list 变量用来对 clf_n_r_proba_diff 的输出结果进行翻译，转译成 以物品名方式显示的结果
     for each in clf_n_r_proba_diff:
-
-
-
         # each 的结构是 [Diff中文, 预测概率]，要把Diff中文替换为相关的乐器
         each_diff_name = ''
         each_diff_num = DIFF_NUM[DIFF_TEXT.index(each[0])]
@@ -300,27 +280,14 @@ while True:
             diff_proba_trans_list.append(proba_temp)
         else:
             continue
+
     
 
-    console.print(f'随机森林分类标签与概率\n前排：{diff_proba_trans_list[0]}|{diff_proba_trans_list[1]}|{diff_proba_trans_list[4]}|{diff_proba_trans_list[5]}\n后排：{diff_proba_trans_list[2]}|{diff_proba_trans_list[3]}|{diff_proba_trans_list[6]}|{diff_proba_trans_list[7]}')
-
+    console.print(f'随机森林分类：概率\n前排：{diff_proba_trans_list[0]}|{diff_proba_trans_list[1]}|{diff_proba_trans_list[4]}|{diff_proba_trans_list[5]}\n后排：{diff_proba_trans_list[2]}|{diff_proba_trans_list[3]}|{diff_proba_trans_list[6]}|{diff_proba_trans_list[7]}')
+    
+    if len(result2) >= 20:
+        reg_n_r_proba_diff = load_rf_reg_model(DIR+'\\model\\rf_reg.m',result2[-20:])
+        console.print(f'随机森林回归：概率\n{reg_n_r_proba_diff}')
+    
     console.print('\n')
     console.print(f"[bold red]警告：大怪总数[/bold red]：{format_history.count('5') + format_history.count('6') + format_history.count('7') + format_history.count('8')}")
- 
-trainset.to_csv(OUT_PATH + 'name_datasets.csv',index=False)
-trainset2.to_csv(OUT_PATH + 'num_datasets.csv',index=False)
-
-
-history_list = []
-for x in range(len(history)):
-    # 将当前回合之前的历史结果，存入 current_history    
-    history_list.append(NAME[int(history[x])-1])
-idx2 = pd.date_range(s_time, periods=len(history), freq="58S")
-td = pd.DataFrame(idx2, columns=['时间'])
-hd = pd.DataFrame(history_list, columns=['记录'])
-
-thd = pd.concat([td,hd],axis=1)
-old_record = pd.read_csv(DATA_PATH+'all.csv')
-thd = pd.concat([old_record,thd],axis=0)
-filename = OUT_PATH + '/QMK-history-' + s_time.replace(":","-") + '.csv'
-thd.to_csv(filename,index=False)
