@@ -235,7 +235,7 @@ while True:
         front_counter = selected_rate_diff_text[-20:].count('前')
         back_counter = selected_rate_diff_text[-20:].count('后')
     
-        console.print(f'预测位置历史值：\n{selected_rate_diff[-20:]}\n{selected_rate_diff_text[-20:]}\n均值：{mean(selected_rate_diff[-20:])}\n前排总数：{front_counter}\t后排总数：{back_counter}')
+        console.print(f'实际结果对应的预测位置(历史值)：\n{selected_rate_diff[-20:]}\n{selected_rate_diff_text[-20:]}\n均值：{mean(selected_rate_diff[-20:])}\n前排总数：{front_counter}\t后排总数：{back_counter}')
         console.print(f'排位变化：{selected_rate_diff_text_change_pair[-5:]}')
         logging.info("位置值历史：%s\n位置：%s\n均值：%s\n前排总数：%s\n后排总数：%s",selected_rate_diff[-20:], selected_rate_diff_text[-20:], mean(selected_rate_diff[-20:]), front_counter, back_counter)
 
@@ -252,6 +252,9 @@ while True:
     diff_sort_left = diff_sort[0:4]
     diff_sort_right = diff_sort[4:8]
     console.print(f'差分\n左侧选项：{diff_sort_left}\n右侧选项：{diff_sort_right}')
+    if len(result2) >= 20:
+        reg_n_r_proba_diff = load_rf_reg_model(DIR+'\\model\\rf_reg.m',result2[-20:])
+        console.print(f'随机森林回归：差分的预测概率\n{reg_n_r_proba_diff}')
 
     # 在循环外，合并最后一回合的数据，构建成测试数据
     predict_data = []
@@ -283,11 +286,6 @@ while True:
 
     
 
-    console.print(f'随机森林分类：概率\n前排：{diff_proba_trans_list[0]}|{diff_proba_trans_list[1]}|{diff_proba_trans_list[4]}|{diff_proba_trans_list[5]}\n后排：{diff_proba_trans_list[2]}|{diff_proba_trans_list[3]}|{diff_proba_trans_list[6]}|{diff_proba_trans_list[7]}')
-    
-    if len(result2) >= 20:
-        reg_n_r_proba_diff = load_rf_reg_model(DIR+'\\model\\rf_reg.m',result2[-20:])
-        console.print(f'随机森林回归：概率\n{reg_n_r_proba_diff}')
-    
+    console.print(f'随机森林分类：物品的预测概率\n前排：{diff_proba_trans_list[0]}|{diff_proba_trans_list[1]}|{diff_proba_trans_list[4]}|{diff_proba_trans_list[5]}\n后排：{diff_proba_trans_list[2]}|{diff_proba_trans_list[3]}|{diff_proba_trans_list[6]}|{diff_proba_trans_list[7]}')  
     console.print('\n')
-    console.print(f"[bold red]警告：大怪总数[/bold red]：{format_history.count('5') + format_history.count('6') + format_history.count('7') + format_history.count('8')}")
+    console.print(f"[bold red]警告：大怪总数[/bold red]：{format_history.count('5') + format_history.count('6') + format_history.count('7') + format_history.count('8')} [red]应该至少有4个，否则押小容易出大[/red]")
