@@ -1,4 +1,9 @@
 '''基于all.csv的时间轴，和all_num_datasets.csv的差分顺序，生成适用于随机森林回归的训练集
+
+这个脚本的运行，是根据 all.csv的时间轴，和all_num_datasets.csv的diff result，
+按照时间轴分割的段落（差值超过58秒认为是不同的段落），
+把 每20个 diff result 变成一行 x_data， 把第21个 diff result 变成 y_data，以此生成训练集
+
 '''
 
 

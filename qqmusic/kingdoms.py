@@ -304,20 +304,6 @@ def random_forest_reg_train(train_set:DataFrame,dir_name:str,column_name:str):
 
 def load_rf_reg_model(model_path:str, predict_data):
     reg = joblib.load(model_path)
-    rnd_reg_prediction_proba = reg.predict_proba([predict_data]).tolist()[0]
-
-    # 提取随机森林投票的标签  clf.classes_
-    labels_list = []
-    for each in clf.classes_:
-        labels_list.append(each)
+    prediction = reg.predict([predict_data])
     
-    proba_list = []
-    for each in rnd_reg_prediction_proba:
-        proba_list.append(round(each,2))
-   
-    output_list = list(t for t in zip(labels_list, proba_list))
-    output_list.sort(key=lambda x: x[1],reverse=1)
-
-    # 返回值的形式：
-    # return [rnd_clf_prediction.tolist()[0], rnd_clf_prediction_proba.tolist()[0]]
-    return output_list
+    return prediction

@@ -24,32 +24,26 @@ def result_recognition(img_path):
     items = ['钢琴','小提琴','吉他','贝斯','架子鼓','竖琴','萨克斯风','圆号']
     try_ = 1
     try_times = 0
-    while try_ == 1 and try_times < 5:
-        res = ocr.ocr(img_path)
-        # console.print(res)
-        for i in range(len(res)):
-            if res[i]['text'] in items:
-                if ' ' not in res[i+1]['text']:
-                    time = res[i+1]['text'][:10] + ' ' + res[i+1]['text'][-8:]
-                else:
-                    time = res[i+1]['text']
-                single_record = [res[i]['text'], time]    #res[i]对应物品名称，res[i+1]对应其回合时间
-                records.append(single_record)
-            elif '萨克斯风' in res[i]['text']:
-                time = res[i]['text'][4:]
-                single_record = ['萨克斯风', time]
-                records.append(single_record)
+    res = ocr.ocr(img_path)
+    # console.print(res)
+    for i in range(len(res)):
+        if res[i]['text'] in items:
+            if ' ' not in res[i+1]['text']:
+                time = res[i+1]['text'][:10] + ' ' + res[i+1]['text'][-8:]
+            else:
+                time = res[i+1]['text']
+            single_record = [res[i]['text'], time]    #res[i]对应物品名称，res[i+1]对应其回合时间
+            print(single_record)
+            records.append(single_record)
+        elif '萨克斯风' in res[i]['text']:
+            time = res[i]['text'][4:]
+            single_record = ['萨克斯风', time]
+            records.append(single_record)
+        # else:
+            # print(res[i]['text'])
 
-        if len(records) > 4:
-            records.remove(records[-1])
-
-        for each in records:
-            try_ = 0
-            if len(each[0]) <= 1 or len(each[1]) <= 1:
-                try_ = 1
-                try_times += 1
-                console.print("发现识别错误")
-                console.print(f"当前错误记录：{records}")
+    if len(records) > 4:
+        records.remove(records[-1])
     
     console.print(f"识别结果：{records}")
     return records
@@ -99,35 +93,41 @@ def get_latest_result(*args):
     record_button_pos = [0,0]
     while record_button_pos == [0,0]:
         record_button_pos = csl.find_element(hwnd, dirname_+'./img/find_treasure_button.png', 0.80)
+        console.print(f'[purple]Searching...[/purple]')
         if record_button_pos != [0,0]:
             (x, y) = record_button_pos
             csl.pyautogui_click(hwnd,x,y)
-            time.sleep(2)
+            # t = os.popen('adb shell input tap '+x+' '+y).read()
+            time.sleep(3)
             
-            # 为识别结果进行的截图，存为同目录下的screenshot.bmp
-            background_screenshot(hwnd)
+            item_num = 0
+            while item_num not in [1,2,3,4,5,6,7,8]:
+                # 为识别结果进行的截图，存为同目录下的screenshot.bmp
+                
+                background_screenshot(hwnd)
 
-            try:
-                records = result_recognition(dirname_+'./img/screenshot.bmp')
-            except Exception as e:
-                console.print(e)
-                console.print('未检测到数据')
-                exit(-1)
+                try:
+                    console.print(f'[purple]Recognition...[/purple]')
+                    records = result_recognition(dirname_+'./img/screenshot.bmp')
+                except Exception as e:
+                    console.print(e)
+                    console.print('未检测到数据')
+                    exit(-1)
 
-            # 返回无记录的界面
-            kingdom_title_pos = csl.find_element(hwnd, dirname_+'./img/kingdom_title.png', 0.80)
-            if kingdom_title_pos != [0,0]:
-                (x, y) = kingdom_title_pos
-                csl.pyautogui_click(hwnd,x,y)
-                time.sleep(.5)     
-            else:
-                console.print('界面异常')
-                exit(-1)
-        
-            name = ['钢琴','小提琴','吉他','贝斯','架子鼓','竖琴','萨克斯风','圆号']
-            result = name.index(records[0][0]) + 1
+                # 返回无记录的界面
+                kingdom_title_pos = csl.find_element(hwnd, dirname_+'./img/kingdom_title.png', 0.80)
+                if kingdom_title_pos != [0,0]:
+                    (x, y) = kingdom_title_pos
+                    csl.pyautogui_click(hwnd,x,y)
+                    time.sleep(.5)     
+                else:
+                    console.print('界面异常')
+                    exit(-1)
+            
+                name = ['钢琴','小提琴','吉他','贝斯','架子鼓','竖琴','萨克斯风','圆号']
+                item_num = name.index(records[0][0]) + 1
 
-    return [str(result), records[0][1]]
+    return [str(item_num), records[0][1]]
 
     
 
