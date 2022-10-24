@@ -1,7 +1,7 @@
 import os
 import datetime
 
-read_auto = open(r'C:\Users\yammi\OneDrive\0_caijia\1_code\python\yammi_utils\yammi_utils\qqmusic\auto.csv', 'r', encoding='utf8')
+read_auto = open(r'C:\Users\yammi\OneDrive\0_caijia\1_code\python\yammi_utils\yammi_utils\input\qmdata0819\auto.csv', 'r', encoding='utf8')
 read_temp = open(r'C:\Users\yammi\OneDrive\0_caijia\1_code\python\yammi_utils\yammi_utils\input\qmdata0819\temp.csv', 'r', encoding='utf8')
 
 total_data = []

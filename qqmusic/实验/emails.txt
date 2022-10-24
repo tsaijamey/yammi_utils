@@ -1,0 +1,335 @@
+qq.com,由大陆科技公司,1043
+gmail.com,Private,889
+163.com,易视腾,337
+sina.com,stagekids,24
+126.com,Tsinghua University,74
+outlook.com,Transsion,44
+live.com,Bytedance,4
+hotmail.com,NTU,73
+nwpu-aslp.org,西北工业大学音频、语音与语言处理研究组,1
+yahoo.com,HM,48
+lwrcb.com,龙湾农商银行,1
+actionsky.com,上海爱可生信息技术股份有限公司（企业大数据处理技术为核心的PaaS平台级解决方案提供商，旗下有MySQL开源社区）,1
+stu.pku.edu.cn,北京大学,1
+utdallas.edu,德克萨斯大学达拉斯分校,1
+tongji.edu.cn,同济大学,3
+uvoicetech.com,声瀚科技（专注智能语音交互技术的自主研发及应用）,2
+klb.com.cn,昆仑银行,1
+mail.com,Sunshine Sketches,12
+teamsun.com.cn,北京华胜天成科技股份有限公司,2
+fano.ai,有光科技（香港，专注于语音识别和自然语言处理的AI科技公司）,1
+speechx.cn,声希科技,2
+sugrsugr.com,米唐科技（全球领先的机器听觉算法及智能语音方案提供商）,1
+aliyun.com,阿里云,4
+web.de,private,6
+westwin.com,西窗科技（北京,1
+microsoft.com,Microsoft,7
+bupt.edu.cn,北京邮电大学,4
+nvidia.com,NVIDIA,4
+wondershare.cn,万兴科技,1
+fuqicapital.com,北京复奇投资管理有限公司,1
+samsung.com,Samsung,3
+apple.com,苹果,1
+spsmail.cuny.edu,纽约市立大学 City University of New York,1
+sjcem.edu.in,sjcem.edu.in,1
+itk.ppke.hu,（匈牙利）Faculty of Information Technology and Bionics  http://itk.ppke.hu/en,1
+eduworks.com,Eduworks,1
+oswego.edu,美国纽约州立大学奥斯威戈分校（State University of New York at Oswego),1
+mail.ru,SPbSTU,7
+iitg.ac.in,Indian Institute of Technology Guwahati 印度古瓦哈提技术学院 ,1
+futurebeeai.com,FutureBeeAI,1
+gm.uit.edu.vn,"信息科技大学(UIT)(Vietnam University of information science and technology),1
+ymail.com,university,1
+mail.pomona.edu,波莫纳学院(Pomona College)   加利福尼亚州,1
+uic.edu,university of illinois at chicago (uic) 芝加哥伊利诺伊大学（UIC）,1
+foxmail.com,Kunming University of Science and Technology,23
+sdas.org,山东省科学院,2
+wmich.edu,Western Michigan University 西密歇根大学,1
+columbia.edu,Columbia University,2
+qiniu.com,七牛云,1
+mllabs.com.au,日本 Fujitsu Laboratories Ltd. 富士通实验室,1
+polarityte.com,PolarityTE,1
+cslt.org,Centers for Spiritual Living,2
+ironwoodinsights.com,ironwood insights.com   数据分析，研究报告公司,1
+nenu.edu.cn,东北师范大学,1
+rotanovaiot.com,新航科技,1
+uark.edu,University of Arkansas 阿肯色大学（一所位于美国中南部的公立综合性研究型大学）,1
+graviti.com,格物钛,1
+abbott.com,abbott.com 雅培,1
+2u.chat,2uchat 一款社交聊天软件,1
+elda.org,欧洲语言资源学会(European Language Resources Association),1
+CSUSM.EDU,加州州立大学圣马克斯分校,1
+icloud.com,LS,13
+mails.ucas.ac.cn,中国科学院大学,3
+uwo.ca,Western University  加拿大韦仕敦大学,1
+bytedance.com,字节跳动,1
+tsinghua.org.cn,清华大学,1
+sastra.ac.in,sastra.ac.in 学校,1
+zilliz.com,Zilliz,1
+jaist.ac.jp,Japan Advanced Institute of Science and Technology ,2
+dena.com,日本的一家IT企业,1
+mail.scut.edu.cn,华南理工大学,3
+baijia.com,高途集团,1
+mhs.its.ac.id,@mhs.its.ac.id,1
+iflytek.com,科大讯飞,2
+yeah.net,清华大学,6
+easipass.com,上海亿通国际股份有限公司,1
+conaxon.org,conaxon.org,1
+vendetech.com,北京文德数慧科技发展有限责任公司（AI数据处理+行业应用解决方案提供，saas平台）,1
+warom.com,华荣科技股份有限公司,1
+geely.com,吉利集团,2
+nottingham.edu.cn,诺丁汉大学,1
+honeywell.com,honeywell.com,1
+student.mmu.edu.my,"马来西亚多媒体大学,1
+intel.com,英特尔,1
+waldenu.edu,瓦尔登大学(明尼阿波利斯)Walden University ,1
+emotibot.com,竹间科技,1
+quinnipiac.edu,昆尼皮亚克大学 Quinnipiac University,1
+rhrk.uni-kl.de, Machine Learning Group at Technische Universität Kaiserslautern 凯泽斯劳滕科技大学 https://ml.informatik.uni-kl.de/,1
+mails.tsinghua.edu.cn,清华大学,3
+hccl.ioa.ac.cn,中科院声学所,1
+diu.edu.bd,（孟加拉）水仙国际大学 Daffodil International University,1
+npu-aslp.org,Individual,2
+smvdu.ac.in,",1
+thorhauling.com,thorhauling.com,1
+wgu.edu,Western Governors University,1
+srmist.edu.in,SRM Institute of Science and Technology 印度科学技术大学,1
+bisu.edu.cn,北京第二外国语学院,1
+chivox.com,Chivox,4
+i2r.a-star.edu.sg,AGENCY FOR SCIENCE,2
+naver.com,kumoh national university,11
+mail.ustc.edu.cn,University of Science and Technology of China,8
+njtech.edu.cn,Nanjing Tech University（南京科技大学,1
+oceanpayment.com.cn,深圳 跨境支付平台——钱海Oceanpayment,1
+ustb.edu.cn,北京科技大学,1
+sz.pku.edu.cn,北京大学,1
+um.si,马里博尔大学（University of Maribor） 斯洛文尼亚,1
+nd.edu,University of Notre Dame 圣母大学,1
+ezweb.ne.jp,日本企业,1
+scis.smu.edu.sg,新加坡管理大学,1
+mckendree.edu,麦克凯德利大学(McKendree University) 位于伊利诺州的大学,1
+stu.suda.edu.cn,no,1
+alibaba-inc.com,alibaba group,4
+docomo.ne.jp,日本移动通信运营商 DOCOMO,1
+nlpr.ia.ac.cn,中科院自动化研究所 模式识别国家重点实验室,1
+chinamobile.con,中国移动,1
+polytechnique.edu,巴黎综合理工学院,1
+grenoble-em.com,法国格勒诺布尔高等商学院 ,1
+gold.ac.uk,Goldsmiths,1
+d-ear.com,北京 得意音通——人工智能的声纹识别,1
+eee.upd.edu.ph,university of the philippines - diliman 菲律宾大学,2
+yu.ac.kr,영남대학교입니다,1
+cis.asu.edu.eg,Ain Shams University 开罗 艾因萨姆斯大学,1
+bipt.edu.cn,北京石油化工学院,1
+speakin.ai,势必可赢科技,1
+live.warwick.ac.uk,warwick university 华威大学 英国,1
+link.cuhk.edu.cn,香港中文大学,1
+mail.tsinghua.edu.cn,清华大学,1
+virginia.edu,弗吉尼亚大学,1
+zju.edu.cn,浙江大学,5
+unige.ch,日内瓦大学,2
+mail.dlut.edu.cn,大连理工大学,1
+languametrics.com,languametrics,1
+jit.edu.cn,金陵科技学院,1
+fci.bu.edu.eg,法兰克福大学,1
+std.stei.itb.ac.id,School of Electrical Engineering and Informatics India,1
+mctc.org.cn,国家网络与信息系统安全产品质量检验检测中心,1
+sfmail.sf-express.com,顺丰,1
+shopee.com,Shopee,3
+ziel.cn,致欧科技,1
+marscrowd.com,MarsCrowd,1
+voiping.es,voiping,1
+wikit.ai,wikit.ai,1
+ilivedata.com,ilivedata,3
+cse.mrt.ac.lk,cse.mrt.ac,1
+zgchit.com,zgchit,1
+libero.it,libero,1
+sjtu.edu.cn,SJTU（上海交通大学,3
+bukalapak.com,bukalapak,1
+ksdigital.ru,ksdigital,1
+deepgram.com,Deepgram,1
+ipm.edu.mo,ipm,1
+shu.edu.cn,上海大学,2
+unigeol.com,unigeol,1
+thatsliving.com,thatsliving,1
+qopow.com,qopow,1
+vocust.com,华客科技,1
+yandex.ru,E-Cetera,2
+h-farm.com,h-farm,1
+carthage.edu,carthage,1
+nahetech.com,nahetech,1
+asmsolutions.ru,asmsolutions,1
+huggingface.co,huggingface,1
+hawaii.edu,夏威夷大学,1
+stu.xjtu.edu.cn,西安交通大学,1
+speechpro.com,speechpro,1
+cyndx.com,cyndx,1
+brandeis.edu,brandeis,1
+daum.net,daum,1
+ntu.edu.sg,Nanyang Technological University,2
+mail.fju.edu.tw,辅仁大学,1
+bitext.com,bitext,1
+middlebury.edu,Middlebury College,1
+shanghaitech.edu.cn,上海科技大学,1
+bjtu.edu.cn,北京交通大学,1
+andrew.cmu.edu,卡耐基梅隆大学,5
+std.uestc.edu.cn,电子科技大学,1
+purdue.edu,Purdue University,1
+boe.com.cn,京东方,1
+whu.edu.cn,武汉大学,2
+jd.com,京东,2
+studenti.uniroma1.it,罗马大学,1
+wordly.ai,wordly.ai,1
+g.sp.m.is.nagoya-u.ac.jp,g.sp.m.is.nagoya-u.,1
+spacetouch.co,spacetouch,1
+oppo.com,OPPO,2
+tju.edu.cn,天津大学,4
+panshidata.com,盘石数据科技,1
+talentedsoft.com,天聪智能,1
+voiceaitech.com,声扬科技,1
+dukekunshan.edu.cn,昆山杜克大学,1
+mail.imu.edu.cn,Inner Mongolia University（内蒙古大学,2
+stmail.ujs.edu.cn,江苏大学,1
+mail.ioa.ac.cn,中科院声学所,2
+tencent.com,tencent,3
+huawei.com,Bountouridis,4
+upuphone.com,upuphone,1
+ruc.edu.cn,中国人民大学,1
+pku.edu.cn,PekingUniversity（北京大学,2
+myhexin.com,同花顺,2
+aispeech.com,aispeech,1
+moment-net.com,香港稍刻网络科技,1
+hit.edu.cn,哈尔滨工业大学,1
+advanced-media.co.jp,advanced-media,1
+mail2.sysu.edu.cn,中山大学,1
+live.cn,csu,3
+cvte.com,CVTE（视源股份）,3
+students.cdu.edu.au,University ,1
+vave.studio,"VAVE (Shanghai) Creative Design Co.,1
+maisco.kr,megastudy EDU,1
+atiak.com,Airborne Technologies,1
+postech.ac.kr,Postech,1
+nthrw.com,DataAI Texas Illinois US,1
+dartmouth.edu,Dartmouth College,1
+xidian.edu.cn,西安电子科技大学,1
+my.cityu.edu.hk,香港城市大学,1
+zoom.us,Zoom Inc,2
+aculab.com,Aculab,1
+sensoryinc.com,Sensory,2
+skylyte.com,Skylyte,1
+e.ntu.edu.sg,Nanyang Technological University,3
+fel.cvut.cz,Czech Technical University,1
+seasalt.ai,Seasalt.ai,1
+corp.netease.com,网易游戏,1
+tip.edu.ph,Technological Institute of the Philippines,1
+cmos.chinamobile.com,中移在线服务有限公司,1
+pingan.com.cn,平安科技,1
+student.tudelft.nl,Delft ,2
+cornell.edu,Cornell University,1
+nio.com,蔚来,1
+mails.ucas.edu.cn,中国科学院大学,1
+xiaomi.com,小米,1
+goodix.com,深圳市汇顶科技股份有限公司,1
+graveltechnology.com,Gravel,1
+wisc.edu,University of Wisconsin-Madison,1
+liulishuo.com,英语流利说,1
+starlinkdata.com.cn,安庆星链数据科技有限公司,1
+fib.unair.ac.id,Universitas Airlangga,1
+students.au.edu.pk,Student,1
+vivatranslate.com,Viva Translate,1
+youcash.com,中邮消费金融有限公司,1
+nict.go.jp,National Institute of Information & Communications Technology (NICT),1
+gmx.net,Cinebits,1
+xiaobing.ai,小冰,1
+mail.nwpu.edu.cn,西北工业大学,2
+avinium.com,Avinium Pty Ltd,1
+entropiktech.com,Entropik Tech,1
+adamson.edu.ph,Adamson University,1
+sentient.io,Sentient,1
+altagram.com,Alocai,1
+isamm.u-manouba.tn,ISAMM (Institut Supérieur des Arts Multimédia de la Manouba),1
+smartmssa.com,Smart MS SA ,1
+awantunai.com,AwanTunai,1
+emotech.co,Emotech,2
+h-partners.com,chinasoft（中软国际,2
+stu.scls-sh.org,Shanghai Soong Ching Ling School（上海宋庆龄学校,1
+onvego.com,Onvego,1
+live.com.ar,bs-games,1
+adaures.com,Ad Aures,1
+AllFreeMail.net,Apple,1
+trip.com,trip.com,1
+chinamobile.com,CM,1
+wmsu.edu.ph,WMSU（Western Mindanao State University,1
+unibz.it,unibz（Free University of Bozen-Bolzano,1
+jeoce.com,Qest INc,1
+oneai.com,OneAI,1
+master-bunny.ru,ИП Зайков Данил Павлович,1
+dxwand.com,dxwand,1
+lodores.com,Kaisen Data（软件公司,1
+didiglobal.com,DiDi（滴滴,1
+mindtitan.com,MindTitan,1
+proton.me,None,1
+meituan.com,Meituan（美团,1
+sprinklr.com,Sprinklr,3
+ieee.org,Sharif Uni of Tech（谢里夫理工大学,2
+aregods.com,N/A,1
+mailinator.com,Innotive R&D,1
+scet.ac.in,scet（The Sarvajanik College of Engineering and Technology,1
+nii.ac.jp,NII（国立情報学研究所,1
+colorado.edu,University of Colorado Boulder（科罗拉多大学,1
+anlubi.com,Broosterx,1
+my.swjtu.edu.cn,Southwest Jiaotong University,1
+stu.cuit.edu.cn,成都信息工程大学,1
+gmailwe.com,jon1968,1
+gmx.at,no,1
+linguist.univ-paris-diderot.fr,Université Paris Cité,1
+stu.xidian.edu.cn,Xidian University,1
+vivodus.net,Titi,1
+dm-ai.com,DMAI,1
+iiti.ac.in,Indian Institute of Technology Indore,1
+studenti.polito.it,Politecnico di Torino,1
+alumnos.uc3m.es,Ifbdksndknww,1
+sheffield.ac.uk,The University of Sheffield,1
+tudelft.nl,TU Delft,1
+smail.iitm.ac.in,Indian Institute Of Technology,1
+stu.xmu.edu.cn,Xiamen University,1
+sookmyung.ac.kr,Sookmyung Women's University,1
+szpt.edu.cn,szpt深圳职业技术学院,1
+rd.netease.com,youdao,1
+riffsys.com,PT RiffSYS Digital Media,1
+stepincto.com,Step-In CTO,1
+navercorp.com,NAVER,1
+unisoc.com,紫光展锐,1
+aidetic.in,aidetic,1
+femtosense.ai,Femtosense,1
+cihe.edu.hk,Caritas Institute of Higher Education,1
+pcl.ac.cn,鹏城实验室,1
+vasqa.com,ele,1
+ysumail.am,YSU,1
+alumni.hust.edu.cn,orionstar,1
+helsinki.fi,University of Helsinki,1
+infotalkcorp.com,InfoTalk北京金言丰语音技术有限公司,1
+tutanota.com,tutanota,1
+khyamallami.com,N/A,1
+gavo.t.u-tokyo.ac.jp,The University of Tokyo,1
+hotmail.es,none,1
+igdtuw.ac.in,Indira Gandhi Delhi Technical University for Women,1
+uniphore.com,uniphore,1
+usm.ac.id,Universitas Semarang,1
+vasco-electronics.com,Vasco Electronics,1
+esen.tn,esen,1
+cse.iitk.ac.in,IIT Kanpur,1
+ksu.edu,Kansas State University,1
+trellisdata.com.au,Trellis Data,1
+case.edu,Language & Cognition Lab,1
+slanglabs.com,Slang Labs,1
+outLook.com,西安科技大学,1
+voicencode.com,Voicencode Ltd.,1
+esi.dz,a,1
+ai-j.jp,AI,1
+fudan.edu.cn,谷露软件,1
+kaizenvoiz.com,Kaizen Secure Voiz,2
+gits.at,personal,1
+stu.shmtu.edu.cn,上海海事大学,1
+alexu.edu.eg,exo,1
+bu.edu,Boston University,1

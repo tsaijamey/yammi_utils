@@ -1,0 +1,901 @@
+stu.pku.edu.cn,北京大学,高校
+iitg.ac.in,Indian Institute of Technology Guwahati 印度古瓦哈提技术学院 ,高校
+mail.pomona.edu,美国波莫纳学院,高校
+samsung.com,三星,企业
+tongji.edu.cn,同济大学,高校
+uvoicetech.com,声瀚科技（专注智能语音交互技术的自主研发及应用）,企业
+mails.tsinghua.edu.cn,清华大学,高校
+warom.com,华荣科技股份有限公司,企业
+bytedance.com,字节跳动,企业
+baijia.com,高途集团,企业
+graviti.com,格物钛,企业
+aliyun.com,阿里云,企业
+163.com,智诺盛(深圳)智能科技有限公司（智能家居用品的设计、研发、销售;）,企业
+actionsky.com,上海爱可生信息技术股份有限公司（企业大数据处理技术为核心的PaaS平台级解决方案提供商，旗下有MySQL开源社区）,企业
+tongji.edu.cn,同济大学,高校
+mhs.its.ac.id,@mhs.its.ac.id,高校
+iflytek.com,科大讯飞,企业
+polarityte.com,PolarityTE, Inc.是一家主要面向家庭的，休闲游戏的消费者提供视频游戏产品的提供商,企业
+abbott.com,abbott.com 雅培,企业
+mail.scut.edu.cn,华南理工大学,高校
+tsinghua.org.cn,清华大学,高校
+intel.com,英特尔,企业
+jaist.ac.jp,日本 北陸先端科学技術大学院大学,高校
+quinnipiac.edu,昆尼皮亚克大学 Quinnipiac University,高校
+mails.ucas.ac.cn,中国科学院大学,高校
+utdallas.edu,德克萨斯大学达拉斯分校,高校
+spsmail.cuny.edu,纽约市立大学 City University of New York,高校
+teamsun.com.cn,北京华胜天成科技股份有限公司,企业
+teamsun.com.cn,北京华胜天成科技股份有限公司,企业
+fano.ai,有光科技（香港，专注于语音识别和自然语言处理的AI科技公司）,企业
+mail.ru,Mail.Ru是俄罗斯一家电子邮件及陌生人社交服务提供商,企业
+smvdu.ac.in,"
+Shri Mata Vaishno Devi University  印度",高校
+vendetech.com,北京文德数慧科技发展有限责任公司（AI数据处理+行业应用解决方案提供，saas平台）,企业
+elda.org,欧洲语言资源学会(European Language Resources Association),高校
+ironwoodinsights.com,ironwood insights.com   数据分析，研究报告公司,企业
+CSUSM.EDU,加州州立大学圣马克斯分校,高校
+thorhauling.com,thorhauling.com,企业
+uvoicetech.com,声瀚科技（专注智能语音交互技术的自主研发及应用）,
+sastra.ac.in,sastra.ac.in 学校,高校
+conaxon.org,conaxon.org,高校
+rotanovaiot.com,新航科技,企业
+westwin.com,西窗科技（北京,企业
+wondershare.cn,万兴科技,企业
+npu-aslp.org,西北工业大学音频、语音与语言处理研究组,高校
+rhrk.uni-kl.de, Machine Learning Group at Technische Universität Kaiserslautern 凯泽斯劳滕科技大学 https://ml.informatik.uni-kl.de/,高校
+student.mmu.edu.my,"马来西亚多媒体大学
+multimedia university",高校
+mllabs.com.au,日本 Fujitsu Laboratories Ltd. 富士通实验室,高校
+sugrsugr.com,米唐科技（全球领先的机器听觉算法及智能语音方案提供商）,企业
+nwpu-aslp.org,西北工业大学音频、语音与语言处理研究组,高校
+sjcem.edu.in,sjcem.edu.in,高校
+srmist.edu.in,SRM Kattankulathur Dental College,高校
+nottingham.edu.cn,诺丁汉大学,高校
+2u.chat,2uchat 一款社交聊天软件,企业
+lwrcb.com,龙湾农商银行,企业
+eduworks.com,Eduworks,企业
+gmail.com,华为,企业
+sdas.org,山东省科学院,高校
+wmich.edu,Western Michigan University 西密歇根大学,高校
+diu.edu.bd,（孟加拉）水仙国际大学 Daffodil International University,高校
+samsung.com,三星,企业
+emotibot.com,竹间科技,企业
+itk.ppke.hu,（匈牙利）Faculty of Information Technology and Bionics  http://itk.ppke.hu/en,高校
+aliyun.com,阿里云,企业
+uwo.ca,Western University  加拿大韦仕敦大学,高校
+pku.edu.cn,北京大学,高校
+fuqicapital.com,北京复奇投资管理有限公司,企业
+apple.com,苹果,企业
+honeywell.com,honeywell.com,企业
+nenu.edu.cn,东北师范大学,高校
+geely.com,吉利集团,企业
+cslt.org,清华大学信息技术研究院语音和语言技术研究中心,高校
+oswego.edu,美国纽约州立大学奥斯威戈分校（State University of New York at Oswego),高校
+microsoft.com,微软,企业
+easipass.com,上海亿通国际股份有限公司,企业
+hccl.ioa.ac.cn,中科院声学所,高校
+qiniu.com,七牛云,企业
+waldenu.edu,瓦尔登大学(明尼阿波利斯)Walden University ,高校
+bupt.edu.cn,北京邮电大学,高校
+sdas.org,山东省科学院,高校
+mail.pomona.edu,波莫纳学院(Pomona College)   加利福尼亚州,高校
+uic.edu,university of illinois at chicago (uic) 芝加哥伊利诺伊大学（UIC）,高校
+iflytek.com,科大讯飞,企业
+futurebeeai.com,FutureBeeAI,企业
+zilliz.com,Zilliz,企业
+klb.com.cn,昆仑银行,企业
+wgu.edu,Western Governors University - 美国西部大学,高校
+samsung.com,三星,企业
+uark.edu,University of Arkansas 阿肯色大学（一所位于美国中南部的公立综合性研究型大学）,高校
+gm.uit.edu.vn,"信息科技大学(UIT)(Vietnam University of information science and technology)
+越南国立大学-胡志明市的一员",高校
+dena.com,日本的一家IT企业,成立于1999年,总部位于东京都涩谷区,经营业务包括社交游戏、电子商务、互联网等,,企业
+live.warwick.ac.uk,warwick university 华威大学 英国,高校
+speakin.ai,势必可赢科技,企业
+bipt.edu.cn,北京石油化工学院,高校
+cis.asu.edu.eg,Ain Shams University 开罗 艾因萨姆斯大学,高校
+yu.ac.kr,영남대학교입니다, Yeungnam University，韩国 岭南大学,高校
+naver.com,naver ,企业
+eee.upd.edu.ph,university of the philippines - diliman 菲律宾大学,高校
+d-ear.com,北京 得意音通——人工智能的声纹识别,
+gold.ac.uk,Goldsmiths, University of London；伦敦大学金史密斯学院,高校
+grenoble-em.com,法国格勒诺布尔高等商学院 ,高校
+polytechnique.edu,巴黎综合理工学院,高校
+naver.com,naver ,企业
+chinamobile.con,中国移动,企业
+nlpr.ia.ac.cn,中科院自动化研究所 模式识别国家重点实验室,
+docomo.ne.jp,日本移动通信运营商 DOCOMO,企业
+alibaba-inc.com,阿里,企业
+stu.suda.edu.cn,苏州大学,高校
+naver.com,naver ,企业
+naver.com,naver ,企业
+mckendree.edu,麦克凯德利大学(McKendree University) 位于伊利诺州的大学,高校
+scis.smu.edu.sg,新加坡管理大学,高校
+ezweb.ne.jp,日本企业,企业
+nd.edu,University of Notre Dame 圣母大学,高校
+um.si,马里博尔大学（University of Maribor） 斯洛文尼亚,高校
+sz.pku.edu.cn,北京大学,高校
+i2r.a-star.edu.sg,AGENCY FOR SCIENCE, TECHNOLOGY AND RESEARCH 新加坡,高校
+ustb.edu.cn,北京科技大学,高校
+oceanpayment.com.cn,深圳 跨境支付平台——钱海Oceanpayment,企业
+njtech.edu.cn,南京工业大学,高校
+speechx.cn,声希科技,企业
+mail.ustc.edu.cn,中国科学技术大学,高校
+naver.com,naver ,企业
+i2r.a-star.edu.sg,AGENCY FOR SCIENCE, TECHNOLOGY AND RESEARCH 新加坡,高校
+chivox.com,苏州驰声科技,企业
+bisu.edu.cn,北京第二外国语学院,高校
+srmist.edu.in,SRM Institute of Science and Technology 印度科学技术大学,高校
+wgu.edu,Western Governors University,高校
+link.cuhk.edu.cn,香港中文大学,高校
+cslt.org,Centers for Spiritual Living,企业
+microsoft.com,微软,企业
+mail.tsinghua.edu.cn,清华大学,高校
+virginia.edu,弗吉尼亚大学,高校
+zju.edu.cn,浙江大学,高校
+unige.ch,日内瓦大学,高校
+mail.dlut.edu.cn,大连理工大学,高校
+languametrics.com,languametrics,企业
+jit.edu.cn,金陵科技学院,高校
+fci.bu.edu.eg,法兰克福大学,高校
+std.stei.itb.ac.id,School of Electrical Engineering and Informatics India,高校
+mctc.org.cn,国家网络与信息系统安全产品质量检验检测中心,
+bupt.edu.cn,北京邮电大学,高校
+sfmail.sf-express.com,顺丰,企业
+shopee.com,虾皮,企业
+ziel.cn,致欧科技,企业
+marscrowd.com,MarsCrowd,企业
+voiping.es,voiping,企业
+mail.scut.edu.cn,华南理工大学,高校
+wikit.ai,wikit.ai,企业
+ilivedata.com,ilivedata,企业
+cse.mrt.ac.lk,cse.mrt.ac,高校
+zgchit.com,zgchit,
+libero.it,libero,高校
+sjtu.edu.cn,上海交通大学,高校
+bukalapak.com,bukalapak,企业
+ksdigital.ru,ksdigital,企业
+deepgram.com,deepgram,企业
+ipm.edu.mo,ipm,高校
+shu.edu.cn,上海大学,高校
+unigeol.com,unigeol,企业
+thatsliving.com,thatsliving,企业
+qopow.com,qopow,企业
+vocust.com,华客科技,企业
+yandex.ru,yandex,企业
+h-farm.com,h-farm,企业
+carthage.edu,carthage,高校
+nahetech.com,nahetech,企业
+asmsolutions.ru,asmsolutions,企业
+huggingface.co,huggingface,企业
+hawaii.edu,夏威夷大学,高校
+stu.xjtu.edu.cn,西安交通大学,高校
+speechpro.com,speechpro,企业
+cyndx.com,cyndx,企业
+ilivedata.com,ilivedata,企业
+naver.com,naver,企业
+bochs.info,bochs,企业
+microsoft.com,微软,企业
+brandeis.edu,brandeis,高校
+daum.net,daum,企业
+ntu.edu.sg,南洋理工大学,高校
+mail.fju.edu.tw,辅仁大学,高校
+aliyun.com,阿里云,企业
+bitext.com,bitext,企业
+middlebury.edu,Middlebury College,高校
+shanghaitech.edu.cn,上海科技大学,高校
+bjtu.edu.cn,北京交通大学,高校
+andrew.cmu.edu,卡耐基梅隆大学,高校
+std.uestc.edu.cn,电子科技大学,高校
+purdue.edu,Purdue University,高校
+boe.com.cn,京东方,企业
+whu.edu.cn,武汉大学,高校
+andrew.cmu.edu,卡耐基梅隆大学,高校
+studenti.uniroma1.it,罗马大学,高校
+microsoft.com,微软,企业
+andrew.cmu.edu,卡耐基梅隆大学,高校
+wordly.ai,wordly.ai,企业
+andrew.cmu.edu,卡耐基梅隆大学,高校
+microsoft.com,微软,企业
+aliyun.com,阿里云,企业
+g.sp.m.is.nagoya-u.ac.jp,g.sp.m.is.nagoya-u.,高校
+spacetouch.co,spacetouch,企业
+oppo.com,OPPO,企业
+tju.edu.cn,天津大学,高校
+panshidata.com,盘石数据科技,企业
+talentedsoft.com,天聪智能,企业
+voiceaitech.com,声扬科技,企业
+dukekunshan.edu.cn,昆山杜克大学,高校
+mail.ustc.edu.cn,中国科学技术大学,高校
+mail.imu.edu.cn,内蒙古大学,高校
+stmail.ujs.edu.cn,江苏大学,高校
+mail.ioa.ac.cn,中科院声学所,高校
+bupt.edu.cn,北京邮电大学,高校
+mails.ucas.ac.cn,中国科学院大学,高校
+tencent.com,腾讯,企业
+huawei.com,华为,企业
+upuphone.com,upuphone,企业
+ruc.edu.cn,中国人民大学,高校
+mails.tsinghua.edu.cn,清华大学,高校
+mails.ucas.ac.cn,中国科学院大学,高校
+pku.edu.cn,北京大学,高校
+tongji.edu.cn,同济大学,高校
+aispeech.com,aispeech,企业
+moment-net.com,香港稍刻网络科技,企业
+hit.edu.cn,哈尔滨工业大学,高校
+andrew.cmu.edu,卡耐基梅隆大学,高校
+advanced-media.co.jp,advanced-media,企业
+mail2.sysu.edu.cn,中山大学,高校
+gmail.com,Universitas Dipa Makassar, Indonesia ,
+qq.com,shenzhen,
+gmail.com,No name,
+nthrw.com,DataAI Texas Illinois US,
+qq.com,not yet,
+postech.ac.kr,Postech,
+cvte.com,广州视源电子科技股份有限公司,
+gmail.com,YT,
+atiak.com,Airborne Technologies, Inc.,
+126.com,HUAT,
+maisco.kr,megastudy EDU,
+alibaba-inc.com,Banma,
+163.com,Xi'an Jiaotong University,
+163.com,西安交通大学,
+qq.com,zuel,
+qq.com,wuhan,
+vave.studio,VAVE (Shanghai) Creative Design Co., Ltd.,
+qq.com,MYOWN,
+163.com,moment-net,
+gmail.com,Ventures ATX,
+qq.com,Tencent,
+gmail.com,Self-employeed,
+hotmail.com,South China University of Technology,
+students.cdu.edu.au,University ,
+gmail.com,Charles darwin university,
+gmail.com,Accura（本田高端）,企业
+awantunai.com,AwanTunai,企业
+gmail.com,Northumbria University,高校
+gmail.com,Northumbria University,高校
+smartmssa.com,Smart MS SA ,企业
+163.com,比亚迪,企业
+163.com,四川大学,高校
+126.com,OPPO,企业
+mar.aleeas.com,ULA (University),高校
+gmail.com,Data Driven Asia,企业
+naver.com,충남대학교 Chungnam National University (CNU),高校
+gmail.com,Reno Systems,企业
+gmail.com,Macau university of science and technology,高校
+isamm.u-manouba.tn,ISAMM (Institut Supérieur des Arts Multimédia de la Manouba),高校
+gmail.com,TRT,企业
+gmail.com,TUGUTECH,企业
+huawei.com,华为(比利时),企业
+altagram.com,Alocai,企业
+huawei.com,华为,企业
+qq.com,滴滴,企业
+gmail.com,北京理工大学,高校
+sentient.io,Sentient,企业
+qq.com,燕山大学,高校
+gmail.com,埃尔朗根-纽伦堡大学,高校
+yahoo.com,Independent Researcher,企业
+gmail.com,Daimler AG 戴姆勒,企业
+gmail.com,gvpce (Gayatri Vidya Parishad College of Engineering),高校
+adamson.edu.ph,Adamson University,高校
+entropiktech.com,Entropik Tech,企业
+ntu.edu.sg,Nanyang Technological University,高校
+163.com,中国科学院大学,高校
+163.com,中国科学院大学,高校
+gmail.com,Universitas Hasanuddin,高校
+avinium.com,Avinium Pty Ltd,企业
+tju.edu.cn,天津大学,高校
+whu.edu.cn,武汉大学,高校
+gmail.com,中科院自动化所,高校
+qq.com,小米,企业
+163.com,内蒙古科技大学,高校
+126.com,USTB(北京科技大学),高校
+mail.ustc.edu.cn,OPPO,企业
+hotmail.com,UQAM(Université du Québec à Montréal),高校
+163.com,西安交通大学,高校
+mail.nwpu.edu.cn,西北工业大学,高校
+xiaobing.ai,小冰,企业
+gmx.net,Cinebits,企业
+gmail.com,CAKRA.AI,企业
+uni-saarland.de,Saarland university,高校
+nict.go.jp,National Institute of Information & Communications Technology (NICT),高校
+youcash.com,中邮消费金融有限公司,企业
+gmail.com,PENS (Politeknik Elektronika Negeri Surabaya),高校
+vivatranslate.com,Viva Translate,企业
+tju.edu.cn,天津大学,高校
+qq.com,安徽大学,高校
+gmail.com,udayana university,高校
+gmail.com,UNIMAS (University of Malaysia, Sarawak),高校
+chivox.com,Chivox（苏州驰声信息科技有限公司）,企业
+163.com,第四范式,企业
+outlook.com,UFRJ (Universidade Federal do Rio de Janeiro),高校
+gmail.com,西安交通大学,高校
+students.au.edu.pk,Student,高校
+npu-aslp.org,Individual,高校
+fib.unair.ac.id,Universitas Airlangga,高校
+qq.com,新疆大学,高校
+student.tudelft.nl,Delft ,高校
+163.com,LinkSure,企业
+qq.com,witin,企业
+163.com,58同城,企业
+shu.edu.cn,上海大学,高校
+qq.com,传音控股,企业
+qq.com,南京理工大学,高校
+163.com,北京林业大学,高校
+163.com,河北工业大学,高校
+starlinkdata.com.cn,安庆星链数据科技有限公司,企业
+oppo.com,OPPO,企业
+qq.com,厦门理工学院,高校
+gmail.com,HelloMyBot,企业
+gmail.com,北京理工大学,高校
+liulishuo.com,英语流利说,企业
+163.com,华为,企业
+qq.com,成都理工大学,高校
+qq.com,腾讯,企业
+gmail.com,VoiceDepth,企业
+wisc.edu,University of Wisconsin-Madison,高校
+graveltechnology.com,Gravel,企业
+goodix.com,深圳市汇顶科技股份有限公司,企业
+gmail.com,长虹,企业
+gmail.com,Instittut Teknologi Sepuluh Nopember,高校
+outlook.com,清华大学,高校
+gmail.com,BINUS University,高校
+gmail.com,中国海洋大学,高校
+xiaomi.com,小米,企业
+mails.ucas.edu.cn,中国科学院大学,高校
+gmail.com,ObEN,企业
+nio.com,蔚来,企业
+sina.com,网易,企业
+qq.com,西北工业大学,高校
+163.com,太原理工大学,高校
+gmail.com,perso,企业
+cornell.edu,Cornell University,高校
+qq.com,新疆大学,高校
+pingan.com.cn,平安科技,企业
+outlook.com,中山大学,高校
+qq.com,北京理工大学,高校
+foxmail.com,fosafer（北京远鉴科技有限公司）,企业
+gmail.com,University of Toronto,高校
+yeah.net,清华大学,高校
+163.com,中移在线服务有限公司,企业
+cmos.chinamobile.com,中移在线服务有限公司,企业
+gmail.com,University of Surabaya,高校
+gmail.com,Netray.id,企业
+163.com,viomi （云米）,企业
+qq.com,搜狗,企业
+163.com,小鹏汽车,企业
+tip.edu.ph,Technological Institute of the Philippines,高校
+qq.com,zhimu tech（智目科技有限公司）,企业
+gmail.com,radboud,高校
+gmail.com,腾讯,企业
+qq.com,Edinburgh University,高校
+163.com,上海师范大学,高校
+qq.com,滴滴,企业
+qq.com,CMB (招商银行),企业
+gmail.com,University of Surrey,高校
+163.com,北京科技大学,高校
+corp.netease.com,网易游戏,企业
+163.com,天津大学,高校
+seasalt.ai,Seasalt.ai,企业
+e.ntu.edu.sg,Nanyang Technological University,高校
+gmail.com,s&c co.ltd,企业
+fel.cvut.cz,Czech Technical University,高校
+e.ntu.edu.sg,Nanyang Technological University,高校
+gmail.com,Institut Teknologi Kalimantan,高校
+gmail.com,Student,高校
+gmail.com,Kennesaw State Univeristy,高校
+qq.com,桂林理工大学,高校
+qq.com,小米,企业
+qq.com,TangJia School,高校
+163.com,天津大学,高校
+126.com,华为,企业
+qq.com,联通,企业
+yandex.ru,E-Cetera,企业
+gmail.com,中国科学院大学,高校
+126.com,南开大学,高校
+sensoryinc.com,Sensory, Inc.,企业
+qq.com,中国科学院大学,高校
+jd.com,京东,企业
+qq.com,上海电力,企业
+gmail.com,Columbia University,高校
+gmail.com,国立台北科技大学,高校
+gmail.com,国立台湾大学,高校
+mail.ru,Andr3n Inc.,企业
+gmail.com,kokotar,企业
+skylyte.com,Skylyte,企业
+sensoryinc.com,Sensory, Inc,企业
+gmail.com,Lisha,高校
+qq.com,milan,高校
+gmail.com,Daten system consulting ,企业
+cvte.com,CVTE（视源股份）,企业
+chivox.com,Chivox（苏州驰声信息科技有限公司）,企业
+live.cn,csu,高校
+outlook.com,网易,企业
+163.com,hua,高校
+aculab.com,Aculab,企业
+ymail.com,university,高校
+yahoo.com,艾因·沙姆斯大学,高校
+gmail.com,Tencent AI Lab （腾讯AI Lab）,企业
+gmail.com,Australian National University Emeritus Faculty,高校
+gmail.com,华为(俄罗斯),企业
+qq.com,Università normale di Nanchino,高校
+zoom.us,Zoom Video Communications Inc.,企业
+my.cityu.edu.hk,香港城市大学,高校
+xidian.edu.cn,西安电子科技大学,高校
+dartmouth.edu,Dartmouth College,高校
+alibaba-inc.com,阿里巴巴,企业
+163.com,哈尔滨工业大学,高校
+gmail.com,Universitas Dipa Makassar, Indonesia ,高校
+nthrw.com,DataAI Texas Illinois US,企业
+postech.ac.kr,Postech,企业
+qq.com,CVTE（视源股份）,企业
+cvte.com,CVTE（视源股份）,企业
+atiak.com,Airborne Technologies, Inc.,企业
+126.com,湖北汽车工业学院,高校
+maisco.kr,megastudy EDU,企业
+alibaba-inc.com,斑马,企业
+163.com,西安交通大学,高校
+qq.com,中南财经政法大学,高校
+vave.studio,"VAVE (Shanghai) Creative Design Co., Ltd.
+（翡梧（上海）创意设计有限公司）",企业
+163.com,moment-net（香港稍刻网络科技有限公司）,企业
+gmail.com,Ventures ATX,企业
+qq.com,腾讯,企业
+hotmail.com,South China University of Technology,高校
+students.cdu.edu.au,University ,高校
+gmail.com,Charles darwin university,高校
+foxmail.com,dmu,未知
+163.com,swust（西南科技大学,高校
+gmail.com,mtp,未知
+colorado.edu,University of Colorado Boulder（科罗拉多大学,高校
+qq.com,hebei university of technology（河北工业大学,高校
+qq.com,Fosafer corp.（远鉴科技,企业
+nii.ac.jp,NII（国立情報学研究所,高校
+gmail.com,Independent,个人
+gmail.com,Galamat AI,企业
+163.com,东华大学,高校
+qq.com,ra joon,个人
+scet.ac.in,scet（The Sarvajanik College of Engineering and Technology,高校
+ieee.org,A*star,高校
+163.com,好未来,企业
+mailinator.com,Innotive R&D,企业
+gmail.com,didiworld,企业
+126.com,江苏师范大学,高校
+qq.com,江苏师范大学,高校
+qq.com,江苏师范大学,高校
+qq.com,江苏师范大学,高校
+gmail.com,CNAI（软件公司,企业
+qq.com,江苏师范大学,高校
+aregods.com,N/A,个人
+gmail.com,xyz,未知
+ieee.org,Sharif Uni of Tech（谢里夫理工大学,高校
+163.com,Geely（吉利,企业
+outlook.com,youguess,未知
+naver.com,nx（Naver,未知
+qq.com,jj,未知
+sprinklr.com,sprinklr（软件企业,企业
+qq.com,hit,未知
+meituan.com,Meituan（美团,企业
+gmail.com,nice,未知
+126.com,tianjin unversity（天津大学,高校
+proton.me,None,个人
+mindtitan.com,MindTitan,企业
+gmail.com,AIRBUS（航天,企业
+gmail.com,NoCompany,个人
+gmail.com,BIT（北京理工大学,高校
+163.com,BIT（北京理工大学,高校
+gmail.com,other,个人
+didiglobal.com,DiDi（滴滴,企业
+qq.com,维音数码（上海）有限公司,企业
+qq.com,jieli keji（杰理芯片,企业
+gmail.com,ElyaData,企业
+gmail.com,tsinghua university CHINA（清华大学,高校
+lodores.com,Kaisen Data（软件公司,企业
+mail.ustc.edu.cn,中国科学技术大学,高校
+aleph-alpha.com,Aleph Alpha,企业
+qq.com,fhs,未知
+zju.edu.cn,Zhejiang University（浙江大学,高校
+gmail.com,Softline,企业
+gmail.com,Polytech,企业
+dxwand.com,dxwand,未知
+goldinbox.net,goldinbox,企业
+gmail.com,ABC,未知
+qq.com,浙江大学,高校
+master-bunny.ru,ИП Зайков Данил Павлович,个人
+gmail.com,Student,个人
+gmail.com,AlanApp,企业
+qq.com,FOSU（佛山大学,高校
+qq.com,chinasoft（中软国际,企业
+h-partners.com,chinasoft（中软国际,企业
+126.com,西安石油大学,高校
+oneai.com,OneAI,企业
+gmail.com,www.shaip.com,企业
+gmail.com,Personal,个人
+gmail.com,ITB（Bandung Institute of Technology,高校
+jeoce.com,Qest INc,企业
+gmail.com,University of Cologne,高校
+foxmail.com,FAW（一汽,企业
+gmail.com,Independent,个人
+163.com,上海承宗文化传播有限公司,高校
+163.com,JD,企业
+163.com,ximalaya,企业
+gmail.com,bvcoe,企业
+gmail.com,Qualcomm,企业
+gmail.com,Cerence,企业
+qq.com,NJUPT（南京邮电大学,高校
+unibz.it,unibz（Free University of Bozen-Bolzano,高校
+pku.edu.cn,PekingUniversity（北京大学,高校
+gmail.com,SenseTime（商汤科技,企业
+wmsu.edu.ph,WMSU（Western Mindanao State University,高校
+gmail.com,crl,未知
+qq.com,hairou（海柔创新,企业
+gmail.com,eafae,未知
+gmail.com,美君林科技,企业
+gmail.com,Boarding Labs,企业
+njtech.edu.cn,Nanjing Tech University（南京科技大学,高校
+gmail.com,Personal Use,个人
+qq.com,chongqing university（重庆大学,高校
+chinamobile.com,CM,企业
+qq.com,sanbaiyun（三白云,企业
+sjtu.edu.cn,SJTU（上海交通大学,高校
+163.com,yuanjian（远鉴,企业
+trip.com,trip.com,企业
+qq.com,viomi（云米,企业
+qq.com,成都融微,企业
+gmail.com,Amazon,企业
+AllFreeMail.net,Apple,企业
+gmail.com,egabi solutions,企业
+sina.com,Fancy Digital（泛为科技,企业
+qq.com,同方华创,企业
+qq.com,weichuang,企业
+gmail.com,National Taiwan University（国立台湾大学,高校
+gmail.com,Western Mindanao State University,高校
+adaures.com,Ad Aures,企业
+deepgram.com,Deepgram,企业
+qq.com,Tencent,企业
+qq.com,Xi'an Polytechnic University（西安工业大学,高校
+163.com,hitsz,未知
+stu.suda.edu.cn,no,个人
+qq.com,SCUT（华南理工大学,高校
+gmail.com,RCRAI（循环智能,企业
+gmail.com,704128384,未知
+163.com,Northwestern Polytechnical University（西北工业大学,高校
+mail.imu.edu.cn,Inner Mongolia University（内蒙古大学,高校
+foxmail.com,Northwestern Polytechnical University（西北工业大学,高校
+qq.com,Northwestern Polytechnical University（西北工业大学,高校
+live.com.ar,bs-games,未知
+163.com,No no,个人
+gmail.com,National Chung Cheng University（國立中正大學,高校
+onvego.com,Onvego,企业
+163.com,西华大学,高校
+126.com,Peoples Liberation Army Engineering University（中国人民解放军陆军工程大学,高校
+gmail.com,NII（国立情報学研究所,高校
+qq.com,zc,未知
+qq.com,Jilin University（吉林大学,高校
+gmail.com,Wonkwang University（圆光大学,高校
+gmail.com,Student,高校
+stu.scls-sh.org,Shanghai Soong Ching Ling School（上海宋庆龄学校,高校
+yahoo.com,Cairo university（开罗大学,高校
+gmail.com,ALSP,未知
+163.com,Shanghai Soong Ching Ling School（上海宋庆龄学校,高校
+gmail.com,Régens zrt,企业
+gmail.com,google,企业
+gmail.com,Galgotias College of Engineering and Technology (GCET) Greater Noida,高校
+gmail.com,Cerence Inc,企业
+gmail.com,Misbah Studios,企业
+gmail.com,Riyapola,企业
+qq.com,合肥松数科技有限公司,企业
+gmail.com,IIT kanpur,高校
+khyamallami.com,N/A,个人
+gmail.com,university of stuttgart,高校
+hotmail.com,Kaylee West,个人
+tutanota.com,tutanota,企业
+alibaba-inc.com,alibaba group,企业
+infotalkcorp.com,InfoTalk北京金言丰语音技术有限公司,企业
+gmail.com,Juan F,个人
+helsinki.fi,University of Helsinki,高校
+gmail.com,OCAS,企业
+qq.com,HM,企业
+outlook.com,shanghaitech university,高校
+alumni.hust.edu.cn,orionstar,高校
+gmail.com,Insta,个人
+ysumail.am,YSU,高校
+gmail.com,TPU,高校
+163.com,长亮科技,企业
+qq.com,Inner Mongolian University,高校
+gmail.com,Kyungpook National University,高校
+vasqa.com,ele,个人
+gmail.com,MMS,个人
+qq.com,htc,企业
+gmail.com,弘益大学,高校
+pcl.ac.cn,鹏城实验室,企业
+gmail.com,Abc,个人
+gmail.com,Aditya埃迪亚贝拉集团,企业
+gmail.com,Freelancer,个人
+stu.kau.edu.sa,KAU,高校
+gmail.com,Student,个人
+gmail.com,lu,个人
+qq.com,SISU,高校
+mail.ru,Google,个人
+gmail.com,xxx,个人
+gmail.com,shno,个人
+gmail.com,none,个人
+gmail.com,researcher,个人
+hotmail.com,-,个人
+gmail.com,FAST NUCES,高校
+foxmail.com,北京嘀嘀无限科技发展有限公司,企业
+qq.com,Xpeng,企业
+cihe.edu.hk,Caritas Institute of Higher Education,高校
+gmail.com,SJSU,高校
+femtosense.ai,Femtosense,企业
+icloud.com,Wild deep learning,个人
+aidetic.in,aidetic,企业
+163.com,内蒙古大学,高校
+qq.com,xiaopeng,企业
+hotmail.com,NA,个人
+gmail.com,Cracking DK,企业
+gmail.com,Fortune Information Technology Ltd.,企业
+unisoc.com,紫光展锐,企业
+gmail.com,Federated Artificial Intelligence (FAI) Services,企业
+sprinklr.com,sprinklr,企业
+navercorp.com,NAVER,企业
+stepincto.com,Step-In CTO,个人
+riffsys.com,PT RiffSYS Digital Media,企业
+qq.com,Huawei,企业
+qq.com,语音,个人
+rd.netease.com,youdao,企业
+szpt.edu.cn,szpt深圳职业技术学院,高校
+qq.com,hy,企业
+gmail.com,Viettel,企业
+qq.com,Hu Ya company虎牙,企业
+gmail.com,AinsleyCo,企业
+gmail.com,ncu-csie国立中央大学,高校
+gmail.com,UTC,企业
+gmail.com,JeroB,企业
+qq.com,无,个人
+qq.com,HANK AI,企业
+gmail.com,XDF,企业
+qq.com,Sichuan University,高校
+qq.com,Tsinghua Universit7,高校
+qq.com,Xiamen University of Technology ,高校
+naver.com,no company,个人
+sookmyung.ac.kr,Sookmyung Women's University,高校
+mail.ustc.edu.cn,University of Science and Technology of China,高校
+163.com,ABC Intelligence Inc.,企业
+163.com,eebbk,个人
+qq.com,学校,个人
+qq.com,none,个人
+gmail.com,新疆大学,高校
+gmail.com,guc,个人
+gmail.com,National University of Kaohsiung,高校
+163.com,bank of Shanghai,企业
+gmail.com,No,个人
+stu.xmu.edu.cn,Xiamen University,高校
+smail.iitm.ac.in,Indian Institute Of Technology,高校
+gmail.com,The University of Sheffield,高校
+gmail.com,University of Sheffield,高校
+qq.com,Kunming University of Science and Technology,高校
+qq.com,No,个人
+163.com,liwcv,个人
+gmail.com,bosc,个人
+qq.com,CASIA,高校
+gmail.com,personal,个人
+163.com,河南工业大学,高校
+qq.com,Tsinghua University,高校
+126.com,XinJiangUniversity,高校
+qq.com,lixiang,企业
+foxmail.com,netease,企业
+qq.com,无,个人
+gmail.com,Le vietnamien compréhensible,高校
+gmail.com,Hanoi University of Science & Technology,高校
+qq.com,先锋网络科技有限公司,企业
+nvidia.com,NVIDIA,企业
+163.com,荔枝Fm,企业
+outlook.com,NotAI ltd,企业
+gmail.com,studies,个人
+gmail.com,alex hedge fund,企业
+gmail.com,ex-it,个人
+web.de,private,个人
+tudelft.nl,TU Delft,高校
+sina.com,Transsion传音控股,企业
+gmail.com,ms mends,个人
+gmail.com,Factory,个人
+mail.nwpu.edu.cn,西北工业大学,高校
+tencent.com,tencent,企业
+gmail.com,Wiz.AI,企业
+qq.com,ibaraki university,高校
+sheffield.ac.uk,The University of Sheffield,高校
+gmail.com,University of Chinese Academy of Sciences,高校
+126.com,None,个人
+alumnos.uc3m.es,Ifbdksndknww,个人
+gmail.com,Proven Solution,个人
+163.com,无,个人
+qq.com,中国地质大学,高校
+mail.com,Sunshine Sketches,个人
+gmail.com,Chinese Academy of Sciences,高校
+gmail.com,Indian Institute of Science, Bangalore,高校
+gmail.com,a,个人
+126.com,电信,个人
+zju.edu.cn,浙江大学,高校
+studenti.polito.it,Politecnico di Torino,高校
+gmail.com,freelancer,个人
+163.com,VXI,个人
+iiti.ac.in,Indian Institute of Technology Indore,高校
+gmail.com,GTS,企业
+myhexin.com,同花顺,企业
+dm-ai.com,DMAI,企业
+qq.com,University of Science and Technology of China,高校
+naver.com,kumoh national university,高校
+vivodus.net,Titi,个人
+gmail.com,Mycena,企业
+gmail.com,DontHave,个人
+stu.xidian.edu.cn,Xidian University,高校
+outlook.com,None,个人
+linguist.univ-paris-diderot.fr,Université Paris Cité,高校
+gmail.com,keti,个人
+yahoo.com,Austel,企业
+yahoo.com,SMITHINKS,个人
+gmx.at,no,个人
+zoom.us,Zoom Inc,企业
+foxmail.com,Tsinghua University,高校
+gmail.com,ceia,个人
+gmail.com,HODEIA DIGITAL,企业
+gmailwe.com,jon1968,个人
+gmail.com,polytechnic of turin,高校
+qq.com,QUYU Tech,企业
+qq.com,集美大学,高校
+gmail.com,none,个人
+qq.com,Hunan University,高校
+gmail.com,lilu,个人
+gmail.com,CNRS,高校
+gmail.com,xenomorph technologies,企业
+stu.cuit.edu.cn,成都信息工程大学,高校
+gmail.com,Sociolinguistics Laboratory,高校
+163.com,None,个人
+qq.com,vivo,个人
+gmail.com,Kyoto University,高校
+yahoo.com,HM,企业
+sina.com,无,个人
+foxmail.com,Kunming University of Science and Technology,高校
+163.com,马上,企业
+mail.ustc.edu.cn,University of Science and Technology of China,高校
+126.com,Tsinghua University,高校
+gmail.com,Government Engineering College Rajkot,高校
+mail.ru,FluentaAI,企业
+my.swjtu.edu.cn,Southwest Jiaotong University,高校
+qq.com,Baidu,企业
+gmail.com,semarang state university,高校
+gmail.com,N/A,个人
+gmail.com,corp lemez,个人
+qq.com,新疆大学,高校
+163.com,Koo,个人
+sina.com,stagekids,个人
+gmail.com,None,个人
+outlook.com,well,个人
+qq.com,Northwestern Polytechnical University,高校
+gmail.com,none,个人
+gmail.com,AISSMS Institute of Information Technology,高校
+gmail.com,UC3M,企业
+gmail.com,won,个人
+gmail.com,"St. Cyril and St. Methodius" University of Veliko Tarnovo,高校
+qq.com,南京八点八数字科技有限公司,企业
+gmail.com,idk,个人
+icloud.com,LS,个人
+anlubi.com,Broosterx,企业
+gmail.com,Politecnico di Milano,高校
+gmail.com,eyecool,企业
+gmail.com,Government Ramchandra Khaitan Polytechnic College,高校
+gmail.com,AI Academy ,高校
+gmail.com,ASTAR,高校
+live.com,天津市先行多媒体网络技术有限公司,企业
+gmail.com,National University of Singapore ,高校
+gmail.com,University of the Philippines Diliman,高校
+gmail.com,无,个人
+outlook.com,Transsion,企业
+gmail.com,into,个人
+gmail.com,Wondershare万兴软件,企业
+163.com,哈尔滨师范大学,高校
+qq.com,河北水利电力学院,高校
+gmail.com,ANU,高校
+gmail.com,南京大学,高校
+bu.edu,Boston University,高校
+qq.com,清华大学,高校
+gmail.com,Biwei Pty Ltd,企业
+alexu.edu.eg,exo,高校
+gmail.com,VisualJoyce,企业
+samsung.com,Samsung,企业
+stu.shmtu.edu.cn,上海海事大学,高校
+gmail.com,student,高校
+gits.at,personal,个人
+qq.com,内蒙古科技大学,高校
+gmail.com,nil,个人
+shopee.com,Shopee,企业
+chivox.com,Chivox,企业
+gmail.com,None,个人
+qq.com,新疆大学,高校
+kaizenvoiz.com,Kaizen Secure Voiz,企业
+gmail.com,keypoint technologies pvt limited,企业
+qq.com,Yi0nurs,个人
+qq.com,清华大学,高校
+kaizenvoiz.com,Kaizen Secure Voiz,企业
+gmail.com,None ,个人
+e.ntu.edu.sg,Nanyang Technological University,高校
+gmail.com,None,高校
+qq.com,海康威视,企业
+huawei.com,Bountouridis,个人
+gmail.com,ByteDance,企业
+qq.com,西华大学,高校
+fudan.edu.cn,谷露软件,企业
+gmail.com,Google,企业
+mail.ru,SPbSTU,企业
+qq.com,北京三快在线科技有限公司,企业
+gmail.com,Banco Sabadell,企业
+ai-j.jp,AI, Inc.,企业
+live.com,Bytedance,企业
+gmail.com,Tokushima University,高校
+163.com,funplus,企业
+gmail.com,孔敬大学,高校
+qq.com,青岛方天,企业
+163.com,香港城市大学,高校
+gmail.com,S,个人
+columbia.edu,Columbia University,高校
+microsoft.com,Microsoft,企业
+esi.dz,a,个人
+gmail.com,person,个人
+jaist.ac.jp,Japan Advanced Institute of Science and Technology ,高校
+gmail.com,Egypt Japan University For Science and Technology,高校
+qq.com,西安科技大学,高校
+sprinklr.com,Sprinklr,企业
+gmail.com,Casa,个人
+gmail.com,3itech,企业
+voicencode.com,Voicencode Ltd.,企业
+qq.com,零点科技有限公司,企业
+gmail.com,AI,个人
+gmail.com,中国科学院大学,高校
+outLook.com,西安科技大学,高校
+163.com,bup,个人
+slanglabs.com,Slang Labs,企业
+case.edu,Language & Cognition Lab, Case Western Reserve University,高校
+gmail.com,YSU,高校
+gmail.com,meta,企业
+qq.com,a,企业
+qq.com,China university of mining and technology,高校
+qq.com,南方科技大学,高校
+gmail.com,University of Electronic Science and Technology of China,高校
+gmail.com,ferrari,企业
+qq.com,Nanjing Zgmicro Tech,企业
+trellisdata.com.au,Trellis Data,企业
+163.com,Student,个人
+gmail.com,shno,企业
+qq.com,big head brother ltd.,企业
+ksu.edu,Kansas State University,高校
+cse.iitk.ac.in,IIT Kanpur,高校
+esen.tn,esen,企业
+vasco-electronics.com,Vasco Electronics,企业
+qq.com,tc,企业
+talentedsoft.com,天聪智能,企业
+163.com,JD,企业
+163.com,易视腾,企业
+gmail.com,faculty of sciences of Tunis,高校
+qq.com,personal,个人
+gmail.com,Boarding Labs,企业
+gmail.com,Student,个人
+qq.com,China,个人
+gmail.com,HeFei University of Technology,高校
+usm.ac.id,Universitas Semarang,高校
+uniphore.com,uniphore,企业
+gmail.com,supx,企业
+hotmail.com,NTU,高校
+gmail.com,University Sains Malaysia,高校
+gmail.com,IIT(ISM) DHANBAD,高校
+gmail.com,okews,个人
+igdtuw.ac.in,Indira Gandhi Delhi Technical University for Women,高校
+gmail.com,china,个人
+hotmail.es,none,个人
+qq.com,University of Electronic Science and Technology of China,高校
+gmail.com,Private,个人
+gavo.t.u-tokyo.ac.jp,The University of Tokyo,高校
+emotech.co,Emotech,企业
+qq.com,由大陆科技公司,企业

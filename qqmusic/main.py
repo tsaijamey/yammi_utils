@@ -95,10 +95,19 @@ while True:
 
     inlib.compare_time(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(start_time)) , 58)
     start_time += 58
-    inlib.screenshot_via_adb()
 
-    # 返回值是 [[名称] , [[时间, 时间戳]]]
-    recent_result = inlib.treasure_result_ocr(DIR + './img/shot.png')
+    # 在获取结果时，容易因为点击意外导致列表为空，然后无法继续，因此增加这一段保障代码
+    recent_result = []
+    while len(recent_result) == 0 or len(recent_result[0]) == 0:
+        inlib.screenshot_via_adb()
+        # 返回值是 [[名称] , [[时间, 时间戳]]]
+        try:
+            recent_result = inlib.treasure_result_ocr(DIR + './img/shot.png')
+        except Exception as e:
+            print(e)
+
+    print(recent_result)
+
     if len(record_history) > 20:
         record_history.pop(0)
     record_history.append([time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(start_time)),recent_result[0][0]])
