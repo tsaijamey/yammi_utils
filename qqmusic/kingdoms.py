@@ -296,10 +296,10 @@ def load_rf_clf_model(model_path:str, predict_data):
 def random_forest_reg_train(train_set:DataFrame,dir_name:str,column_name:str):
     X = train_set.drop(columns=column_name)
     y = train_set[column_name]
-    model = RandomForestRegressor(n_estimators=300, criterion='mse', max_leaf_nodes=20, n_jobs=1)
+    model = RandomForestRegressor(n_estimators=300, criterion='squared_error', max_leaf_nodes=20, n_jobs=1)
     model.fit(X.values, y.values)
 
-    joblib.dump(model, dir_name+"./model/rf_reg.m")
+    joblib.dump(model, dir_name+"/model/rf_reg_1.1.3.m")
 
 
 def load_rf_reg_model(model_path:str, predict_data):

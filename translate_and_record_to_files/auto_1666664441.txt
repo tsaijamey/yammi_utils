@@ -1,0 +1,26 @@
+Difference Between Ubuntu and Kali Linux
+Ubuntu是一个基于Linux的操作系统，属于Linux的Debian系列。由于它是基于Linux的，所以它可以免费使用，并且是开源的。它是由Mark Shuttleworth领导的 "Canonical "团队开发的。术语 "ubuntu "来自一个非洲单词，意思是 "人类对他人"。中文版本的Ubuntu被用于运行世界上最快的超级计算机。谷歌的自动驾驶汽车使用剥离的ubuntu版本。
+Kali Linux是一个基于Linux的开放源码操作系统，可以免费使用。它属于Linux的Debian系列。它是由 "进攻性安全 "开发的。它于2013年3月首次发布，旨在成为BackTrackOS的替代品。Kali包含了100多个渗透测试、安全研究、数字取证、逆向工程和道德黑客工具。
+Ubuntu和Kali Linux之间的区别
+Ubuntu
+由canonical开发。
+Ubuntu最初于2004年10月20日发布。
+Ubuntu用于日常使用或在服务器上使用。
+ubuntu的最新版本（2020.04）默认使用Gnome-terminal。
+最新的Ubuntu默认由Gnome环境组成，尽管它允许你改变同样的环境。
+Ubuntu并不包含黑客和渗透测试工具。
+拥有一个用户友好的界面
+对于Linux的初学者来说，Ubuntu是一个不错的选择。
+最新的Ubuntu live的默认用户名是root。
+最新的Ubuntu live的默认密码是（空白）。
+Kali Linux
+由进攻性安全公司开发。
+卡利》最初于2013年3月13日发行。
+Kali是由安全研究人员或道德黑客用于安全目的的。
+最新版本（2020.2）的kali默认使用qterminal。
+最新的Kali包括默认的xfce环境，尽管它允许你改变同样的环境。
+Kali配备了黑客和渗透测试工具。
+与ubuntu相比，它有一个不太友好的界面。
+Kali Linux对于那些对Linux有一定了解的人来说是一个不错的选择。
+最新的Kali Linux有一个默认的用户名是kali。
+最新的Kali Linux有一个默认的密码是kali。

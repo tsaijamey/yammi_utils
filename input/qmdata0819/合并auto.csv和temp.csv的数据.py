@@ -1,8 +1,22 @@
 import os
 import datetime
+import platform
 
-read_auto = open(r'C:\Users\yammi\OneDrive\0_caijia\1_code\python\yammi_utils\yammi_utils\input\qmdata0819\auto.csv', 'r', encoding='utf8')
-read_temp = open(r'C:\Users\yammi\OneDrive\0_caijia\1_code\python\yammi_utils\yammi_utils\input\qmdata0819\temp.csv', 'r', encoding='utf8')
+
+
+DIR = os.path.dirname(__file__)
+
+if platform.system().lower() == 'windows':
+    auto_csv_path = DIR+'./merge_result_1.csv'
+    temp_csv_path = DIR+'./merge_result_1.csv'
+    merge_csv_path = DIR+'./merge_result_.csv'
+elif platform.system().lower() == 'linux':
+    auto_csv_path = DIR+'/auto.csv'
+    temp_csv_path = DIR+'/temp.csv'
+    merge_csv_path = DIR+'/merge_result.csv'
+
+read_auto = open(auto_csv_path, 'r', encoding='utf8')
+read_temp = open(temp_csv_path, 'r', encoding='utf8')
 
 total_data = []
 for line in read_auto:
@@ -23,7 +37,7 @@ for each in total_data:
 
 total_data.sort(key=lambda x:x[2])
 
-print(len(total_data))
+# print(len(total_data))
 
 unique_check = []
 remove_list = []
@@ -36,12 +50,46 @@ for each in total_data:
 for each in remove_list:
     total_data.remove(each)
 
-out = open(r'C:\Users\yammi\OneDrive\0_caijia\1_code\python\yammi_utils\yammi_utils\input\qmdata0819\merge_result.csv', 'w', encoding='utf8')
 
+'''
+检查total_data里的隔行片段长度，如果低于40的，舍弃
+'''
+segment = []
+total_data_format = []
 for i in range(len(total_data)):
-    if i > 0:
-        if total_data[i][2] - total_data[i-1][2] > 58:
-            out.write('\n')
-    out.write(total_data[i][0]+','+total_data[i][1]+'\n')
+    segment.append(total_data[i])
+    if i < len(total_data)-1:
+        if total_data[i+1][2] - total_data[i][2] != 58:
+            total_data_format.append(segment)
+            segment = []
+
+total_data_format.append(segment)
+
+for i in range(len(total_data_format)):
+    print(len(total_data_format[i]))
+
+
+print("*"*40)
+# 片段长度小于50的舍弃
+for_remove = []
+for each in total_data_format:
+    if len(each) < 40:
+        for_remove.append(each)
+
+for each in for_remove:
+    total_data_format.remove(each)
+
+for i in range(len(total_data_format)):
+    print(len(total_data_format[i]))
+
+
+'''
+输出成csv
+如果时间戳不连续，则中间空一行
+'''
+out = open(merge_csv_path, 'w', encoding='utf8')
+for lists in total_data_format:
+    for each in lists:
+        out.write(each[0]+','+each[1]+'\n')
 
 out.close()

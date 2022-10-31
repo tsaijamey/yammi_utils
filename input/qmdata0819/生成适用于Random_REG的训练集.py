@@ -34,7 +34,7 @@ diff_text_dict = {
 
 DIR = os.path.dirname(__file__)
 read_record = open(DIR+'./all.csv', 'r', encoding='utf8')
-read_diff_result = open(DIR+'./all_num_datasets.csv', 'r', encoding='utf8')
+read_diff_result = open(DIR+'./all_numer_datasets.csv', 'r', encoding='utf8')
 
 time_index_list = []
 i = 0

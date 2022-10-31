@@ -58,7 +58,7 @@ def generat_dataset(file_path:str, override=0) -> DataFrame:
         result = re.sub(rules, '', result)
 
         num = ['1', '2', '3', '4', '5', '6', '7', '8']
-        item = ['钢琴', '小提琴', '吉他', '贝斯', '架子鼓', '竖琴', '萨克斯', '圆号']
+        item = ['钢琴', '小提琴', '吉他', '贝斯', '架子鼓', '竖琴', '萨克斯风', '圆号']
         r_list = []
         for each in result:
             r_list.append(item[num.index(each)])
@@ -130,7 +130,7 @@ def datasets_split(input_csv,input_mode=1) -> list:
     # 逐行读取
     transformed_list = []
     splited_list = []
-    item_dict = {'钢琴':'1', '小提琴':'2', '吉他':'3', '贝斯':'4', '架子鼓':'5', '竖琴':'6', '萨克斯':'7', '圆号':'8'}
+    item_dict = {'钢琴':'1', '小提琴':'2', '吉他':'3', '贝斯':'4', '架子鼓':'5', '竖琴':'6', '萨克斯风':'7', '圆号':'8'}
 
     # 逐行读取表格数据
     # 对每行数据进行转换后，分析它与上一行的时间值的差额，如果大于58秒，则认为当前这一行属于新的数据段落
@@ -172,7 +172,7 @@ def datasets_dealer(input_list:list, rule:int, result=0, only_for_train=1, data_
     输入：2d列表
     输出：包含多列数据的Dataframe
     '''
-    item_list               = ['钢琴','小提琴','吉他','贝斯','架子鼓','竖琴','萨克斯','圆号']
+    item_list               = ['钢琴','小提琴','吉他','贝斯','架子鼓','竖琴','萨克斯风','圆号']
 
     item_dict = {
         '1':    '钢琴',
@@ -181,13 +181,13 @@ def datasets_dealer(input_list:list, rule:int, result=0, only_for_train=1, data_
         '4':    '贝斯',
         '5':    '架子鼓',
         '6':    '竖琴',
-        '7':    '萨克斯',
+        '7':    '萨克斯风',
         '8':    '圆号',
     }
 
     diff_text_dict        = {'负七':-7, '负六':-6, '负五':-5, '负四':-4, '负三':-3, '负二':-2, '负一':-1, '零':0, '一':1, '二':2, '三':3, '四':4, '五':5, '六':6, '七':7}
     diff_num_dict        = {'-7':'负七', '-6':'负六', '-5':'负五', '-4':'负四', '-3':'负三', '-2':'负二', '-1':'负一', '0':'零', '1':'一', '2':'二', '3':'三', '4':'四', '5':'五', '6':'六', '7':'七'}
-    item_number_dict        = {'1':'钢琴', '2':'小提琴', '3':'吉他', '4':'贝斯', '5':'架子鼓', '6':'竖琴', '7':'萨克斯', '8':'圆号'}
+    item_number_dict        = {'1':'钢琴', '2':'小提琴', '3':'吉他', '4':'贝斯', '5':'架子鼓', '6':'竖琴', '7':'萨克斯风', '8':'圆号'}
     counter_header          = ('pc','vc','gc','bc','dc','hc','sc','oc')
     offset_header           = ('po','vo','go','bo','do','ho','so','oo')
     position_header         = ('pp','vp','gp','bp','dp','hp','sp','op')
@@ -306,7 +306,7 @@ def position_sort_8_distrib(offsets:list) -> list:
     输入：乐器已知概率与目标概率的偏移量，形如：[0.xxx, 0.xxx, -0.xxx, -0.xxx, 0.xxx, 0.xxx, -0.xxx, -0.xxx]，左右对应顺序 = 钢琴->圆号\n
     输出：[乐器编号, 偏移值] 的2d数组，形如：[[大, y], [大, y], [小, y], [小, y], [小, y], [小, y], [大, y], [大, y]]
     '''
-    items = ['钢琴','小提琴','吉他','贝斯','架子鼓','竖琴','萨克斯','圆号']
+    items = ['钢琴','小提琴','吉他','贝斯','架子鼓','竖琴','萨克斯风','圆号']
     items_position_sort = []
 
     # 
@@ -340,7 +340,7 @@ def position_8(items_postion_sort:list) -> list:
         temp[i][1] = i + 1
     
     output = []
-    items = ['钢琴','小提琴','吉他','贝斯','架子鼓','竖琴','萨克斯','圆号']
+    items = ['钢琴','小提琴','吉他','贝斯','架子鼓','竖琴','萨克斯风','圆号']
     for each in items:
         for x in temp:
             if each in x:

@@ -43,14 +43,45 @@ from rich.console import Console
 import os
 import time
 
-read_list = []
 console = Console()
-save_list = []
+read_list = []
+start_work = 0
 
 def read_clipboard():
     text = clipboard.paste()
     return text
 
+def append_list():
+    global read_list
+    read_list.append(read_clipboard())
+
+def unique(a_list:list):
+    unique_list = []
+    for each in a_list:
+        if each not in unique_list:
+            unique_list.append(each)
+    global read_list
+    read_list = unique_list
+
+def print_list(a_list:list):
+    console.print('The content to write:')
+    console.print(a_list)
+
+def write_file():
+    global read_list
+    time_stamp = str(int(time.time()))
+    DIR = os.path.dirname(__file__)
+    w = open(DIR + './auto_' + time_stamp + '.txt', 'w', encoding='utf8')
+    for each in read_list:
+        w.write(each + '\n')
+    w.close()
+
+
+def clear():
+    global read_list
+    read_list = []
+
+# 键盘按下监控
 def on_press(key):
     try:
         print('Alphanumeric key pressed: {0} '.format(
@@ -62,36 +93,22 @@ def on_press(key):
 def on_release(key):
     print('Key released: {0}'.format(
         key))
+    global start_work
+    if key == keyboard.Key.f7:
+        start_work = 1
     if key == keyboard.Key.f8:
-        console.print(save_list)
-        clear(save_list)
+        start_work = 0
+        print_list(read_list)
+        write_file()
+        clear()
     elif key == keyboard.Key.esc:
         # Stop listener
-        clear(save_list)
+        clear()
         return False
-    else:
-        append_list(read_list)
+    elif start_work == 1 and key != keyboard.Key.f7 and key != keyboard.Key.esc and key != keyboard.Key.f8:
+        # 将剪贴板的内容追加到 read_list
+        append_list()
         unique(read_list)
-
-def print_list(a_list:list):
-    console.print(a_list)
-
-def append_list(a_list:list):
-    a_list.append(read_clipboard())
-
-def unique(a_list:list):
-    unique_list = []
-    for each in a_list:
-        if each not in unique_list:
-            unique_list.append(each)
-    return unique_list
-
-def clear(a_list:list):
-    a_list = []
-    return True
-
-def save(a_list:list):
-    save_list = unique(a_list)
 
 
 # Collect events until released

@@ -3,7 +3,7 @@ from window_ import window_control_lib as wcl
 current_hwnd = wcl.get_window_handle('Yammi-Dell-1')
 if current_hwnd > 0:
     x           = -2220
-    y           = 214
+    y           = 220
     n_width     = -1222+2220
     n_height    = 808-214
     b_repaint   = True

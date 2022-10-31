@@ -15,7 +15,7 @@ dict = {
 DIR = os.path.dirname(__file__)
 f = open(DIR+'./temp.csv','a', encoding='utf8')
 f.write('\n')
-start_time = '2022-10-23 16:08:59'
+start_time = '2022-10-29 19:54:32'
 time_ = datetime.datetime.strptime(start_time, '%Y-%m-%d %H:%M:%S')
 print(time_)
 time_ = int(datetime.datetime.timestamp(time_))
