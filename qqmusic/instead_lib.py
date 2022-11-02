@@ -262,7 +262,7 @@ def random_forest_reg_train(train_set:DataFrame,dir_name:str,column_name:str, mo
 def random_forest_reg_live(train_set:DataFrame,column_name:str, predict_data):
     X = train_set.drop(columns=column_name)
     y = train_set[column_name]
-    model = RandomForestRegressor(random_state=75)
+    model = RandomForestRegressor(random_state=1)
     # model = RandomForestRegressor(random_state=75)
     model.fit(X.values, y.values)
 
@@ -276,3 +276,4 @@ def load_rf_reg_model(model_path:str, predict_data):
     prediction = reg.predict([predict_data])
     
     return prediction
+
