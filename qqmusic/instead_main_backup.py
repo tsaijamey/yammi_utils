@@ -57,10 +57,10 @@ DIFF_DICT = {
 }
 
 CHIPS = 2
-CHIP_TIME = 4
+CHIP_TIME = 3
 TOP_CHIPS = CHIPS
 for i in range(CHIP_TIME):
-    TOP_CHIPS += TOP_CHIPS * 2 + 10
+    TOP_CHIPS = TOP_CHIPS * 2 + 10
 
 # 每回合的数据列表，每回合都会变。
 count_item          = []
@@ -357,43 +357,40 @@ if __name__ == '__main__':
                     not_pred_options = []
                     as_pred_options = []
 
-                # 只在胜率大于50，且上一次结果不为大时 实施
-                if record_history[-1][1] not in ['架子鼓','竖琴','萨克斯风','圆号'] and total > 20:
-                    if as_pred_win_rate > 0.6 and (upper == 1 or lower == 1):
-                    # if as_pred_win_rate - not_pred_win_rate > 0.2 and (upper == 1 or lower == 1):
-                        if vote_ == 0 or vote_ == TOP_CHIPS:
-                            vote_ = CHIPS
-                        else:
-                            vote_ = vote_ * 2 + 10
-                        vote_count += vote_
-                        couples = []
-                        for d in as_pred_options:
-                            couples.append(DICT[d])
-                        by.buy(couples[0], couples[1], vote_)
-                        console.print(f'模拟下注：{as_pred_options} + {str(vote_)}音符(各{str(vote_/2)})')
-                    elif not_pred_win_rate > 0.6 and (upper == 1 or lower == 1):
-                    # elif not_pred_win_rate - as_pred_win_rate > 0.2 and (upper == 1 or lower == 1):
-                        if vote_ == 0 or vote_ == TOP_CHIPS:
-                            vote_ = TOP_CHIPS
-                        else:
-                            vote_ = vote_ * 2 + 10
-                        vote_count += vote_
-                        couples = []
-                        for d in not_pred_options:
-                            couples.append(DICT[d])
-                        by.buy(couples[0], couples[1], vote_)
-                        console.print(f'模拟下注：{not_pred_options} + {str(vote_)}音符(各{str(vote_/2)})')
+            # 只在胜率大于50，且上一次结果不为大时 实施
+            if record_history[-1][1] not in ['架子鼓','竖琴','萨克斯风','圆号'] and total > 10:
+                if as_pred_win_rate > 0.6 and (upper == 1 or lower == 1) and guess_counter >= 3:
+                # if as_pred_win_rate - not_pred_win_rate > 0.2 and (upper == 1 or lower == 1):
+                    if vote_ == 0 or vote_ == TOP_CHIPS:
+                        vote_ = CHIPS
+                    else:
+                        vote_ = vote_ * 2 + 10
+                    vote_count += vote_
+                    by.buy(as_pred_options[0], as_pred_options[1], int(vote_/2))
+                    console.print(f'模拟下注：{as_pred_options} + {str(vote_)}音符(各{str(vote_/2)})')
+                    voted = True
+                elif not_pred_win_rate > 0.6 and (upper == 1 or lower == 1) and guess_counter >= 3:
+                # elif not_pred_win_rate - as_pred_win_rate > 0.2 and (upper == 1 or lower == 1):
+                    if vote_ == 0 or vote_ == TOP_CHIPS:
+                        vote_ = CHIPS
+                    else:
+                        vote_ = vote_ * 2 + 10
+                    vote_count += vote_
+                    by.buy(not_pred_options[0], not_pred_options[1], int(vote_/2))
+                    console.print(f'模拟下注：{not_pred_options} + {str(vote_)}音符(各{str(vote_/2)})')
                     voted = True
                 else:
                     voted = False
-                # else:
-                #     console.print('[blue]本局忽略[/]')
-                #     not_pred_options = []
-                #     as_pred_options = []
+            else:
+                pass
+            # else:
+            #     console.print('[blue]本局忽略[/]')
+            #     not_pred_options = []
+            #     as_pred_options = []
 
-                console.print(f'模拟总计投入：{vote_count} 音符')
-                console.print(f'模拟总计回收：{vote_win_count} 音符')
-                console.print(f'起注：{CHIPS} | 封顶：{TOP_CHIPS}')
+            console.print(f'模拟总计投入：{vote_count} 音符')
+            console.print(f'模拟总计回收：{vote_win_count} 音符')
+            console.print(f'起注：{CHIPS} | 封顶：{TOP_CHIPS}')
                         
 
 
