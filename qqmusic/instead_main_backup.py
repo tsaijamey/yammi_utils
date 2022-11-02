@@ -112,7 +112,7 @@ vote_count = 0
 vote_ = 0
 vote_win_count = 0
 voted = False
-
+BUY = False
 
 
 # 预设变量
@@ -134,7 +134,13 @@ if __name__ == '__main__':
     
     try:
         while True:
-
+            read_buy = open(DIR+'./if_buy.txt', 'r', encoding='utf8')
+            for line in read_buy:
+                line = line.strip()
+                if 'yes' in line:
+                    BUY = True
+                else:
+                    BUY = False
             # 在获取结果时，容易因为点击意外导致列表为空，然后无法继续，因此增加这一段保障代码
             recent_result = []
             try_times = 0
@@ -366,9 +372,12 @@ if __name__ == '__main__':
                     else:
                         vote_ = vote_ * 2 + 10
                     vote_count += vote_
-                    by.buy(as_pred_options[0], as_pred_options[1], int(vote_/2))
-                    console.print(f'模拟下注：{as_pred_options} + {str(vote_)}音符(各{str(vote_/2)})')
-                    voted = True
+                    if BUY == True:
+                        by.buy(as_pred_options[0], as_pred_options[1], int(vote_/2))
+                        console.print(f'模拟下注：{as_pred_options} + {str(vote_)}音符(各{str(vote_/2)})')
+                        voted = True
+                    else:
+                        voted = False
                 elif not_pred_win_rate > 0.6 and (upper == 1 or lower == 1) and guess_counter >= 3:
                 # elif not_pred_win_rate - as_pred_win_rate > 0.2 and (upper == 1 or lower == 1):
                     if vote_ == 0 or vote_ == TOP_CHIPS:
@@ -376,11 +385,14 @@ if __name__ == '__main__':
                     else:
                         vote_ = vote_ * 2 + 10
                     vote_count += vote_
-                    by.buy(not_pred_options[0], not_pred_options[1], int(vote_/2))
-                    console.print(f'模拟下注：{not_pred_options} + {str(vote_)}音符(各{str(vote_/2)})')
-                    voted = True
+                    if BUY == True:
+                        by.buy(not_pred_options[0], not_pred_options[1], int(vote_/2))
+                        console.print(f'模拟下注：{not_pred_options} + {str(vote_)}音符(各{str(vote_/2)})')
+                        voted = True
+                    else:
+                        voted = False
                 else:
-                    voted = False
+                    pass
             else:
                 pass
             # else:
