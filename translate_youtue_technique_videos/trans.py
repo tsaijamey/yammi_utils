@@ -77,6 +77,7 @@ for i in range(len(transcript_text)):
                 transcript_text[i] += each
             transcript_text[i] = transcript_text[i] + '.'
 
+print(transcript_text)
 
 '''
 逐个提取transcript_text的内容，去Deepl.com进行翻译。
@@ -93,7 +94,7 @@ from selenium.webdriver.support import expected_conditions as EC
 # 初始化浏览器的设置项，然后初始化一个浏览器对象
 options = webdriver.ChromeOptions()
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
-# options.add_argument('headless')
+options.add_argument('headless')
 options.add_argument('--window-size=700x700')
 options.add_argument("--incognito")
 
@@ -101,116 +102,79 @@ options.add_argument("--incognito")
     ## C:\Users\MagicData\AppData\Local\Temp\ipykernel_1896\126912059.py:12: DeprecationWarning: executable_path has been deprecated, please pass in a Service object
 # 解决办法：https://stackoverflow.com/questions/64717302/deprecationwarning-executable-path-has-been-deprecated-selenium-python
 # driver = webdriver.Chrome(options=options,executable_path="C:\Python310\chromedriver.exe")
-# from selenium.webdriver.chrome.service import Service
-# from webdriver_manager.chrome import ChromeDriverManager
-
 
 import clipboard
 import time
-import win32_control as winc
-
-if os.path.exists(DIR+'./attr.txt'):
-    read_attr = open(DIR+'./attr.txt', 'r', encoding='utf8')
-    for line in read_attr:
-        line = line.strip()
-        x = int(line)+1
-else:
-    x = 0
 
 translated = []
-driver = webdriver.Chrome(options=options)
-driver.get('https://deepl.com')
-t = 0
 
+try:
+    # 打开deepl.com的链接
+    driver = driver = webdriver.Chrome(options=options)
+    driver.get('https://deepl.com')
+    for i in range(len(transcript_text)):
+        # 因为 deepl.com 的防爬虫机制做得很好，所以不要试图通过后端请求的方式去完成翻译，那样即便是一时爽，后面需要迭代的工作会很多，所以还是用前台方式访问，通过它本身的页面功能完成翻译。
+        # 要追求低成本地解决问题
+        clipboard.copy('')
+        clipboard.copy(transcript_text[i])
+        input_area = driver.find_element(By.CSS_SELECTOR, 'div.lmt__inner_textarea_container textarea')
+        input_area.send_keys(Keys.SHIFT, Keys.INSERT)
+        clipboard.copy('')
 
+        # 页面上往往会出现 cookies 确认按钮，这个按钮是欧盟的GDPR法规约束导致的，很多国外的网站上都有，所以尽量等一下
+        wait_times = 0
+        while wait_times < 3:
+            try:
+                cookies_btn = driver.find_element(By.CSS_SELECTOR, '#dl_cookieBanner > div > div > div > span > button')
+                if cookies_btn.is_enabled():
+                    cookies_btn.click()
+            except Exception as e:
+                # print(e)
+                pass
 
-for i  in range(x,len(transcript_text)):
-    if t > 9:
-        driver.quit()
-        time.sleep(1)
-        driver = webdriver.Chrome(options=options)
-        driver.get('https://deepl.com')
-        time.sleep(1)
-        
-        t = 0
-    
-    # 等待翻译页面上的输入区域出现
-    element = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.XPATH, '//*[@id="panelTranslateText"]/div/div[2]/section[1]/div[3]/div[2]'))
-    )
-    _, hwnd = winc.get_window_pos('DeepL翻译：全世界最准确的翻译')
-    print(hwnd)
-    winc.move_window(hwnd, -2200, 0, 800, 600, False)
+            wait_times += 1
+            time.sleep(1)
 
-    exit(-1)
+        # 获取翻译完的结果。
+        # 因为采用页面前台进行翻译，所以要充分考虑翻译结果延迟的情况。
+        RESULT = False
+        while RESULT == False:
+            try:
+                xpath = '/html/body/div[3]/main/div[5]/div/div[2]/section[2]/div[3]/div[6]/div/div/div[2]/span[2]/span/span/button'
+                find_copy_btn = driver.find_element(By.XPATH, xpath)
+                find_copy_btn.click()
 
-    # 花 3秒检查cookie提示
-    element = WebDriverWait(driver, 3).until(
-        EC.presence_of_element_located((By.XPATH, '//*[@id="dl_cookieBanner"]/div/div/div/span/button'))
-    )
+                # 读取剪贴板进行检查。
+                text = clipboard.paste()
+                if len(text) > 0:
+                    RESULT = True
+                    # translated.append(text)
+                    f = open(DIR+'./translated.txt', 'a', encoding='utf8')
+                    f.write(time_node_list[i]+'\n')
+                    f.write(transcript_text[i]+'\n')
+                    f.write(text+'\n')
+                    f.close()
 
-    if EC.presence_of_element_located((By.XPATH, '//*[@id="dl_cookieBanner"]/div/div/div/span/button')):
-        cookies = driver.find_element(By.XPATH, '//*[@id="dl_cookieBanner"]/div/div/div/span/button')
-        cookies.click()
-        time.sleep(.5)
-        console.print('清除cookie按钮')
+                    r = open(DIR+'./attr.txt', 'w', encoding='utf8')
+                    r.write('i='+ str(i) + '\n')
+                    r.close()
+                    
+                    print(f'待翻译的文本：\n\n{transcript_text[i]}\n')
+                    print(f'译文：\n\n{text}')
+                    print('*'*50 ,'\n')
+                    
+                    # 获取内容后，要记得点一下翻译文本区域的清除
+                    xpath = '//*[@id="translator-source-clear-button"]'
+                    clear_src_btn = driver.find_element(By.XPATH, xpath)
+                    clear_src_btn.click()
+                    time.sleep(1)
+            except Exception as e:
+                print(e)
 
-    clipboard.copy('')
-    clipboard.copy(transcript_text[i])
-    # 先在输入区域点一下
-    input_area = driver.find_element(By.XPATH, '//*[@id="panelTranslateText"]/div/div[2]/section[1]/div[3]/div[2]/textarea')
-    input_area.click()
-    console.print('点击输入区域')
-    time.sleep(.5)
-    # 用快捷键的方式输入文本
-    pyautogui.keyDown('ctrl')
-    pyautogui.press('v')
-    pyautogui.keyUp('ctrl')
-
-
-    time.sleep(.5)
-    console.print('粘贴原文')
-
-    
-    clipboard.copy('')
-    console.print('清空剪贴板')
-
-
-    RESULT = False
-    while RESULT == False:
-        try:
-            
-            # 复制按钮点一下
-            xpath = '//*[@id="panelTranslateText"]/div/div[2]/section[2]/div[3]/div[6]/div/div/div[2]/span[2]/span/span/button'
-            find_copy_btn = driver.find_element(By.XPATH, xpath)
-            find_copy_btn.click()
-            console.print('尝试复制译文')
-
-            # 读取剪贴板进行检查。
-            text = clipboard.paste()
-            if len(text) > 0:
-                RESULT = True
-                console.print('获得译文')
-                f = open(DIR+'./translated.txt', 'a', encoding='utf8')
-                f.write(time_node_list[i]+'\n')
-                f.write(transcript_text[i]+'\n')
-                f.write(text+'\n')
-                f.close()
-
-                r = open(DIR+'./attr.txt', 'w', encoding='utf8')
-                r.write(str(i) + '\n')
-                r.close()
-                
-                print(f'待翻译的文本：\n\n{transcript_text[i]}\n')
-                print(f'译文：\n\n{text}')
-                print('*'*50 ,'\n')
-                
-                # 获取内容后，要记得点一下翻译文本区域的清除
-                xpath = '//*[@id="translator-source-clear-button"]'
-                clear_src_btn = driver.find_element(By.XPATH, xpath)
-                clear_src_btn.click()
-                time.sleep(1)
-        except Exception as e:
-            print(e)
-
-    t += 1
+        if i % 10 == 0:
+            driver.close()
+            time.sleep(5)
+            driver = webdriver.Chrome(options=options)
+            driver.get('https://deepl.com')
+except Exception as e:
+    print(e)

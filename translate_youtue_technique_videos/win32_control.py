@@ -23,7 +23,10 @@ import win32con, win32gui, win32ui, win32api
 import os,time
 from rich.console import Console
 
+def get_window_handle(name):
+    handle = win32gui.FindWindow(0, name)
 
+    return handle
 
 def get_window_pos(name):
     name = name

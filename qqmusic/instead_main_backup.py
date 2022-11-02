@@ -99,10 +99,12 @@ not_pred_win_counter = 0
 as_pred_win_counter = 0
 as_pred_win_rate = 0
 not_pred_win_rate = 0
+upper = 0
+lower = 0
 vote_count = 0
-vote_as_pred = 0
-vote_not_pred = 0
+vote_ = 0
 vote_win_count = 0
+voted = False
 
 
 
@@ -270,20 +272,23 @@ if __name__ == '__main__':
             猜的逻辑：当diff落在某2小区域时，猜下一回合出隔壁区域
             '''
             # 总结上局预测的情况
-            if len(not_pred_options) == 0 or len(as_pred_options) == 0:
-                # 没有预测选项的情况下，略过
-                pass
-            else:                
+            if len(as_pred_options) != 0:
                 if record_history[-1][1] in as_pred_options:
                     as_pred_win_counter += 1
-                    if vote_as_pred > 0:
-                        vote_win_count += vote_as_pred/2 * 5    #赢的奖励
-                        vote_as_pred = 0
                 if record_history[-1][1] in not_pred_options:
                     not_pred_win_counter += 1
-                    if vote_not_pred > 0:
-                        vote_win_count += vote_not_pred/2 * 5   #赢的奖励
-                        vote_not_pred = 0
+
+            if voted == True:
+                if as_pred_win_rate > 0.5 and (upper == 1 or lower == 1) and record_history[-1][1] in as_pred_options:
+                    vote_win_count += vote_/2*5
+                    vote_ = 0
+                if not_pred_win_rate > 0.5 and (upper == 1 or lower == 1) and record_history[-1][1] in not_pred_options:
+                    vote_win_count += vote_/2*5
+                    vote_ = 0
+            else:
+                pass
+
+            voted = False
 
             # 计算胜率
             if guess_counter > 0:
@@ -296,6 +301,8 @@ if __name__ == '__main__':
                 record_rate = open(rate_log, 'a', encoding='utf8')
                 record_rate.write(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(start_timestamp)) + '按预测 胜率: ' + str(as_pred_win_counter) + '|' + str(guess_counter) + ', ' + str(as_pred_win_rate) + '\n')
                 record_rate.write(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(start_timestamp)) + '按补充 胜率: ' + str(not_pred_win_counter) + '|' + str(guess_counter) + ', ' + str(not_pred_win_rate) + '\n')
+                record_rate.write(f'此时已下注：{vote_count}音符\n')
+                record_rate.write(f'此时已回收：{vote_win_count}音符\n')
                 record_rate.write('*' * 20 + '\n')
                 record_rate.close()
                 # 重置下注相关的数据
@@ -307,72 +314,67 @@ if __name__ == '__main__':
                 as_pred_win_counter = 0
                 as_pred_win_rate = 0
                 not_pred_win_rate = 0
-                vote_as_pred = 0
-                vote_not_pred = 0
 
 
             # 启动后20回合内不进行预测
-            if total > 20:
+            if total > 3:
                 # 近20回合的大怪总数超过6不进行预测
-                if inlib.item_sum_V(record_history)[4] <= 6:
-                    bigger = []
-                    smaller = []
-                    bigger_2 = []
-                    smaller_2 = []
-                    for i in range(len(item_copd)):
-                        if i in [2,3,4,5]:
-                            if prediction_20[0] > item_copd[i][4]:
-                                smaller.append(item_copd[i][4])
-                            if prediction_20[0] < item_copd[i][4]:
-                                bigger.append(item_copd[i][4])
+                # if inlib.item_sum_V(record_history)[4] <= 6:
+                bigger = []
+                smaller = []
+                bigger_2 = []
+                smaller_2 = []
+                if prediction_20[0] >= item_copd[3][4]:
+                    upper = 1
+                else:
+                    upper = 0
+                if prediction_20[0] <= item_copd[4][4]:
+                    lower = 1
+                else:
+                    lower = 0
+                
+                if upper == 1:
+                    as_pred_options = [item_copd[2][0], item_copd[3][0]]
+                    not_pred_options = [item_copd[4][0], item_copd[5][0]]
+                    console.print(f'{prediction_20[0]}在上区，按预测选：[red]{as_pred_options}[/]')
+                    console.print(f'{prediction_20[0]}在上区，按补充选：[red]{not_pred_options}[/]')
+                    guess_counter += 1
+                elif lower == 1:                        
+                    as_pred_options = [item_copd[4][0], item_copd[5][0]]
+                    not_pred_options = [item_copd[2][0], item_copd[3][0]]
+                    console.print(f'{prediction_20[0]}在下区，按预测选：[red]{as_pred_options}[/]')
+                    console.print(f'{prediction_20[0]}在下区，按补充选：[red]{not_pred_options}[/]')
+                    guess_counter += 1
+                else:
+                    console.print('[blue]本局忽略[/]')
+                    not_pred_options = []
+                    as_pred_options = []
 
-                        if i in [0,1,6,7]:
-                            if prediction_20[0] > item_copd[i][4]:
-                                smaller_2.append(item_copd[i][4])
-                            if prediction_20[0] < item_copd[i][4]:
-                                bigger_2.append(item_copd[i][4])
-                    
-                    if (len(smaller) == 3 and len(bigger) == 1) or (len(smaller_2) == 3 and len(bigger_2) == 1):
-                        as_pred_options = [item_copd[2][0], item_copd[3][0]]
-                        not_pred_options = [item_copd[4][0], item_copd[5][0]]
-                        console.print(f'{prediction_20[0]}在上区，按预测选：[red]{as_pred_options}[/]')
-                        console.print(f'{prediction_20[0]}在上区，按补充选：[red]{not_pred_options}[/]')
-                        guess_counter += 1
-                    elif (len(smaller) == 1 and len(bigger) == 3) or (len(smaller_2) == 1 and len(bigger_2) == 3):                        
-                        as_pred_options = [item_copd[4][0], item_copd[5][0]]
-                        not_pred_options = [item_copd[2][0], item_copd[3][0]]
-                        console.print(f'{prediction_20[0]}在下区，按预测选：[red]{as_pred_options}[/]')
-                        console.print(f'{prediction_20[0]}在下区，按补充选：[red]{not_pred_options}[/]')
-                        guess_counter += 1
-                    else:
-                        console.print('[blue]本局忽略[/]')
-                        not_pred_options = []
-                        as_pred_options = []
-
-                    # 只在胜率大于50的时候实施
-                    if as_pred_win_rate > 0.5 and len(as_pred_options) > 0:
-                        if vote_as_pred == 2 or vote_not_pred == 2:
-                            vote_as_pred = 8
-                            vote_count += 8
-                            console.print(f'模拟：{as_pred_options} + 8音符')
+                # 只在胜率大于50，且上一次结果不为大时 实施
+                if record_history[-1][1] not in ['架子鼓','竖琴','萨克斯风','圆号']:
+                    # if as_pred_win_rate > 0.6 and (upper == 1 or lower == 1):
+                    if as_pred_win_rate - not_pred_win_rate > 0.2 and (upper == 1 or lower == 1):
+                        if vote_ == 0 or vote_ == 86:
+                            vote_ = 2
                         else:
-                            vote_as_pred = 2
-                            vote_count += 2
-                            console.print(f'模拟：{as_pred_options} + 2音符')
-                    else:
-                        vote_as_pred = 0
-
-                    if not_pred_win_rate > 0.5 and len(not_pred_options) > 0:
-                        if vote_as_pred == 2 or vote_not_pred == 2:
-                            vote_not_pred = 8
-                            vote_count += 8
-                            console.print(f'模拟：{not_pred_options} + 8音符')
+                            vote_ = vote_ * 2 + 10
+                        vote_count += vote_
+                        console.print(f'模拟下注：{as_pred_options} + {str(vote_)}音符(各{str(vote_/2)})')
+                    # elif not_pred_win_rate > 0.6 and (upper == 1 or lower == 1):
+                    elif not_pred_win_rate - as_pred_win_rate > 0.2 and (upper == 1 or lower == 1):
+                        if vote_ == 0 or vote_ == 86:
+                            vote_ = 2
                         else:
-                            vote_not_pred = 2
-                            vote_count += 2
-                            console.print(f'模拟：{not_pred_options} + 2音符')
-                    else:
-                        vote_not_pred = 0
+                            vote_ = vote_ * 2 + 10
+                        vote_count += vote_
+                        console.print(f'模拟下注：{not_pred_options} + {str(vote_)}音符(各{str(vote_/2)})')
+                    voted = True
+                else:
+                    voted = False
+                # else:
+                #     console.print('[blue]本局忽略[/]')
+                #     not_pred_options = []
+                #     as_pred_options = []
 
                 console.print(f'模拟总计投入：{vote_count} 音符')
                 console.print(f'模拟总计回收：{vote_win_count} 音符')
