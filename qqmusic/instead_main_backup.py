@@ -291,17 +291,18 @@ if __name__ == '__main__':
                 if record_history[-1][1] in not_pred_options:
                     not_pred_win_counter += 1
 
-            if voted == True:
-                if as_pred_win_rate > 0.6 and (upper == 1 or lower == 1) and record_history[-1][1] in as_pred_options:
-                    vote_win_count += vote_/2*5
-                    vote_ = 0
-                if not_pred_win_rate > 0.6 and (upper == 1 or lower == 1) and record_history[-1][1] in not_pred_options:
-                    vote_win_count += vote_/2*5
-                    vote_ = 0
-            else:
-                pass
+
+            if as_pred_win_rate > 0.6 and (upper == 1 or lower == 1) and record_history[-1][1] in as_pred_options:
+                vote_win_count += vote_/2*5
+                vote_ = 0
+            if not_pred_win_rate > 0.6 and (upper == 1 or lower == 1) and record_history[-1][1] in not_pred_options:
+                vote_win_count += vote_/2*5
+                vote_ = 0
 
             voted = False
+
+
+            
 
             # 计算胜率
             if guess_counter > 0:
