@@ -7,8 +7,8 @@ import platform
 DIR = os.path.dirname(__file__)
 
 if platform.system().lower() == 'windows':
-    auto_csv_path = DIR+'./merge_result_1.csv'
-    temp_csv_path = DIR+'./merge_result_1.csv'
+    auto_csv_path = DIR+'./auto.csv'
+    temp_csv_path = DIR+'./temp.csv'
     merge_csv_path = DIR+'./merge_result_.csv'
 elif platform.system().lower() == 'linux':
     auto_csv_path = DIR+'/auto.csv'
