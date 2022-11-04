@@ -425,9 +425,12 @@ if __name__ == '__main__':
             console.print(f'模拟总计投入：{vote_count} 音符')
             console.print(f'模拟总计回收：{vote_win_count} 音符')
             console.print(f'起注：{CHIPS} | 封顶：{TOP_CHIPS}')
+            console.print('Version: 2022-11-04 19:01')
 
             if len(record_history) == 20:
                 if len(item_high_low) > 0 and len(high_low) > 0:
+                    print(high_low)
+                    print(item_high_low)
                     high_low.append(item_high_low[int(DICT[record_history[-1][1]]) - 1])
                     print(high_low)
                     log_high_low = open(high_low_log, 'a', encoding='utf8')
@@ -456,7 +459,7 @@ if __name__ == '__main__':
                             high_low.append('低')
                         else:
                             high_low.append('平')
-
+                
                 item_high_low = []
                 for each in count_item[:4]:
                     if each > np.mean(count_item[:4]):
@@ -471,7 +474,8 @@ if __name__ == '__main__':
                     if each < np.mean(count_item[-4:]):
                         item_high_low.append('低')
                     else:
-                        item_high_low.append('平')                    
+                        item_high_low.append('平')
+                               
 
 
             
