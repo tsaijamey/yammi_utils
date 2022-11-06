@@ -304,13 +304,13 @@ if __name__ == '__main__':
             if as_pred_win_rate > 0.6 and (upper == 1 or lower == 1) and record_history[-1][1] in as_pred_options:
                 vote_win_count += vote_/2*5
                 log_ = open(buy_log, 'a', encoding='utf8')
-                log_.write(record_history[-1][0] + ',' + record_history[-1][1] + ',' + str(vote_win_count) + '\n')
+                log_.write(record_history[-1][0] + ',' + record_history[-1][1] + ',' + str(int(vote_/2*5)) + ',' + str(vote_win_count) + '\n')
                 log_.close()
                 vote_ = 0
             if not_pred_win_rate > 0.6 and (upper == 1 or lower == 1) and record_history[-1][1] in not_pred_options:
                 vote_win_count += vote_/2*5
                 log_ = open(buy_log, 'a', encoding='utf8')
-                log_.write(record_history[-1][0] + ',' + record_history[-1][1] + ',' + str(vote_win_count) + '\n')
+                log_.write(record_history[-1][0] + ',' + record_history[-1][1] + ',' + str(int(vote_/2*5)) + ',' + str(vote_win_count) + '\n')
                 log_.close()
                 vote_ = 0
 
@@ -388,12 +388,12 @@ if __name__ == '__main__':
                     else:
                         vote_ = vote_ * 2 + 10
                     vote_count += vote_
+                    console.print(f'模拟下注：{as_pred_options} + {str(vote_)}音符(各{str(vote_/2)})')
+                    log_ = open(buy_log, 'a', encoding='utf8')
+                    log_.write(as_pred_options[0] + '|' + as_pred_options[1] + ',' + str(vote_) + ',')
+                    log_.close()
                     if BUY == True:
                         by.buy(as_pred_options[0], as_pred_options[1], int(vote_/2))
-                        console.print(f'模拟下注：{as_pred_options} + {str(vote_)}音符(各{str(vote_/2)})')
-                        log_ = open(buy_log, 'a', encoding='utf8')
-                        log_.write(as_pred_options[0] + '|' + as_pred_options[1] + ',' + str(vote_) + ',')
-                        log_.close()
                         voted = True
                     else:
                         voted = False
@@ -404,12 +404,12 @@ if __name__ == '__main__':
                     else:
                         vote_ = vote_ * 2 + 10
                     vote_count += vote_
+                    console.print(f'模拟下注：{not_pred_options} + {str(vote_)}音符(各{str(vote_/2)})')
+                    log_ = open(buy_log, 'a', encoding='utf8')
+                    log_.write(not_pred_options[0] + '|' + not_pred_options[1] + ',' + str(vote_) + ',')
+                    log_.close()
                     if BUY == True:
-                        by.buy(not_pred_options[0], not_pred_options[1], int(vote_/2))
-                        console.print(f'模拟下注：{not_pred_options} + {str(vote_)}音符(各{str(vote_/2)})')
-                        log_ = open(buy_log, 'a', encoding='utf8')
-                        log_.write(not_pred_options[0] + '|' + not_pred_options[1] + ',' + str(vote_) + ',')
-                        log_.close()
+                        by.buy(not_pred_options[0], not_pred_options[1], int(vote_/2))                        
                         voted = True
                     else:
                         voted = False
@@ -427,67 +427,111 @@ if __name__ == '__main__':
             console.print(f'起注：{CHIPS} | 封顶：{TOP_CHIPS}')
             console.print('Version: 2022-11-04 19:01')
 
-            if len(record_history) == 20:
-                if len(item_high_low) > 0 and len(high_low) > 0:
-                    print(high_low)
-                    print(item_high_low)
-                    high_low.append(item_high_low[int(DICT[record_history[-1][1]]) - 1])
-                    print(high_low)
-                    log_high_low = open(high_low_log, 'a', encoding='utf8')
-                    txt = ''
-                    for each in count_item:
-                        txt = txt + str(each) + ','
-                    txt2 = ''
-                    for each in high_low:
-                        txt2 = txt2 + each + ','
-                    log_high_low.write(record_history[-1][0] + ',' + record_history[-1][1] + ',' + txt + txt2 + '\n')
-                    log_high_low.close()
+            # if len(record_history) == 20:
+            #     if len(item_high_low) > 0 and len(high_low) > 0:
+            #         print(high_low)
+            #         print(item_high_low)
+            #         high_low.append(item_high_low[int(DICT[record_history[-1][1]]) - 1])
+            #         print(high_low)
+            #         log_high_low = open(high_low_log, 'a', encoding='utf8')
+            #         txt = ''
+            #         for each in count_item:
+            #             txt = txt + str(each) + ','
+            #         txt2 = ''
+            #         for each in high_low:
+            #             txt2 = txt2 + each + ','
+            #         log_high_low.write(record_history[-1][0] + ',' + record_history[-1][1] + ',' + txt + txt2 + '\n')
+            #         log_high_low.close()
 
-                high_low = []
-                for each in record_history:
-                    if int(DICT[each[1]]) < 5:
-                        if count_item[int(DICT[each[1]])-1] > np.mean(count_item[:4]):
-                             high_low.append('高')
-                        elif count_item[int(DICT[each[1]])-1] < np.mean(count_item[:4]):
-                            high_low.append('低')
-                        else:
-                            high_low.append('平')
-                    if int(DICT[each[1]]) > 4:
-                        if count_item[int(DICT[each[1]])-1] > np.mean(count_item[-4:]):
-                             high_low.append('高')
-                        elif count_item[int(DICT[each[1]])-1] < np.mean(count_item[-4:]):
-                            high_low.append('低')
-                        else:
-                            high_low.append('平')
+            #     high_low = []
+            #     for each in record_history:
+            #         if int(DICT[each[1]]) < 5:
+            #             if count_item[int(DICT[each[1]])-1] > np.mean(count_item[:4]):
+            #                  high_low.append('高')
+            #             elif count_item[int(DICT[each[1]])-1] < np.mean(count_item[:4]):
+            #                 high_low.append('低')
+            #             else:
+            #                 high_low.append('平')
+            #         if int(DICT[each[1]]) > 4:
+            #             if count_item[int(DICT[each[1]])-1] > np.mean(count_item[-4:]):
+            #                  high_low.append('高')
+            #             elif count_item[int(DICT[each[1]])-1] < np.mean(count_item[-4:]):
+            #                 high_low.append('低')
+            #             else:
+            #                 high_low.append('平')
                 
-                item_high_low = []
-                for each in count_item[:4]:
-                    if each > np.mean(count_item[:4]):
-                        item_high_low.append('高')
-                    if each < np.mean(count_item[:4]):
-                        item_high_low.append('低')
-                    else:
-                        item_high_low.append('平')
-                for each in count_item[-4:]:
-                    if each > np.mean(count_item[-4:]):
-                        item_high_low.append('高')
-                    if each < np.mean(count_item[-4:]):
-                        item_high_low.append('低')
-                    else:
-                        item_high_low.append('平')
+            #     item_high_low = []
+            #     for each in count_item[:4]:
+            #         if each > np.mean(count_item[:4]):
+            #             item_high_low.append('高')
+            #         if each < np.mean(count_item[:4]):
+            #             item_high_low.append('低')
+            #         else:
+            #             item_high_low.append('平')
+            #     for each in count_item[-4:]:
+            #         if each > np.mean(count_item[-4:]):
+            #             item_high_low.append('高')
+            #         if each < np.mean(count_item[-4:]):
+            #             item_high_low.append('低')
+            #         else:
+            #             item_high_low.append('平')
                                
 
 
             
-            # # 根据Diff值的预测：
-            # if len(diff_history) == 20:
-            #     reg_predict = inlib.load_rf_reg_model(DIR+'\\model\\reg_8_20221028_seed10.m',diff_history).tolist()[0]
-            #     if reg_predict == 0:
-            #         reg_predict_to_int = 0
-            #     else:
-            #         reg_predict_to_int = int(reg_predict)
+            # 根据Diff值的预测：
+            if len(diff_history) == 20:
+                reg_predict = inlib.load_rf_reg_model(DIR+'\\model\\reg_8_20221028_seed10.m',diff_history).tolist()[0]
+                if reg_predict == 0:
+                    reg_predict_to_int = 0
+                else:
+                    reg_predict_to_int = int(reg_predict)
 
-            #     reg_predict_history.append(reg_predict_to_int)
+                reg_predict_history.append(reg_predict_to_int)
+
+            # 预测的历史，只保留最近的21个。
+            if len(reg_predict_history) > 21:
+                reg_predict_history.pop(0)
+
+            # 计算 预测diff 和 实际diff 的误差，存入 reg_predict_infact_error
+            # 用于计算的 预测diff 来自 reg_predict_history[-2]
+            if len(reg_predict_history) >= 2:
+                if record_history[-1][1] in ['架子鼓','竖琴','萨克斯风','圆号']:
+                    reg_predict_infact_error.append(str(diff_history[-1] - reg_predict_history[-2]))
+                else:
+                    reg_predict_infact_error.append(diff_history[-1] - reg_predict_history[-2])
+
+                if len(reg_predict_infact_error) > 20:
+                    reg_predict_infact_error.pop(0)
+                console.print(f'[st]预测与实际结果的误差量（最后一个值，是上一次“预测”vs“实际”的结果）[/st]')
+                
+                reg_predict_infact_error_int = []
+                for each in reg_predict_infact_error:
+                    reg_predict_infact_error_int.append(int(each))
+
+                gradient_drop = []
+                for i in range(len(reg_predict_infact_error)):
+                    gradient_drop.append(round( (reg_predict_infact_error_int[i] - reg_predict_history[i])/2 , 2))
+                    
+                console.print(f'{reg_predict_infact_error} | [wa]{sum(reg_predict_infact_error_int)}[/wa]')
+                console.print(f'[st]历史预测值[/st]')
+                console.print(f'[re]{reg_predict_history[:-1]}[/re]')
+                console.print(f'[st]误差梯度[/st]')
+                console.print(f'[re]{gradient_drop}[/re]')
+                console.print(f'[st]本次预测值[/st]：[pre]{reg_predict_history[-1]}[/pre]')
+                right = 0
+                left  = 0
+                for each in reg_predict_infact_error_int[-5:]:
+                    if each > 0:
+                        right += 1
+                    elif each < 0:
+                        left  += 1
+                if right > left and right >= 3:
+                    console.print(f'[pre]下回合 [u]出现的DIFF值[/u] 可能比 {reg_predict_history[-1]} 小[/pre]')
+                elif left > right and left >= 3:
+                    console.print(f'[pre]下回合 [u]出现的DIFF值[/u] 可能比 {reg_predict_history[-1]} 大[/pre]')
+                elif right <= 2 and left <= 2:
+                    console.print(f'[pre]暂无法判断，观望[/pre]')
 
             # 格式化展示，方便查看数值
             table = Table(show_header=True, header_style="bold cyan")
