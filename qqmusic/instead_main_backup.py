@@ -293,7 +293,7 @@ if __name__ == '__main__':
                     vote_ = 0
                 else:
                     log_ = open(buy_log, 'a', encoding='utf8')
-                    log_.write(record_history[-1][0] + ',' + record_history[-1][1] + '\n')
+                    log_.write(record_history[-1][0] + ',' + record_history[-1][1] + ',' + str(vote_win_count) + '\n')
                     log_.close()
             if not_pred_win_rate > 0.6 and (upper == 1 or lower == 1):
                 if record_history[-1][1] in not_pred_options:
@@ -304,7 +304,7 @@ if __name__ == '__main__':
                     vote_ = 0
                 else:
                     log_ = open(buy_log, 'a', encoding='utf8')
-                    log_.write(record_history[-1][0] + ',' + record_history[-1][1] + '\n')
+                    log_.write(record_history[-1][0] + ',' + record_history[-1][1] + ',' + str(vote_win_count) + '\n')
                     log_.close()
 
             voted = False
