@@ -237,7 +237,7 @@ if __name__ == '__main__':
                 diff_history.pop(0)
             # 适当时机，显示 diff 值的历史
             if len(diff_history) > 0:
-                console.print(f'DIFF历史值：{diff_history[-21:]} | 历史值之和(：{sum(diff_history[-20:])}')
+                console.print(f'DIFF历史值：{diff_history} | 历史值：{sum(diff_history)}')
 
             
             '''
@@ -261,10 +261,14 @@ if __name__ == '__main__':
             每个diff值需要按顺序跟时间值组成(x,y)值
             设定 x = 时间戳， y = diff值
             '''
+            time_diff_20 = []
+            diff_20 = diff_history[-20:]
+            for i in range(len(diff_20)):
+                time_diff_20.append([i+1, diff_20[i]])
             if total > 3:
                 df_header = ['time', 'result']                
                 try:
-                    time_diff_pd = pd.DataFrame(diff_history, columns=df_header)
+                    time_diff_pd = pd.DataFrame(time_diff_20, columns=df_header)
                     prediction_20 = inlib.random_forest_reg_live(time_diff_pd,'result', [[21]])
                     console.print(f'RDM_REG预测(20)：[cyan]{prediction_20[0]}[/]')
                 except Exception as e:
