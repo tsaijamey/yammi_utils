@@ -223,7 +223,7 @@ if __name__ == '__main__':
                 if record_history[-1][1] in each:
                     position_history.append(each[3])
             # posi值的历史，最多不超过20个。
-            if len(position_history) > 30:
+            if len(position_history) > 20:
                 position_history.pop(0)
             if len(position_history) > 0:
                 for each in item_copd:
@@ -233,7 +233,7 @@ if __name__ == '__main__':
             if len(position_history) >= 2:
                 diff_history.append(position_history[-1] - position_history[-2])
             # diff值得历史，最多不超过20个。
-            if len(diff_history) > 30:
+            if len(diff_history) > 20:
                 diff_history.pop(0)
             # 适当时机，显示 diff 值的历史
             if len(diff_history) > 0:
@@ -248,11 +248,11 @@ if __name__ == '__main__':
                 for each in last_copd:
                     if record_history[-1][1] in each:
                         real_position_history.append(each[3])
-            if len(real_position_history) > 30:
+            if len(real_position_history) > 20:
                 real_position_history.pop(0)
             if len(real_position_history) >= 2:
                 real_diff_history.append(real_position_history[-1] - position_history[-2])
-            if len(real_diff_history) > 30:
+            if len(real_diff_history) > 20:
                 real_diff_history.pop(0)
             # @2022-10-25   end
 
@@ -261,31 +261,14 @@ if __name__ == '__main__':
             每个diff值需要按顺序跟时间值组成(x,y)值
             设定 x = 时间戳， y = diff值
             '''
-            time_diff_20 = []
-            diff_20 = diff_history[-20:]
-            for i in range(len(diff_20)):
-                time_diff_20.append([i+1, diff_20[i]])
             if total > 3:
                 df_header = ['time', 'result']                
                 try:
-                    time_diff_pd = pd.DataFrame(time_diff_20, columns=df_header)
+                    time_diff_pd = pd.DataFrame(diff_history, columns=df_header)
                     prediction_20 = inlib.random_forest_reg_live(time_diff_pd,'result', [[21]])
                     console.print(f'RDM_REG预测(20)：[cyan]{prediction_20[0]}[/]')
                 except Exception as e:
                     print('error')
-
-            if len(diff_history) == 30:
-                time_diff_30 = []
-                for i in range(len(diff_history)):
-                    time_diff_30.append([i+1, diff_history[i]])
-                if total > 3:
-                    df_header = ['time', 'result']                
-                    try:
-                        time_diff_pd_2 = pd.DataFrame(time_diff_30, columns=df_header)
-                        prediction_30 = inlib.random_forest_reg_live(time_diff_pd_2,'result', [[21]])
-                        console.print(f'RDM_REG预测(30)：[purple]{prediction_30[0]}[/]')
-                    except Exception as e:
-                        print('error')
 
             '''猜测区
             猜的策略：
@@ -301,18 +284,28 @@ if __name__ == '__main__':
                     not_pred_win_counter += 1
 
 
-            if as_pred_win_rate > 0.6 and (upper == 1 or lower == 1) and record_history[-1][1] in as_pred_options:
-                vote_win_count += vote_/2*5
-                log_ = open(buy_log, 'a', encoding='utf8')
-                log_.write(record_history[-1][0] + ',' + record_history[-1][1] + ',' + str(int(vote_/2*5)) + ',' + str(vote_win_count) + '\n')
-                log_.close()
-                vote_ = 0
-            if not_pred_win_rate > 0.6 and (upper == 1 or lower == 1) and record_history[-1][1] in not_pred_options:
-                vote_win_count += vote_/2*5
-                log_ = open(buy_log, 'a', encoding='utf8')
-                log_.write(record_history[-1][0] + ',' + record_history[-1][1] + ',' + str(int(vote_/2*5)) + ',' + str(vote_win_count) + '\n')
-                log_.close()
-                vote_ = 0
+            if as_pred_win_rate > 0.6 and (upper == 1 or lower == 1):
+                if record_history[-1][1] in as_pred_options:
+                    vote_win_count += vote_/2*5
+                    log_ = open(buy_log, 'a', encoding='utf8')
+                    log_.write(record_history[-1][0] + ',' + record_history[-1][1] + ',' + str(int(vote_/2*5)) + ',' + str(vote_win_count) + '\n')
+                    log_.close()
+                    vote_ = 0
+                else:
+                    log_ = open(buy_log, 'a', encoding='utf8')
+                    log_.write(record_history[-1][0] + ',' + record_history[-1][1] + '\n')
+                    log_.close()
+            if not_pred_win_rate > 0.6 and (upper == 1 or lower == 1):
+                if record_history[-1][1] in not_pred_options:
+                    vote_win_count += vote_/2*5
+                    log_ = open(buy_log, 'a', encoding='utf8')
+                    log_.write(record_history[-1][0] + ',' + record_history[-1][1] + ',' + str(int(vote_/2*5)) + ',' + str(vote_win_count) + '\n')
+                    log_.close()
+                    vote_ = 0
+                else:
+                    log_ = open(buy_log, 'a', encoding='utf8')
+                    log_.write(record_history[-1][0] + ',' + record_history[-1][1] + '\n')
+                    log_.close()
 
             voted = False
 
@@ -345,42 +338,42 @@ if __name__ == '__main__':
                 not_pred_win_rate = 0
 
 
-            # 启动后20回合内不进行预测
+            # 启动后3回合内不进行预测
             if total > 3:
                 # 近20回合的大怪总数超过6不进行预测
-                # if inlib.item_sum_V(record_history)[4] <= 6:
-                bigger = []
-                smaller = []
-                bigger_2 = []
-                smaller_2 = []
-                if prediction_20[0] >= item_copd[3][4]:
-                    upper = 1
-                else:
-                    upper = 0
-                if prediction_20[0] <= item_copd[4][4]:
-                    lower = 1
-                else:
-                    lower = 0
-                
-                if upper == 1:
-                    as_pred_options = [item_copd[2][0], item_copd[3][0]]
-                    not_pred_options = [item_copd[4][0], item_copd[5][0]]
-                    console.print(f'{prediction_20[0]}在上区，按预测选：[red]{as_pred_options}[/]')
-                    console.print(f'{prediction_20[0]}在上区，按补充选：[red]{not_pred_options}[/]')
-                    guess_counter += 1
-                elif lower == 1:                        
-                    as_pred_options = [item_copd[4][0], item_copd[5][0]]
-                    not_pred_options = [item_copd[2][0], item_copd[3][0]]
-                    console.print(f'{prediction_20[0]}在下区，按预测选：[red]{as_pred_options}[/]')
-                    console.print(f'{prediction_20[0]}在下区，按补充选：[red]{not_pred_options}[/]')
-                    guess_counter += 1
-                else:
-                    console.print('[blue]本局忽略[/]')
-                    not_pred_options = []
-                    as_pred_options = []
+                if inlib.item_sum_V(record_history)[4] <= 5:
+                    bigger = []
+                    smaller = []
+                    bigger_2 = []
+                    smaller_2 = []
+                    if prediction_20[0] >= item_copd[3][4]:
+                        upper = 1
+                    else:
+                        upper = 0
+                    if prediction_20[0] <= item_copd[4][4]:
+                        lower = 1
+                    else:
+                        lower = 0
+                    
+                    if upper == 1:
+                        as_pred_options = [item_copd[2][0], item_copd[3][0]]
+                        not_pred_options = [item_copd[4][0], item_copd[5][0]]
+                        console.print(f'{prediction_20[0]}在上区，按预测选：[red]{as_pred_options}[/]')
+                        console.print(f'{prediction_20[0]}在上区，按补充选：[red]{not_pred_options}[/]')
+                        guess_counter += 1
+                    elif lower == 1:                        
+                        as_pred_options = [item_copd[4][0], item_copd[5][0]]
+                        not_pred_options = [item_copd[2][0], item_copd[3][0]]
+                        console.print(f'{prediction_20[0]}在下区，按预测选：[red]{as_pred_options}[/]')
+                        console.print(f'{prediction_20[0]}在下区，按补充选：[red]{not_pred_options}[/]')
+                        guess_counter += 1
+                    else:
+                        console.print('[blue]本局忽略[/]')
+                        not_pred_options = []
+                        as_pred_options = []
 
             # 只在胜率大于50，且上一次结果不为大时 实施
-            if record_history[-1][1] not in ['架子鼓','竖琴','萨克斯风','圆号'] and total > 10:
+            if record_history[-1][1] not in ['架子鼓','竖琴','萨克斯风','圆号'] and total > 5:
                 if as_pred_win_rate > 0.6 and (upper == 1 or lower == 1) and guess_counter >= 3:
                 # if as_pred_win_rate - not_pred_win_rate > 0.2 and (upper == 1 or lower == 1):
                     if vote_ == 0 or vote_ == TOP_CHIPS:
@@ -417,10 +410,6 @@ if __name__ == '__main__':
                     pass
             else:
                 pass
-            # else:
-            #     console.print('[blue]本局忽略[/]')
-            #     not_pred_options = []
-            #     as_pred_options = []
 
             console.print(f'模拟总计投入：{vote_count} 音符')
             console.print(f'模拟总计回收：{vote_win_count} 音符')
@@ -480,14 +469,13 @@ if __name__ == '__main__':
 
             
             # 根据Diff值的预测：
-            if len(diff_history) == 20:
-                reg_predict = inlib.load_rf_reg_model(DIR+'\\model\\reg_8_20221028_seed10.m',diff_history).tolist()[0]
-                if reg_predict == 0:
-                    reg_predict_to_int = 0
-                else:
-                    reg_predict_to_int = int(reg_predict)
+            reg_predict = inlib.load_rf_reg_model(DIR+'\\model\\reg_8_20221028_seed10.m',diff_history).tolist()[0]
+            if reg_predict == 0:
+                reg_predict_to_int = 0
+            else:
+                reg_predict_to_int = int(reg_predict)
 
-                reg_predict_history.append(reg_predict_to_int)
+            reg_predict_history.append(reg_predict_to_int)
 
             # 预测的历史，只保留最近的21个。
             if len(reg_predict_history) > 21:
