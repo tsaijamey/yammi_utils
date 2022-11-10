@@ -120,6 +120,16 @@ def item_sum(item_record:list) -> list[int]:
         counter.append(item_merge.count(each))
     return counter
 
+def if_item_sum_balance(counter:list):
+    container = []
+    for each in counter[:4]:
+        if each not in container:
+            container.append(each)
+    if len(container) == 4:
+        return False
+    else:
+        return True
+
 def item_sum_V(item_record:list) -> list[int]:
     '''统计输入的物品列表中，各物品总数
     其中，架子鼓、竖琴、萨克斯风、圆号视为一个物品

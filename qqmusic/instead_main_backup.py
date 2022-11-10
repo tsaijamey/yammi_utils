@@ -57,11 +57,11 @@ DIFF_DICT = {
     '七':   7,
 }                                           # 各个Diff值的中文与数字表达对应关系
 
-CHIPS = 2                                   # 预设的起始下注
-CHIP_TIME = 3                               # 追投的次数
-TOP_CHIPS = CHIPS                           # 初始化的封顶下注量
-for i in range(CHIP_TIME):
-    TOP_CHIPS = TOP_CHIPS * 2 + 10          # 按照追投次数计算后的封顶下注量
+STOCK = 2                                   # 预设的起始下注
+BET_TIME = 3                               # 追投的次数
+TOP_CHIPS = STOCK                           # 初始化的封顶下注量
+for i in range(BET_TIME):
+    TOP_CHIPS = int(TOP_CHIPS/0.2)          # 按照追投次数计算后的封顶下注量
 
 # 每回合的数据列表，每回合都会变。
 count_item          = []                    # 物品的统计
@@ -113,6 +113,7 @@ as_pred_win_rate = 0
 not_pred_win_rate = 0
 upper = 0
 lower = 0
+pred_history = []
 vote_count = 0
 vote_ = 0
 vote_win_count = 0
@@ -239,22 +240,6 @@ if __name__ == '__main__':
             if len(diff_history) > 0:
                 console.print(f'DIFF历史值：{diff_history} | 历史值：{sum(diff_history)}')
 
-            
-            '''
-            如果预测效果不如预期，应把 last_copd 改回item_copd，且last_copd弃用。
-            '''
-            # 这里追加的记录是上一个循环的各物品值，所以要用 last_copd
-            if len(last_copd) > 0:
-                for each in last_copd:
-                    if record_history[-1][1] in each:
-                        real_position_history.append(each[3])
-            if len(real_position_history) > 20:
-                real_position_history.pop(0)
-            if len(real_position_history) >= 2:
-                real_diff_history.append(real_position_history[-1] - position_history[-2])
-            if len(real_diff_history) > 20:
-                real_diff_history.pop(0)
-            # @2022-10-25   end
 
             '''@2022-10-29  新思路
             用近期20回合的diff值，拟合一条曲线，预测下一个时间位置的值。
@@ -287,8 +272,8 @@ if __name__ == '__main__':
                 if record_history[-1][1] in not_pred_options:
                     not_pred_win_counter += 1
 
-
-            if as_pred_win_rate > 0.6 and (upper == 1 or lower == 1):
+            # count last round earnings
+            if as_pred_win_rate >= 0.6 and (upper == 1 or lower == 1):
                 if record_history[-1][1] in as_pred_options:
                     vote_win_count += vote_/2*5
                     log_ = open(buy_log, 'a', encoding='utf8')
@@ -299,7 +284,7 @@ if __name__ == '__main__':
                     log_ = open(buy_log, 'a', encoding='utf8')
                     log_.write(record_history[-1][0] + ',' + record_history[-1][1] + ',' + str(vote_win_count) + '\n')
                     log_.close()
-            if not_pred_win_rate > 0.6 and (upper == 1 or lower == 1):
+            if not_pred_win_rate >= 0.6 and (upper == 1 or lower == 1):
                 if record_history[-1][1] in not_pred_options:
                     vote_win_count += vote_/2*5
                     log_ = open(buy_log, 'a', encoding='utf8')
@@ -323,6 +308,17 @@ if __name__ == '__main__':
                 console.print(f"按预测 胜率: {as_pred_win_counter} | {guess_counter}，[cyan]{str(as_pred_win_rate)}[/]")
                 console.print(f"按补充 胜率: {not_pred_win_counter} | {guess_counter}，[cyan]{str(not_pred_win_rate)}[/]")
 
+            if record_history[-1][1] in as_pred_options:
+                pred_history.append('预测')
+            if record_history[-1][1] in not_pred_options:
+                pred_history.append('补充')
+            
+            if len(pred_history) > 20:
+                pred_history.pop(0)
+            if len(pred_history) >= 1:
+                console.print(pred_history)
+
+            # record the rate per hour.
             if (start_timestamp % (60 * 60) <= 60 or start_timestamp % (60 * 60) >= (60*60-59)) and guess_counter > 0:
                 record_rate = open(rate_log, 'a', encoding='utf8')
                 record_rate.write(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(start_timestamp)) + '按预测 胜率: ' + str(as_pred_win_counter) + '|' + str(guess_counter) + ', ' + str(as_pred_win_rate) + '\n')
@@ -345,131 +341,72 @@ if __name__ == '__main__':
             # 启动后3回合内不进行预测
             if total > 3:
                 # 近20回合的大怪总数超过6不进行预测
-                if inlib.item_sum_V(record_history)[4] <= 5:
-                    bigger = []
-                    smaller = []
-                    bigger_2 = []
-                    smaller_2 = []
-                    if prediction_20[0] >= item_copd[3][4]:
-                        upper = 1
-                    else:
-                        upper = 0
-                    if prediction_20[0] <= item_copd[4][4]:
-                        lower = 1
-                    else:
-                        lower = 0
-                    
-                    if upper == 1:
-                        as_pred_options = [item_copd[2][0], item_copd[3][0]]
-                        not_pred_options = [item_copd[4][0], item_copd[5][0]]
-                        console.print(f'{prediction_20[0]}在上区，按预测选：[red]{as_pred_options}[/]')
-                        console.print(f'{prediction_20[0]}在上区，按补充选：[red]{not_pred_options}[/]')
-                        guess_counter += 1
-                    elif lower == 1:                        
-                        as_pred_options = [item_copd[4][0], item_copd[5][0]]
-                        not_pred_options = [item_copd[2][0], item_copd[3][0]]
-                        console.print(f'{prediction_20[0]}在下区，按预测选：[red]{as_pred_options}[/]')
-                        console.print(f'{prediction_20[0]}在下区，按补充选：[red]{not_pred_options}[/]')
-                        guess_counter += 1
-                    else:
-                        console.print('[blue]本局忽略[/]')
-                        not_pred_options = []
-                        as_pred_options = []
+                # if inlib.item_sum_V(record_history)[4] <= 5:
+                bigger = []
+                smaller = []
+                bigger_2 = []
+                smaller_2 = []
+                if prediction_20[0] >= item_copd[3][4]:
+                    upper = 1
+                else:
+                    upper = 0
+                if prediction_20[0] <= item_copd[4][4]:
+                    lower = 1
+                else:
+                    lower = 0
+                
+                if upper == 1:
+                    as_pred_options = [item_copd[2][0], item_copd[3][0]]
+                    not_pred_options = [item_copd[4][0], item_copd[5][0]]
+                    console.print(f'{prediction_20[0]}在上区，按预测选：[red]{as_pred_options}[/]')
+                    console.print(f'{prediction_20[0]}在上区，按补充选：[red]{not_pred_options}[/]')
+                    guess_counter += 1
+                elif lower == 1:                        
+                    as_pred_options = [item_copd[4][0], item_copd[5][0]]
+                    not_pred_options = [item_copd[2][0], item_copd[3][0]]
+                    console.print(f'{prediction_20[0]}在下区，按预测选：[red]{as_pred_options}[/]')
+                    console.print(f'{prediction_20[0]}在下区，按补充选：[red]{not_pred_options}[/]')
+                    guess_counter += 1
+                else:
+                    console.print('[blue]本局忽略[/]')
+                    not_pred_options = []
+                    as_pred_options = []
 
             # 只在胜率大于50，且上一次结果不为大时 实施
-            if record_history[-1][1] not in ['架子鼓','竖琴','萨克斯风','圆号'] and total > 5:
-                if as_pred_win_rate > 0.6 and (upper == 1 or lower == 1) and guess_counter >= 3:
-                # if as_pred_win_rate - not_pred_win_rate > 0.2 and (upper == 1 or lower == 1):
-                    if vote_ == 0 or vote_ == TOP_CHIPS:
-                        vote_ = CHIPS
-                    else:
-                        vote_ = vote_ * 2 + 10
-                    vote_count += vote_
-                    console.print(f'模拟下注：{as_pred_options} + {str(vote_)}音符(各{str(vote_/2)})')
-                    log_ = open(buy_log, 'a', encoding='utf8')
-                    log_.write(as_pred_options[0] + '|' + as_pred_options[1] + ',' + str(vote_) + ',')
-                    log_.close()
-                    if BUY == True:
-                        by.buy(as_pred_options[0], as_pred_options[1], int(vote_/2))
-                        voted = True
-                    else:
-                        voted = False
-                elif not_pred_win_rate > 0.6 and (upper == 1 or lower == 1) and guess_counter >= 3:
-                # elif not_pred_win_rate - as_pred_win_rate > 0.2 and (upper == 1 or lower == 1):
-                    if vote_ == 0 or vote_ == TOP_CHIPS:
-                        vote_ = CHIPS
-                    else:
-                        vote_ = vote_ * 2 + 10
-                    vote_count += vote_
-                    console.print(f'模拟下注：{not_pred_options} + {str(vote_)}音符(各{str(vote_/2)})')
-                    log_ = open(buy_log, 'a', encoding='utf8')
-                    log_.write(not_pred_options[0] + '|' + not_pred_options[1] + ',' + str(vote_) + ',')
-                    log_.close()
-                    if BUY == True:
-                        by.buy(not_pred_options[0], not_pred_options[1], int(vote_/2))                        
-                        voted = True
-                    else:
-                        voted = False
+            if as_pred_win_rate >= 0.6 and (upper == 1 or lower == 1) and record_history[-1][1] not in ['架子鼓','竖琴','萨克斯风','圆号'] and inlib.if_item_sum_balance(count_item[:4]) == False:
+            # if as_pred_win_rate - not_pred_win_rate > 0.2 and (upper == 1 or lower == 1):
+                if vote_ == 0 or vote_ == TOP_CHIPS:
+                    vote_ = STOCK
                 else:
-                    pass
+                    vote_ = int(vote_/0.2)
+                vote_count += vote_
+                console.print(f'模拟下注：{as_pred_options} + {str(vote_)}音符(各{str(vote_/2)})')
+                log_ = open(buy_log, 'a', encoding='utf8')
+                log_.write(as_pred_options[0] + '|' + as_pred_options[1] + ',' + str(vote_) + ',')
+                log_.close()
+                if BUY == True:
+                    by.buy(as_pred_options[0], as_pred_options[1], int(vote_/2))
+                    voted = True
+                else:
+                    voted = False
+            elif not_pred_win_rate >= 0.6 and (upper == 1 or lower == 1) and record_history[-1][1] not in ['架子鼓','竖琴','萨克斯风','圆号'] and inlib.if_item_sum_balance(count_item[:4]) == False:
+            # elif not_pred_win_rate - as_pred_win_rate > 0.2 and (upper == 1 or lower == 1):
+                if vote_ == 0 or vote_ == TOP_CHIPS:
+                    vote_ = STOCK
+                else:
+                    vvote_ = int(vote_/0.2)
+                vote_count += vote_
+                console.print(f'模拟下注：{not_pred_options} + {str(vote_)}音符(各{str(vote_/2)})')
+                log_ = open(buy_log, 'a', encoding='utf8')
+                log_.write(not_pred_options[0] + '|' + not_pred_options[1] + ',' + str(vote_) + ',')
+                log_.close()
+                if BUY == True:
+                    by.buy(not_pred_options[0], not_pred_options[1], int(vote_/2))                        
+                    voted = True
+                else:
+                    voted = False
             else:
                 pass
-
-            console.print(f'模拟总计投入：{vote_count} 音符')
-            console.print(f'模拟总计回收：{vote_win_count} 音符')
-            console.print(f'起注：{CHIPS} | 封顶：{TOP_CHIPS}')
-            console.print('Version: 2022-11-04 19:01')
-
-            # if len(record_history) == 20:
-            #     if len(item_high_low) > 0 and len(high_low) > 0:
-            #         print(high_low)
-            #         print(item_high_low)
-            #         high_low.append(item_high_low[int(DICT[record_history[-1][1]]) - 1])
-            #         print(high_low)
-            #         log_high_low = open(high_low_log, 'a', encoding='utf8')
-            #         txt = ''
-            #         for each in count_item:
-            #             txt = txt + str(each) + ','
-            #         txt2 = ''
-            #         for each in high_low:
-            #             txt2 = txt2 + each + ','
-            #         log_high_low.write(record_history[-1][0] + ',' + record_history[-1][1] + ',' + txt + txt2 + '\n')
-            #         log_high_low.close()
-
-            #     high_low = []
-            #     for each in record_history:
-            #         if int(DICT[each[1]]) < 5:
-            #             if count_item[int(DICT[each[1]])-1] > np.mean(count_item[:4]):
-            #                  high_low.append('高')
-            #             elif count_item[int(DICT[each[1]])-1] < np.mean(count_item[:4]):
-            #                 high_low.append('低')
-            #             else:
-            #                 high_low.append('平')
-            #         if int(DICT[each[1]]) > 4:
-            #             if count_item[int(DICT[each[1]])-1] > np.mean(count_item[-4:]):
-            #                  high_low.append('高')
-            #             elif count_item[int(DICT[each[1]])-1] < np.mean(count_item[-4:]):
-            #                 high_low.append('低')
-            #             else:
-            #                 high_low.append('平')
-                
-            #     item_high_low = []
-            #     for each in count_item[:4]:
-            #         if each > np.mean(count_item[:4]):
-            #             item_high_low.append('高')
-            #         if each < np.mean(count_item[:4]):
-            #             item_high_low.append('低')
-            #         else:
-            #             item_high_low.append('平')
-            #     for each in count_item[-4:]:
-            #         if each > np.mean(count_item[-4:]):
-            #             item_high_low.append('高')
-            #         if each < np.mean(count_item[-4:]):
-            #             item_high_low.append('低')
-            #         else:
-            #             item_high_low.append('平')
-                               
-
 
             
             # 根据Diff值的预测：
@@ -500,16 +437,10 @@ if __name__ == '__main__':
                 reg_predict_infact_error_int = []
                 for each in reg_predict_infact_error:
                     reg_predict_infact_error_int.append(int(each))
-
-                gradient_drop = []
-                for i in range(len(reg_predict_infact_error)):
-                    gradient_drop.append(round( (reg_predict_infact_error_int[i] - reg_predict_history[i])/2 , 2))
                     
                 console.print(f'{reg_predict_infact_error} | [wa]{sum(reg_predict_infact_error_int)}[/wa]')
                 console.print(f'[st]历史预测值[/st]')
                 console.print(f'[re]{reg_predict_history[:-1]}[/re]')
-                console.print(f'[st]误差梯度[/st]')
-                console.print(f'[re]{gradient_drop}[/re]')
                 console.print(f'[st]本次预测值[/st]：[pre]{reg_predict_history[-1]}[/pre]')
                 right = 0
                 left  = 0
@@ -524,6 +455,11 @@ if __name__ == '__main__':
                     console.print(f'[pre]下回合 [u]出现的DIFF值[/u] 可能比 {reg_predict_history[-1]} 大[/pre]')
                 elif right <= 2 and left <= 2:
                     console.print(f'[pre]暂无法判断，观望[/pre]')
+
+            console.print(f'模拟总计投入：{vote_count} 音符')
+            console.print(f'模拟总计回收：{vote_win_count} 音符')
+            console.print(f'起注：{STOCK} | 封顶：{TOP_CHIPS}')
+            console.print('Version: 2022-11-04 19:01')
 
             # 格式化展示，方便查看数值
             table = Table(show_header=True, header_style="bold cyan")
