@@ -310,13 +310,16 @@ if __name__ == '__main__':
 
             if record_history[-1][1] in as_pred_options:
                 pred_history.append('预测')
-            if record_history[-1][1] in not_pred_options:
+            elif record_history[-1][1] in not_pred_options:
                 pred_history.append('补充')
+            else:
+                pred_history.append('忽略')
+            
             
             if len(pred_history) > 20:
                 pred_history.pop(0)
             if len(pred_history) >= 1:
-                console.print(pred_history)
+                print(pred_history)
 
             # record the rate per hour.
             if (start_timestamp % (60 * 60) <= 60 or start_timestamp % (60 * 60) >= (60*60-59)) and guess_counter > 0:
