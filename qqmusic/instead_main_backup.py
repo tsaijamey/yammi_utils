@@ -462,7 +462,6 @@ if __name__ == '__main__':
             console.print(f'模拟总计投入：{vote_count} 音符')
             console.print(f'模拟总计回收：{vote_win_count} 音符')
             console.print(f'起注：{STOCK} | 封顶：{TOP_CHIPS}')
-            console.print('Version: 2022-11-04 19:01')
 
             # 格式化展示，方便查看数值
             table = Table(show_header=True, header_style="bold cyan")
