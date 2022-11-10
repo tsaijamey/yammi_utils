@@ -410,6 +410,17 @@ if __name__ == '__main__':
                     voted = False
             else:
                 pass
+            
+            if as_pred_win_rate<0.6 and not_pred_win_rate<0.6:
+                if abs(as_pred_win_rate - not_pred_win_rate) < 0.19:
+                    count_a = pred_history.count('预测')
+                    count_b = pred_history.count('补充')
+                    if count_a == count_b:
+                        pass
+                    elif count_a > count_b:
+                        pass
+                    elif count_b > count_a:
+                        pass
 
             
             # 根据Diff值的预测：
