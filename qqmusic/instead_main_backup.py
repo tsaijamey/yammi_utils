@@ -447,27 +447,28 @@ if __name__ == '__main__':
                             '补充-忽略': 0,
                             '忽略-预测': 0,
                             '忽略-补充': 0,
+                            '忽略-忽略': 0,
                         }
-                        temp_list = ['预测', '补充','忽略','忽略','预测','补充', '预测', '忽略', '补充', '忽略', '预测', '忽略', '预测', '预测', '忽略', '补充', '补充', '忽略', '补充', '补充', '忽略', '预测', '忽略', '忽略', '补充', '补充', '补充', '补充', '补充']
-                        console.print(len(temp_list[-20:]))
                         for k in range(-20,0):
-                            if temp_list[k] == temp_list[k+1] and temp_list[k] != '忽略' and temp_list[k+1] != '忽略':
-                                if temp_list[k] == '预测':
+                            if pred_history[k] == pred_history[k+1] and pred_history[k] != '忽略' and pred_history[k+1] != '忽略':
+                                if pred_history[k] == '预测':
                                     temp_dict['预测-预测'] = temp_dict['预测-预测'] + 1
-                                if temp_list[k] == '补充':
+                                if pred_history[k] == '补充':
                                     temp_dict['补充-补充'] = temp_dict['补充-补充'] + 1
-                            if temp_list[k] != temp_list[k+1]:
-                                if temp_list[k] == '预测' and temp_list[k+1] == '补充':
+                                if pred_history[k] == '忽略':
+                                    temp_dict['忽略-忽略'] = temp_dict['忽略-忽略'] + 1
+                            if pred_history[k] != pred_history[k+1]:
+                                if pred_history[k] == '预测' and pred_history[k+1] == '补充':
                                     temp_dict['预测-补充'] = temp_dict['预测-补充'] + 1
-                                if temp_list[k] == '预测' and temp_list[k+1] == '忽略':
+                                if pred_history[k] == '预测' and pred_history[k+1] == '忽略':
                                     temp_dict['预测-忽略'] = temp_dict['预测-忽略'] + 1            
-                                if temp_list[k] == '补充' and temp_list[k+1] == '预测':
+                                if pred_history[k] == '补充' and pred_history[k+1] == '预测':
                                     temp_dict['补充-预测'] = temp_dict['补充-预测'] + 1
-                                if temp_list[k] == '补充' and temp_list[k+1] == '忽略':
+                                if pred_history[k] == '补充' and pred_history[k+1] == '忽略':
                                     temp_dict['补充-忽略'] = temp_dict['补充-忽略'] + 1
-                                if temp_list[k] == '忽略' and temp_list[k+1] == '预测':
+                                if pred_history[k] == '忽略' and pred_history[k+1] == '预测':
                                     temp_dict['忽略-预测'] = temp_dict['忽略-预测'] + 1
-                                if temp_list[k] == '忽略' and temp_list[k+1] == '补充':
+                                if pred_history[k] == '忽略' and pred_history[k+1] == '补充':
                                     temp_dict['忽略-补充'] = temp_dict['忽略-补充'] + 1
 
                         msg_list = ''
