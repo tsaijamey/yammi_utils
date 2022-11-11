@@ -387,7 +387,7 @@ if __name__ == '__main__':
                     as_pred_options = []
 
             # 只在胜率大于50，且上一次结果不为大，且四个小乐器的数量不存在相同 时 实施
-            if as_pred_win_rate >= 0.6 and (upper == 1 or lower == 1) and record_history[-1][1] not in ['架子鼓','竖琴','萨克斯风','圆号'] and inlib.if_item_sum_middle_balance(count_item[:4]) == False:
+            if as_pred_win_rate >= 0.6 and (upper == 1 or lower == 1) and record_history[-1][1] not in ['架子鼓','竖琴','萨克斯风','圆号'] and inlib.if_item_sum_balance(count_item[:4]) == False:
                 if vote_ == 0 or vote_ == TOP_CHIPS:
                     vote_ = STOCK
                 else:
@@ -409,7 +409,7 @@ if __name__ == '__main__':
                     voted = True
                 else:
                     voted = False
-            elif not_pred_win_rate >= 0.6 and (upper == 1 or lower == 1) and record_history[-1][1] not in ['架子鼓','竖琴','萨克斯风','圆号'] and inlib.if_item_sum_middle_balance(count_item[:4]) == False:
+            elif not_pred_win_rate >= 0.6 and (upper == 1 or lower == 1) and record_history[-1][1] not in ['架子鼓','竖琴','萨克斯风','圆号'] and inlib.if_item_sum_balance(count_item[:4]) == False:
                 if vote_ == 0 or vote_ == TOP_CHIPS:
                     vote_ = STOCK
                 else:
