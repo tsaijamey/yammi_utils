@@ -490,9 +490,9 @@ if __name__ == '__main__':
                     msg_list = msg_list + each
                     msg_list = msg_list + ":" + str(temp_dict[each]) + " | "
 
-                record_msg = open(record_msg, 'a', encoding='utf8')
-                record_msg.write(msg_list + '\n')
-                record_msg.close()
+                msg_recoder = open(record_msg, 'a', encoding='utf8')
+                msg_recoder.write(msg_list + '\n')
+                msg_recoder.close()
 
             
             # 根据Diff值的预测：
