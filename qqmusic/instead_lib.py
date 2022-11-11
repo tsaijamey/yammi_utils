@@ -31,7 +31,6 @@ def send_wechat(msg_title,msg):
     url = f"http://www.pushplus.plus/send?token={token}&title={title}&content={content}&template={template}&topic={topic}"
     print(url)
     r = requests.get(url=url)
-    print(r.text)
 
 def send_wechat_self(msg):
     token = 'f848a62a0c7541fd8519247fd3f139f9'#前边复制到那个token
@@ -41,7 +40,6 @@ def send_wechat_self(msg):
     url = f"https://www.pushplus.plus/send?token={token}&title={title}&content={content}&template={template}"
     print(url)
     r = requests.get(url=url)
-    print(r.text)
 
 
 def screenshot_via_adb(file_name):
