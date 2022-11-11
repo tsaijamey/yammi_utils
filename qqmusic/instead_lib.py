@@ -19,6 +19,29 @@ from pandas import DataFrame, array
 from numpy import *
 import joblib
 import platform
+import requests
+# Python源码资料电子书领取群 279199867
+
+def send_wechat(msg_title,msg):
+    token = 'f848a62a0c7541fd8519247fd3f139f9' #前边复制到那个token
+    title = msg_title
+    content = msg
+    template = 'html'
+    topic = '1022111101'
+    url = f"http://www.pushplus.plus/send?token={token}&title={title}&content={content}&template={template}&topic={topic}"
+    print(url)
+    r = requests.get(url=url)
+    print(r.text)
+
+def send_wechat_self(msg):
+    token = 'f848a62a0c7541fd8519247fd3f139f9'#前边复制到那个token
+    title = 'Music Kingdom'
+    content = msg
+    template = 'html'
+    url = f"https://www.pushplus.plus/send?token={token}&title={title}&content={content}&template={template}"
+    print(url)
+    r = requests.get(url=url)
+    print(r.text)
 
 
 def screenshot_via_adb(file_name):
@@ -129,6 +152,17 @@ def if_item_sum_balance(counter:list):
         return False
     else:
         return True
+
+def if_item_sum_middle_balance(counter:list):
+    container = []
+    for each in counter:
+        container.append(each)
+    container = container[:4]
+    container.sort(reverse=0)
+    if container[1] == container[2]:
+        return True
+    else:
+        return False
 
 def item_sum_V(item_record:list) -> list[int]:
     '''统计输入的物品列表中，各物品总数
