@@ -424,23 +424,43 @@ if __name__ == '__main__':
                 if as_pred_win_rate<0.6 and not_pred_win_rate<0.6:
                     if abs(as_pred_win_rate - not_pred_win_rate) < 0.19:
                         temp_dict = {
-                            '预测-补充': 0,
                             '预测-预测': 0,
                             '补充-补充': 0,
-                            '补充-预测': 0,
+                            '预测-补充': 0,
+                            '补充-预测': 0,   
+                            '预测-忽略': 0,    
+                            '补充-忽略': 0,
+                            '忽略-预测': 0,
+                            '忽略-补充': 0,
                         }
-                        for k in range(len(pred_history)-1):
-                            if pred_history[k] == pred_history[k+1]:
-                                if pred_history[k] == '预测':
+                        temp_list = ['预测', '补充','忽略','忽略','预测','补充', '预测', '忽略', '补充', '忽略', '预测', '忽略', '预测', '预测', '忽略', '补充', '补充', '忽略', '补充', '补充', '忽略', '预测', '忽略', '忽略', '补充', '补充', '补充', '补充', '补充']
+                        console.print(len(temp_list[-20:]))
+                        for k in range(-20,0):
+                            if temp_list[k] == temp_list[k+1] and temp_list[k] != '忽略' and temp_list[k+1] != '忽略':
+                                if temp_list[k] == '预测':
                                     temp_dict['预测-预测'] = temp_dict['预测-预测'] + 1
-                                if pred_history[k] == '补充':
+                                if temp_list[k] == '补充':
                                     temp_dict['补充-补充'] = temp_dict['补充-补充'] + 1
-                            if pred_history[k] != pred_history[k+1]:
-                                if pred_history[k] == '预测':
+                            if temp_list[k] != temp_list[k+1]:
+                                if temp_list[k] == '预测' and temp_list[k+1] == '补充':
                                     temp_dict['预测-补充'] = temp_dict['预测-补充'] + 1
-                                if pred_history[k] == '补充':
+                                if temp_list[k] == '预测' and temp_list[k+1] == '忽略':
+                                    temp_dict['预测-忽略'] = temp_dict['预测-忽略'] + 1            
+                                if temp_list[k] == '补充' and temp_list[k+1] == '预测':
                                     temp_dict['补充-预测'] = temp_dict['补充-预测'] + 1
-                        console.print(temp_dict)
+                                if temp_list[k] == '补充' and temp_list[k+1] == '忽略':
+                                    temp_dict['补充-忽略'] = temp_dict['补充-忽略'] + 1
+                                if temp_list[k] == '忽略' and temp_list[k+1] == '预测':
+                                    temp_dict['忽略-预测'] = temp_dict['忽略-预测'] + 1
+                                if temp_list[k] == '忽略' and temp_list[k+1] == '补充':
+                                    temp_dict['忽略-补充'] = temp_dict['忽略-补充'] + 1
+
+                        msg_list = ''
+                        for each in temp_dict:
+                            msg_list = msg_list + each
+                            msg_list = msg_list + ":" + str(temp_dict[each]) + " | "
+
+                        inlib.send_wechat_self(msg_list)
 
             
             # 根据Diff值的预测：
