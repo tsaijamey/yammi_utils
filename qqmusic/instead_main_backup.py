@@ -58,10 +58,10 @@ DIFF_DICT = {
 }                                           # 各个Diff值的中文与数字表达对应关系
 
 STOCK = 2                                   # 预设的起始下注
-BET_TIME = 3                               # 追投的次数
+BET_TIME = 4                               # 追投的次数
 TOP_CHIPS = STOCK                           # 初始化的封顶下注量
 for i in range(BET_TIME):
-    TOP_CHIPS = int(TOP_CHIPS/0.2)          # 按照追投次数计算后的封顶下注量
+    TOP_CHIPS = int(TOP_CHIPS/0.25)          # 按照追投次数计算后的封顶下注量
 
 # 每回合的数据列表，每回合都会变。
 count_item          = []                    # 物品的统计
@@ -133,6 +133,7 @@ if platform.system().lower() == 'windows':
     rate_log = DIR+'./win_rate.log'
     buy_log = DIR+'./buy_log.log'
     high_low_log = DIR+'./high_low.log'
+    record_msg = DIR+'./record_msg.log'
 elif platform.system().lower() == 'linux':
     record_path = DIR+'/auto2.csv'
     diff_model_path = DIR+'/model/reg_diff_21_20221028_seed10.m'
@@ -141,6 +142,7 @@ elif platform.system().lower() == 'linux':
     rate_log = DIR+'/win_rate.log'
     buy_log = DIR+'/buy_log.log'
     high_low_log = DIR+'/high_low.log'
+    record_msg = DIR+'/record_msg.log'
 
 if __name__ == '__main__':
     
@@ -305,7 +307,7 @@ if __name__ == '__main__':
                     inlib.send_wechat('下注结果', msg)
                 else:
                     log_ = open(buy_log, 'a', encoding='utf8')
-                    log_.write(record_history[-1][0] + ',' + record_history[-1][1] + ',' + str(vote_win_count) + '\n')
+                    log_.write(record_history[-1][0] + ',' + record_history[-1][1] + ',总计回收' + str(vote_win_count) + '\n')
                     log_.close()
                     msg = '结果：' + record_history[-1][0] + ' ' + record_history[-1][1] + ', 回收：0'+ ',总计：' + str(vote_win_count)
                     inlib.send_wechat('下注结果', msg)
@@ -314,7 +316,7 @@ if __name__ == '__main__':
 
             voted = False
             try_as = False
-            try_notas == False
+            try_notas = False
             
             
 
@@ -402,7 +404,7 @@ if __name__ == '__main__':
                 console.print(f'模拟下注：{as_pred_options} + {str(vote_)}音符(各{str(vote_/2)})')
 
                 log_ = open(buy_log, 'a', encoding='utf8')
-                log_.write(as_pred_options[0] + '|' + as_pred_options[1] + ',' + str(vote_) + ',')
+                log_.write(record_history[-1][0] + ',模拟下注：' + as_pred_options[0] + '|' + as_pred_options[1] + ',' + str(vote_) + '\n')
                 log_.close()
 
                 msg = ''
@@ -426,7 +428,7 @@ if __name__ == '__main__':
                 console.print(f'模拟下注：{not_pred_options} + {str(vote_)}音符(各{str(vote_/2)})')
 
                 log_ = open(buy_log, 'a', encoding='utf8')
-                log_.write(not_pred_options[0] + '|' + not_pred_options[1] + ',' + str(vote_) + ',')
+                log_.write(record_history[-1][0] + ',模拟下注：' + not_pred_options[0] + '|' + not_pred_options[1] + ',' + str(vote_) + '\n')
                 log_.close()
 
                 msg = ''
@@ -488,7 +490,9 @@ if __name__ == '__main__':
                     msg_list = msg_list + each
                     msg_list = msg_list + ":" + str(temp_dict[each]) + " | "
 
-                inlib.send_wechat_self(msg_list)
+                record_msg = open(record_msg, 'a', encoding='utf8')
+                record_msg.write(msg_list + '\n')
+                record_msg.close()
 
             
             # 根据Diff值的预测：
