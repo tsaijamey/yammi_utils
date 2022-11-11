@@ -275,6 +275,7 @@ if __name__ == '__main__':
                     not_pred_win_counter += 1
 
             # count last round earnings
+            mgs = ''
             if try_as == True:
                 if record_history[-1][1] in as_pred_options:
                     vote_win_count += vote_/2*5
@@ -310,6 +311,7 @@ if __name__ == '__main__':
             voted = False
             try_as = False
             try_notas == False
+            
             
 
             # 计算胜率
@@ -399,8 +401,10 @@ if __name__ == '__main__':
                 log_.write(as_pred_options[0] + '|' + as_pred_options[1] + ',' + str(vote_) + ',')
                 log_.close()
 
+                msg = ''
                 msg = '模拟下注' + as_pred_options[0] + ',' + as_pred_options[1] + ',各' + str(vote_/2) + ', 共投入：' + str(vote_count) + '，共回收：' + str(vote_win_count)
                 inlib.send_wechat('模拟下注', msg)
+                
 
                 try_as = True
 
@@ -421,8 +425,10 @@ if __name__ == '__main__':
                 log_.write(not_pred_options[0] + '|' + not_pred_options[1] + ',' + str(vote_) + ',')
                 log_.close()
 
+                msg = ''
                 msg = '模拟下注' + not_pred_options[0] + ',' + not_pred_options[1] + ',各' + str(vote_/2) + ', 共投入：' + str(vote_count) + '，共回收：' + str(vote_win_count)
                 inlib.send_wechat('模拟下注', msg)
+                
 
                 try_notas = True
                 
