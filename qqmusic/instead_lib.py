@@ -29,7 +29,6 @@ def send_wechat(msg_title,msg):
     template = 'html'
     topic = '1022111101'
     url = f"http://www.pushplus.plus/send?token={token}&title={title}&content={content}&template={template}&topic={topic}"
-    print(url)
     r = requests.get(url=url)
 
 def send_wechat_self(msg):
@@ -38,7 +37,6 @@ def send_wechat_self(msg):
     content = msg
     template = 'html'
     url = f"https://www.pushplus.plus/send?token={token}&title={title}&content={content}&template={template}"
-    print(url)
     r = requests.get(url=url)
 
 
