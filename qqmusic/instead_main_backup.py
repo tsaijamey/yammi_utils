@@ -118,6 +118,8 @@ vote_count = 0
 vote_ = 0
 vote_win_count = 0
 voted = False
+try_as = False
+try_notas = False
 BUY = False
 
 
@@ -273,32 +275,41 @@ if __name__ == '__main__':
                     not_pred_win_counter += 1
 
             # count last round earnings
-            if as_pred_win_rate >= 0.6 and (upper == 1 or lower == 1):
+            if try_as == True:
                 if record_history[-1][1] in as_pred_options:
                     vote_win_count += vote_/2*5
                     log_ = open(buy_log, 'a', encoding='utf8')
-                    log_.write(record_history[-1][0] + ',' + record_history[-1][1] + ',' + str(int(vote_/2*5)) + ',' + str(vote_win_count) + '\n')
+                    log_.write(record_history[-1][0] + ',' + record_history[-1][1] + ',回收：' + str(int(vote_/2*5)) + ',总计：' + str(vote_win_count) + '\n')
                     log_.close()
                     vote_ = 0
+                    msg = '结果：' + record_history[-1][0] + ' ' + record_history[-1][1] + ', 回收：' + str(int(vote_/2*5)) + ',总计：' + str(vote_win_count)
+                    inlib.send_wechat('下注结果', msg)
                 else:
                     log_ = open(buy_log, 'a', encoding='utf8')
                     log_.write(record_history[-1][0] + ',' + record_history[-1][1] + ',' + str(vote_win_count) + '\n')
                     log_.close()
-            if not_pred_win_rate >= 0.6 and (upper == 1 or lower == 1):
+
+                    msg = '结果：' + record_history[-1][0] + ' ' + record_history[-1][1] + ', 回收：0'+ ',总计：' + str(vote_win_count)
+                    inlib.send_wechat('下注结果', msg)
+            if try_notas == True:
                 if record_history[-1][1] in not_pred_options:
                     vote_win_count += vote_/2*5
                     log_ = open(buy_log, 'a', encoding='utf8')
                     log_.write(record_history[-1][0] + ',' + record_history[-1][1] + ',' + str(int(vote_/2*5)) + ',' + str(vote_win_count) + '\n')
                     log_.close()
                     vote_ = 0
+                    msg = '结果：' + record_history[-1][0] + ' ' + record_history[-1][1] + ', 回收：' + str(int(vote_/2*5)) + ',总计：' + str(vote_win_count)
+                    inlib.send_wechat('下注结果', msg)
                 else:
                     log_ = open(buy_log, 'a', encoding='utf8')
                     log_.write(record_history[-1][0] + ',' + record_history[-1][1] + ',' + str(vote_win_count) + '\n')
                     log_.close()
+                    msg = '结果：' + record_history[-1][0] + ' ' + record_history[-1][1] + ', 回收：0'+ ',总计：' + str(vote_win_count)
+                    inlib.send_wechat('下注结果', msg)
 
             voted = False
-
-
+            try_as = False
+            try_notas == False
             
 
             # 计算胜率
@@ -377,7 +388,6 @@ if __name__ == '__main__':
 
             # 只在胜率大于50，且上一次结果不为大，且四个小乐器的数量不存在相同 时 实施
             if as_pred_win_rate >= 0.6 and (upper == 1 or lower == 1) and record_history[-1][1] not in ['架子鼓','竖琴','萨克斯风','圆号'] and inlib.if_item_sum_middle_balance(count_item[:4]) == False:
-            # if as_pred_win_rate - not_pred_win_rate > 0.2 and (upper == 1 or lower == 1):
                 if vote_ == 0 or vote_ == TOP_CHIPS:
                     vote_ = STOCK
                 else:
@@ -391,13 +401,15 @@ if __name__ == '__main__':
 
                 msg = '模拟下注' + as_pred_options[0] + ',' + as_pred_options[1] + ',各' + str(vote_/2) + ', 共投入：' + str(vote_count) + '，共回收：' + str(vote_win_count)
                 inlib.send_wechat('模拟下注', msg)
+
+                try_as = True
+
                 if BUY == True:
                     by.buy(as_pred_options[0], as_pred_options[1], int(vote_/2))
                     voted = True
                 else:
                     voted = False
             elif not_pred_win_rate >= 0.6 and (upper == 1 or lower == 1) and record_history[-1][1] not in ['架子鼓','竖琴','萨克斯风','圆号'] and inlib.if_item_sum_middle_balance(count_item[:4]) == False:
-            # elif not_pred_win_rate - as_pred_win_rate > 0.2 and (upper == 1 or lower == 1):
                 if vote_ == 0 or vote_ == TOP_CHIPS:
                     vote_ = STOCK
                 else:
@@ -411,6 +423,9 @@ if __name__ == '__main__':
 
                 msg = '模拟下注' + not_pred_options[0] + ',' + not_pred_options[1] + ',各' + str(vote_/2) + ', 共投入：' + str(vote_count) + '，共回收：' + str(vote_win_count)
                 inlib.send_wechat('模拟下注', msg)
+
+                try_notas = True
+                
                 if BUY == True:
                     by.buy(not_pred_options[0], not_pred_options[1], int(vote_/2))                        
                     voted = True
