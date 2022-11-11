@@ -292,6 +292,8 @@ if __name__ == '__main__':
 
                     msg = '结果：' + record_history[-1][0] + ' ' + record_history[-1][1] + ', 回收：0'+ ',总计：' + str(vote_win_count)
                     inlib.send_wechat('下注结果', msg)
+            else:
+                pass
             if try_notas == True:
                 if record_history[-1][1] in not_pred_options:
                     vote_win_count += vote_/2*5
@@ -307,6 +309,8 @@ if __name__ == '__main__':
                     log_.close()
                     msg = '结果：' + record_history[-1][0] + ' ' + record_history[-1][1] + ', 回收：0'+ ',总计：' + str(vote_win_count)
                     inlib.send_wechat('下注结果', msg)
+            else:
+                pass
 
             voted = False
             try_as = False
