@@ -57,6 +57,12 @@ DIFF_DICT = {
     '七':   7,
 }                                           # 各个Diff值的中文与数字表达对应关系
 
+
+start_timestamp = 0
+item_history = []
+time_history = []
+record_history = []
+
 # 每回合的数据列表，每回合都会变。
 count_item          = []                    # 物品的统计
 offset_item         = []
@@ -77,23 +83,12 @@ for i in range(20):
     real_diff_history.append(0)
 
 
-sum_history             = []
 reg_predict_history         = []
 reg_predict_infact_error    = []
 
+pred_seeds_list = []
+seed = 90
 
-analytics = []
-
-clf_predict_history = []
-
-start_timestamp = 0
-item_history = []
-time_history = []
-record_history = []
-
-
-high_low = []
-item_high_low = []
 
 
 '''测算胜率
@@ -253,11 +248,27 @@ if __name__ == '__main__':
             for i in range(len(diff_20)):
                 time_diff_20.append([i+1, diff_20[i]])
             if total > 3:
+
+                '''
+                通过新一轮的diff值，找到100个seed中与之差距最小的seed，用于本次预测。
+                '''
+                if len(pred_seeds_list) > 0:
+                    compare_list = []
+                    for each in pred_seeds_list:
+                        compare_list.append(diff_history[-1] - each)
+
+                    smallest = min(compare_list)
+                    seed = compare_list.index(smallest)+1
+                    console.print(f'Seed = {seed} | This round will use this seed')
+
+
                 df_header = ['time', 'result']                
                 try:
                     time_diff_pd = pd.DataFrame(time_diff_20, columns=df_header)
-                    prediction_20 = inlib.random_forest_reg_live(time_diff_pd,'result', [[21]])
-                    console.print(f'RDM_REG预测(20)：[cyan]{prediction_20[0]}[/]')
+                    prediction_sd10 = inlib.random_forest_reg_live(time_diff_pd,'result', [[21]],seed)
+                    pred_seeds_list = inlib.RND_REG_LIVE(time_diff_pd,'result', [[21]])
+                    console.print(f'RDN_SD10：[cyan]{prediction_sd10[0]}[/]')
+                    console.print(f'this line just for check: {len(pred_seeds_list)}')
                 except Exception as e:
                     print('error')
 
@@ -347,11 +358,11 @@ if __name__ == '__main__':
                 smaller = []
                 bigger_2 = []
                 smaller_2 = []
-                if prediction_20[0] >= item_copd[3][4]:
+                if prediction_sd10[0] >= item_copd[3][4]:
                     upper = 1
                 else:
                     upper = 0
-                if prediction_20[0] <= item_copd[4][4]:
+                if prediction_sd10[0] <= item_copd[4][4]:
                     lower = 1
                 else:
                     lower = 0
@@ -359,14 +370,14 @@ if __name__ == '__main__':
                 if upper == 1:
                     as_pred_options = [item_copd[2][0], item_copd[3][0]]
                     not_pred_options = [item_copd[4][0], item_copd[5][0]]
-                    console.print(f'{prediction_20[0]}在上区，按预测选：[red]{as_pred_options}[/]')
-                    console.print(f'{prediction_20[0]}在上区，按补充选：[red]{not_pred_options}[/]')
+                    console.print(f'{prediction_sd10[0]}在上区，按预测选：[red]{as_pred_options}[/]')
+                    console.print(f'{prediction_sd10[0]}在上区，按补充选：[red]{not_pred_options}[/]')
                     guess_counter += 1
                 elif lower == 1:                        
                     as_pred_options = [item_copd[4][0], item_copd[5][0]]
                     not_pred_options = [item_copd[2][0], item_copd[3][0]]
-                    console.print(f'{prediction_20[0]}在下区，按预测选：[red]{as_pred_options}[/]')
-                    console.print(f'{prediction_20[0]}在下区，按补充选：[red]{not_pred_options}[/]')
+                    console.print(f'{prediction_sd10[0]}在下区，按预测选：[red]{as_pred_options}[/]')
+                    console.print(f'{prediction_sd10[0]}在下区，按补充选：[red]{not_pred_options}[/]')
                     guess_counter += 1
                 else:
                     console.print('[blue]本局忽略[/]')

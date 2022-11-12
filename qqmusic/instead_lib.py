@@ -310,16 +310,30 @@ def random_forest_reg_train(train_set:DataFrame,dir_name:str,column_name:str, mo
 
     joblib.dump(model, dir_name+"/model/"+model_name)
 
-def random_forest_reg_live(train_set:DataFrame,column_name:str, predict_data):
+def random_forest_reg_live(train_set:DataFrame,column_name:str, predict_data, seed:int):
     X = train_set.drop(columns=column_name)
     y = train_set[column_name]
-    model = RandomForestRegressor(random_state=10)
+    model = RandomForestRegressor(random_state=seed)
     # model = RandomForestRegressor(random_state=75)
     model.fit(X.values, y.values)
 
     prediction = model.predict(predict_data)
 
     return prediction
+
+def RND_REG_LIVE(train_set:DataFrame,column_name:str, predict_data):
+    X = train_set.drop(columns=column_name)
+    y = train_set[column_name]
+
+    pred_list = []
+    for i in range(1,101):
+        model = RandomForestRegressor(random_state=i)
+        # model = RandomForestRegressor(random_state=75)
+        model.fit(X.values, y.values)
+        prediction = model.predict(predict_data).tolist()[0]
+        pred_list.append(pred_list)
+
+    return pred_list
 
 
 def load_rf_reg_model(model_path:str, predict_data):
