@@ -39,6 +39,17 @@ def send_wechat_self(msg):
     url = f"https://www.pushplus.plus/send?token={token}&title={title}&content={content}&template={template}"
     r = requests.get(url=url)
 
+def init_stock():
+    stock   = 2
+    times   = 4
+    rate    = 0.25
+    top     = stock
+    for i in range(times):
+        top = int(top/rate)
+
+    return stock, times, rate, top
+
+
 
 def screenshot_via_adb(file_name):
     '''通过adb让设备截屏并传输回脚本相对路径下的img目录

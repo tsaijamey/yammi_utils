@@ -57,12 +57,6 @@ DIFF_DICT = {
     '七':   7,
 }                                           # 各个Diff值的中文与数字表达对应关系
 
-STOCK = 2                                   # 预设的起始下注
-BET_TIME = 4                               # 追投的次数
-TOP_CHIPS = STOCK                           # 初始化的封顶下注量
-for i in range(BET_TIME):
-    TOP_CHIPS = int(TOP_CHIPS/0.25)          # 按照追投次数计算后的封顶下注量
-
 # 每回合的数据列表，每回合都会变。
 count_item          = []                    # 物品的统计
 offset_item         = []
@@ -134,6 +128,7 @@ if platform.system().lower() == 'windows':
     buy_log = DIR+'./buy_log.log'
     high_low_log = DIR+'./high_low.log'
     record_msg = DIR+'./record_msg.log'
+    if_buy = DIR+'./if_buy.txt'
 elif platform.system().lower() == 'linux':
     record_path = DIR+'/auto2.csv'
     diff_model_path = DIR+'/model/reg_diff_21_20221028_seed10.m'
@@ -143,12 +138,13 @@ elif platform.system().lower() == 'linux':
     buy_log = DIR+'/buy_log.log'
     high_low_log = DIR+'/high_low.log'
     record_msg = DIR+'/record_msg.log'
+    if_buy = DIR+'/if_buy.txt'
 
 if __name__ == '__main__':
     
     try:
         while True:
-            read_buy = open(DIR+'./if_buy.txt', 'r', encoding='utf8')
+            read_buy = open(if_buy, 'r', encoding='utf8')
             for line in read_buy:
                 line = line.strip()
                 if 'yes' in line:
@@ -156,6 +152,8 @@ if __name__ == '__main__':
                 else:
                     BUY = False
             # 在获取结果时，容易因为点击意外导致列表为空，然后无法继续，因此增加这一段保障代码
+
+            STOCK, _, RATE, TOP_STOCK   = inlib.init_stock()
             recent_result = []
             try_times = 0
             # while len(recent_result) == 0 or len(recent_result[0]) == 0:
@@ -278,39 +276,20 @@ if __name__ == '__main__':
 
             # count last round earnings
             mgs = ''
-            if try_as == True:
-                if record_history[-1][1] in as_pred_options:
-                    vote_win_count += vote_/2*5
-                    log_ = open(buy_log, 'a', encoding='utf8')
-                    log_.write(record_history[-1][0] + ',' + record_history[-1][1] + ',回收：' + str(int(vote_/2*5)) + ',总计：' + str(vote_win_count) + '\n')
-                    log_.close()
-                    vote_ = 0
-                    msg = '结果：' + record_history[-1][0] + ' ' + record_history[-1][1] + ', 回收：' + str(int(vote_/2*5)) + ',总计：' + str(vote_win_count)
-                    inlib.send_wechat('下注结果', msg)
-                else:
-                    log_ = open(buy_log, 'a', encoding='utf8')
-                    log_.write(record_history[-1][0] + ',' + record_history[-1][1] + ',' + str(vote_win_count) + '\n')
-                    log_.close()
-
-                    msg = '结果：' + record_history[-1][0] + ' ' + record_history[-1][1] + ', 回收：0'+ ',总计：' + str(vote_win_count)
-                    inlib.send_wechat('下注结果', msg)
-            else:
-                pass
-            if try_notas == True:
-                if record_history[-1][1] in not_pred_options:
-                    vote_win_count += vote_/2*5
-                    log_ = open(buy_log, 'a', encoding='utf8')
-                    log_.write(record_history[-1][0] + ',' + record_history[-1][1] + ',' + str(int(vote_/2*5)) + ',' + str(vote_win_count) + '\n')
-                    log_.close()
-                    vote_ = 0
-                    msg = '结果：' + record_history[-1][0] + ' ' + record_history[-1][1] + ', 回收：' + str(int(vote_/2*5)) + ',总计：' + str(vote_win_count)
-                    inlib.send_wechat('下注结果', msg)
-                else:
-                    log_ = open(buy_log, 'a', encoding='utf8')
-                    log_.write(record_history[-1][0] + ',' + record_history[-1][1] + ',总计回收' + str(vote_win_count) + '\n')
-                    log_.close()
-                    msg = '结果：' + record_history[-1][0] + ' ' + record_history[-1][1] + ', 回收：0'+ ',总计：' + str(vote_win_count)
-                    inlib.send_wechat('下注结果', msg)
+            if (try_as == True and record_history[-1][1] in as_pred_options) or (try_notas == True and record_history[-1][1] in not_pred_options):
+                vote_win_count += vote_/2*5
+                msg = '下注结果：命中。' + record_history[-1][0] + ' ' + record_history[-1][1] + '。本次回收：' + str(int(vote_/2*5)) + '，总投入：' + '，总回收：' + str(vote_win_count)
+                inlib.send_wechat('下注结果', msg)
+                log_ = open(buy_log, 'a', encoding='utf8')
+                log_.write(msg + '\n')
+                log_.close()
+                vote_ = 0
+            elif (try_as == True and record_history[-1][1] not in as_pred_options) and (try_notas == True and record_history[-1][1] not in not_pred_options):
+                msg = '下注结果：未命中。' + record_history[-1][0] + ' ' + record_history[-1][1] + '。本次回收：0，' + '，总投入：' + '，总回收：' + str(vote_win_count)
+                inlib.send_wechat('下注结果', msg)
+                log_ = open(buy_log, 'a', encoding='utf8')
+                log_.write(msg + '\n')
+                log_.close()
             else:
                 pass
 
@@ -396,55 +375,64 @@ if __name__ == '__main__':
 
             # 只在胜率大于50，且上一次结果不为大，且四个小乐器的数量不存在相同 时 实施
             if as_pred_win_rate >= 0.6 and (upper == 1 or lower == 1) and record_history[-1][1] not in ['架子鼓','竖琴','萨克斯风','圆号'] and inlib.if_item_sum_balance(count_item[:4]) == False:
-                if vote_ == 0 or vote_ == TOP_CHIPS:
+                if vote_ == 0 or vote_ == TOP_STOCK:
                     vote_ = STOCK
                 else:
-                    vote_ = int(vote_/0.2)
+                    vote_ = int(vote_/RATE)
                 vote_count += vote_
-                console.print(f'模拟下注：{as_pred_options} + {str(vote_)}音符(各{str(vote_/2)})')
-
-                log_ = open(buy_log, 'a', encoding='utf8')
-                log_.write(record_history[-1][0] + ',模拟下注：' + as_pred_options[0] + '|' + as_pred_options[1] + ',' + str(vote_) + '\n')
-                log_.close()
+                console.print(f'模拟下注：{as_pred_options} + {str(vote_)}音符(各{str(int(vote_/2))})')
 
                 msg = ''
-                msg = '模拟下注' + as_pred_options[0] + ',' + as_pred_options[1] + ',各' + str(vote_/2) + ', 共投入：' + str(vote_count) + '，共回收：' + str(vote_win_count)
+                msg = '模拟下注' + as_pred_options[0] + ',' + as_pred_options[1] + ',各' + str(int(vote_/2)) + ', 共投入：' + str(vote_count) + '，共回收：' + str(vote_win_count)
+                
+                log_ = open(buy_log, 'a', encoding='utf8')
+                log_.write(msg + '\n')
+                log_.close()
+                
                 inlib.send_wechat('模拟下注', msg)
                 
 
                 try_as = True
 
                 if BUY == True:
-                    by.buy(as_pred_options[0], as_pred_options[1], int(vote_/2))
+                    by.buy(as_pred_options[0], as_pred_options[1], int(int(vote_/2)))
                     voted = True
                 else:
                     voted = False
             elif not_pred_win_rate >= 0.6 and (upper == 1 or lower == 1) and record_history[-1][1] not in ['架子鼓','竖琴','萨克斯风','圆号'] and inlib.if_item_sum_balance(count_item[:4]) == False:
-                if vote_ == 0 or vote_ == TOP_CHIPS:
+                if vote_ == 0 or vote_ == TOP_STOCK:
                     vote_ = STOCK
                 else:
-                    vvote_ = int(vote_/0.2)
+                    vote_ = int(vote_/RATE)
                 vote_count += vote_
-                console.print(f'模拟下注：{not_pred_options} + {str(vote_)}音符(各{str(vote_/2)})')
-
-                log_ = open(buy_log, 'a', encoding='utf8')
-                log_.write(record_history[-1][0] + ',模拟下注：' + not_pred_options[0] + '|' + not_pred_options[1] + ',' + str(vote_) + '\n')
-                log_.close()
+                console.print(f'模拟下注：{not_pred_options} + {str(vote_)}音符(各{str(int(vote_/2))})')
 
                 msg = ''
-                msg = '模拟下注' + not_pred_options[0] + ',' + not_pred_options[1] + ',各' + str(vote_/2) + ', 共投入：' + str(vote_count) + '，共回收：' + str(vote_win_count)
+                msg = '模拟下注' + not_pred_options[0] + ',' + not_pred_options[1] + ',各' + str(int(vote_/2)) + ', 共投入：' + str(vote_count) + '，共回收：' + str(vote_win_count)
+                
+                log_ = open(buy_log, 'a', encoding='utf8')
+                log_.write(msg + '\n')
+                log_.close()
+
                 inlib.send_wechat('模拟下注', msg)
                 
 
                 try_notas = True
                 
                 if BUY == True:
-                    by.buy(not_pred_options[0], not_pred_options[1], int(vote_/2))                        
+                    by.buy(not_pred_options[0], not_pred_options[1], int(int(vote_/2)))                        
                     voted = True
                 else:
                     voted = False
             else:
-                pass
+                reason = ''
+                if as_pred_win_rate < 0.6 and not_pred_win_rate < 0.6:
+                    reason = reason + '胜率不达标。'
+                if record_history[-1][1] in ['架子鼓','竖琴','萨克斯风','圆号']:
+                    reason = reason + '前一回合出大。'
+                if inlib.if_item_sum_balance(count_item[:4]) == True:
+                    reason = reason + '存在相同数量的物品。'
+                console.print(f'不符合下注条件：{reason}')
             
 
             if len(pred_history) == 20:
@@ -460,6 +448,7 @@ if __name__ == '__main__':
                     '忽略-补充': 0,
                     '忽略-忽略': 0,
                 }
+
                 for k in range(len(pred_history)-1):
                     if pred_history[k] == pred_history[k+1]:
                         if pred_history[k] == '预测':
@@ -484,7 +473,7 @@ if __name__ == '__main__':
 
                 msg_list = ''
                 for each in pred_history:
-                    msg_list = msg_list + '->' + each
+                    msg_list = msg_list + '-' + each
                 msg_list = msg_list + ' | '
                 for each in temp_dict:
                     msg_list = msg_list + each
@@ -544,7 +533,7 @@ if __name__ == '__main__':
 
             console.print(f'模拟总计投入：{vote_count} 音符')
             console.print(f'模拟总计回收：{vote_win_count} 音符')
-            console.print(f'起注：{STOCK} | 封顶：{TOP_CHIPS}')
+            console.print(f'起注：{STOCK} | 封顶：{TOP_STOCK}')
 
             # 格式化展示，方便查看数值
             table = Table(show_header=True, header_style="bold cyan")
