@@ -460,7 +460,7 @@ if __name__ == '__main__':
                     '忽略-补充': 0,
                     '忽略-忽略': 0,
                 }
-                for k in range(-20,0):
+                for k in range(len(pred_history)-1):
                     if pred_history[k] == pred_history[k+1]:
                         if pred_history[k] == '预测':
                             temp_dict['预测-预测'] = temp_dict['预测-预测'] + 1
