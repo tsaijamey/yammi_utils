@@ -123,16 +123,15 @@ def interface_ocr(file_path:str) -> list:
         print(ocr_list[i])
         text_list.append(ocr_list[i]['text'])
 
-def wait_next(start_time:datetime,time_gap:int):
+def wait_next(start_time,time_gap:int):
     '''对比输入的时间，等待58秒后的下一回合
     '''
-    last_record_timearray = time.strptime(start_time, "%Y-%m-%d %H:%M:%S")
-    last_record_timeStamp = int(time.mktime(last_record_timearray))
-    latest_time = time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(last_record_timeStamp + 58))
-    console.print(f'[st]下回合时间：[/st][pre]{latest_time}[/pre]')
-    while int(time.time()) <= last_record_timeStamp + time_gap:
-        if last_record_timeStamp + time_gap - int(time.time()) < 3:
-            console.print(f"倒计时：[re]{last_record_timeStamp + time_gap - int(time.time())}[/re]秒")
+
+    latest_time = start_time + time_gap
+    console.print(f'[st]下回合时间：[/st][pre]{time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(latest_time))}[/pre]')
+    while int(time.time()) <= latest_time:
+        if latest_time - int(time.time()) < 3:
+            console.print(f"倒计时：[re]{latest_time - int(time.time())}[/re]秒")
         time.sleep(1)
 
 def item_sum(item_record:list) -> list[int]:
