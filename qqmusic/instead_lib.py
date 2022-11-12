@@ -331,7 +331,7 @@ def RND_REG_LIVE(train_set:DataFrame,column_name:str, predict_data):
         # model = RandomForestRegressor(random_state=75)
         model.fit(X.values, y.values)
         prediction = model.predict(predict_data).tolist()[0]
-        pred_list.append(pred_list)
+        pred_list.append(prediction)
 
     return pred_list
 
