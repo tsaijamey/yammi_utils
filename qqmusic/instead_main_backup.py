@@ -295,7 +295,7 @@ if __name__ == '__main__':
                 log_.write(msg + '\n')
                 log_.close()
                 vote_ = 0
-            elif (try_as == True and record_history[-1][1] not in as_pred_options) and (try_notas == True and record_history[-1][1] not in not_pred_options):
+            elif (try_as == True and record_history[-1][1] not in as_pred_options) or (try_notas == True and record_history[-1][1] not in not_pred_options):
                 msg = '下注结果：未命中。' + record_history[-1][0] + ' ' + record_history[-1][1] + '。本次回收：0，' + '，总投入：' + '，总回收：' + str(vote_win_count)
                 inlib.send_wechat('下注结果', msg)
                 log_ = open(buy_log, 'a', encoding='utf8')
@@ -450,10 +450,10 @@ if __name__ == '__main__':
                 #  and as_pred_win_rate<0.6 and not_pred_win_rate<0.6 and abs(as_pred_win_rate - not_pred_win_rate) < 0.19
                 temp_dict = {
                     '预测-预测': 0,
+                    '预测-补充': 0,   
+                    '预测-忽略': 0,
                     '补充-补充': 0,
-                    '预测-补充': 0,
-                    '补充-预测': 0,   
-                    '预测-忽略': 0,    
+                    '补充-预测': 0,    
                     '补充-忽略': 0,
                     '忽略-预测': 0,
                     '忽略-补充': 0,
@@ -485,7 +485,7 @@ if __name__ == '__main__':
                 msg_list = ''
                 for each in pred_history:
                     msg_list = msg_list + '-' + each
-                msg_list = msg_list + ' | '
+                msg_list = msg_list + '\n'
                 for each in temp_dict:
                     msg_list = msg_list + each
                     msg_list = msg_list + ":" + str(temp_dict[each]) + " | "
