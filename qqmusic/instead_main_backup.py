@@ -385,65 +385,71 @@ if __name__ == '__main__':
                     as_pred_options = []
 
             # 只在胜率大于50，且上一次结果不为大，且四个小乐器的数量不存在相同 时 实施
-            if as_pred_win_rate >= 0.6 and (upper == 1 or lower == 1) and record_history[-1][1] not in ['架子鼓','竖琴','萨克斯风','圆号'] and inlib.if_item_sum_balance(count_item[:4]) == False:
-                if vote_ == 0 or vote_ == TOP_STOCK:
-                    vote_ = STOCK
-                else:
-                    vote_ = int(vote_/RATE)
-                vote_count += vote_
-                console.print(f'模拟下注：{as_pred_options} + {str(vote_)}音符(各{str(int(vote_/2))})')
-
-                msg = ''
-                msg = '模拟下注' + as_pred_options[0] + ',' + as_pred_options[1] + ',各' + str(int(vote_/2)) + ', 共投入：' + str(vote_count) + '，共回收：' + str(vote_win_count)
-                
-                log_ = open(buy_log, 'a', encoding='utf8')
-                log_.write(msg + '\n')
-                log_.close()
-                
-                inlib.send_wechat('模拟下注', msg)
-                
-
-                try_as = True
-
-                if BUY == True:
-                    by.buy(as_pred_options[0], as_pred_options[1], int(int(vote_/2)))
-                    voted = True
-                else:
-                    voted = False
-            elif not_pred_win_rate >= 0.6 and (upper == 1 or lower == 1) and record_history[-1][1] not in ['架子鼓','竖琴','萨克斯风','圆号'] and inlib.if_item_sum_balance(count_item[:4]) == False:
-                if vote_ == 0 or vote_ == TOP_STOCK:
-                    vote_ = STOCK
-                else:
-                    vote_ = int(vote_/RATE)
-                vote_count += vote_
-                console.print(f'模拟下注：{not_pred_options} + {str(vote_)}音符(各{str(int(vote_/2))})')
-
-                msg = ''
-                msg = '模拟下注' + not_pred_options[0] + ',' + not_pred_options[1] + ',各' + str(int(vote_/2)) + ', 共投入：' + str(vote_count) + '，共回收：' + str(vote_win_count)
-                
-                log_ = open(buy_log, 'a', encoding='utf8')
-                log_.write(msg + '\n')
-                log_.close()
-
-                inlib.send_wechat('模拟下注', msg)
-                
-
-                try_notas = True
-                
-                if BUY == True:
-                    by.buy(not_pred_options[0], not_pred_options[1], int(int(vote_/2)))                        
-                    voted = True
-                else:
-                    voted = False
+            # 增加时间限制，去掉凌晨和下午的时间。
+            if start_timestamp % (24*60*60) <= (6*60*60) or (start_timestamp % (24*60*60) >= (10*60*60) and start_timestamp % (24*60*60) <= (18*60*60)):
+                console.print(f'本时段不进行模拟')
             else:
-                reason = ''
-                if as_pred_win_rate < 0.6 and not_pred_win_rate < 0.6:
-                    reason = reason + '胜率不达标。'
-                if record_history[-1][1] in ['架子鼓','竖琴','萨克斯风','圆号']:
-                    reason = reason + '前一回合出大。'
-                if inlib.if_item_sum_balance(count_item[:4]) == True:
-                    reason = reason + '存在相同数量的物品。'
-                console.print(f'[wa]不符合下注条件：{reason}[/wa]')
+                if as_pred_win_rate >= 0.6 and (upper == 1 or lower == 1) and record_history[-1][1] not in ['架子鼓','竖琴','萨克斯风','圆号'] and inlib.if_item_sum_middle_balance(count_item[:4]) == False and guess_counter >= 4:
+                    if vote_ == 0 or vote_ == TOP_STOCK:
+                        vote_ = STOCK
+                    else:
+                        vote_ = int(vote_/RATE)
+                    vote_count += vote_
+                    console.print(f'模拟下注：{as_pred_options} + {str(vote_)}音符(各{str(int(vote_/2))})')
+
+                    msg = ''
+                    msg = '模拟下注' + as_pred_options[0] + ',' + as_pred_options[1] + ',各' + str(int(vote_/2)) + ', 共投入：' + str(vote_count) + '，共回收：' + str(vote_win_count)
+                    
+                    log_ = open(buy_log, 'a', encoding='utf8')
+                    log_.write(msg + '\n')
+                    log_.close()
+                    
+                    inlib.send_wechat('模拟下注', msg)
+                    
+
+                    try_as = True
+
+                    if BUY == True:
+                        by.buy(as_pred_options[0], as_pred_options[1], int(int(vote_/2)))
+                        voted = True
+                    else:
+                        voted = False
+                elif not_pred_win_rate >= 0.6 and (upper == 1 or lower == 1) and record_history[-1][1] not in ['架子鼓','竖琴','萨克斯风','圆号'] and inlib.if_item_sum_middle_balance(count_item[:4]) == False and guess_counter >= 4:
+                    if vote_ == 0 or vote_ == TOP_STOCK:
+                        vote_ = STOCK
+                    else:
+                        vote_ = int(vote_/RATE)
+                    vote_count += vote_
+                    console.print(f'模拟下注：{not_pred_options} + {str(vote_)}音符(各{str(int(vote_/2))})')
+
+                    msg = ''
+                    msg = '模拟下注' + not_pred_options[0] + ',' + not_pred_options[1] + ',各' + str(int(vote_/2)) + ', 共投入：' + str(vote_count) + '，共回收：' + str(vote_win_count)
+                    
+                    log_ = open(buy_log, 'a', encoding='utf8')
+                    log_.write(msg + '\n')
+                    log_.close()
+
+                    inlib.send_wechat('模拟下注', msg)
+                    
+
+                    try_notas = True
+                    
+                    if BUY == True:
+                        by.buy(not_pred_options[0], not_pred_options[1], int(int(vote_/2)))                        
+                        voted = True
+                    else:
+                        voted = False
+                elif guess_counter < 4:
+                    console.print(f'判断基数不足。')
+                else:
+                    reason = ''
+                    if as_pred_win_rate < 0.6 and not_pred_win_rate < 0.6:
+                        reason = reason + '胜率不达标。'
+                    if record_history[-1][1] in ['架子鼓','竖琴','萨克斯风','圆号']:
+                        reason = reason + '前一回合出大。'
+                    if inlib.if_item_sum_balance(count_item[:4]) == True:
+                        reason = reason + '存在相同数量的物品。'
+                    console.print(f'[wa]不符合下注条件：{reason}[/wa]')
             
 
             if len(pred_history) == 20:
@@ -495,52 +501,52 @@ if __name__ == '__main__':
                 msg_recoder.close()
 
             
-            # # 根据Diff值的预测：
-            # reg_predict = inlib.load_rf_reg_model(DIR+'\\model\\reg_8_20221028_seed10.m',diff_history).tolist()[0]
-            # if reg_predict == 0:
-            #     reg_predict_to_int = 0
-            # else:
-            #     reg_predict_to_int = int(reg_predict)
+            # 根据Diff值的预测：
+            reg_predict = inlib.load_rf_reg_model(DIR+'\\model\\reg_8_20221028_seed10.m',diff_history).tolist()[0]
+            if reg_predict == 0:
+                reg_predict_to_int = 0
+            else:
+                reg_predict_to_int = int(reg_predict)
 
-            # reg_predict_history.append(reg_predict_to_int)
+            reg_predict_history.append(reg_predict_to_int)
 
-            # # 预测的历史，只保留最近的21个。
-            # if len(reg_predict_history) > 21:
-            #     reg_predict_history.pop(0)
+            # 预测的历史，只保留最近的21个。
+            if len(reg_predict_history) > 21:
+                reg_predict_history.pop(0)
 
-            # # 计算 预测diff 和 实际diff 的误差，存入 reg_predict_infact_error
-            # # 用于计算的 预测diff 来自 reg_predict_history[-2]
-            # if len(reg_predict_history) >= 2:
-            #     if record_history[-1][1] in ['架子鼓','竖琴','萨克斯风','圆号']:
-            #         reg_predict_infact_error.append(str(diff_history[-1] - reg_predict_history[-2]))
-            #     else:
-            #         reg_predict_infact_error.append(diff_history[-1] - reg_predict_history[-2])
+            # 计算 预测diff 和 实际diff 的误差，存入 reg_predict_infact_error
+            # 用于计算的 预测diff 来自 reg_predict_history[-2]
+            if len(reg_predict_history) >= 2:
+                if record_history[-1][1] in ['架子鼓','竖琴','萨克斯风','圆号']:
+                    reg_predict_infact_error.append(str(diff_history[-1] - reg_predict_history[-2]))
+                else:
+                    reg_predict_infact_error.append(diff_history[-1] - reg_predict_history[-2])
 
-            #     if len(reg_predict_infact_error) > 20:
-            #         reg_predict_infact_error.pop(0)
-            #     console.print(f'[st]预测与实际结果的误差量（最后一个值，是上一次“预测”vs“实际”的结果）[/st]')
+                if len(reg_predict_infact_error) > 20:
+                    reg_predict_infact_error.pop(0)
+                console.print(f'[st]预测与实际结果的误差量（最后一个值，是上一次“预测”vs“实际”的结果）[/st]')
                 
-            #     reg_predict_infact_error_int = []
-            #     for each in reg_predict_infact_error:
-            #         reg_predict_infact_error_int.append(int(each))
+                reg_predict_infact_error_int = []
+                for each in reg_predict_infact_error:
+                    reg_predict_infact_error_int.append(int(each))
                     
-            #     console.print(f'{reg_predict_infact_error} | [wa]{sum(reg_predict_infact_error_int)}[/wa]')
-            #     console.print(f'[st]历史预测值[/st]')
-            #     console.print(f'[re]{reg_predict_history[:-1]}[/re]')
-            #     console.print(f'[st]本次预测值[/st]：[pre]{reg_predict_history[-1]}[/pre]')
-            #     right = 0
-            #     left  = 0
-            #     for each in reg_predict_infact_error_int[-5:]:
-            #         if each > 0:
-            #             right += 1
-            #         elif each < 0:
-            #             left  += 1
-            #     if right > left and right >= 3:
-            #         console.print(f'[pre]下回合 [u]出现的DIFF值[/u] 可能比 {reg_predict_history[-1]} 小[/pre]')
-            #     elif left > right and left >= 3:
-            #         console.print(f'[pre]下回合 [u]出现的DIFF值[/u] 可能比 {reg_predict_history[-1]} 大[/pre]')
-            #     elif right <= 2 and left <= 2:
-            #         console.print(f'[pre]暂无法判断，观望[/pre]')
+                console.print(f'{reg_predict_infact_error} | [wa]{sum(reg_predict_infact_error_int)}[/wa]')
+                console.print(f'[st]历史预测值[/st]')
+                console.print(f'[re]{reg_predict_history[:-1]}[/re]')
+                console.print(f'[st]本次预测值[/st]：[pre]{reg_predict_history[-1]}[/pre]')
+                right = 0
+                left  = 0
+                for each in reg_predict_infact_error_int[-5:]:
+                    if each > 0:
+                        right += 1
+                    elif each < 0:
+                        left  += 1
+                if right > left and right >= 3:
+                    console.print(f'[pre]下回合 [u]出现的DIFF值[/u] 可能比 {reg_predict_history[-1]} 小[/pre]')
+                elif left > right and left >= 3:
+                    console.print(f'[pre]下回合 [u]出现的DIFF值[/u] 可能比 {reg_predict_history[-1]} 大[/pre]')
+                elif right <= 2 and left <= 2:
+                    console.print(f'[pre]暂无法判断，观望[/pre]')
 
             console.print(f'模拟总计投入：{vote_count} 音符')
             console.print(f'模拟总计回收：{vote_win_count} 音符')
