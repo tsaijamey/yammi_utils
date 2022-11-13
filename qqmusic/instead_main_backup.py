@@ -386,7 +386,7 @@ if __name__ == '__main__':
             # 只在胜率大于50，且上一次结果不为大，且四个小乐器的数量不存在相同 时 实施
             # 增加时间限制，去掉凌晨和下午的时间。
             print(start_timestamp % (24*60*60))
-            if start_timestamp % (24*60*60) <= (6*60*60) or (start_timestamp % (24*60*60) >= (10*60*60) and start_timestamp % (24*60*60) <= (18*60*60)):
+            if (start_timestamp+8*60*60) % (24*60*60) <= (6*60*60) or ((start_timestamp+8*60*60) % (24*60*60) >= (10*60*60) and (start_timestamp+8*60*60) % (24*60*60) <= (18*60*60)):
                 console.print(f'本时段不进行模拟')
             else:
                 if as_pred_win_rate >= 0.6 and (upper == 1 or lower == 1) and record_history[-1][1] not in ['架子鼓','竖琴','萨克斯风','圆号'] and inlib.if_item_sum_middle_balance(count_item[:4]) == False and guess_counter >= 4:
