@@ -331,8 +331,8 @@ def random_forest_reg_live(train_set:DataFrame,column_name:str, predict_data, se
         'bootstrap':            bootstrap,
     }
     model = RandomForestRegressor()
-    rf_RandomGrid = RandomizedSearchCV(estimator = model, param_distributions = param_grid, cv=10, verbose=2, n_jobs=4)
-    rf_RandomGrid.fit(train_x.values, train_y.values)
+    rf_RandomGrid = RandomizedSearchCV(estimator = model, param_distributions = param_grid, cv=10, verbose=0, n_jobs=4, )
+    rf_RandomGrid.fit(train_x, train_y)
     print(f'Train Accuracy: {rf_RandomGrid.score(train_x, train_y):.3f}')
     print(f'Test Accuracy: {rf_RandomGrid.score(test_x, test_y):.3f}')
 
