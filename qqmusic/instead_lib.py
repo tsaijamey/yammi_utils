@@ -314,9 +314,9 @@ from sklearn.model_selection import RandomizedSearchCV
 import numpy as np
 
 def random_forest_reg_live(train_set:DataFrame,column_name:str, predict_data, seed:int):
-    X = train_set.drop(columns=column_name)
+    X = train_set.drop(columns=column_name ,axis=1)
     y = train_set[column_name]
-    train_x, test_x, train_y, test_y = train_test_split(X, y, test_size=0.1, shuffle=False, random_state=seed)
+    train_x, test_x, train_y, test_y = train_test_split(X, y, test_size=0.2, shuffle=False, random_state=seed)
     n_estimators = [int(x) for x in np.linspace(start = 10, stop = 80, num = 10)]
     max_depth = [2, 4]
     min_samples_split = [2, 5]
@@ -338,7 +338,10 @@ def random_forest_reg_live(train_set:DataFrame,column_name:str, predict_data, se
 
     # params = rf_RandomGrid.best_params_
 
-    prediction = rf_RandomGrid.predict(predict_data)
+    header = ['time']
+    pd_data = DataFrame([predict_data], columns=header)
+
+    prediction = rf_RandomGrid.predict(pd_data)
 
     return prediction
 

@@ -261,10 +261,10 @@ if __name__ == '__main__':
                 #     console.print(f'Seed = {seed} | This round will use this seed')
 
 
-                df_header = ['time', 'result']                
+                df_header = ['time', 'result']
                 try:
                     time_diff_pd = pd.DataFrame(time_diff, columns=df_header)
-                    prediction_sd10 = inlib.random_forest_reg_live(time_diff_pd,'result', [[63]],seed)
+                    prediction_sd10 = inlib.random_forest_reg_live(time_diff_pd,'result', int(len(diff_history)+1),42)
                     # pred_seeds_list = inlib.RND_REG_LIVE(time_diff_pd,'result', [[21]])
                     console.print(f'[pre]RDN_SD10：[/][cyan]{prediction_sd10[0]}[/]')
                     # console.print(f'this line just for check: {len(pred_seeds_list)}')
@@ -500,52 +500,52 @@ if __name__ == '__main__':
                 msg_recoder.close()
 
             
-            # 根据Diff值的预测：
-            reg_predict = inlib.load_rf_reg_model(DIR+'\\model\\reg_8_20221028_seed10.m',diff_history[-20:]).tolist()[0]
-            if reg_predict == 0:
-                reg_predict_to_int = 0
-            else:
-                reg_predict_to_int = int(reg_predict)
+            # # 根据Diff值的预测：
+            # reg_predict = inlib.load_rf_reg_model(DIR+'\\model\\reg_8_20221028_seed10.m',diff_history[-20:]).tolist()[0]
+            # if reg_predict == 0:
+            #     reg_predict_to_int = 0
+            # else:
+            #     reg_predict_to_int = int(reg_predict)
 
-            reg_predict_history.append(reg_predict_to_int)
+            # reg_predict_history.append(reg_predict_to_int)
 
-            # 预测的历史，只保留最近的21个。
-            if len(reg_predict_history) > 21:
-                reg_predict_history.pop(0)
+            # # 预测的历史，只保留最近的21个。
+            # if len(reg_predict_history) > 21:
+            #     reg_predict_history.pop(0)
 
-            # 计算 预测diff 和 实际diff 的误差，存入 reg_predict_infact_error
-            # 用于计算的 预测diff 来自 reg_predict_history[-2]
-            if len(reg_predict_history) >= 2:
-                if record_history[-1][1] in ['架子鼓','竖琴','萨克斯风','圆号']:
-                    reg_predict_infact_error.append(str(diff_history[-1] - reg_predict_history[-2]))
-                else:
-                    reg_predict_infact_error.append(diff_history[-1] - reg_predict_history[-2])
+            # # 计算 预测diff 和 实际diff 的误差，存入 reg_predict_infact_error
+            # # 用于计算的 预测diff 来自 reg_predict_history[-2]
+            # if len(reg_predict_history) >= 2:
+            #     if record_history[-1][1] in ['架子鼓','竖琴','萨克斯风','圆号']:
+            #         reg_predict_infact_error.append(str(diff_history[-1] - reg_predict_history[-2]))
+            #     else:
+            #         reg_predict_infact_error.append(diff_history[-1] - reg_predict_history[-2])
 
-                if len(reg_predict_infact_error) > 20:
-                    reg_predict_infact_error.pop(0)
-                console.print(f'[st]预测与实际结果的误差量（最后一个值，是上一次“预测”vs“实际”的结果）[/st]')
+            #     if len(reg_predict_infact_error) > 20:
+            #         reg_predict_infact_error.pop(0)
+            #     console.print(f'[st]预测与实际结果的误差量（最后一个值，是上一次“预测”vs“实际”的结果）[/st]')
                 
-                reg_predict_infact_error_int = []
-                for each in reg_predict_infact_error:
-                    reg_predict_infact_error_int.append(int(each))
+            #     reg_predict_infact_error_int = []
+            #     for each in reg_predict_infact_error:
+            #         reg_predict_infact_error_int.append(int(each))
                     
-                console.print(f'{reg_predict_infact_error} | [wa]{sum(reg_predict_infact_error_int)}[/wa]')
-                console.print(f'[st]历史预测值[/st]')
-                console.print(f'[re]{reg_predict_history[:-1]}[/re]')
-                console.print(f'[st]本次预测值[/st]：[pre]{reg_predict_history[-1]}[/pre]')
-                right = 0
-                left  = 0
-                for each in reg_predict_infact_error_int[-5:]:
-                    if each > 0:
-                        right += 1
-                    elif each < 0:
-                        left  += 1
-                if right > left and right >= 3:
-                    console.print(f'[pre]下回合 [u]出现的DIFF值[/u] 可能比 {reg_predict_history[-1]} 小[/pre]')
-                elif left > right and left >= 3:
-                    console.print(f'[pre]下回合 [u]出现的DIFF值[/u] 可能比 {reg_predict_history[-1]} 大[/pre]')
-                elif right <= 2 and left <= 2:
-                    console.print(f'[pre]暂无法判断，观望[/pre]')
+            #     console.print(f'{reg_predict_infact_error} | [wa]{sum(reg_predict_infact_error_int)}[/wa]')
+            #     console.print(f'[st]历史预测值[/st]')
+            #     console.print(f'[re]{reg_predict_history[:-1]}[/re]')
+            #     console.print(f'[st]本次预测值[/st]：[pre]{reg_predict_history[-1]}[/pre]')
+            #     right = 0
+            #     left  = 0
+            #     for each in reg_predict_infact_error_int[-5:]:
+            #         if each > 0:
+            #             right += 1
+            #         elif each < 0:
+            #             left  += 1
+            #     if right > left and right >= 3:
+            #         console.print(f'[pre]下回合 [u]出现的DIFF值[/u] 可能比 {reg_predict_history[-1]} 小[/pre]')
+            #     elif left > right and left >= 3:
+            #         console.print(f'[pre]下回合 [u]出现的DIFF值[/u] 可能比 {reg_predict_history[-1]} 大[/pre]')
+            #     elif right <= 2 and left <= 2:
+            #         console.print(f'[pre]暂无法判断，观望[/pre]')
 
             console.print(f'模拟总计投入：{vote_count} 音符')
             console.print(f'模拟总计回收：{vote_win_count} 音符')
