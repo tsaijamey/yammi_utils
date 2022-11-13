@@ -501,7 +501,7 @@ if __name__ == '__main__':
 
             
             # 根据Diff值的预测：
-            reg_predict = inlib.load_rf_reg_model(DIR+'\\model\\reg_8_20221028_seed10.m',diff_history).tolist()[0]
+            reg_predict = inlib.load_rf_reg_model(DIR+'\\model\\reg_8_20221028_seed10.m',diff_history[-20:]).tolist()[0]
             if reg_predict == 0:
                 reg_predict_to_int = 0
             else:
