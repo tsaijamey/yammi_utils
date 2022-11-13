@@ -309,14 +309,36 @@ def random_forest_reg_train(train_set:DataFrame,dir_name:str,column_name:str, mo
 
     joblib.dump(model, dir_name+"/model/"+model_name)
 
+from sklearn.model_selection import train_test_split
+from sklearn.model_selection import RandomizedSearchCV
+import numpy as np
+
 def random_forest_reg_live(train_set:DataFrame,column_name:str, predict_data, seed:int):
     X = train_set.drop(columns=column_name)
     y = train_set[column_name]
-    model = RandomForestRegressor(random_state=seed)
-    # model = RandomForestRegressor(random_state=75)
-    model.fit(X.values, y.values)
+    train_x, test_x, train_y, test_y = train_test_split(X, y, test_size=0.1, shuffle=False, random_state=seed)
+    n_estimators = [int(x) for x in np.linspace(start = 10, stop = 80, num = 10)]
+    max_depth = [2, 4]
+    min_samples_split = [2, 5]
+    min_samples_leaf = [1, 2]
+    bootstrap = [True, False]
 
-    prediction = model.predict(predict_data)
+    param_grid = {
+        'n_estimators':         n_estimators,
+        'max_depth':            max_depth,
+        'min_samples_split':     min_samples_split,
+        'min_samples_leaf':      min_samples_leaf,
+        'bootstrap':            bootstrap,
+    }
+    model = RandomForestRegressor()
+    rf_RandomGrid = RandomizedSearchCV(estimator = model, param_distributions = param_grid, cv=10, verbose=2, n_jobs=4)
+    rf_RandomGrid.fit(train_x.values, train_y.values)
+    print(f'Train Accuracy: {rf_RandomGrid.score(train_x, train_y):.3f}')
+    print(f'Test Accuracy: {rf_RandomGrid.score(test_x, test_y):.3f}')
+
+    # params = rf_RandomGrid.best_params_
+
+    prediction = rf_RandomGrid.predict(predict_data)
 
     return prediction
 

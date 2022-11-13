@@ -231,11 +231,11 @@ if __name__ == '__main__':
             if len(position_history) >= 2:
                 diff_history.append(position_history[-1] - position_history[-2])
             # diff值得历史，最多不超过20个。
-            if len(diff_history) > 20:
+            if len(diff_history) > int(60*60/58):
                 diff_history.pop(0)
             # 适当时机，显示 diff 值的历史
             if len(diff_history) > 0:
-                console.print(f'DIFF历史值：{diff_history} | 历史值：{sum(diff_history)}')
+                console.print(f'DIFF历史值：{diff_history[-20:]} | 历史值：{sum(diff_history[-20:])}')
 
 
             '''@2022-10-29  新思路
@@ -243,30 +243,29 @@ if __name__ == '__main__':
             每个diff值需要按顺序跟时间值组成(x,y)值
             设定 x = 时间戳， y = diff值
             '''
-            time_diff_20 = []
-            diff_20 = diff_history[-20:]
-            for i in range(len(diff_20)):
-                time_diff_20.append([i+1, diff_20[i]])
+            time_diff = []
+            for i in range(len(diff_history)):
+                time_diff.append([i+1, diff_history[i]])
             if total > 3:
 
                 '''
                 通过新一轮的diff值，找到100个seed中与之差距最小的seed，用于本次预测。
                 '''
-                if len(pred_seeds_list) > 0:
-                    compare_list = []
-                    for each in pred_seeds_list:
-                        compare_list.append(diff_history[-1] - each)
+                # if len(pred_seeds_list) > 0:
+                #     compare_list = []
+                #     for each in pred_seeds_list:
+                #         compare_list.append(diff_history[-1] - each)
 
-                    smallest = min(compare_list)
-                    seed = compare_list.index(smallest)+1
-                    console.print(f'Seed = {seed} | This round will use this seed')
+                #     smallest = min(compare_list)
+                #     seed = compare_list.index(smallest)+1
+                #     console.print(f'Seed = {seed} | This round will use this seed')
 
 
                 df_header = ['time', 'result']                
                 try:
-                    time_diff_pd = pd.DataFrame(time_diff_20, columns=df_header)
-                    prediction_sd10 = inlib.random_forest_reg_live(time_diff_pd,'result', [[21]],seed)
-                    pred_seeds_list = inlib.RND_REG_LIVE(time_diff_pd,'result', [[21]])
+                    time_diff_pd = pd.DataFrame(time_diff, columns=df_header)
+                    prediction_sd10 = inlib.random_forest_reg_live(time_diff_pd,'result', [[63]],seed)
+                    # pred_seeds_list = inlib.RND_REG_LIVE(time_diff_pd,'result', [[21]])
                     console.print(f'[pre]RDN_SD10：[/][cyan]{prediction_sd10[0]}[/]')
                     # console.print(f'this line just for check: {len(pred_seeds_list)}')
                 except Exception as e:
