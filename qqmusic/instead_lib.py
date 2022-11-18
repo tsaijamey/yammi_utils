@@ -40,8 +40,8 @@ def send_wechat_self(msg):
     r = requests.get(url=url)
 
 def init_stock():
-    stock   = 2
-    times   = 4
+    stock   = 8
+    times   = 2
     rate    = 0.20
     top     = stock
     for i in range(times):
