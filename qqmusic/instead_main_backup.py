@@ -109,6 +109,7 @@ vote_win_count = 0
 voted = False
 try_as = False
 try_notas = False
+try_buy = False
 BUY = False
 
 
