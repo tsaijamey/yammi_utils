@@ -286,22 +286,35 @@ if __name__ == '__main__':
 
             # count last round earnings
             mgs = ''
-            if (try_as == True and record_history[-1][1] in as_pred_options) or (try_notas == True and record_history[-1][1] in not_pred_options):
+            # if (try_as == True and record_history[-1][1] in as_pred_options) or (try_notas == True and record_history[-1][1] in not_pred_options):
+            #     vote_win_count += vote_/2*5
+            #     msg = '下注结果：命中。' + record_history[-1][0] + ' ' + record_history[-1][1] + '。本次回收：' + str(int(vote_/2*5)) + '，总投入：' + '，总回收：' + str(vote_win_count)
+            #     inlib.send_wechat('下注结果', msg)
+            #     log_ = open(buy_log, 'a', encoding='utf8')
+            #     log_.write(msg + '\n')
+            #     log_.close()
+            #     vote_ = 0
+            # elif (try_as == True and record_history[-1][1] not in as_pred_options) or (try_notas == True and record_history[-1][1] not in not_pred_options):
+            #     msg = '下注结果：未命中。' + record_history[-1][0] + ' ' + record_history[-1][1] + '。本次回收：0，' + '，总投入：' + '，总回收：' + str(vote_win_count)
+            #     inlib.send_wechat('下注结果', msg)
+            #     log_ = open(buy_log, 'a', encoding='utf8')
+            #     log_.write(msg + '\n')
+            #     log_.close()
+            # else:
+            #     pass
+
+            if try_buy == True and record_history[-1][1] in buy_option:
                 vote_win_count += vote_/2*5
                 msg = '下注结果：命中。' + record_history[-1][0] + ' ' + record_history[-1][1] + '。本次回收：' + str(int(vote_/2*5)) + '，总投入：' + '，总回收：' + str(vote_win_count)
-                inlib.send_wechat('下注结果', msg)
                 log_ = open(buy_log, 'a', encoding='utf8')
                 log_.write(msg + '\n')
                 log_.close()
                 vote_ = 0
-            elif (try_as == True and record_history[-1][1] not in as_pred_options) or (try_notas == True and record_history[-1][1] not in not_pred_options):
+            elif  try_buy == True and record_history[-1][1] not in buy_option:
                 msg = '下注结果：未命中。' + record_history[-1][0] + ' ' + record_history[-1][1] + '。本次回收：0，' + '，总投入：' + '，总回收：' + str(vote_win_count)
-                inlib.send_wechat('下注结果', msg)
                 log_ = open(buy_log, 'a', encoding='utf8')
                 log_.write(msg + '\n')
                 log_.close()
-            else:
-                pass
 
             voted = False
             try_as = False
@@ -385,120 +398,149 @@ if __name__ == '__main__':
 
             # 只在胜率大于50，且上一次结果不为大，且四个小乐器的数量不存在相同 时 实施
             # 增加时间限制，去掉凌晨和下午的时间。
-            print((start_timestamp+8*60*60) % (24*60*60))
-            if (start_timestamp+8*60*60) % (24*60*60) <= (6*60*60) or ((start_timestamp+8*60*60) % (24*60*60) >= (10*60*60) and (start_timestamp+8*60*60) % (24*60*60) <= (18*60*60)):
-                console.print(f'本时段不进行模拟')
-            else:
-                if as_pred_win_rate > 0.6 and (upper == 1 or lower == 1) and record_history[-1][1] not in ['架子鼓','竖琴','萨克斯风','圆号'] and inlib.if_item_sum_middle_balance(count_item[:4]) == False and guess_counter >= 4:
-                    if vote_ == 0 or vote_ == TOP_STOCK:
-                        vote_ = STOCK
-                    else:
-                        vote_ = int(vote_/RATE)
-                    vote_count += vote_
-                    console.print(f'模拟下注：{as_pred_options} + {str(vote_)}音符(各{str(int(vote_/2))})')
+            # print((start_timestamp+8*60*60) % (24*60*60))
+            # if (start_timestamp+8*60*60) % (24*60*60) <= (6*60*60) or ((start_timestamp+8*60*60) % (24*60*60) >= (10*60*60) and (start_timestamp+8*60*60) % (24*60*60) <= (18*60*60)):
+            #     console.print(f'本时段不进行模拟')
+            # else:
+            #     if as_pred_win_rate > 0.6 and (upper == 1 or lower == 1) and record_history[-1][1] not in ['架子鼓','竖琴','萨克斯风','圆号'] and inlib.if_item_sum_middle_balance(count_item[:4]) == False and guess_counter >= 4:
+            #         if vote_ == 0 or vote_ == TOP_STOCK:
+            #             vote_ = STOCK
+            #         else:
+            #             vote_ = int(vote_/RATE)
+            #         vote_count += vote_
+            #         console.print(f'模拟下注：{as_pred_options} + {str(vote_)}音符(各{str(int(vote_/2))})')
 
-                    msg = ''
-                    msg = '模拟下注' + as_pred_options[0] + ',' + as_pred_options[1] + ',各' + str(int(vote_/2)) + ', 共投入：' + str(vote_count) + '，共回收：' + str(vote_win_count)
+            #         msg = ''
+            #         msg = '模拟下注' + as_pred_options[0] + ',' + as_pred_options[1] + ',各' + str(int(vote_/2)) + ', 共投入：' + str(vote_count) + '，共回收：' + str(vote_win_count)
                     
-                    log_ = open(buy_log, 'a', encoding='utf8')
-                    log_.write(msg + '\n')
-                    log_.close()
+            #         log_ = open(buy_log, 'a', encoding='utf8')
+            #         log_.write(msg + '\n')
+            #         log_.close()
                     
-                    inlib.send_wechat('模拟下注', msg)
-                    
-
-                    try_as = True
-
-                    if BUY == True:
-                        by.buy(as_pred_options[0], as_pred_options[1], int(int(vote_/2)))
-                        voted = True
-                    else:
-                        voted = False
-                elif not_pred_win_rate > 0.6 and (upper == 1 or lower == 1) and record_history[-1][1] not in ['架子鼓','竖琴','萨克斯风','圆号'] and inlib.if_item_sum_middle_balance(count_item[:4]) == False and guess_counter >= 4:
-                    if vote_ == 0 or vote_ == TOP_STOCK:
-                        vote_ = STOCK
-                    else:
-                        vote_ = int(vote_/RATE)
-                    vote_count += vote_
-                    console.print(f'模拟下注：{not_pred_options} + {str(vote_)}音符(各{str(int(vote_/2))})')
-
-                    msg = ''
-                    msg = '模拟下注' + not_pred_options[0] + ',' + not_pred_options[1] + ',各' + str(int(vote_/2)) + ', 共投入：' + str(vote_count) + '，共回收：' + str(vote_win_count)
-                    
-                    log_ = open(buy_log, 'a', encoding='utf8')
-                    log_.write(msg + '\n')
-                    log_.close()
-
-                    inlib.send_wechat('模拟下注', msg)
+            #         inlib.send_wechat('模拟下注', msg)
                     
 
-                    try_notas = True
+            #         try_as = True
+
+            #         if BUY == True:
+            #             by.buy(as_pred_options[0], as_pred_options[1], int(int(vote_/2)))
+            #             voted = True
+            #         else:
+            #             voted = False
+            #     elif not_pred_win_rate > 0.6 and (upper == 1 or lower == 1) and record_history[-1][1] not in ['架子鼓','竖琴','萨克斯风','圆号'] and inlib.if_item_sum_middle_balance(count_item[:4]) == False and guess_counter >= 4:
+            #         if vote_ == 0 or vote_ == TOP_STOCK:
+            #             vote_ = STOCK
+            #         else:
+            #             vote_ = int(vote_/RATE)
+            #         vote_count += vote_
+            #         console.print(f'模拟下注：{not_pred_options} + {str(vote_)}音符(各{str(int(vote_/2))})')
+
+            #         msg = ''
+            #         msg = '模拟下注' + not_pred_options[0] + ',' + not_pred_options[1] + ',各' + str(int(vote_/2)) + ', 共投入：' + str(vote_count) + '，共回收：' + str(vote_win_count)
                     
-                    if BUY == True:
-                        by.buy(not_pred_options[0], not_pred_options[1], int(int(vote_/2)))                        
-                        voted = True
-                    else:
-                        voted = False
-                elif guess_counter < 4:
-                    console.print(f'判断基数不足。')
-                else:
-                    reason = ''
-                    if as_pred_win_rate < 0.6 and not_pred_win_rate < 0.6:
-                        reason = reason + '胜率不达标。'
-                    if record_history[-1][1] in ['架子鼓','竖琴','萨克斯风','圆号']:
-                        reason = reason + '前一回合出大。'
-                    if inlib.if_item_sum_balance(count_item[:4]) == True:
-                        reason = reason + '存在相同数量的物品。'
-                    console.print(f'[wa]不符合下注条件：{reason}[/wa]')
+            #         log_ = open(buy_log, 'a', encoding='utf8')
+            #         log_.write(msg + '\n')
+            #         log_.close()
+
+            #         inlib.send_wechat('模拟下注', msg)
+                    
+
+            #         try_notas = True
+                    
+            #         if BUY == True:
+            #             by.buy(not_pred_options[0], not_pred_options[1], int(int(vote_/2)))                        
+            #             voted = True
+            #         else:
+            #             voted = False
+            #     elif guess_counter < 4:
+            #         console.print(f'判断基数不足。')
+            #     else:
+            #         reason = ''
+            #         if as_pred_win_rate < 0.6 and not_pred_win_rate < 0.6:
+            #             reason = reason + '胜率不达标。'
+            #         if record_history[-1][1] in ['架子鼓','竖琴','萨克斯风','圆号']:
+            #             reason = reason + '前一回合出大。'
+            #         if inlib.if_item_sum_balance(count_item[:4]) == True:
+            #             reason = reason + '存在相同数量的物品。'
+            #         console.print(f'[wa]不符合下注条件：{reason}[/wa]')
             
 
-            if len(pred_history) == 20:
-                #  and as_pred_win_rate<0.6 and not_pred_win_rate<0.6 and abs(as_pred_win_rate - not_pred_win_rate) < 0.19
-                temp_dict = {
-                    '预测-预测': 0,
-                    '预测-补充': 0,   
-                    '预测-忽略': 0,
-                    '补充-补充': 0,
-                    '补充-预测': 0,    
-                    '补充-忽略': 0,
-                    '忽略-预测': 0,
-                    '忽略-补充': 0,
-                    '忽略-忽略': 0,
-                }
+            # if len(pred_history) == 20:
+            #     #  and as_pred_win_rate<0.6 and not_pred_win_rate<0.6 and abs(as_pred_win_rate - not_pred_win_rate) < 0.19
+            #     temp_dict = {
+            #         '预测-预测': 0,
+            #         '预测-补充': 0,   
+            #         '预测-忽略': 0,
+            #         '补充-补充': 0,
+            #         '补充-预测': 0,    
+            #         '补充-忽略': 0,
+            #         '忽略-预测': 0,
+            #         '忽略-补充': 0,
+            #         '忽略-忽略': 0,
+            #     }
 
-                for k in range(len(pred_history)-1):
-                    if pred_history[k] == pred_history[k+1]:
-                        if pred_history[k] == '预测':
-                            temp_dict['预测-预测'] = temp_dict['预测-预测'] + 1
-                        if pred_history[k] == '补充':
-                            temp_dict['补充-补充'] = temp_dict['补充-补充'] + 1
-                        if pred_history[k] == '忽略':
-                            temp_dict['忽略-忽略'] = temp_dict['忽略-忽略'] + 1
-                    if pred_history[k] != pred_history[k+1]:
-                        if pred_history[k] == '预测' and pred_history[k+1] == '补充':
-                            temp_dict['预测-补充'] = temp_dict['预测-补充'] + 1
-                        if pred_history[k] == '预测' and pred_history[k+1] == '忽略':
-                            temp_dict['预测-忽略'] = temp_dict['预测-忽略'] + 1            
-                        if pred_history[k] == '补充' and pred_history[k+1] == '预测':
-                            temp_dict['补充-预测'] = temp_dict['补充-预测'] + 1
-                        if pred_history[k] == '补充' and pred_history[k+1] == '忽略':
-                            temp_dict['补充-忽略'] = temp_dict['补充-忽略'] + 1
-                        if pred_history[k] == '忽略' and pred_history[k+1] == '预测':
-                            temp_dict['忽略-预测'] = temp_dict['忽略-预测'] + 1
-                        if pred_history[k] == '忽略' and pred_history[k+1] == '补充':
-                            temp_dict['忽略-补充'] = temp_dict['忽略-补充'] + 1
+            #     for k in range(len(pred_history)-1):
+            #         if pred_history[k] == pred_history[k+1]:
+            #             if pred_history[k] == '预测':
+            #                 temp_dict['预测-预测'] = temp_dict['预测-预测'] + 1
+            #             if pred_history[k] == '补充':
+            #                 temp_dict['补充-补充'] = temp_dict['补充-补充'] + 1
+            #             if pred_history[k] == '忽略':
+            #                 temp_dict['忽略-忽略'] = temp_dict['忽略-忽略'] + 1
+            #         if pred_history[k] != pred_history[k+1]:
+            #             if pred_history[k] == '预测' and pred_history[k+1] == '补充':
+            #                 temp_dict['预测-补充'] = temp_dict['预测-补充'] + 1
+            #             if pred_history[k] == '预测' and pred_history[k+1] == '忽略':
+            #                 temp_dict['预测-忽略'] = temp_dict['预测-忽略'] + 1            
+            #             if pred_history[k] == '补充' and pred_history[k+1] == '预测':
+            #                 temp_dict['补充-预测'] = temp_dict['补充-预测'] + 1
+            #             if pred_history[k] == '补充' and pred_history[k+1] == '忽略':
+            #                 temp_dict['补充-忽略'] = temp_dict['补充-忽略'] + 1
+            #             if pred_history[k] == '忽略' and pred_history[k+1] == '预测':
+            #                 temp_dict['忽略-预测'] = temp_dict['忽略-预测'] + 1
+            #             if pred_history[k] == '忽略' and pred_history[k+1] == '补充':
+            #                 temp_dict['忽略-补充'] = temp_dict['忽略-补充'] + 1
 
-                msg_list = ''
-                for each in pred_history:
-                    msg_list = msg_list + '-' + each
-                msg_list = msg_list + '\n'
-                for each in temp_dict:
-                    msg_list = msg_list + each
-                    msg_list = msg_list + ":" + str(temp_dict[each]) + " | "
+            #     msg_list = ''
+            #     for each in pred_history:
+            #         msg_list = msg_list + '-' + each
+            #     msg_list = msg_list + '\n'
+            #     for each in temp_dict:
+            #         msg_list = msg_list + each
+            #         msg_list = msg_list + ":" + str(temp_dict[each]) + " | "
 
-                msg_recoder = open(record_msg, 'a', encoding='utf8')
-                msg_recoder.write(msg_list + '\n')
-                msg_recoder.close()
+            #     msg_recoder = open(record_msg, 'a', encoding='utf8')
+            #     msg_recoder.write(msg_list + '\n')
+            #     msg_recoder.close()
+
+            if abs(diff_history[-4]) > 1 and abs(diff_history[-3]) <= 1 and abs(diff_history[-2]) > 1 and abs(diff_history[-1]) <= 1:
+                buy_option = []
+                for i in range(2,6):
+                    if abs(item_copd[i][4]) <= 1:
+                        buy_option.append(item_copd[i][0])
+                if len(buy_option) == 2:
+                    if vote_ == 0 or vote_ == TOP_STOCK:
+                        vote_ = STOCK
+                    else:
+                        vote_ = int(vote_/RATE)
+                    vote_count += vote_
+                    console.print(f'模拟下注：{buy_option} + {str(vote_)}音符(各{str(int(vote_/2))})')
+                    msg = ''
+                    msg = '模拟下注' + buy_option[0] + ',' + buy_option[1] + ',各' + str(int(vote_/2)) + ', 共投入：' + str(vote_count) + '，共回收：' + str(vote_win_count)
+                    
+                    log_ = open(buy_log, 'a', encoding='utf8')
+                    log_.write(msg + '\n')
+                    log_.close()
+                    
+                    inlib.send_wechat('模拟下注', msg)
+                    try_buy = True
+
+                    if BUY == True:
+                        by.buy(buy_option[0], buy_option[1], int(int(vote_/2)))
+                        voted = True
+                    else:
+                        voted = False
+            
 
             
             # 根据Diff值的预测：
