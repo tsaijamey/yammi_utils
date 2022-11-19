@@ -43,13 +43,12 @@ def buy(a,b,num):
     count = str(num)
     for each in options:
         os.popen("adb shell input tap " + DICT_POS[each]).read()
-        time.sleep(1)
+        time.sleep(3)
         for n in count:
             os.popen("adb shell input keyevent " + KEY_E[n]).read()
-            time.sleep(0.5)
+            time.sleep(1)
         os.popen("adb shell input tap " + DICT_POS['完成']).read()
-        time.sleep(2)
-    time.sleep(2)
+        time.sleep(3)
     os.popen("adb shell input tap " + DICT_POS['确认使用']).read()
 
 # if __name__ == '__main__':
