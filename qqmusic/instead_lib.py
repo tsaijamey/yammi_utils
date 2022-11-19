@@ -39,10 +39,20 @@ def send_wechat_self(msg):
     url = f"https://www.pushplus.plus/send?token={token}&title={title}&content={content}&template={template}"
     r = requests.get(url=url)
 
+# def init_stock():
+#     stock   = 1
+#     times   = 1
+#     rate    = 0.20
+#     top     = stock
+#     for i in range(times):
+#         top = int(top/rate)
+
+#     return stock, times, rate, top
+
 def init_stock():
-    stock   = 4
-    times   = 2
-    rate    = 0.20
+    stock   = 115
+    times   = 1
+    rate    = 1
     top     = stock
     for i in range(times):
         top = int(top/rate)
