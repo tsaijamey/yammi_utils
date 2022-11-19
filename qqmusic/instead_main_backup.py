@@ -322,6 +322,7 @@ if __name__ == '__main__':
             voted = False
             try_as = False
             try_notas = False
+            try_buy = False
             
             
 
