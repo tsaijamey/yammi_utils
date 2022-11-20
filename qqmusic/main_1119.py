@@ -82,6 +82,7 @@ for i in range(20):
     real_position_history.append(0)
     real_diff_history.append(0)
 
+high_low_history = []
 
 reg_predict_history         = []
 reg_predict_infact_error    = []
@@ -227,9 +228,19 @@ if __name__ == '__main__':
             # diff值得历史，最多不超过20个。
             if len(diff_history) > int(60*60/58):
                 diff_history.pop(0)
+
+            if abs(diff_history[-1]) <= 1:
+                high_low_history.append('低')
+            else:
+                high_low_history.append('高')
+            
+            if len(high_low_history) > 20:
+                high_low_history.pop(0)
+
             # 适当时机，显示 diff 值的历史
             if len(diff_history) > 0:
-                console.print(f'DIFF历史值：{diff_history[-20:]} | 历史值：{sum(diff_history[-20:])}')
+                console.print(f'DIFF历史值：{diff_history[-20:]} | 历史值：{sum(diff_history[-4:])}')
+                console.print(f'HIGH历史值：{high_low_history}')
 
 
             '''@2022-10-29  新思路
@@ -277,14 +288,18 @@ if __name__ == '__main__':
             if try_buy == True and record_history[-1][1] in buy_option:
                 vote_win_count += vote_/2*5
                 msg = '下注结果：命中。' + record_history[-1][0] + ' ' + record_history[-1][1] + '。本次回收：' + str(int(vote_/2*5)) + '，总投入：' + '，总回收：' + str(vote_win_count)
-                inlib.send_wechat('下注结果', msg)
+                inlib.send_wechat_self('下注结果', msg)
+                if (start_timestamp+8*60*60) % (24*60*60) >= (9*60*60):
+                    inlib.send_wechat('下注结果', msg)
                 log_ = open(buy_log, 'a', encoding='utf8')
                 log_.write(msg + '\n')
                 log_.close()
                 vote_ = 0
             elif  try_buy == True and record_history[-1][1] not in buy_option:
                 msg = '下注结果：未命中。' + record_history[-1][0] + ' ' + record_history[-1][1] + '。本次回收：0，' + '，总投入：' + '，总回收：' + str(vote_win_count)
-                inlib.send_wechat('下注结果', msg)
+                inlib.send_wechat_self('下注结果', msg)
+                if (start_timestamp+8*60*60) % (24*60*60) >= (9*60*60):
+                    inlib.send_wechat('下注结果', msg)
                 log_ = open(buy_log, 'a', encoding='utf8')
                 log_.write(msg + '\n')
                 log_.close()
@@ -390,7 +405,9 @@ if __name__ == '__main__':
                     log_.write(msg + '\n')
                     log_.close()
                     
-                    inlib.send_wechat('模拟下注', msg)
+                    inlib.send_wechat_self('模拟下注', msg)
+                    if (start_timestamp+8*60*60) % (24*60*60) >= (9*60*60):
+                        inlib.send_wechat('模拟下注', msg)
                     try_buy = True
 
                     if BUY == True:
