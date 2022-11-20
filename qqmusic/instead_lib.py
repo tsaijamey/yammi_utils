@@ -50,7 +50,7 @@ def send_wechat_self(msg):
 #     return stock, times, rate, top
 
 def init_stock():
-    stock   = 100
+    stock   = 500
     times   = 1
     rate    = 1
     top     = stock
