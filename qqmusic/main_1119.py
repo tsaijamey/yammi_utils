@@ -328,8 +328,8 @@ if __name__ == '__main__':
             
             if len(pred_history) > 20:
                 pred_history.pop(0)
-            # if len(pred_history) >= 1:
-            #     print(pred_history)
+            if len(pred_history) >= 1:
+                print(pred_history)
 
             # record the rate per hour.
             if (start_timestamp % (60 * 60) <= 60 or start_timestamp % (60 * 60) >= (60*60-59)) and guess_counter > 0:
