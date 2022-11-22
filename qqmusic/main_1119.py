@@ -149,8 +149,8 @@ if __name__ == '__main__':
                 else:
                     BUY = False
             # 在获取结果时，容易因为点击意外导致列表为空，然后无法继续，因此增加这一段保障代码
-
-            STOCK, _, RATE, TOP_STOCK   = inlib.init_stock()
+            from instead_lib import init_stock
+            STOCK, _, RATE, TOP_STOCK   = init_stock()
             recent_result = []
             try_times = 0
 
@@ -288,7 +288,7 @@ if __name__ == '__main__':
             if try_buy == True and record_history[-1][1] in buy_option:
                 vote_win_count += vote_/2*5
                 msg = '下注结果：命中。' + record_history[-1][0] + ' ' + record_history[-1][1] + '。本次回收：' + str(int(vote_/2*5)) + '，总投入：' + '，总回收：' + str(vote_win_count)
-                inlib.send_wechat_self('下注结果', msg)
+                inlib.send_wechat_self(msg)
                 if (start_timestamp+8*60*60) % (24*60*60) >= (9*60*60):
                     inlib.send_wechat('下注结果', msg)
                 log_ = open(buy_log, 'a', encoding='utf8')
@@ -297,7 +297,7 @@ if __name__ == '__main__':
                 vote_ = 0
             elif  try_buy == True and record_history[-1][1] not in buy_option:
                 msg = '下注结果：未命中。' + record_history[-1][0] + ' ' + record_history[-1][1] + '。本次回收：0，' + '，总投入：' + '，总回收：' + str(vote_win_count)
-                inlib.send_wechat_self('下注结果', msg)
+                inlib.send_wechat_self(msg)
                 if (start_timestamp+8*60*60) % (24*60*60) >= (9*60*60):
                     inlib.send_wechat('下注结果', msg)
                 log_ = open(buy_log, 'a', encoding='utf8')
@@ -359,33 +359,34 @@ if __name__ == '__main__':
                 smaller = []
                 bigger_2 = []
                 smaller_2 = []
-                if prediction_sd10[0] >= item_copd[3][4]:
+                not_pred_options = []
+                as_pred_options = []
+                if prediction_sd10[0] > (item_copd[3][4] + item_copd[4][4])/2:
                     upper = 1
                 else:
                     upper = 0
-                if prediction_sd10[0] <= item_copd[4][4]:
+                if prediction_sd10[0] <= (item_copd[3][4] + item_copd[4][4])/2:
                     lower = 1
                 else:
                     lower = 0
                 
                 if upper == 1:
-                    as_pred_options = [item_copd[2][0], item_copd[3][0]]
-                    not_pred_options = [item_copd[4][0], item_copd[5][0]]
+                    as_pred_options = [item_copd[0][0], item_copd[1][0], item_copd[2][0], item_copd[3][0]]
+                    not_pred_options = [item_copd[4][0], item_copd[5][0], item_copd[6][0], item_copd[7][0]]
                     console.print(f'{prediction_sd10[0]}在上区，按预测选：[red]{as_pred_options}[/]')
                     console.print(f'{prediction_sd10[0]}在上区，按补充选：[red]{not_pred_options}[/]')
                     guess_counter += 1
                 elif lower == 1:                        
-                    as_pred_options = [item_copd[4][0], item_copd[5][0]]
-                    not_pred_options = [item_copd[2][0], item_copd[3][0]]
+                    not_pred_options = [item_copd[0][0], item_copd[1][0], item_copd[2][0], item_copd[3][0]]
+                    as_pred_options = [item_copd[4][0], item_copd[5][0], item_copd[6][0], item_copd[7][0]]
                     console.print(f'{prediction_sd10[0]}在下区，按预测选：[red]{as_pred_options}[/]')
                     console.print(f'{prediction_sd10[0]}在下区，按补充选：[red]{not_pred_options}[/]')
                     guess_counter += 1
                 else:
                     console.print('[blue]本局忽略[/]')
-                    not_pred_options = []
-                    as_pred_options = []
+                    
 
-
+            
             if abs(diff_history[-4]) > 1 and abs(diff_history[-3]) <= 1 and abs(diff_history[-2]) > 1 and abs(diff_history[-1]) <= 1:
                 buy_option = []
                 for i in range(2,6):
@@ -400,21 +401,32 @@ if __name__ == '__main__':
                     console.print(f'模拟下注：{buy_option} + {str(vote_)}音符(各{str(int(vote_/2))})')
                     msg = ''
                     msg = '模拟下注' + buy_option[0] + ',' + buy_option[1] + ',各' + str(int(vote_/2)) + ', 共投入：' + str(vote_count) + '，共回收：' + str(vote_win_count)
+                    msg = msg + 'diff状态：'
+                    for status in diff_history:
+                        msg = msg + str(status) + ','
+                    msg = msg + '选项：'
+                    for options in item_copd:
+                        msg = msg + options[0] + ' ' + str(options[4]) + ','
+                    
                     
                     log_ = open(buy_log, 'a', encoding='utf8')
                     log_.write(msg + '\n')
                     log_.close()
                     
-                    inlib.send_wechat_self('模拟下注', msg)
+                    inlib.send_wechat_self(msg)
                     if (start_timestamp+8*60*60) % (24*60*60) >= (9*60*60):
                         inlib.send_wechat('模拟下注', msg)
                     try_buy = True
 
-                    if BUY == True:
+                    if BUY == True and (start_timestamp+8*60*60) % (24*60*60) <= (8*60*60):
                         by.buy(buy_option[0], buy_option[1], int(int(vote_/2)))
                         voted = True
-                    else:
+                    elif BUY == False:
                         voted = False
+                        console.print('购买开关关闭。')
+                    elif (start_timestamp+8*60*60) % (24*60*60) > (8*60*60):
+                        voted = False
+                        console.print('购买时段未到。')
             
 
             
