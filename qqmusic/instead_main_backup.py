@@ -248,7 +248,8 @@ if __name__ == '__main__':
                 diffs.pop(0)
                 level.pop(0)
 
-            
+            console.print(f'DIFF：{diffs[-20:]} | 历史值：{sum(diffs[-5:])}->{sum(diffs[-4:])}')
+            console.print(f'LEVEL：{level[-20:]}')
 
 
             '''@2022-10-29  新思路
@@ -266,14 +267,13 @@ if __name__ == '__main__':
                 df_header = ['time', 'result']
                 try:
                     time_diff_pd = pd.DataFrame(time_diff, columns=df_header)
-                    prediction_sd10 = inlib.random_forest_reg_live(time_diff_pd,'result', int(len(diffs)+1))                    
+                    prediction_sd10 = inlib.random_forest_reg_live(time_diff_pd,'result', int(len(diffs)+1))
+                    console.print(f'[pre]RDN_SD10：[/][cyan]{prediction_sd10[0]}[/]')
                 except Exception as e:
                     print('error')
 
-            # 适当时机打印
-            console.print(f'DIFF：{diffs[-20:]} | 历史值：{sum(diffs[-5:])}->{sum(diffs[-4:])}')
-            console.print(f'LEVEL：{level[-20:]}')
-            console.print(f'[pre]RDN_SD10：[/][cyan]{prediction_sd10[0]}[/]')
+            
+            
 
             '''猜测区
             猜的策略：
