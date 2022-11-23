@@ -114,6 +114,11 @@ try_buy = False
 BUY = False
 
 
+# 11-22
+diff_6 = []
+diff_6_list = []
+
+
 # 预设变量
 DIR = os.path.dirname(__file__)
 if platform.system().lower() == 'windows':
@@ -225,22 +230,30 @@ if __name__ == '__main__':
             # 适当时机，开始计算 diff值，计算的依据是最近2个posi值的差
             if len(position_history) >= 2:
                 diff_history.append(position_history[-1] - position_history[-2])
+                diff_6.append(diff_history[-1])
+                console.print(f'当次6：{diff_6}')
+                if len(diff_6) == 6:
+                    diff_6_list.append(diff_6)
+                elif len(diff_6) >= 3:
+                    for each in diff_6_list:
+                        if diff_6[0:3] == each[0:3]:
+                            console.print(f'往次6：{each}')
             # diff值得历史，最多不超过20个。
             if len(diff_history) > int(60*60/58):
                 diff_history.pop(0)
 
-            if abs(diff_history[-1]) <= 1:
-                high_low_history.append('低')
-            else:
-                high_low_history.append('高')
+            # if abs(diff_history[-1]) <= 1:
+            #     high_low_history.append('低')
+            # else:
+            #     high_low_history.append('高')
             
-            if len(high_low_history) > 20:
-                high_low_history.pop(0)
+            # if len(high_low_history) > 20:
+            #     high_low_history.pop(0)
 
             # 适当时机，显示 diff 值的历史
             if len(diff_history) > 0:
                 console.print(f'DIFF历史值：{diff_history[-20:]} | 历史值：{sum(diff_history[-4:])}')
-                console.print(f'HIGH历史值：{high_low_history}')
+                # console.print(f'HIGH历史值：{high_low_history}')
 
 
             '''@2022-10-29  新思路
@@ -506,7 +519,14 @@ if __name__ == '__main__':
                         str(item_copd[i][3]),
                     )
 
-            console.print(table)           
+            console.print(table)
+
+            if len(diff_6) == 6:
+                diff_6 = []
+                record_history = []
+                position_history = []
+                for i in range(20):
+                    position_history.append(0)     
 
             inlib.wait_next(start_timestamp, 58)
             start_timestamp += 58

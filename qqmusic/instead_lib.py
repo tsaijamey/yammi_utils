@@ -50,9 +50,9 @@ def send_wechat_self(msg):
 #     return stock, times, rate, top
 
 def init_stock():
-    stock   = 1000
-    times   = 1
-    rate    = 1
+    stock   = 2
+    times   = 3
+    rate    = 0.20
     top     = stock
     for i in range(times):
         top = int(top/rate)
@@ -323,10 +323,10 @@ from sklearn.model_selection import train_test_split
 from sklearn.model_selection import RandomizedSearchCV
 import numpy as np
 
-def random_forest_reg_live(train_set:DataFrame,column_name:str, predict_data, seed:int):
+def random_forest_reg_live(train_set:DataFrame,column_name:str, predict_data):
     X = train_set.drop(columns=column_name ,axis=1)
     y = train_set[column_name]
-    train_x, test_x, train_y, test_y = train_test_split(X, y, test_size=0.2, shuffle=False, random_state=seed)
+    train_x, test_x, train_y, test_y = train_test_split(X, y, test_size=0.2, shuffle=False)
     n_estimators = [int(x) for x in np.linspace(start = 10, stop = 80, num = 10)]
     max_depth = [2, 4]
     min_samples_split = [2, 5]
@@ -355,6 +355,8 @@ def random_forest_reg_live(train_set:DataFrame,column_name:str, predict_data, se
 
     return prediction
 
+
+# 废弃了
 def RND_REG_LIVE(train_set:DataFrame,column_name:str, predict_data):
     X = train_set.drop(columns=column_name)
     y = train_set[column_name]
