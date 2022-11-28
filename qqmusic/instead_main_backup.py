@@ -81,8 +81,8 @@ for i in range(history_length):
 
 
 
-reg_predict_history         = []
-reg_predict_infact_error    = []
+reg_preds         = []
+reg_pred_error_str    = []
 
 pred_seeds_list = []
 seed = 90
@@ -111,7 +111,7 @@ BUY = False
 switch = 1
 buy_switch = 0
 round_gap = 0
-logical = 'a'
+logical = 'c'
 preds_head = ''
 
 
@@ -273,7 +273,38 @@ if __name__ == '__main__':
                     print('error')
 
             
-            
+            # 根据Diff值的预测：
+            reg_predict = inlib.load_rf_reg_model(DIR+'\\model\\reg_8_20221028_seed10.m',diffs[-20:]).tolist()[0]
+            if reg_predict == 0:
+                reg_predict_to_int = 0
+            else:
+                reg_predict_to_int = int(reg_predict)
+
+            reg_preds.append(reg_predict_to_int)
+
+            # 预测的历史，只保留最近的21个。
+            if len(reg_preds) > 21:
+                reg_preds.pop(0)
+
+            # 计算 预测diff 和 实际diff 的误差，存入 reg_predict_infact_error
+            # 用于计算的 预测diff 来自 reg_predict_history[-2]
+            if len(reg_preds) >= 2:
+                if records[-1][1] in ['架子鼓','竖琴','萨克斯风','圆号']:
+                    reg_pred_error_str.append(str(diffs[-1] - reg_preds[-2]))
+                else:
+                    reg_pred_error_str.append(diffs[-1] - reg_preds[-2])
+
+                if len(reg_pred_error_str) > 20:
+                    reg_pred_error_str.pop(0)
+                
+                reg_pred_error_int = []
+                for each in reg_pred_error_str:
+                    reg_pred_error_int.append(int(each))
+                    
+                console.print(f'误差量：{reg_pred_error_str} | [wa]{sum(reg_pred_error_int)}[/wa]')
+                console.print(f'[st]历史预测值[/st]')
+                console.print(f'[re]{reg_preds[:-1]}[/re]')
+                console.print(f'[st]本次预测值[/st]：[pre]{reg_preds[-1]}[/pre]')
 
             '''猜测区
             猜的策略：
@@ -300,7 +331,7 @@ if __name__ == '__main__':
                     log_.write('*'*40 + '\n')
                     log_.close()
                     vote_ = 0
-                elif records[-1][1] in buy_option[2:4]:
+                elif len(buy_option) == 4 and records[-1][1] in buy_option[2:4]:
                     win = 0
                     if votes[2] == 0:
                         msg = '下注结果：【命中但未押】。' + records[-1][0] + ' ' + records[-1][1] + '。本次回收：0。' + '，总投入：' + str(vote_count) + '，总回收：' + str(vote_win_count) + '，实际收益：' + str(int(vote_win_count*0.635 - vote_count*0.92)) + '，开关=' + str(switch)
@@ -341,9 +372,6 @@ if __name__ == '__main__':
                     
 
                 console.print(msg)
-
-            elif logical == 'a':
-                pass
 
             voted = False
             try_buy = False
@@ -412,14 +440,18 @@ if __name__ == '__main__':
                     lower = 0
                 
                 if upper == 1:
-                    as_pred = [item_copd[2][0], item_copd[3][0], item_copd[0][0], item_copd[1][0]]
-                    not_pred = [item_copd[4][0], item_copd[5][0], item_copd[6][0], item_copd[7][0]]
+                    # as_pred = [item_copd[2][0], item_copd[3][0], item_copd[0][0], item_copd[1][0]]
+                    as_pred = [item_copd[2][0], item_copd[3][0]]
+                    # not_pred = [item_copd[4][0], item_copd[5][0], item_copd[6][0], item_copd[7][0]]
+                    not_pred = [item_copd[4][0], item_copd[5][0]]
                     console.print(f'{prediction_sd10[0]}在上区，按预测选：[red]{as_pred}[/]')
                     console.print(f'{prediction_sd10[0]}在上区，按补充选：[red]{not_pred}[/]')
                     guess += 1
                 elif lower == 1:                        
-                    as_pred = [item_copd[4][0], item_copd[5][0], item_copd[6][0], item_copd[7][0]]
-                    not_pred = [item_copd[2][0], item_copd[3][0], item_copd[0][0], item_copd[1][0]]
+                    # as_pred = [item_copd[4][0], item_copd[5][0], item_copd[6][0], item_copd[7][0]]
+                    as_pred = [item_copd[4][0], item_copd[5][0]]
+                    # not_pred = [item_copd[2][0], item_copd[3][0], item_copd[0][0], item_copd[1][0]]
+                    not_pred = [item_copd[2][0], item_copd[3][0]]
                     console.print(f'{prediction_sd10[0]}在下区，按预测选：[red]{as_pred}[/]')
                     console.print(f'{prediction_sd10[0]}在下区，按补充选：[red]{not_pred}[/]')
                     guess += 1
@@ -438,6 +470,7 @@ if __name__ == '__main__':
             else:
                 # 购买条件
                 comment = ''
+                buy_option == []
                 if logical == 'b':
                     if round_gap != 0:
                         round_gap -= 1
@@ -557,6 +590,15 @@ if __name__ == '__main__':
                             print("与上回合持平")
                     else:
                         console.print('预测量不足。')
+                elif logical == 'c':
+                    if total >= 10:
+                        if abs(reg_pred_error_int[-1]) <= 1:
+                            for i in range(2,6):
+                                if abs(item_copd[i][4] - reg_preds) <= 1:
+                                    buy_option.append(item_copd[i][0])
+                            if len(buy_option) == 2:
+                                buy_switch = 1
+                    
 
                 if buy_switch == 1:
                     if vote_ == 0 or vote_ == TOP_STOCK:
@@ -565,32 +607,20 @@ if __name__ == '__main__':
                         vote_ = int(vote_/RATE)
                     vote_count += vote_
                     console.print(comment)
-                    pieces = []
-                    if DICT[buy_option[2]] == 5:
-                        pieces.append(10)
-                    if DICT[buy_option[2]] == 6:
-                        pieces.append(20)
-                    if DICT[buy_option[2]] == 7:
-                        pieces.append(25)
-                    if DICT[buy_option[2]] == 8:
-                        pieces.append(35)
-                    if DICT[buy_option[3]] == 5:
-                        pieces.append(10)
-                    if DICT[buy_option[3]] == 6:
-                        pieces.append(20)
-                    if DICT[buy_option[3]] == 7:
-                        pieces.append(25)
-                    if DICT[buy_option[3]] == 8:
-                        pieces.append(35)
 
                     if vote_ == 2:
-                        votes = [1,1,0,0]
+                        # votes = [1,1,0,0]
+                        votes = [1,1]
                     else:
-                        votes = [int(vote_/10*4),int(vote_/10*4),int(vote_/10),int(vote_/10)]
+                        # votes = [int(vote_/10*4),int(vote_/10*4),int(vote_/10),int(vote_/10)]
+                        votes = [int(vote_/2), int(vote_/2)]
                     console.print(f'模拟下注：{buy_option} | {votes}音符')
                     msg = ''
                     msg = msg + comment
-                    msg = msg + '模拟下注：' + buy_option[0] + ',' + str(votes[0]) + ' | ' + buy_option[1] + ',' + str(votes[1]) + ' | ' + buy_option[2] + ',' + str(votes[2]) + ' | ' + buy_option[3] + ',' + str(votes[3]) + ' | '
+                    if len(buy_option) == 4:
+                        msg = msg + '模拟下注：' + buy_option[0] + ',' + str(votes[0]) + ' | ' + buy_option[1] + ',' + str(votes[1]) + ' | ' + buy_option[2] + ',' + str(votes[2]) + ' | ' + buy_option[3] + ',' + str(votes[3]) + ' | '
+                    elif len(buy_option) == 2:
+                        msg = msg + '模拟下注：' + buy_option[0] + ',' + str(votes[0]) + ' | ' + buy_option[1] + ',' + str(votes[1]) + ' | '
                     log_ = open(buy_log, 'a', encoding='utf8')
                     log_.write(msg)
                     log_.close()
@@ -606,52 +636,6 @@ if __name__ == '__main__':
                         voted = False
 
             
-            # 根据Diff值的预测：
-            reg_predict = inlib.load_rf_reg_model(DIR+'\\model\\reg_8_20221028_seed10.m',diffs[-20:]).tolist()[0]
-            if reg_predict == 0:
-                reg_predict_to_int = 0
-            else:
-                reg_predict_to_int = int(reg_predict)
-
-            reg_predict_history.append(reg_predict_to_int)
-
-            # 预测的历史，只保留最近的21个。
-            if len(reg_predict_history) > 21:
-                reg_predict_history.pop(0)
-
-            # 计算 预测diff 和 实际diff 的误差，存入 reg_predict_infact_error
-            # 用于计算的 预测diff 来自 reg_predict_history[-2]
-            if len(reg_predict_history) >= 2:
-                if records[-1][1] in ['架子鼓','竖琴','萨克斯风','圆号']:
-                    reg_predict_infact_error.append(str(diffs[-1] - reg_predict_history[-2]))
-                else:
-                    reg_predict_infact_error.append(diffs[-1] - reg_predict_history[-2])
-
-                if len(reg_predict_infact_error) > 20:
-                    reg_predict_infact_error.pop(0)
-                console.print(f'[st]预测与实际结果的误差量（最后一个值，是上一次“预测”vs“实际”的结果）[/st]')
-                
-                reg_predict_infact_error_int = []
-                for each in reg_predict_infact_error:
-                    reg_predict_infact_error_int.append(int(each))
-                    
-                console.print(f'{reg_predict_infact_error} | [wa]{sum(reg_predict_infact_error_int)}[/wa]')
-                console.print(f'[st]历史预测值[/st]')
-                console.print(f'[re]{reg_predict_history[:-1]}[/re]')
-                console.print(f'[st]本次预测值[/st]：[pre]{reg_predict_history[-1]}[/pre]')
-                right = 0
-                left  = 0
-                for each in reg_predict_infact_error_int[-5:]:
-                    if each > 0:
-                        right += 1
-                    elif each < 0:
-                        left  += 1
-                if right > left and right >= 3:
-                    console.print(f'[pre]下回合 [u]出现的DIFF值[/u] 可能比 {reg_predict_history[-1]} 小[/pre]')
-                elif left > right and left >= 3:
-                    console.print(f'[pre]下回合 [u]出现的DIFF值[/u] 可能比 {reg_predict_history[-1]} 大[/pre]')
-                elif right <= 2 and left <= 2:
-                    console.print(f'[pre]暂无法判断，观望[/pre]')
 
             console.print(f'模拟总计投入：{vote_count} 音符')
             console.print(f'模拟总计回收：{vote_win_count} 音符')
