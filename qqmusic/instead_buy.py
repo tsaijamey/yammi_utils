@@ -17,6 +17,10 @@ DICT_POS = {
     '小提琴'    : '580 1018',
     '吉他'      : '919 1047',
     '贝斯'      : '393 1288',
+    '架子鼓'    : '709 1311',
+    '竖琴'      : '199 1545',
+    '萨克斯风'  : '553 1575',
+    '圆号'      : '888 1545',
     '确认使用'  : '935 1685',
     '确认成功'  : '611 1352',
     '完成'      : '1129 1290',
@@ -49,6 +53,49 @@ def buy(a,b,num):
             time.sleep(0.5)
         os.popen("adb shell input tap " + DICT_POS['完成']).read()
         time.sleep(2)
+    os.popen("adb shell input tap " + DICT_POS['确认使用']).read()
+
+def buy_4(options:list, number:list):
+    # 逐个购买
+    os.popen("adb shell input tap " + DICT_POS[options[0]]).read()
+    time.sleep(1)
+    counter = str(number[0])
+    for n in counter:
+        os.popen("adb shell input keyevent " + KEY_E[n]).read()
+        time.sleep(0.1)
+    os.popen("adb shell input tap " + DICT_POS['完成']).read()
+    time.sleep(1)
+
+    os.popen("adb shell input tap " + DICT_POS[options[1]]).read()
+    time.sleep(1)
+    counter = str(number[1])
+    for n in counter:
+        os.popen("adb shell input keyevent " + KEY_E[n]).read()
+        time.sleep(0.1)
+    os.popen("adb shell input tap " + DICT_POS['完成']).read()
+    time.sleep(1)
+
+    if len(options) > 2:
+        os.popen("adb shell input tap " + DICT_POS[options[2]]).read()
+        time.sleep(1)
+        counter = str(number[2])
+        for n in counter:
+            os.popen("adb shell input keyevent " + KEY_E[n]).read()
+            time.sleep(0.1)
+        os.popen("adb shell input tap " + DICT_POS['完成']).read()
+        time.sleep(1)
+
+    if len(options) > 3:
+        os.popen("adb shell input tap " + DICT_POS[options[3]]).read()
+        time.sleep(1)
+        counter = str(number[3])
+        for n in counter:
+            os.popen("adb shell input keyevent " + KEY_E[n]).read()
+            time.sleep(0.1)
+        os.popen("adb shell input tap " + DICT_POS['完成']).read()
+        time.sleep(1)
+
+
     os.popen("adb shell input tap " + DICT_POS['确认使用']).read()
 
 # if __name__ == '__main__':
