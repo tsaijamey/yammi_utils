@@ -1,7 +1,5 @@
 '''新版的主程序
 '''
-
-
 # 引用库
 from rich.console import Console
 from rich.theme import Theme
@@ -14,18 +12,16 @@ console = Console(theme=Theme({
     "bg": "#a8a8a8",
     }))
 import time
-import datetime
 import os
 import traceback
 import pandas as pd
 import numpy as np
-
 import platform
-import instead_buy as by
-
 
 # 自定义库
 import instead_lib as inlib
+import instead_buy as by
+import pad_control as pdc
 
 # 预定义变量
 DIR = os.path.dirname(__file__)             # 当前文件所在的目录
@@ -56,6 +52,11 @@ DIFF_DICT = {
     '六':   6,
     '七':   7,
 }                                           # 各个Diff值的中文与数字表达对应关系
+CONFIGS = {
+    'bullet':'0',
+    'buy':'no',
+    'chat':'no',
+}
 
 
 start_timestamp = 0
@@ -78,17 +79,9 @@ for i in range(history_length):
     posis.append(0)
     diffs.append(0)
     level.append(2)
-
-
-
 reg_preds         = []
 reg_pred_error_str    = []
-
 pred_seeds_list = []
-seed = 90
-
-
-
 '''测算胜率
 '''
 guess = 0
@@ -106,13 +99,13 @@ vote_ = 0
 vote_win_count = 0
 voted = False
 try_buy = False
-BUY = False
 
 switch = 1
 buy_switch = 0
 round_gap = 0
 logical = 'c'
 preds_head = ''
+wins=[]
 
 
 # 预设变量
@@ -129,32 +122,39 @@ if platform.system().lower() == 'windows':
     record_msg = DIR+'./record_msg.log'
     if_buy = DIR+'./if_buy.txt'
 elif platform.system().lower() == 'linux':
+    shot_path = DIR + '/img/shot.png'
     record_path = DIR+'/auto2.csv'
+    diffs_log = DIR+'/diff.csv'
     diff_model_path = DIR+'/model/reg_diff_21_20221028_seed10.m'
     pos_model_path = DIR+'/model/clf_all_15___20221028_seed10.m'
-    shot_path = DIR + '/img/shot.png'
     rate_log = DIR+'/win_rate.log'
     buy_log = DIR+'/buy_log.log'
     level_log = DIR+'/high_low.log'
     record_msg = DIR+'/record_msg.log'
     if_buy = DIR+'/if_buy.txt'
-    diffs_log = DIR+'/diff.csv'
 
 diffs_rec = open(diffs_log, 'a', encoding='utf8')
 diffs_rec.write('\n')
 diffs_rec.close()
 
+def write_config(dict:dict,path:str):
+    r = open(path, 'w', encoding='utf8')
+    r.write('bullet='+dict['bullet']+'\n')
+    r.write('buy='+dict['buy']+'\n')
+    r.write('chat='+dict['chat']+'\n')
+    r.close()
+
 if __name__ == '__main__':
-    
     try:
+        pdc.main()
         while True:
             read_buy = open(if_buy, 'r', encoding='utf8')
+            # 读取购买配置
             for line in read_buy:
                 line = line.strip()
-                if 'yes' in line:
-                    BUY = True
-                else:
-                    BUY = False
+                key,value = line.split('=')
+                CONFIGS[key] = value
+                
             # 在获取结果时，容易因为点击意外导致列表为空，然后无法继续，因此增加这一段保障代码
 
             STOCK, _, RATE, TOP_STOCK   = inlib.init_stock()
@@ -166,14 +166,60 @@ if __name__ == '__main__':
                 inlib.screenshot_via_adb('shot.png')
                 try:
                     recent_result = inlib.treasure_result_ocr(shot_path)
+                    
                 except Exception as e:
-                    print(e)
+                    pdc.main()
+                    start_timestamp = 0
+                    item_history = []
+                    time_history = []
+                    records = []
+                    count_item          = []
+                    offset_item         = []
+                    item_copd = []
+                    last_copd = []
+                    posis   = []
+                    diffs   = []
+                    level   = []
+                    history_length = int(60*60/58)
+                    for i in range(history_length):
+                        posis.append(0)
+                        diffs.append(0)
+                        level.append(2)
+                    reg_preds         = []
+                    reg_pred_error_str    = []
+                    pred_seeds_list = []
+                    '''测算胜率
+                    '''
+                    guess = 0
+                    not_pred = []
+                    as_pred = []
+                    not_win_num = 0
+                    as_win_num = 0
+                    as_win_rate = 0
+                    not_win_rate = 0
+                    upper = 0
+                    lower = 0
+                    preds = []
+                    vote_count = 0
+                    vote_ = 0
+                    vote_win_count = 0
+                    voted = False
+                    try_buy = False
+
+                    switch = 1
+                    buy_switch = 0
+                    round_gap = 0
+                    logical = 'c'
+                    preds_head = ''
+                    wins =[]
 
             # 区分第一次和后面的其他回合
             if start_timestamp == 0:
                 # 获取第一次识别结果里的所有结果
                 item_history.append(recent_result[0])
                 time_history.append(recent_result[1][0])
+                print(item_history)
+                print(time_history)
                 # 获得识别结果后，确定 计算时间的时间戳 如何计算
                 start_timestamp = recent_result[1][1]
                 records.append([time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(start_timestamp)), recent_result[0]])
@@ -325,17 +371,21 @@ if __name__ == '__main__':
                 if records[-1][1] in buy_option[0:2]:
                     vote_win_count += votes[0] * 5
                     msg = '下注结果：【命中】。' + records[-1][0] + ' ' + records[-1][1] + '。本次回收：' + str(votes[0] * 5) + '。总投入：' + str(vote_count) + '，总回收：' + str(vote_win_count) + '，实际收益：' + str(int(vote_win_count*0.635 - vote_count*0.92)) + '，开关=' + str(switch)
-                    inlib.send_wechat('下注结果', msg)
+                    # inlib.send_wechat('下注结果', msg)
                     log_ = open(buy_log, 'a', encoding='utf8')
                     log_.write(msg + '\n')
                     log_.write('*'*40 + '\n')
                     log_.close()
+                    wins.append('胜')
+                    if vote_ == TOP_STOCK:
+                        CONFIGS['buy'] = 'no'
+                        write_config(CONFIGS,if_buy)
                     vote_ = 0
                 elif len(buy_option) == 4 and records[-1][1] in buy_option[2:4]:
                     win = 0
                     if votes[2] == 0:
                         msg = '下注结果：【命中但未押】。' + records[-1][0] + ' ' + records[-1][1] + '。本次回收：0。' + '，总投入：' + str(vote_count) + '，总回收：' + str(vote_win_count) + '，实际收益：' + str(int(vote_win_count*0.635 - vote_count*0.92)) + '，开关=' + str(switch)
-                        inlib.send_wechat('下注结果', msg)
+                        # inlib.send_wechat('下注结果', msg)
                         log_ = open(buy_log, 'a', encoding='utf8')
                         log_.write(msg + '\n')
                         log_.write('*'*40 + '\n')
@@ -351,26 +401,26 @@ if __name__ == '__main__':
                             win = int(votes[0]/4 * 35)
                         vote_win_count += win
                         msg = '下注结果：【命中】。' + records[-1][0] + ' ' + records[-1][1] + '。本次回收：' + str(win) + '。总投入：' + str(vote_count) + '，总回收：' + str(vote_win_count) + '，实际收益：' + str(int(vote_win_count*0.635 - vote_count*0.92)) + '，开关=' + str(switch)
-                        inlib.send_wechat('下注结果', msg)
+                        # inlib.send_wechat('下注结果', msg)
                         log_ = open(buy_log, 'a', encoding='utf8')
                         log_.write(msg + '\n')
                         log_.write('*'*40 + '\n')
                         log_.close()
                         vote_ = 0
+                    wins.append('负')
                 elif records[-1][1] not in buy_option:
-                    if switch == 1:
-                        switch = 2
-                    elif switch == 2:
-                        switch = 1
-                    round_gap = 3
+                    if logical == 'b':
+                        round_gap = 1
                     msg = '下注结果：【未命中】。' + records[-1][0] + ' ' + records[-1][1] + '。本次回收：0。' + '，总投入：' + str(vote_count) + '，总回收：' + str(vote_win_count) + '，实际收益：' + str(int(vote_win_count*0.635 - vote_count*0.92)) + '，开关=' + str(switch)
-                    inlib.send_wechat('下注结果', msg)
+                    # inlib.send_wechat('下注结果', msg)
                     log_ = open(buy_log, 'a', encoding='utf8')
                     log_.write(msg + '\n')
                     log_.write('*'*40 + '\n')
                     log_.close()
+                    wins.append('负')
                     
-
+                if len(wins) > 5:
+                    wins.pop(0)
                 console.print(msg)
 
             voted = False
@@ -378,7 +428,19 @@ if __name__ == '__main__':
             buy_switch = 0
             buy_option = []
             
-            
+            if wins[-4:] == ['胜', '负', '负', '胜'] or wins[-4:] == ['负', '负', '负', '负'] or wins[-4:] == ['负', '负', '负', '胜']:
+                CONFIGS['buy'] = 'no'
+                write_config(CONFIGS,if_buy)
+            elif wins[-5:].count('胜') >= 3:
+                CONFIGS['buy'] = 'yes'
+                write_config(CONFIGS,if_buy)
+
+            if wins[-3:] == ['胜','负','负']: # or  wins[-4:] == ['负','负','负','负']:
+                if switch == 1:
+                    switch = 2
+                elif switch == 2:
+                    switch = 1
+
 
             # 计算胜率
             if guess > 0:
@@ -440,18 +502,18 @@ if __name__ == '__main__':
                     lower = 0
                 
                 if upper == 1:
-                    # as_pred = [item_copd[2][0], item_copd[3][0], item_copd[0][0], item_copd[1][0]]
-                    as_pred = [item_copd[2][0], item_copd[3][0]]
-                    # not_pred = [item_copd[4][0], item_copd[5][0], item_copd[6][0], item_copd[7][0]]
-                    not_pred = [item_copd[4][0], item_copd[5][0]]
+                    as_pred = [item_copd[2][0], item_copd[3][0], item_copd[0][0], item_copd[1][0]]
+                    # as_pred = [item_copd[2][0], item_copd[3][0]]
+                    not_pred = [item_copd[4][0], item_copd[5][0], item_copd[6][0], item_copd[7][0]]
+                    # not_pred = [item_copd[4][0], item_copd[5][0]]
                     console.print(f'{prediction_sd10[0]}在上区，按预测选：[red]{as_pred}[/]')
                     console.print(f'{prediction_sd10[0]}在上区，按补充选：[red]{not_pred}[/]')
                     guess += 1
                 elif lower == 1:                        
-                    # as_pred = [item_copd[4][0], item_copd[5][0], item_copd[6][0], item_copd[7][0]]
-                    as_pred = [item_copd[4][0], item_copd[5][0]]
-                    # not_pred = [item_copd[2][0], item_copd[3][0], item_copd[0][0], item_copd[1][0]]
-                    not_pred = [item_copd[2][0], item_copd[3][0]]
+                    as_pred = [item_copd[4][0], item_copd[5][0], item_copd[6][0], item_copd[7][0]]
+                    # as_pred = [item_copd[4][0], item_copd[5][0]]
+                    not_pred = [item_copd[2][0], item_copd[3][0], item_copd[0][0], item_copd[1][0]]
+                    # not_pred = [item_copd[2][0], item_copd[3][0]]
                     console.print(f'{prediction_sd10[0]}在下区，按预测选：[red]{as_pred}[/]')
                     console.print(f'{prediction_sd10[0]}在下区，按补充选：[red]{not_pred}[/]')
                     guess += 1
@@ -470,7 +532,6 @@ if __name__ == '__main__':
             else:
                 # 购买条件
                 comment = ''
-                buy_option == []
                 if logical == 'b':
                     if round_gap != 0:
                         round_gap -= 1
@@ -594,10 +655,16 @@ if __name__ == '__main__':
                     if total >= 10:
                         if abs(reg_pred_error_int[-1]) <= 1:
                             for i in range(2,6):
-                                if abs(item_copd[i][4] - reg_preds) <= 1:
-                                    buy_option.append(item_copd[i][0])
+                                if switch == 1:
+                                    if abs(item_copd[i][4] - reg_preds[-1]) <= 1:
+                                        buy_option.append(item_copd[i][0])
+                                if switch == 2:
+                                    if abs(item_copd[i][4] - reg_preds[-1]) > 1:
+                                        buy_option.append(item_copd[i][0])
                             if len(buy_option) == 2:
                                 buy_switch = 1
+                            else:
+                                buy_option = []
                     
 
                 if buy_switch == 1:
@@ -609,11 +676,9 @@ if __name__ == '__main__':
                     console.print(comment)
 
                     if vote_ == 2:
-                        # votes = [1,1,0,0]
-                        votes = [1,1]
+                        votes = [1,1,0,0]
                     else:
-                        # votes = [int(vote_/10*4),int(vote_/10*4),int(vote_/10),int(vote_/10)]
-                        votes = [int(vote_/2), int(vote_/2)]
+                        votes = [int(vote_/2), int(vote_/2), 0, 0]
                     console.print(f'模拟下注：{buy_option} | {votes}音符')
                     msg = ''
                     msg = msg + comment
@@ -625,14 +690,45 @@ if __name__ == '__main__':
                     log_.write(msg)
                     log_.close()
                     
-                    inlib.send_wechat('模拟下注', msg)
+                    # inlib.send_wechat('模拟下注', msg)
                     try_buy = True
 
-                    if BUY == True:
+                    if CONFIGS['buy'] == 'yes' and int(CONFIGS['bullet']) > 0:
+                        
+                        '''
+                        这里要解决的问题是
+                        1. 当处于购买状态时，如果剩余子弹大于0
+                            剩余子弹数量大于要押注的数量，且上一回合没赢
+                        '''
+                        if wins[-1] != '胜':
+                            if int(CONFIGS['bullet']) <= vote_:
+                                CONFIGS['buy'] = 'no'
+                                write_config(CONFIGS,if_buy)
+                            elif int(CONFIGS['bullet']) > vote_ and int(CONFIGS['bullet']) >= int(STOCK + STOCK/RATE + STOCK/RATE/RATE + TOP_STOCK):
+                                pass
+                            elif int(CONFIGS['bullet']) > vote_ and int(CONFIGS['bullet']) < int(STOCK + STOCK/RATE + STOCK/RATE/RATE + TOP_STOCK):
+                                CONFIGS['buy'] = 'no'
+                                write_config(CONFIGS,if_buy)
+                            else:
+                                pass
+                        if wins[-1] == '负':
+                            if vote_ == TOP_STOCK and int(CONFIGS['bullet']) <= TOP_STOCK:
+                                CONFIGS['buy'] = 'no'
+                                write_config(CONFIGS,if_buy)
+                            elif vote_ == int(STOCK/RATE) and int(CONFIGS['bullet']) <= int(STOCK/RATE + STOCK/RATE/RATE + TOP_STOCK):
+                                CONFIGS['buy'] = 'no'
+                                write_config(CONFIGS,if_buy)
+                            elif vote_ == int(STOCK/RATE/RATE) and int(CONFIGS['bullet']) <= int(STOCK/RATE/RATE + TOP_STOCK):
+                                CONFIGS['buy'] = 'no'
+                                write_config(CONFIGS,if_buy)
+
+                    if CONFIGS['buy'] == 'yes' and CONFIGS['bullet'] != '0':
                         time.sleep(5)
+                        CONFIGS['bullet'] = str(int(int(CONFIGS['bullet']) - vote_))
+                        write_config(CONFIGS,if_buy)
                         by.buy_4(buy_option,votes)
                         voted = True
-                    else:
+                    elif CONFIGS['buy'] == 'no':
                         voted = False
 
             
@@ -680,6 +776,60 @@ if __name__ == '__main__':
                     level_rec.write(str(level[i])+'\n')
             diffs_rec.close()
             level_rec.close()
+
+            if CONFIGS['chat'] == 'yes' and len(buy_option) > 0:
+                # pad按返回键
+                os.popen('adb shell input keyevent 4')
+                time.sleep(2)
+                # 点击聊天输入框
+                pdc.open_chat()
+                time.sleep(1)
+                if buy_option[0] == '钢琴':
+                    content = 'buy%spiano%s&%s'
+                elif buy_option[0] == '小提琴':
+                    content = 'buy%svoilin%s&%s'
+                elif buy_option[0] == '吉他':
+                    content = 'buy%sguitar%s&%s'
+                elif buy_option[0] == '贝斯':
+                    content = 'buy%sbeth%s&%s'
+                os.popen('adb shell input text '+ content).read()
+                if buy_option[1] == '钢琴':
+                    content = 'piano'
+                elif buy_option[1] == '小提琴':
+                    content = 'voilin'
+                elif buy_option[1] == '吉他':
+                    content = 'guitar'
+                elif buy_option[1] == '贝斯':
+                    content = 'beth'
+                os.popen('adb shell input text '+ content).read()
+                if len(buy_option) == 4:
+                    if buy_option[2] == '架子鼓':
+                        content = '%s&%sdrum%s&%s'
+                    elif buy_option[2] == '竖琴':
+                        content = '%s&%sharp%s&%s'
+                    elif buy_option[2] == '萨克斯风':
+                        content = '%s&%ssax%s&%s'
+                    elif buy_option[2] == '圆号':
+                        content = '%s&%shorn%s&%s'
+                    os.popen('adb shell input text '+ content).read()
+                    if buy_option[3] == '架子鼓':
+                        content = 'drum'
+                    elif buy_option[3] == '竖琴':
+                        content = 'harp'
+                    elif buy_option[3] == '萨克斯风':
+                        content = 'sax'
+                    elif buy_option[3] == '圆号':
+                        content = 'horn'
+                    os.popen('adb shell input text '+ content).read()
+                # 发送消息
+                time.sleep(1)
+                pdc.send_chat()
+                time.sleep(2)
+                pdc.open_kd()
+            
+
+            if total % 200 == 0:
+                pdc.main()
 
             inlib.wait_next(start_timestamp, 58)
             start_timestamp += 58

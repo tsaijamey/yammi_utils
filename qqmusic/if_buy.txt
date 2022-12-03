@@ -1,1 +1,3 @@
-no
+bullet=0
+buy=yes
+chat=no

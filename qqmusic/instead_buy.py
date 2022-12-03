@@ -57,44 +57,20 @@ def buy(a,b,num):
 
 def buy_4(options:list, number:list):
     # 逐个购买
-    os.popen("adb shell input tap " + DICT_POS[options[0]]).read()
-    time.sleep(1)
-    counter = str(number[0])
-    for n in counter:
-        os.popen("adb shell input keyevent " + KEY_E[n]).read()
-        time.sleep(0.1)
-    os.popen("adb shell input tap " + DICT_POS['完成']).read()
-    time.sleep(1)
-
-    os.popen("adb shell input tap " + DICT_POS[options[1]]).read()
-    time.sleep(1)
-    counter = str(number[1])
-    for n in counter:
-        os.popen("adb shell input keyevent " + KEY_E[n]).read()
-        time.sleep(0.1)
-    os.popen("adb shell input tap " + DICT_POS['完成']).read()
-    time.sleep(1)
-
-    if len(options) > 2:
-        os.popen("adb shell input tap " + DICT_POS[options[2]]).read()
-        time.sleep(1)
-        counter = str(number[2])
-        for n in counter:
-            os.popen("adb shell input keyevent " + KEY_E[n]).read()
-            time.sleep(0.1)
-        os.popen("adb shell input tap " + DICT_POS['完成']).read()
-        time.sleep(1)
-
-    if len(options) > 3:
-        os.popen("adb shell input tap " + DICT_POS[options[3]]).read()
-        time.sleep(1)
-        counter = str(number[3])
-        for n in counter:
-            os.popen("adb shell input keyevent " + KEY_E[n]).read()
-            time.sleep(0.1)
-        os.popen("adb shell input tap " + DICT_POS['完成']).read()
-        time.sleep(1)
-
+    if number[2] != 0 and number[3] != 0:
+        for i in len(options):
+            os.popen("adb shell input tap " + DICT_POS[options[i]]).read()
+            time.sleep(1)
+            os.popen("adb shell input text " + str(number[i])).read()
+            time.sleep(1)
+            os.popen("adb shell input tap " + DICT_POS['完成']).read()
+    else:
+        for i in range(2):
+            os.popen("adb shell input tap " + DICT_POS[options[i]]).read()
+            time.sleep(1)
+            os.popen("adb shell input text " + str(number[i])).read()
+            time.sleep(1)
+            os.popen("adb shell input tap " + DICT_POS['完成']).read()
 
     os.popen("adb shell input tap " + DICT_POS['确认使用']).read()
 
