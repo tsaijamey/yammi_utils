@@ -435,7 +435,7 @@ if __name__ == '__main__':
                 CONFIGS['buy'] = 'yes'
                 write_config(CONFIGS,if_buy)
 
-            if wins[-3:] == ['胜','负','负']: # or  wins[-4:] == ['负','负','负','负']:
+            if wins[-5:].count('胜') <= 2:
                 if switch == 1:
                     switch = 2
                 elif switch == 2:
