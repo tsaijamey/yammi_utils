@@ -1,5 +1,6 @@
 import os
 import time
+import platform
 
 POS = {
     'MUSIC':'193 1167',
@@ -23,7 +24,10 @@ def kill_music():
     os.popen(commands).read()
 
 def detect_music():
-    commands = 'adb shell ps -A | findstr qqmusic'
+    if platform.system().lower() == 'windows':
+        commands = 'adb shell ps -A | findstr qqmusic'
+    elif platform.system().lower() == 'linux':
+        commands = 'adb shell ps -A | grep qqmusic'
     if len(os.popen(commands).read()) > 0:
         return True
     else:

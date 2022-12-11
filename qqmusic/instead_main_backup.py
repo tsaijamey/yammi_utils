@@ -114,7 +114,7 @@ if platform.system().lower() == 'windows':
     shot_path = DIR + './img/shot.png'
     record_path = DIR+'./auto2.csv'
     diffs_log = DIR+'./diff.csv'
-    diff_model_path = DIR+'./model/reg_diff_21_20221028_seed10.m'
+    diff_model_path = DIR+'./model/reg_8_20221028_seed10.m'
     pos_model_path = DIR+'./model/clf_all_15___20221028_seed10.m'
     rate_log = DIR+'./win_rate.log'
     buy_log = DIR+'./buy_log.log'
@@ -125,7 +125,7 @@ elif platform.system().lower() == 'linux':
     shot_path = DIR + '/img/shot.png'
     record_path = DIR+'/auto2.csv'
     diffs_log = DIR+'/diff.csv'
-    diff_model_path = DIR+'/model/reg_diff_21_20221028_seed10.m'
+    diff_model_path = DIR+'/model/reg_8_20221028_seed10.m'
     pos_model_path = DIR+'/model/clf_all_15___20221028_seed10.m'
     rate_log = DIR+'/win_rate.log'
     buy_log = DIR+'/buy_log.log'
@@ -320,7 +320,7 @@ if __name__ == '__main__':
 
             
             # 根据Diff值的预测：
-            reg_predict = inlib.load_rf_reg_model(DIR+'\\model\\reg_8_20221028_seed10.m',diffs[-20:]).tolist()[0]
+            reg_predict = inlib.load_rf_reg_model(diff_model_path,diffs[-20:]).tolist()[0]
             if reg_predict == 0:
                 reg_predict_to_int = 0
             else:

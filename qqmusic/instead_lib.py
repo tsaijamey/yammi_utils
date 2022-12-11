@@ -86,8 +86,10 @@ def getshot_via_adb(file_name_1,file_name_2):
     # os.popen("adb shell input tap 147 415").read()
 
 def check_screen_via_adb():
-    DIR = os.path.dirname(__file__)
-    return os.popen("adb shell dumpsys window windows | findstr mCurrentFocus").read()
+    if platform.system().lower() == 'windows':
+        return os.popen("adb shell dumpsys window windows | findstr mCurrentFocus").read()
+    elif platform.system().lower() == 'linux':
+        return os.popen("adb shell dumpsys window windows | grep mCurrentFocus").read()
 
 def treasure_result_ocr(file_path:str) -> list:
     '''寻宝记录进行ocr识别
