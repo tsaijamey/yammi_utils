@@ -110,28 +110,28 @@ wins=[]
 
 # 预设变量
 DIR = os.path.dirname(__file__)
+# 获得当前日期
+current_date = time.strftime("%Y-%m-%d", time.localtime(time.time()))
 if platform.system().lower() == 'windows':
     shot_path = DIR + './img/shot.png'
-    record_path = DIR+'./auto2.csv'
-    diffs_log = DIR+'./diff.csv'
+    record_path = DIR+'./record-' + current_date + '.csv'
+    diffs_log = DIR+'./diff-' + current_date + '.csv'
+    rate_log = DIR+'./win_rate-' + current_date + '.log'
+    buy_log = DIR+'./buy_log-' + current_date + '.log'
+    # level_log = DIR+'./high_low.log'
+    if_buy = DIR+'./if_buy.txt'
     diff_model_path = DIR+'./model/reg_8_20221028_seed10.m'
     pos_model_path = DIR+'./model/clf_all_15___20221028_seed10.m'
-    rate_log = DIR+'./win_rate.log'
-    buy_log = DIR+'./buy_log.log'
-    level_log = DIR+'./high_low.log'
-    record_msg = DIR+'./record_msg.log'
-    if_buy = DIR+'./if_buy.txt'
 elif platform.system().lower() == 'linux':
     shot_path = DIR + '/img/shot.png'
-    record_path = DIR+'/auto2.csv'
-    diffs_log = DIR+'/diff.csv'
+    record_path = DIR+'/auto2-' + current_date + '.csv'
+    diffs_log = DIR+'/diff-' + current_date + '.csv'
+    rate_log = DIR+'/win_rate-' + current_date + '.log'
+    buy_log = DIR+'/buy_log-' + current_date + '.log'
+    # level_log = DIR+'/high_low.log'
+    if_buy = DIR+'/if_buy.txt'    
     diff_model_path = DIR+'/model/reg_8_20221028_seed10.m'
     pos_model_path = DIR+'/model/clf_all_15___20221028_seed10.m'
-    rate_log = DIR+'/win_rate.log'
-    buy_log = DIR+'/buy_log.log'
-    level_log = DIR+'/high_low.log'
-    record_msg = DIR+'/record_msg.log'
-    if_buy = DIR+'/if_buy.txt'
 
 diffs_rec = open(diffs_log, 'a', encoding='utf8')
 diffs_rec.write('\n')
@@ -218,8 +218,8 @@ if __name__ == '__main__':
                 # 获取第一次识别结果里的所有结果
                 item_history.append(recent_result[0])
                 time_history.append(recent_result[1][0])
-                print(item_history)
-                print(time_history)
+                # print(item_history)
+                # print(time_history)
                 # 获得识别结果后，确定 计算时间的时间戳 如何计算
                 start_timestamp = recent_result[1][1]
                 records.append([time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(start_timestamp)), recent_result[0]])
@@ -238,9 +238,7 @@ if __name__ == '__main__':
                 total += 1
 
             
-            console.print('[st]最新记录：[/st]')
-            console.print(records[-3:])
-            console.print(f'总数：{total}')            
+            console.print(f'[st]最新记录：[/st]{records[-3:]}，总数：{total}')        
 
             # 把出货历史，泛化成数字
             nums = ''
@@ -348,9 +346,7 @@ if __name__ == '__main__':
                     reg_pred_error_int.append(int(each))
                     
                 console.print(f'误差量：{reg_pred_error_str} | [wa]{sum(reg_pred_error_int)}[/wa]')
-                console.print(f'[st]历史预测值[/st]')
-                console.print(f'[re]{reg_preds[:-1]}[/re]')
-                console.print(f'[st]本次预测值[/st]：[pre]{reg_preds[-1]}[/pre]')
+                console.print(f'[st]预测值[/st]：[re]{reg_preds[:-1]}[/re] | [pre]{reg_preds[-1]}[/pre]')
 
             '''猜测区
             猜的策略：
@@ -428,10 +424,10 @@ if __name__ == '__main__':
             buy_switch = 0
             buy_option = []
             
-            if wins[-4:] == ['胜', '负', '负', '胜'] or wins[-4:] == ['负', '负', '负', '负'] or wins[-4:] == ['负', '负', '负', '胜']:
+            if wins[-3:] == ['负', '负', '胜'] or wins[-3:] == ['负', '负', '负']:
                 CONFIGS['buy'] = 'no'
                 write_config(CONFIGS,if_buy)
-            elif wins[-5:].count('胜') >= 3:
+            elif wins[-2:] == ['胜', '胜']:
                 CONFIGS['buy'] = 'yes'
                 write_config(CONFIGS,if_buy)
 
@@ -446,7 +442,7 @@ if __name__ == '__main__':
             if guess > 0:
                 as_win_rate = round(as_win_num/guess,2)
                 not_win_rate = round(not_win_num/guess,2)
-                console.print(f"【预测】胜率: {as_win_num}/{guess}，[green]{as_win_rate}[/]【补充】胜率: {not_win_num}/{guess}，[green]{not_win_rate}[/]")
+                # console.print(f"【预测】胜率: {as_win_num}/{guess}，[green]{as_win_rate}[/]【补充】胜率: {not_win_num}/{guess}，[green]{not_win_rate}[/]")
 
 
             if records[-1][1] in as_pred:
@@ -460,7 +456,8 @@ if __name__ == '__main__':
                 preds_head = preds[0]
                 preds.pop(0)
             if len(preds) >= 1:
-                console.print(f'前：{preds[:5]}...后：{preds[-5:]}。预测={preds.count("预测")}，补充={preds.count("补充")}')
+                # console.print(f'前：{preds[:5]}...后：{preds[-5:]}。预测={preds.count("预测")}，补充={preds.count("补充")}')
+                pass
 
             # record the rate per hour.
             if (start_timestamp % (60 * 60) <= 30 or start_timestamp % (60 * 60) >= (60*60-30)) and guess > 0:
@@ -472,7 +469,7 @@ if __name__ == '__main__':
                 record_rate.write('*' * 20 + '\n')
                 record_rate.close()
                 # 重置下注相关的数据
-                console.print(f'[red]整点重置数据[/]')
+                # console.print(f'[red]整点重置数据[/]')
                 guess = 0
                 not_pred = []
                 as_pred = []
@@ -506,36 +503,38 @@ if __name__ == '__main__':
                     # as_pred = [item_copd[2][0], item_copd[3][0]]
                     not_pred = [item_copd[4][0], item_copd[5][0], item_copd[6][0], item_copd[7][0]]
                     # not_pred = [item_copd[4][0], item_copd[5][0]]
-                    console.print(f'{prediction_sd10[0]}在上区，按预测选：[red]{as_pred}[/]')
-                    console.print(f'{prediction_sd10[0]}在上区，按补充选：[red]{not_pred}[/]')
+                    # console.print(f'{prediction_sd10[0]}在上区，按预测选：[red]{as_pred}[/]')
+                    # console.print(f'{prediction_sd10[0]}在上区，按补充选：[red]{not_pred}[/]')
                     guess += 1
                 elif lower == 1:                        
                     as_pred = [item_copd[4][0], item_copd[5][0], item_copd[6][0], item_copd[7][0]]
                     # as_pred = [item_copd[4][0], item_copd[5][0]]
                     not_pred = [item_copd[2][0], item_copd[3][0], item_copd[0][0], item_copd[1][0]]
                     # not_pred = [item_copd[2][0], item_copd[3][0]]
-                    console.print(f'{prediction_sd10[0]}在下区，按预测选：[red]{as_pred}[/]')
-                    console.print(f'{prediction_sd10[0]}在下区，按补充选：[red]{not_pred}[/]')
+                    # console.print(f'{prediction_sd10[0]}在下区，按预测选：[red]{as_pred}[/]')
+                    # console.print(f'{prediction_sd10[0]}在下区，按补充选：[red]{not_pred}[/]')
                     guess += 1
                 else:
-                    console.print('[blue]本局忽略[/]')
+                    # console.print('[blue]本局忽略[/]')
+                    pass
                     
 
             # 只在胜率大于50，且上一次结果不为大，且四个小乐器的数量不存在相同 时 实施
             # 增加时间限制，去掉凌晨和下午的时间。
-            console.print(f'今日秒数：{(start_timestamp+8*60*60) % (24*60*60)}')
+            # console.print(f'今日秒数：{(start_timestamp+8*60*60) % (24*60*60)}')
             # if (start_timestamp+8*60*60) % (24*60*60) <= (6*60*60) or ((start_timestamp+8*60*60) % (24*60*60) >= (10*60*60) and (start_timestamp+8*60*60) % (24*60*60) <= (18*60*60)):
             
             # 时段条件
             if (start_timestamp+8*60*60) % (24*60*60) < (0*60*60):
-                console.print(f'本时段不进行模拟')
+                # console.print(f'本时段不进行模拟')
+                pass
             else:
                 # 购买条件
                 comment = ''
                 if logical == 'b':
                     if round_gap != 0:
                         round_gap -= 1
-                        console.print(f'Round Gap = {round_gap}')
+                        # console.print(f'Round Gap = {round_gap}')
                     else:
                         if as_win_rate > 0.6 or not_win_rate > 0.6:
                             if records[-1][1] not in ['架子鼓','竖琴','萨克斯风','圆号'] and inlib.if_item_sum_middle_balance(count_item[:4]) == False and guess >= 4:
@@ -597,7 +596,8 @@ if __name__ == '__main__':
                                     buy_option = not_pred
                                     comment = '条件：小于0.6阈值。开关：反向。'
                         elif guess < 4:
-                            console.print(f'判断基数不足。')
+                            # console.print(f'判断基数不足。')
+                            pass
                         else:
                             reason = ''
                             if as_win_rate < 0.6 and not_win_rate < 0.6:
@@ -606,7 +606,7 @@ if __name__ == '__main__':
                                 reason = reason + '前一回合出大。'
                             if inlib.if_item_sum_middle_balance(count_item[:4]) == True:
                                 reason = reason + '存在相同数量的物品。'
-                            console.print(f'[wa]不符合下注条件：{reason}[/wa]')
+                            # console.print(f'[wa]不符合下注条件：{reason}[/wa]')
                 elif logical == 'a':
                     pass
                     if preds.count("预测") == preds.count("补充") and preds.count("预测") == 10:
@@ -620,9 +620,9 @@ if __name__ == '__main__':
                     elif preds.count("预测") > preds.count("补充"):
                         count_last_preds = preds[:-1]
                         count_last_preds.append(preds_head)
-                        console.print(f'上回合：预测={count_last_preds.count("预测")} 补充={count_last_preds.count("补充")}')
+                        # console.print(f'上回合：预测={count_last_preds.count("预测")} 补充={count_last_preds.count("补充")}')
                         if count_last_preds.count("预测") < preds.count("预测"):
-                            print('预测还在继续增长')
+                            # print('预测还在继续增长')
                             if preds[0] == '预测':
                                 buy_switch = 1
                                 buy_option = as_pred
@@ -630,15 +630,17 @@ if __name__ == '__main__':
                             else:
                                 pass
                         elif count_last_preds.count("预测") > preds.count("预测"):
-                            print('预测在衰退')
+                            # print('预测在衰退')
+                            pass
                         elif count_last_preds.count("预测") == preds.count("预测"):
-                            print('与上回合持平')
+                            # print('与上回合持平')
+                            pass
                     elif preds.count("预测") < preds.count("补充"):
                         count_last_preds = preds[:-1]
                         count_last_preds.append(preds_head)
-                        console.print(f'上回合：预测={count_last_preds.count("预测")} 补充={count_last_preds.count("补充")}')
+                        # console.print(f'上回合：预测={count_last_preds.count("预测")} 补充={count_last_preds.count("补充")}')
                         if count_last_preds.count("补充") < preds.count("补充"):
-                            print('补充还在继续增长')
+                            # print('补充还在继续增长')
                             if preds[0] == '补充':
                                 buy_switch = 1
                                 buy_option = not_pred
@@ -646,11 +648,14 @@ if __name__ == '__main__':
                             else:
                                 pass
                         elif count_last_preds.count("补充") > preds.count("补充"):
-                            print('补充在衰退')
+                            # print('补充在衰退')
+                            pass
                         elif count_last_preds.count("补充") == preds.count("补充"):
-                            print("与上回合持平")
+                            # print("与上回合持平")
+                            pass
                     else:
-                        console.print('预测量不足。')
+                        # console.print('预测量不足。')
+                        pass
                 elif logical == 'c':
                     if total >= 10:
                         if abs(reg_pred_error_int[-1]) <= 1:
@@ -668,10 +673,13 @@ if __name__ == '__main__':
                     
 
                 if buy_switch == 1:
-                    if vote_ == 0 or vote_ == TOP_STOCK:
-                        vote_ = STOCK
-                    else:
-                        vote_ = int(vote_/RATE)
+                    if CONFIGS['buy'] == 'yes':
+                        if vote_ == 0 or vote_ == TOP_STOCK:
+                            vote_ = STOCK
+                        else:
+                            vote_ = int(vote_/RATE)
+                    elif CONFIGS['buy'] == 'no':
+                        vote_ = 0
                     vote_count += vote_
                     console.print(comment)
 
@@ -733,8 +741,7 @@ if __name__ == '__main__':
 
             
 
-            console.print(f'模拟总计投入：{vote_count} 音符')
-            console.print(f'模拟总计回收：{vote_win_count} 音符')
+            console.print(f'拟总计投入：{vote_count} 音符 | 总计回收：{vote_win_count} 音符 | 收益：{int(vote_win_count*0.63) - vote_count}')
             console.print(f'起注：{STOCK} | 封顶：{TOP_STOCK}')
 
             # 格式化展示，方便查看数值
@@ -766,16 +773,16 @@ if __name__ == '__main__':
             
             # 存一份diff数据用来训练
             diffs_rec = open(diffs_log, 'a', encoding='utf8')
-            level_rec = open(level_log, 'a', encoding='utf8')
+            # level_rec = open(level_log, 'a', encoding='utf8')
             for i in range(history_length):
                 if i != history_length-1:
                     diffs_rec.write(str(diffs[i])+',')
-                    level_rec.write(str(level[i])+',')
+                    # level_rec.write(str(level[i])+',')
                 else:
                     diffs_rec.write(str(diffs[i])+'\n')
-                    level_rec.write(str(level[i])+'\n')
+                    # level_rec.write(str(level[i])+'\n')
             diffs_rec.close()
-            level_rec.close()
+            # level_rec.close()
 
             if CONFIGS['chat'] == 'yes' and len(buy_option) > 0:
                 # pad按返回键

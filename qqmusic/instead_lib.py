@@ -51,8 +51,8 @@ def send_wechat_self(msg):
 
 def init_stock():
     stock   = 2
-    times   = 3
-    rate    = 0.20
+    times   = 2
+    rate    = 0.10
     top     = stock
     for i in range(times):
         top = int(top/rate)
