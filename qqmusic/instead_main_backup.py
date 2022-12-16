@@ -106,6 +106,7 @@ round_gap = 0
 logical = 'c'
 preds_head = ''
 wins=[]
+win_counter = 0
 
 
 # 预设变量
@@ -212,6 +213,7 @@ if __name__ == '__main__':
                     logical = 'c'
                     preds_head = ''
                     wins =[]
+                    win_counter = 0
 
             # 区分第一次和后面的其他回合
             if start_timestamp == 0:
@@ -430,7 +432,7 @@ if __name__ == '__main__':
             # if wins[-3:] == ['负', '负', '胜'] or wins[-3:] == ['负', '负', '负']:
             if win_counter == 2:
                 CONFIGS['buy'] = 'no'
-                
+
                 write_config(CONFIGS,if_buy)
             elif wins[-2:] == ['胜', '胜']:
                 CONFIGS['buy'] = 'yes'
