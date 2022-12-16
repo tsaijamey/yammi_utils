@@ -373,9 +373,10 @@ if __name__ == '__main__':
                     log_.write('*'*40 + '\n')
                     log_.close()
                     wins.append('胜')
-                    if vote_ == TOP_STOCK:
-                        CONFIGS['buy'] = 'no'
-                        write_config(CONFIGS,if_buy)
+                    win_counter += 1
+                    # if vote_ == TOP_STOCK:
+                    #     CONFIGS['buy'] = 'no'
+                    #     write_config(CONFIGS,if_buy)
                     vote_ = 0
                 elif len(buy_option) == 4 and records[-1][1] in buy_option[2:4]:
                     win = 0
@@ -424,18 +425,21 @@ if __name__ == '__main__':
             buy_switch = 0
             buy_option = []
             
-            if wins[-3:] == ['负', '负', '胜'] or wins[-3:] == ['负', '负', '负']:
+            # if wins[-4:] == ['胜', '负', '负', '胜'] or wins[-4:] == ['负', '负', '负', '负'] or wins[-4:] == ['负', '负', '负', '胜']:
+            # if wins[-3:] == ['负', '负', '胜'] or wins[-3:] == ['负', '负', '负']:
+            if win_counter == 2:
                 CONFIGS['buy'] = 'no'
                 write_config(CONFIGS,if_buy)
             elif wins[-2:] == ['胜', '胜']:
                 CONFIGS['buy'] = 'yes'
+                win_counter = 0
                 write_config(CONFIGS,if_buy)
 
-            if wins[-5:].count('胜') <= 2:
-                if switch == 1:
-                    switch = 2
-                elif switch == 2:
-                    switch = 1
+            # if wins[-5:].count('胜') <= 2:
+            #     if switch == 1:
+            #         switch = 2
+            #     elif switch == 2:
+            #         switch = 1
 
 
             # 计算胜率
@@ -683,10 +687,12 @@ if __name__ == '__main__':
                     vote_count += vote_
                     console.print(comment)
 
-                    if vote_ == 2:
-                        votes = [1,1,0,0]
-                    else:
-                        votes = [int(vote_/2), int(vote_/2), 0, 0]
+                    # if vote_ == 2:
+                    #     votes = [1,1,0,0]
+                    # else:
+                    #     votes = [int(vote_/2), int(vote_/2), 0, 0]
+
+                    votes = [int(vote_/2), int(vote_/2), 0, 0]
                     console.print(f'模拟下注：{buy_option} | {votes}音符')
                     msg = ''
                     msg = msg + comment
