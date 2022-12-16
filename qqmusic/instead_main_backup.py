@@ -420,6 +420,7 @@ if __name__ == '__main__':
                     wins.pop(0)
                 console.print(msg)
 
+
             voted = False
             try_buy = False
             buy_switch = 0
@@ -429,6 +430,7 @@ if __name__ == '__main__':
             # if wins[-3:] == ['负', '负', '胜'] or wins[-3:] == ['负', '负', '负']:
             if win_counter == 2:
                 CONFIGS['buy'] = 'no'
+                
                 write_config(CONFIGS,if_buy)
             elif wins[-2:] == ['胜', '胜']:
                 CONFIGS['buy'] = 'yes'
