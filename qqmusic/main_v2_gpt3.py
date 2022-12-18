@@ -114,10 +114,10 @@ if __name__ == '__main__':
             '''
             当记录数达到达到31时，使用openAI的davanci模型进行预测
             '''
-            if len(records) > 10:
+            if len(records) > 5:
                 text = ''
                 for each in records:
-                    text = text + each + '；'
+                    text = text + each[0] + ' ' + each[1] + '；'
                 text = '有一段格式为“时间-值”的时间序列值如下：' + text + '那么下一个时间点是多少？对应的值如果按照概率排序最有可能是哪些？'
                 response = openai.Completion.create(model="text-davinci-003", prompt=text, temperature=0.5, max_tokens=1024)
                 x = json.dumps(response['choices'])
