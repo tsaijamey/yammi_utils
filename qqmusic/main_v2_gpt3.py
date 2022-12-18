@@ -113,7 +113,7 @@ if __name__ == '__main__':
             '''
             当记录数达到达到31时，使用openAI的davanci模型进行预测
             '''
-            if len(records) == 10:
+            if len(records) > 10:
                 text = ''
                 for each in records:
                     text = text + each + '；'
