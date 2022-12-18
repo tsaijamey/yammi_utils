@@ -69,6 +69,7 @@ if __name__ == '__main__':
     try:
         pdc.main()
         while True:
+            recent_result = []
             while len(recent_result) == 0 or len(recent_result[0]) == 0:
                 inlib.screenshot_via_adb('shot.png')
                 try:
