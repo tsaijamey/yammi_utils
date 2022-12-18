@@ -108,7 +108,7 @@ if __name__ == '__main__':
 
             if len(predicts) > 0:
                 record_pred = open(predict_log, 'a', encoding='utf8')
-                record_pred.write("预测：" + predicts[0][1] + "/" + predicts[1][1] + '。实际结果为：' + records[-1][1] + '\n')
+                record_pred.write("预测：" + predicts[0][0] + "/" + predicts[1][0] + '。实际结果为：' + records[-1][1] + '\n')
                 record_pred.close()
 
             '''
