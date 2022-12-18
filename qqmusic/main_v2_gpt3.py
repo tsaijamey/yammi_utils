@@ -128,7 +128,7 @@ if __name__ == '__main__':
                     if each in predict_str:
                         get_position = predict_str.find(each)
                         predicts.append([each, get_position])
-                        predicts.sort(key=lambda x: x[1], reverse=1)
+                        predicts.sort(key=lambda x: x[1], reverse=0)
                 print(f'预测结果：{predicts}')
 
             # 把出货历史，泛化成数字
