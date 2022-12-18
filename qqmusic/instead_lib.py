@@ -140,10 +140,10 @@ def wait_next(start_time,time_gap:int):
     '''
 
     latest_time = start_time + time_gap
-    console.print(f'[st]下回合时间：[/st][pre]{time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(latest_time))}[/pre]')
+    console.print(f'下回合时间：{time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(latest_time))}')
     while int(time.time()) <= latest_time:
         if latest_time - int(time.time()) < 3:
-            console.print(f"倒计时：[re]{latest_time - int(time.time())}[/re]秒")
+            console.print(f"倒计时：{latest_time - int(time.time())}秒")
         time.sleep(1)
 
 def item_sum(item_record:list) -> list[int]:
