@@ -47,7 +47,7 @@ total = 0
 
 predicts = []
 
-openai.api_key = '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'
+openai.api_key = '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'
 
 # 预设变量
 DIR = os.path.dirname(__file__)
