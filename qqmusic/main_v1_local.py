@@ -429,21 +429,21 @@ if __name__ == '__main__':
             buy_option = []
             
             # if wins[-4:] == ['胜', '负', '负', '胜'] or wins[-4:] == ['负', '负', '负', '负'] or wins[-4:] == ['负', '负', '负', '胜']:
-            # if wins[-3:] == ['负', '负', '胜'] or wins[-3:] == ['负', '负', '负']:
-            if win_counter == 2:
+            if wins[-3:] == ['负', '负', '胜'] or wins[-4:] == ['负', '负', '负', '胜']:
+            # if win_counter == 2:
                 CONFIGS['buy'] = 'no'
-
                 write_config(CONFIGS,if_buy)
-            elif wins[-2:] == ['胜', '胜']:
+            # elif wins[-2:] == ['胜', '胜']:
+            elif wins[-5:].count('胜') >= 3:
                 CONFIGS['buy'] = 'yes'
                 win_counter = 0
                 write_config(CONFIGS,if_buy)
 
-            # if wins[-5:].count('胜') <= 2:
-            #     if switch == 1:
-            #         switch = 2
-            #     elif switch == 2:
-            #         switch = 1
+            if wins[-5:].count('胜') <= 2:
+                if switch == 1:
+                    switch = 2
+                elif switch == 2:
+                    switch = 1
 
 
             # 计算胜率
