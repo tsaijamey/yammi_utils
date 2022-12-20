@@ -315,7 +315,7 @@ def load_rf_clf_model(model_path:str, predict_data):
 def random_forest_reg_train(train_set:DataFrame,dir_name:str,column_name:str, model_name):
     X = train_set.drop(columns=column_name)
     y = train_set[column_name]
-    model = RandomForestRegressor(n_estimators=300, criterion='squared_error', max_leaf_nodes=20, n_jobs=1,random_state=10)
+    model = RandomForestRegressor(n_estimators=300, criterion='squared_error', max_leaf_nodes=20, n_jobs=1,random_state=42)
     # model = RandomForestRegressor(random_state=75)
     model.fit(X.values, y.values)
 
