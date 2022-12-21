@@ -304,7 +304,7 @@ if __name__ == '__main__':
                 posis.pop(0)
                 diffs.pop(0)
                 temp_ = [time_history[-1]] + diffs
-                diff2.append(temp_)                
+                diff2.append(temp_)
 
             console.print(f'DIFF：{diffs[-20:]} | 历史值：{sum(diffs[-5:])}->{sum(diffs[-4:])}')
 
@@ -336,7 +336,6 @@ if __name__ == '__main__':
                 line_for_pred = [[next_] + diffs[1:] + [0]]
                 lpred = pd.DataFrame(line_for_pred, columns=header)
                 _, x_lpred, _ = windowed_df_to_date_X_y(lpred)
-                print(f'下回合标签：{x_lpred}')
                 prediction = model.predict(x_lpred).flatten()
                 print(f'下回合预测值：{prediction}')
 
