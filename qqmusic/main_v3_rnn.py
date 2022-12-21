@@ -141,7 +141,7 @@ def write_config(dict:dict,path:str):
 
 if __name__ == '__main__':
     try:
-        pdc.main()
+        # pdc.main()
         while True:
             read_buy = open(if_buy, 'r', encoding='utf8')
             # 读取购买配置
