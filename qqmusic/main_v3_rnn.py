@@ -37,7 +37,7 @@ def windowed_df_to_date_X_y(windowed_dataframe):
 
 # 预定义变量
 header = ['time']
-for i in range(10):
+for i in range(20):
     header.append('col_'+str(i+1))
 header.append('result')
 DIR = os.path.dirname(__file__)             # 当前文件所在的目录
