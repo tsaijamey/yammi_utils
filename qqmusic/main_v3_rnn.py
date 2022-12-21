@@ -21,6 +21,7 @@ from keras.models import Sequential
 from keras.optimizers import Adam
 from keras import layers
 
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 def windowed_df_to_date_X_y(windowed_dataframe):
     df_as_np = windowed_dataframe.to_numpy()
 
