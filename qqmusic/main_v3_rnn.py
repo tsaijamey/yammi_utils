@@ -302,7 +302,7 @@ if __name__ == '__main__':
             if len(diffs) > history_length:
                 posis.pop(0)
                 diffs.pop(0)
-                temp_ = time_history[-1] + diffs
+                temp_ = [time_history[-1]] + diffs
                 diff2.append(temp_)
                 
 
