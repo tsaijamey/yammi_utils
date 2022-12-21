@@ -157,7 +157,7 @@ if __name__ == '__main__':
             recent_result = []
             try_times = 0
 
-            if total % 100 == 0:
+            if total % 500 == 0:
                 pdc.main()
                 start_timestamp = 0
                 item_history = []
@@ -329,11 +329,11 @@ if __name__ == '__main__':
                             optimizer=Adam(learning_rate=0.0005),
                             metrics=['mean_absolute_error'])
 
-                model.fit(X_train, y_train, validation_data=(X_val, y_val), epochs=100)
+                model.fit(X_train, y_train, validation_data=(X_val, y_val), epochs=100, use_multiprocessing=True, verbose=0)
                 test_predictions = model.predict(X_test).flatten()
 
                 next_ = inlib.calc_next_datetime(start_timestamp, 58)
-                line_for_pred = [next_] + diffs[-1] + [0]
+                line_for_pred = [next_] + diffs[:-1] + [0]
                 lpred = pd.DataFrame(line_for_pred, columns=header)
                 _, x_lpred, _ = windowed_df_to_date_X_y(lpred)
                 print(f'下回合标签：{x_lpred}')
