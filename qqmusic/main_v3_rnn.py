@@ -309,38 +309,44 @@ if __name__ == '__main__':
             console.print(f'DIFF：{diffs[-20:]} | 历史值：{sum(diffs[-5:])}->{sum(diffs[-4:])}')
 
             # diff2条数超过40时，才开始预测（前20条资源要丢弃）
-            if len(diff2) > 40:
-                df2 = pd.DataFrame(diff2[20:], columns=header)
+            if len(diff2) > 10:
+                df2 = pd.DataFrame(diff2, columns=header)
                 dates, X, y = windowed_df_to_date_X_y(df2)
-                q_80 = int(len(dates) * .9)
-                q_90 = int(len(dates) * .95)
+                q_80 = int(len(dates) * .8)
+                q_90 = int(len(dates) * .9)
 
                 dates_train, X_train, y_train = dates[:q_80], X[:q_80], y[:q_80]
 
                 dates_val, X_val, y_val = dates[q_80:q_90], X[q_80:q_90], y[q_80:q_90]
                 dates_test, X_test, y_test = dates[q_90:], X[q_90:], y[q_90:]
-                model = Sequential([layers.Input((20, 1)),
-                    layers.LSTM(128),
-                    layers.Dense(64, activation='relu'),
-                    layers.Dense(64, activation='relu'),
-                    layers.Dense(1)])
+                print(X_train)
+                print(y_train)
+                print(X_val)
+                print(y_val)
+                print(X_test)
+                print(y_test)
+                # model = Sequential([layers.Input((20, 1)),
+                #     layers.LSTM(64),
+                #     layers.Dense(32, activation='relu'),
+                #     layers.Dense(32, activation='relu'),
+                #     layers.Dense(1)])
 
-                model.compile(loss='mse', 
-                            optimizer=Adam(learning_rate=0.005),
-                            metrics=['mean_absolute_error'])
+                # model.compile(loss='mse', 
+                #             optimizer=Adam(learning_rate=0.0005),
+                #             metrics=['mean_absolute_error'])
 
-                model.fit(X_train, y_train, validation_data=(X_val, y_val), epochs=100)
-                test_predictions = model.predict(X_test).flatten()
-                print(test_predictions[-10])
-                print(y_test[-10])
+                # model.fit(X_train, y_train, validation_data=(X_val, y_val), epochs=100)
+                # test_predictions = model.predict(X_test).flatten()
+                # print(test_predictions[-10])
+                # print(y_test[-10])
                 
-                next_ = inlib.calc_next_datetime(start_timestamp, 58)
-                line_for_pred = [next_] + diffs[-1] + [0]
-                lpred = pd.DataFrame(line_for_pred, columns=header)
-                _, x_lpred, _ = windowed_df_to_date_X_y(lpred)
-                print(f'下回合标签：{x_lpred}')
-                prediction = model.predict(x_lpred).flatten()
-                print(f'下回合预测值：{prediction}')
+                # next_ = inlib.calc_next_datetime(start_timestamp, 58)
+                # line_for_pred = [next_] + diffs[-1] + [0]
+                # lpred = pd.DataFrame(line_for_pred, columns=header)
+                # _, x_lpred, _ = windowed_df_to_date_X_y(lpred)
+                # print(f'下回合标签：{x_lpred}')
+                # prediction = model.predict(x_lpred).flatten()
+                # print(f'下回合预测值：{prediction}')
 
             # # 计算上回合的收益
             # mgs = ''
