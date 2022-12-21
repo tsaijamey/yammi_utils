@@ -350,193 +350,222 @@ if __name__ == '__main__':
                     else:
                         print(f'负 | 实际值：{y_[i]} | 预测值（含误差范围）：{test_predictions_[i]+mae_}')
                 
+            # 根据Diff值的预测：
+            reg_predict = inlib.load_rf_reg_model(diff_model_path,diffs[-20:]).tolist()[0]
+            if reg_predict == 0:
+                pred_to_int = 0
+            else:
+                pred_to_int = int(reg_predict)
+
+            reg_preds.append(pred_to_int)
+
+            # 预测的历史，只保留最近的21个。第21个是当前回合的预测，尚未验证。
+            if len(reg_preds) > 21:
+                reg_preds.pop(0)
+
+            # 计算 预测diff 和 实际diff 的误差，存入 reg_predict_infact_error
+            # 用于计算的 预测diff 来自 reg_predict_history[-2]
+            if len(reg_preds) >= 2:
+                if records[-1][1] in ['架子鼓','竖琴','萨克斯风','圆号']:
+                    pred_bias_str.append(str(diffs[-1] - reg_preds[-2]))
+                else:
+                    pred_bias_str.append(diffs[-1] - reg_preds[-2])
+
+                if len(pred_bias_str) > 20:
+                    pred_bias_str.pop(0)
                 
-
-            # # 计算上回合的收益
-            # mgs = ''
-            # if InVest_Agreed == 1:
-            #     if records[-1][1] in buy_option[0:2]:
-            #         income += chips_config[0] * 5
-            #         msg = '买入结果：【命中】。'
-            #         msg = msg + records[-1][0] + ' ' + records[-1][1] + '。'
-            #         msg = msg + '本次回收：' + str(chips_config[0] * 5) + '。'
-            #         msg = msg + '总投入：' + str(invest) + '。'
-            #         msg = msg + '总回收：' + str(income) + '。'
-            #         msg = msg + '总收益：' + str(int(income*0.635 - invest*0.92)) + '。'
-            #         log_ = open(buy_log, 'a', encoding='utf8')
-            #         log_.write(msg + '\n')
-            #         log_.close()
-            #         win_records.append('胜')
-            #         win_times += 1
-            #         chips = 0
-            #     elif len(buy_option) == 4 and records[-1][1] in buy_option[2:4]:
-            #         win = 0
-            #         if chips_config[2] == 0:
-            #             msg = '买入结果：【命中但未押】。'
-            #             msg = msg + records[-1][0] + ' ' + records[-1][1] + '。'
-            #             msg = msg + '本次回收：0。'
-            #             msg = msg + '总投入：' + str(invest) + '。'
-            #             msg = msg + '总回收：' + str(income) + '。'
-            #             msg = msg + '总收益：' + str(int(income*0.635 - invest*0.92)) + '。'
-            #             log_ = open(buy_log, 'a', encoding='utf8')
-            #             log_.write(msg + '\n')
-            #             log_.close()
-            #             win_records.append('负')
-            #         if chips_config[2] != 0:
-            #             if records[-1][1] == '架子鼓':
-            #                 win = int(chips_config[0]/4 * 10)
-            #             elif  records[-1][1] == '竖琴':
-            #                 win = int(chips_config[0]/4 * 20)
-            #             elif  records[-1][1] == '萨克斯风':
-            #                 win = int(chips_config[0]/4 * 25)
-            #             elif  records[-1][1] == '圆号':
-            #                 win = int(chips_config[0]/4 * 35)
-            #             income += win
-            #             msg = '买入结果：【命中】。'
-            #             msg = msg + records[-1][0] + ' ' + records[-1][1] + '。'
-            #             msg = msg + '本次回收：' + str(win) + '。'
-            #             msg = msg + '总投入：' + str(invest) + '。'
-            #             msg = msg + '总回收：' + str(income) + '。'
-            #             msg = msg + '总收益：' + str(int(income*0.635 - invest*0.92)) + '。'
-            #             log_ = open(buy_log, 'a', encoding='utf8')
-            #             log_.write(msg + '\n')
-            #             log_.close()
-            #             chips = 0
-            #             win_records.append('胜')
-            #     elif records[-1][1] not in buy_option:
-            #         msg = '买入结果：【未命中】。'
-            #         msg = msg + records[-1][0] + ' ' + records[-1][1] + '。'
-            #         msg = msg + '本次回收：0。'
-            #         msg = msg + '总投入：' + str(invest) + '。'
-            #         msg = msg + '总回收：' + str(income) + '。'
-            #         msg = msg + '总收益：' + str(int(income*0.635 - invest*0.92)) + '。'
-            #         log_ = open(buy_log, 'a', encoding='utf8')
-            #         log_.write(msg + '\n')
-            #         log_.close()
-            #         win_records.append('负')
+                pred_bias_int = []
+                for each in pred_bias_str:
+                    pred_bias_int.append(int(each))
                     
-            #     if len(win_records) > 5:
-            #         win_records.pop(0)
-            #     console.print(msg)
+                console.print(f'误差bias历史：{pred_bias_str}')
+                console.print(f'预测pred历史：{reg_preds[:-1]} | 当前值：{reg_preds[-1]}')  
+
+            # 计算上回合的收益
+            mgs = ''
+            if InVest_Agreed == 1:
+                if records[-1][1] in buy_option[0:2]:
+                    income += chips_config[0] * 5
+                    msg = '买入结果：【命中】。'
+                    msg = msg + records[-1][0] + ' ' + records[-1][1] + '。'
+                    msg = msg + '本次回收：' + str(chips_config[0] * 5) + '。'
+                    msg = msg + '总投入：' + str(invest) + '。'
+                    msg = msg + '总回收：' + str(income) + '。'
+                    msg = msg + '总收益：' + str(int(income*0.635 - invest*0.92)) + '。'
+                    log_ = open(buy_log, 'a', encoding='utf8')
+                    log_.write(msg + '\n')
+                    log_.close()
+                    win_records.append('胜')
+                    win_times += 1
+                    chips = 0
+                elif len(buy_option) == 4 and records[-1][1] in buy_option[2:4]:
+                    win = 0
+                    if chips_config[2] == 0:
+                        msg = '买入结果：【命中但未押】。'
+                        msg = msg + records[-1][0] + ' ' + records[-1][1] + '。'
+                        msg = msg + '本次回收：0。'
+                        msg = msg + '总投入：' + str(invest) + '。'
+                        msg = msg + '总回收：' + str(income) + '。'
+                        msg = msg + '总收益：' + str(int(income*0.635 - invest*0.92)) + '。'
+                        log_ = open(buy_log, 'a', encoding='utf8')
+                        log_.write(msg + '\n')
+                        log_.close()
+                        win_records.append('负')
+                    if chips_config[2] != 0:
+                        if records[-1][1] == '架子鼓':
+                            win = int(chips_config[0]/4 * 10)
+                        elif  records[-1][1] == '竖琴':
+                            win = int(chips_config[0]/4 * 20)
+                        elif  records[-1][1] == '萨克斯风':
+                            win = int(chips_config[0]/4 * 25)
+                        elif  records[-1][1] == '圆号':
+                            win = int(chips_config[0]/4 * 35)
+                        income += win
+                        msg = '买入结果：【命中】。'
+                        msg = msg + records[-1][0] + ' ' + records[-1][1] + '。'
+                        msg = msg + '本次回收：' + str(win) + '。'
+                        msg = msg + '总投入：' + str(invest) + '。'
+                        msg = msg + '总回收：' + str(income) + '。'
+                        msg = msg + '总收益：' + str(int(income*0.635 - invest*0.92)) + '。'
+                        log_ = open(buy_log, 'a', encoding='utf8')
+                        log_.write(msg + '\n')
+                        log_.close()
+                        chips = 0
+                        win_records.append('胜')
+                elif records[-1][1] not in buy_option:
+                    msg = '买入结果：【未命中】。'
+                    msg = msg + records[-1][0] + ' ' + records[-1][1] + '。'
+                    msg = msg + '本次回收：0。'
+                    msg = msg + '总投入：' + str(invest) + '。'
+                    msg = msg + '总回收：' + str(income) + '。'
+                    msg = msg + '总收益：' + str(int(income*0.635 - invest*0.92)) + '。'
+                    log_ = open(buy_log, 'a', encoding='utf8')
+                    log_.write(msg + '\n')
+                    log_.close()
+                    win_records.append('负')
+                    
+                if len(win_records) > 5:
+                    win_records.pop(0)
+                console.print(msg)
 
 
-            # voted = False
-            # InVest_Agreed = 0
-            # buy_option = []
+            voted = False
+            InVest_Agreed = 0
+            buy_option = []
             
-            # # if wins[-4:] == ['胜', '负', '负', '胜'] or wins[-4:] == ['负', '负', '负', '负'] or wins[-4:] == ['负', '负', '负', '胜']:
-            # if win_records[-3:] == ['负', '负', '胜'] or win_records[-4:] == ['负', '负', '负', '胜']:
-            # # if win_counter == 2:
-            #     CONFIGS['buy'] = 'no'
-            #     write_config(CONFIGS,if_buy)
-            # # elif wins[-2:] == ['胜', '胜']:
-            # elif win_records[-5:].count('胜') >= 3:
-            #     CONFIGS['buy'] = 'yes'
-            #     win_times = 0
-            #     write_config(CONFIGS,if_buy)
+            # if wins[-4:] == ['胜', '负', '负', '胜'] or wins[-4:] == ['负', '负', '负', '负'] or wins[-4:] == ['负', '负', '负', '胜']:
+            if win_records[-3:] == ['负', '负', '胜'] or win_records[-4:] == ['负', '负', '负', '胜']:
+            # if win_counter == 2:
+                CONFIGS['buy'] = 'no'
+                write_config(CONFIGS,if_buy)
+            # elif wins[-2:] == ['胜', '胜']:
+            elif win_records[-5:].count('胜') >= 3:
+                CONFIGS['buy'] = 'yes'
+                win_times = 0
+                write_config(CONFIGS,if_buy)
 
       
-            # # 时段条件
-            # if (start_timestamp+8*60*60) % (24*60*60) < (0*60*60):
-            #     # console.print(f'本时段不进行模拟')
-            #     pass
-            # else:
-            #     # 购买条件
-            #     if total >= 10:
-            #         buy_option = []
-            #         # 如果最近一次的预测误差小于等于1，则
-            #         if abs(pred_bias_int[-1]) <= 1:
-            #             # 计算本次每个物品的diff值与预测值之间的绝对差，
-            #             for i in range(5):
-            #                 # 如果小于等于1，就记录为一个候选项
-            #                 if abs(item_copd[i][4] - reg_preds[-1]) <= 1:
-            #                     buy_option.append(item_copd[i][0])
+            # 时段条件
+            if (start_timestamp+8*60*60) % (24*60*60) < (0*60*60):
+                # console.print(f'本时段不进行模拟')
+                pass
+            else:
+                # 购买条件
+                if total >= 10:
+                    buy_option = []
+                    # 如果最近一次的预测误差小于等于1，则
+                    if abs(pred_bias_int[-1]) <= 1:
+                        # 计算本次每个物品的diff值与预测值之间的绝对差，
+                        for i in range(5):
+                            # 如果小于等于1，就记录为一个候选项
+                            if abs(item_copd[i][4] - reg_preds[-1]) <= 1:
+                                buy_option.append(item_copd[i][0])
                     
-            #         # 如果最近一次的预测误差大于1，则
-            #         if abs(pred_bias_int[-1]) > 1:
-            #             # 计算本次每个物品的diff值与预测值之间的绝对差，
-            #             for i in range(5):
-            #                 # 如果大于1，就记录为一个候选项
-            #                 if abs(item_copd[i][4] - reg_preds[-1]) > 1:
-            #                     buy_option.append(item_copd[i][0])
+                    # 如果最近一次的预测误差大于1，则
+                    if abs(pred_bias_int[-1]) > 1:
+                        # 计算本次每个物品的diff值与预测值之间的绝对差，
+                        for i in range(5):
+                            # 如果大于1，就记录为一个候选项
+                            if abs(item_copd[i][4] - reg_preds[-1]) > 1:
+                                buy_option.append(item_copd[i][0])
                     
-            #         # 如果候选项的个数为2，并且候选项里没有‘大’，则认为可以“买入”
-            #         # 如果不符合条件的话，候选项清空
-            #         if len(buy_option) == 2 and '大' not in buy_option:
-            #             InVest_Agreed = 1
-            #         else:
-            #             buy_option = []
+                    # 如果候选项的个数为2，并且候选项里没有‘大’，则认为可以“买入”
+                    # 如果不符合条件的话，候选项清空
+                    if len(buy_option) == 2 and '大' not in buy_option:
+                        InVest_Agreed = 1
+                    else:
+                        buy_option = []
                     
-            #     # 如果认为可以“买入”
-            #     if InVest_Agreed == 1:
-            #         comment = '同意买入。'
-            #         # 配置项中，购买开启
-            #         if CONFIGS['buy'] == 'yes':
-            #             comment = comment + '买入操作配置【开启】。'
-            #             if chips == 0 or chips == TOP_STOCK:
-            #                 chips = STOCK
-            #             else:
-            #                 chips = int(chips/RATE)
-            #             comment = comment + '买入计量为' + str(chips) + '。'
-            #         # 配置项中，购买未开启
-            #         elif CONFIGS['buy'] == 'no':
-            #             comment = comment + '买入操作配置【未开启】。'
-            #             chips = 0
-            #             comment = comment + '买入计量为' + str(chips) + '。'
-            #         invest += chips
+                # 如果认为可以“买入”
+                if InVest_Agreed == 1:
+                    comment = '同意买入。'
+                    # 配置项中，购买开启
+                    if CONFIGS['buy'] == 'yes':
+                        comment = comment + '买入操作配置【开启】。'
+                        if chips == 0 or chips == TOP_STOCK:
+                            chips = STOCK
+                        else:
+                            chips = int(chips/RATE)
+                        comment = comment + '买入计量为' + str(chips) + '。'
+                    # 配置项中，购买未开启
+                    elif CONFIGS['buy'] == 'no':
+                        comment = comment + '买入操作配置【未开启】。'
+                        chips = 0
+                        comment = comment + '买入计量为' + str(chips) + '。'
+                    invest += chips
                     
-            #         console.print(comment)
+                    console.print(comment)
 
-            #         chips_config = [int(chips/2), int(chips/2), 0, 0]
-            #         console.print(f'模拟买入：{buy_option} | {chips_config}音符')
-            #         msg = ''
-            #         msg = msg + comment
-            #         if len(buy_option) == 4:
-            #             msg = msg + '模拟买入：' + buy_option[0] + ',' + str(chips_config[0]) + ' | ' + buy_option[1] + ',' + str(chips_config[1]) + ' | ' + buy_option[2] + ',' + str(chips_config[2]) + ' | ' + buy_option[3] + ',' + str(chips_config[3]) + ' | '
-            #         elif len(buy_option) == 2:
-            #             msg = msg + '模拟买入：' + buy_option[0] + ',' + str(chips_config[0]) + ' | ' + buy_option[1] + ',' + str(chips_config[1]) + ' | '
-            #         log_ = open(buy_log, 'a', encoding='utf8')
-            #         log_.write(msg)
-            #         log_.close()
+                    chips_config = [int(chips/2), int(chips/2), 0, 0]
+                    console.print(f'模拟买入：{buy_option} | {chips_config}音符')
+                    msg = ''
+                    msg = msg + comment
+                    if len(buy_option) == 4:
+                        msg = msg + '模拟买入：' + buy_option[0] + ',' + str(chips_config[0]) + ' | ' + buy_option[1] + ',' + str(chips_config[1]) + ' | ' + buy_option[2] + ',' + str(chips_config[2]) + ' | ' + buy_option[3] + ',' + str(chips_config[3]) + ' | '
+                    elif len(buy_option) == 2:
+                        msg = msg + '模拟买入：' + buy_option[0] + ',' + str(chips_config[0]) + ' | ' + buy_option[1] + ',' + str(chips_config[1]) + ' | '
+                    log_ = open(buy_log, 'a', encoding='utf8')
+                    log_.write(msg)
+                    log_.close()
 
-            #         if CONFIGS['buy'] == 'yes' and int(CONFIGS['bullet']) > 0:
+                    if CONFIGS['buy'] == 'yes' and int(CONFIGS['bullet']) > 0:
                         
-            #             '''
-            #             这里要解决的问题是
-            #             1. 当处于购买状态时，如果剩余子弹大于0
-            #                 剩余子弹数量大于要押注的数量，且上一回合没赢
-            #             '''
-            #             if win_records[-1] != '胜':
-            #                 if int(CONFIGS['bullet']) <= chips:
-            #                     CONFIGS['buy'] = 'no'
-            #                     write_config(CONFIGS,if_buy)
-            #                 elif int(CONFIGS['bullet']) > chips and int(CONFIGS['bullet']) >= int(STOCK + STOCK/RATE + STOCK/RATE/RATE + TOP_STOCK):
-            #                     pass
-            #                 elif int(CONFIGS['bullet']) > chips and int(CONFIGS['bullet']) < int(STOCK + STOCK/RATE + STOCK/RATE/RATE + TOP_STOCK):
-            #                     CONFIGS['buy'] = 'no'
-            #                     write_config(CONFIGS,if_buy)
-            #                 else:
-            #                     pass
-            #             if win_records[-1] == '负':
-            #                 if chips == TOP_STOCK and int(CONFIGS['bullet']) <= TOP_STOCK:
-            #                     CONFIGS['buy'] = 'no'
-            #                     write_config(CONFIGS,if_buy)
-            #                 elif chips == int(STOCK/RATE) and int(CONFIGS['bullet']) <= int(STOCK/RATE + STOCK/RATE/RATE + TOP_STOCK):
-            #                     CONFIGS['buy'] = 'no'
-            #                     write_config(CONFIGS,if_buy)
-            #                 elif chips == int(STOCK/RATE/RATE) and int(CONFIGS['bullet']) <= int(STOCK/RATE/RATE + TOP_STOCK):
-            #                     CONFIGS['buy'] = 'no'
-            #                     write_config(CONFIGS,if_buy)
+                        '''
+                        这里要解决的问题是
+                        1. 当处于购买状态时，如果剩余子弹大于0
+                            剩余子弹数量大于要押注的数量，且上一回合没赢
+                        '''
+                        if win_records[-1] != '胜':
+                            if int(CONFIGS['bullet']) <= chips:
+                                CONFIGS['buy'] = 'no'
+                                write_config(CONFIGS,if_buy)
+                            elif int(CONFIGS['bullet']) > chips and int(CONFIGS['bullet']) >= int(STOCK + STOCK/RATE + STOCK/RATE/RATE + TOP_STOCK):
+                                pass
+                            elif int(CONFIGS['bullet']) > chips and int(CONFIGS['bullet']) < int(STOCK + STOCK/RATE + STOCK/RATE/RATE + TOP_STOCK):
+                                CONFIGS['buy'] = 'no'
+                                write_config(CONFIGS,if_buy)
+                            else:
+                                pass
+                        if win_records[-1] == '负':
+                            if chips == TOP_STOCK and int(CONFIGS['bullet']) <= TOP_STOCK:
+                                CONFIGS['buy'] = 'no'
+                                write_config(CONFIGS,if_buy)
+                            elif chips == int(STOCK/RATE) and int(CONFIGS['bullet']) <= int(STOCK/RATE + STOCK/RATE/RATE + TOP_STOCK):
+                                CONFIGS['buy'] = 'no'
+                                write_config(CONFIGS,if_buy)
+                            elif chips == int(STOCK/RATE/RATE) and int(CONFIGS['bullet']) <= int(STOCK/RATE/RATE + TOP_STOCK):
+                                CONFIGS['buy'] = 'no'
+                                write_config(CONFIGS,if_buy)
 
-            #         # 购买执行后，修改配置项里的余量
-            #         if CONFIGS['buy'] == 'yes' and CONFIGS['bullet'] != '0':
-            #             time.sleep(5)
-            #             CONFIGS['bullet'] = str(int(int(CONFIGS['bullet']) - chips))
-            #             write_config(CONFIGS,if_buy)
-            #             by.buy_4(buy_option,chips_config)
-            #             voted = True
-            #         elif CONFIGS['buy'] == 'no':
-            #             voted = False
+                    # 购买执行后，修改配置项里的余量
+                    if CONFIGS['buy'] == 'yes' and CONFIGS['bullet'] != '0':
+                        time.sleep(5)
+                        CONFIGS['bullet'] = str(int(int(CONFIGS['bullet']) - chips))
+                        write_config(CONFIGS,if_buy)
+                        by.buy_4(buy_option,chips_config)
+                        voted = True
+                    elif CONFIGS['buy'] == 'no':
+                        voted = False
 
             
 
@@ -570,55 +599,55 @@ if __name__ == '__main__':
                     diffs_rec.write(str(diffs[i])+'\n')
             diffs_rec.close()
 
-            # if CONFIGS['chat'] == 'yes' and len(buy_option) > 0:
-            #     # pad按返回键
-            #     os.popen('adb shell input keyevent 4')
-            #     time.sleep(2)
-            #     # 点击聊天输入框
-            #     pdc.open_chat()
-            #     time.sleep(1)
-            #     if buy_option[0] == '钢琴':
-            #         content = 'buy%spiano%s&%s'
-            #     elif buy_option[0] == '小提琴':
-            #         content = 'buy%svoilin%s&%s'
-            #     elif buy_option[0] == '吉他':
-            #         content = 'buy%sguitar%s&%s'
-            #     elif buy_option[0] == '贝斯':
-            #         content = 'buy%sbeth%s&%s'
-            #     os.popen('adb shell input text '+ content).read()
-            #     if buy_option[1] == '钢琴':
-            #         content = 'piano'
-            #     elif buy_option[1] == '小提琴':
-            #         content = 'voilin'
-            #     elif buy_option[1] == '吉他':
-            #         content = 'guitar'
-            #     elif buy_option[1] == '贝斯':
-            #         content = 'beth'
-            #     os.popen('adb shell input text '+ content).read()
-            #     if len(buy_option) == 4:
-            #         if buy_option[2] == '架子鼓':
-            #             content = '%s&%sdrum%s&%s'
-            #         elif buy_option[2] == '竖琴':
-            #             content = '%s&%sharp%s&%s'
-            #         elif buy_option[2] == '萨克斯风':
-            #             content = '%s&%ssax%s&%s'
-            #         elif buy_option[2] == '圆号':
-            #             content = '%s&%shorn%s&%s'
-            #         os.popen('adb shell input text '+ content).read()
-            #         if buy_option[3] == '架子鼓':
-            #             content = 'drum'
-            #         elif buy_option[3] == '竖琴':
-            #             content = 'harp'
-            #         elif buy_option[3] == '萨克斯风':
-            #             content = 'sax'
-            #         elif buy_option[3] == '圆号':
-            #             content = 'horn'
-            #         os.popen('adb shell input text '+ content).read()
-            #     # 发送消息
-            #     time.sleep(1)
-            #     pdc.send_chat()
-            #     time.sleep(2)
-            #     pdc.open_kd()
+            if CONFIGS['chat'] == 'yes' and len(buy_option) > 0:
+                # pad按返回键
+                os.popen('adb shell input keyevent 4')
+                time.sleep(2)
+                # 点击聊天输入框
+                pdc.open_chat()
+                time.sleep(1)
+                if buy_option[0] == '钢琴':
+                    content = 'buy%spiano%s&%s'
+                elif buy_option[0] == '小提琴':
+                    content = 'buy%svoilin%s&%s'
+                elif buy_option[0] == '吉他':
+                    content = 'buy%sguitar%s&%s'
+                elif buy_option[0] == '贝斯':
+                    content = 'buy%sbeth%s&%s'
+                os.popen('adb shell input text '+ content).read()
+                if buy_option[1] == '钢琴':
+                    content = 'piano'
+                elif buy_option[1] == '小提琴':
+                    content = 'voilin'
+                elif buy_option[1] == '吉他':
+                    content = 'guitar'
+                elif buy_option[1] == '贝斯':
+                    content = 'beth'
+                os.popen('adb shell input text '+ content).read()
+                if len(buy_option) == 4:
+                    if buy_option[2] == '架子鼓':
+                        content = '%s&%sdrum%s&%s'
+                    elif buy_option[2] == '竖琴':
+                        content = '%s&%sharp%s&%s'
+                    elif buy_option[2] == '萨克斯风':
+                        content = '%s&%ssax%s&%s'
+                    elif buy_option[2] == '圆号':
+                        content = '%s&%shorn%s&%s'
+                    os.popen('adb shell input text '+ content).read()
+                    if buy_option[3] == '架子鼓':
+                        content = 'drum'
+                    elif buy_option[3] == '竖琴':
+                        content = 'harp'
+                    elif buy_option[3] == '萨克斯风':
+                        content = 'sax'
+                    elif buy_option[3] == '圆号':
+                        content = 'horn'
+                    os.popen('adb shell input text '+ content).read()
+                # 发送消息
+                time.sleep(1)
+                pdc.send_chat()
+                time.sleep(2)
+                pdc.open_kd()
 
             inlib.wait_next(start_timestamp, 58)
             start_timestamp += 58
