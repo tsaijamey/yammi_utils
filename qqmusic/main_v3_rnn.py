@@ -20,6 +20,7 @@ import numpy as np
 from keras.models import Sequential
 from keras.optimizers import Adam
 from keras import layers
+import keras.metrics as keras_metrics
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 def windowed_df_to_date_X_y(windowed_dataframe):
@@ -303,8 +304,7 @@ if __name__ == '__main__':
                 posis.pop(0)
                 diffs.pop(0)
                 temp_ = [time_history[-1]] + diffs
-                diff2.append(temp_)
-                
+                diff2.append(temp_)                
 
             console.print(f'DIFF：{diffs[-20:]} | 历史值：{sum(diffs[-5:])}->{sum(diffs[-4:])}')
 
@@ -319,34 +319,38 @@ if __name__ == '__main__':
 
                 dates_val, X_val, y_val = dates[q_80:q_90], X[q_80:q_90], y[q_80:q_90]
                 dates_test, X_test, y_test = dates[q_90:], X[q_90:], y[q_90:]
-                print(X_train)
-                print(y_train)
-                print(X_val)
-                print(y_val)
-                print(X_test)
-                print(y_test)
-                # model = Sequential([layers.Input((20, 1)),
-                #     layers.LSTM(64),
-                #     layers.Dense(32, activation='relu'),
-                #     layers.Dense(32, activation='relu'),
-                #     layers.Dense(1)])
+                model = Sequential([layers.Input((20, 1)),
+                    layers.LSTM(64),
+                    layers.Dense(32, activation='relu'),
+                    layers.Dense(32, activation='relu'),
+                    layers.Dense(1)])
 
-                # model.compile(loss='mse', 
-                #             optimizer=Adam(learning_rate=0.0005),
-                #             metrics=['mean_absolute_error'])
+                model.compile(loss='mse', 
+                            optimizer=Adam(learning_rate=0.0005),
+                            metrics=['mean_absolute_error'])
 
-                # model.fit(X_train, y_train, validation_data=(X_val, y_val), epochs=100)
-                # test_predictions = model.predict(X_test).flatten()
-                # print(test_predictions[-10])
-                # print(y_test[-10])
+                model.fit(X_train, y_train, validation_data=(X_val, y_val), epochs=100)
+                test_predictions = model.predict(X_test).flatten()
+
+                next_ = inlib.calc_next_datetime(start_timestamp, 58)
+                line_for_pred = [next_] + diffs[-1] + [0]
+                lpred = pd.DataFrame(line_for_pred, columns=header)
+                _, x_lpred, _ = windowed_df_to_date_X_y(lpred)
+                print(f'下回合标签：{x_lpred}')
+                prediction = model.predict(x_lpred).flatten()
+                print(f'下回合预测值：{prediction}')
+
+                mae_ = float(keras_metrics.mean_absolute_error(y_test, test_predictions))
+                print(f'误差范围：{mae_}')
+                y_ = y_test.tolist()
+                test_predictions_ = test_predictions.tolist()
+                for i in range(len(y_)):
+                    if abs(y_[i] - (test_predictions_[i]+mae_)) <= 1:
+                        print(f'胜 | 实际值：{y_[i]} | 预测值（含误差范围）：{test_predictions_[i]+mae_}')
+                    else:
+                        print(f'负 | 实际值：{y_[i]} | 预测值（含误差范围）：{test_predictions_[i]+mae_}')
                 
-                # next_ = inlib.calc_next_datetime(start_timestamp, 58)
-                # line_for_pred = [next_] + diffs[-1] + [0]
-                # lpred = pd.DataFrame(line_for_pred, columns=header)
-                # _, x_lpred, _ = windowed_df_to_date_X_y(lpred)
-                # print(f'下回合标签：{x_lpred}')
-                # prediction = model.predict(x_lpred).flatten()
-                # print(f'下回合预测值：{prediction}')
+                
 
             # # 计算上回合的收益
             # mgs = ''
