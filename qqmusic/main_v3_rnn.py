@@ -333,7 +333,7 @@ if __name__ == '__main__':
                 test_predictions = model.predict(X_test).flatten()
 
                 next_ = inlib.calc_next_datetime(start_timestamp, 58)
-                line_for_pred = [next_] + diffs[:-1] + [0]
+                line_for_pred = [[next_] + diffs[1:] + [0]]
                 lpred = pd.DataFrame(line_for_pred, columns=header)
                 _, x_lpred, _ = windowed_df_to_date_X_y(lpred)
                 print(f'下回合标签：{x_lpred}')
