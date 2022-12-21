@@ -146,6 +146,12 @@ def wait_next(start_time,time_gap:int):
             console.print(f"倒计时：{latest_time - int(time.time())}秒")
         time.sleep(1)
 
+def calc_next_datetime(start_time,time_gap:int):
+    latest_time = start_time + time_gap
+
+    return time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(latest_time))
+
+
 def item_sum(item_record:list) -> list[int]:
     '''统计输入的物品列表中，各物品总数
     '''
