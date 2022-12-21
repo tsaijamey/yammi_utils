@@ -304,13 +304,6 @@ if __name__ == '__main__':
                 diffs.pop(0)
                 temp_ = [time_history[-1]] + diffs
                 diff2.append(temp_)
-                print(diff2)
-                df2 = pd.DataFrame(diff2, columns=header)
-                print(df2)
-                dates, X, y = windowed_df_to_date_X_y(df2)
-                print(dates)
-                print(X)
-                print(y)
                 
 
             console.print(f'DIFF：{diffs[-20:]} | 历史值：{sum(diffs[-5:])}->{sum(diffs[-4:])}')
