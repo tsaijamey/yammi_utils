@@ -78,6 +78,7 @@ start_timestamp = 0
 item_history = []
 time_history = []
 records = []
+total = 0
 
 # 每回合的数据列表，每回合都会变。
 count_item          = []                    # 物品的统计
@@ -160,6 +161,7 @@ if __name__ == '__main__':
                 item_history = []
                 time_history = []
                 records = []
+                total = 0
 
                 # 每回合的数据列表，每回合都会变。
                 count_item          = []                    # 物品的统计
@@ -195,6 +197,7 @@ if __name__ == '__main__':
                     item_history = []
                     time_history = []
                     records = []
+                    total = 0
 
                     # 每回合的数据列表，每回合都会变。
                     count_item          = []                    # 物品的统计
