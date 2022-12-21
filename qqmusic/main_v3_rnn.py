@@ -304,6 +304,7 @@ if __name__ == '__main__':
                 diffs.pop(0)
                 temp_ = [time_history[-1]] + diffs
                 diff2.append(temp_)
+                print(diff2)
                 
 
             console.print(f'DIFF：{diffs[-20:]} | 历史值：{sum(diffs[-5:])}->{sum(diffs[-4:])}')
