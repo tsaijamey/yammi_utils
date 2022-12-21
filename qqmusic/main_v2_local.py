@@ -133,6 +133,36 @@ if __name__ == '__main__':
             recent_result = []
             try_times = 0
 
+            if total % 100 == 0:
+                pdc.main()
+                start_timestamp = 0
+                item_history = []
+                time_history = []
+                records = []
+
+                # 每回合的数据列表，每回合都会变。
+                count_item          = []                    # 物品的统计
+                offset_item         = []
+                item_copd = []
+                last_copd = []
+
+                # 数据历史的列表，累计
+                posis   = []
+                diffs   = []
+                level   = []
+                for i in range(history_length):
+                    posis.append(0)
+                    diffs.append(0)
+                    level.append(2)
+                reg_preds         = []
+                pred_bias_str    = []
+                chips = 0
+                voted = False
+                InVest_Agreed = 0
+                win_records=[]
+                win_times = 0
+                CONFIGS['buy'] = 'no'
+                write_config(CONFIGS,if_buy)
 
             while len(recent_result) == 0 or len(recent_result[0]) == 0:
                 inlib.screenshot_via_adb('shot.png')
@@ -156,20 +186,19 @@ if __name__ == '__main__':
                     posis   = []
                     diffs   = []
                     level   = []
-                    history_length = int(60*60/58)
                     for i in range(history_length):
                         posis.append(0)
                         diffs.append(0)
                         level.append(2)
                     reg_preds         = []
                     pred_bias_str    = []
-                    invest = 0
                     chips = 0
-                    income = 0
                     voted = False
                     InVest_Agreed = 0
                     win_records=[]
                     win_times = 0
+                    CONFIGS['buy'] = 'no'
+                    write_config(CONFIGS,if_buy)
 
             # 区分第一次和后面的其他回合
             if start_timestamp == 0:
@@ -562,10 +591,6 @@ if __name__ == '__main__':
                 pdc.send_chat()
                 time.sleep(2)
                 pdc.open_kd()
-            
-
-            if total % 200 == 0:
-                pdc.main()
 
             inlib.wait_next(start_timestamp, 58)
             start_timestamp += 58
