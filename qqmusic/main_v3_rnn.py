@@ -34,7 +34,15 @@ def windowed_df_to_date_X_y(windowed_dataframe):
 
     return dates, X.astype(np.float32), Y.astype(np.float32)
 
+model = Sequential([layers.Input((20, 1)),
+    layers.LSTM(64),
+    layers.Dense(32, activation='relu'),
+    layers.Dense(32, activation='relu'),
+    layers.Dense(1)])
 
+model.compile(loss='mse', 
+            optimizer=Adam(learning_rate=0.0005),
+            metrics=['mean_absolute_error'])
 
 # 预定义变量
 header = ['time']
@@ -106,6 +114,8 @@ voted = False
 InVest_Agreed = 0
 win_records=[]
 win_times = 0
+validation = []
+RNN_win = []
 
 
 # 预设变量
@@ -120,6 +130,7 @@ if platform.system().lower() == 'windows':
     buy_log = DIR+'./buy_log-' + current_date + '.log'
     if_buy = DIR+'./if_buy.txt'
     diff_model_path = DIR+'./model/reg_5_20221220_seed10.m'
+    mae_log = DIR+'./mae_log-' + current_date + '.log'
 elif platform.system().lower() == 'linux':
     shot_path = DIR + '/img/shot.png'
     record_path = DIR+'/auto2-' + current_date + '.csv'
@@ -128,6 +139,7 @@ elif platform.system().lower() == 'linux':
     buy_log = DIR+'/buy_log-' + current_date + '.log'
     if_buy = DIR+'/if_buy.txt'    
     diff_model_path = DIR+'/model/reg_5_20221220_seed10.m'
+    mae_log = DIR+'/mae_log-' + current_date + '.log'
 
 diffs_rec = open(diffs_log, 'a', encoding='utf8')
 diffs_rec.write('\n')
@@ -185,6 +197,7 @@ if __name__ == '__main__':
                 InVest_Agreed = 0
                 win_records=[]
                 win_times = 0
+                validation = []
                 CONFIGS['buy'] = 'no'
                 write_config(CONFIGS,if_buy)
 
@@ -308,6 +321,23 @@ if __name__ == '__main__':
 
             console.print(f'DIFF：{diffs[-20:]} | 历史值：{sum(diffs[-5:])}->{sum(diffs[-4:])}')
 
+            if len(validation) > 0:
+                validation[-1].append(diffs[-1])
+                if abs(validation[-1][1] - validation[-1][0]) <= 1:
+                    mae_record = open(mae_log, 'a', encoding='utf8')
+                    mae_record.write(f'胜\n')
+                    mae_record.close()
+                    RNN_win.append('胜')
+                else:
+                    mae_record = open(mae_log, 'a', encoding='utf8')
+                    mae_record.write(f'负\n')
+                    mae_record.close()
+                    RNN_win.append('负')
+                
+                if len(RNN_win) > 20:
+                    RNN_win.pop(0)
+                print(f'RNN胜负记录：{RNN_win}')
+
             # diff2条数超过40时，才开始预测（前20条资源要丢弃）
             if len(diff2) > 40:
                 df2 = pd.DataFrame(diff2[20:], columns=header)
@@ -319,36 +349,61 @@ if __name__ == '__main__':
 
                 dates_val, X_val, y_val = dates[q_80:q_90], X[q_80:q_90], y[q_80:q_90]
                 dates_test, X_test, y_test = dates[q_90:], X[q_90:], y[q_90:]
-                model = Sequential([layers.Input((20, 1)),
-                    layers.LSTM(64),
-                    layers.Dense(32, activation='relu'),
-                    layers.Dense(32, activation='relu'),
-                    layers.Dense(1)])
 
-                model.compile(loss='mse', 
-                            optimizer=Adam(learning_rate=0.0005),
-                            metrics=['mean_absolute_error'])
+                model.fit(X_train, y_train, validation_data=(X_val, y_val), epochs=100, verbose=0)
 
-                model.fit(X_train, y_train, validation_data=(X_val, y_val), epochs=100, use_multiprocessing=True, verbose=0)
+                # 用测试集验证
                 test_predictions = model.predict(X_test).flatten()
-
-                next_ = inlib.calc_next_datetime(start_timestamp, 58)
-                line_for_pred = [[next_] + diffs[1:] + [0]]
-                lpred = pd.DataFrame(line_for_pred, columns=header)
-                _, x_lpred, _ = windowed_df_to_date_X_y(lpred)
-                prediction = model.predict(x_lpred).flatten()
-                print(f'下回合预测值：{prediction}')
-
                 mae_ = float(keras_metrics.mean_absolute_error(y_test, test_predictions))
                 print(f'误差范围：{mae_}')
                 y_ = y_test.tolist()
                 test_predictions_ = test_predictions.tolist()
-                for i in range(len(y_)):
-                    if abs(y_[i] - (test_predictions_[i]+mae_)) <= 1:
-                        print(f'胜 | 实际值：{y_[i]} | 预测值（含误差范围）：{test_predictions_[i]+mae_}')
-                    else:
-                        print(f'负 | 实际值：{y_[i]} | 预测值（含误差范围）：{test_predictions_[i]+mae_}')
-                
+                print('以下仅供参考')
+                print('*'*30)
+                if len(y_) > 5:
+                    for i in range(-5,0):
+                        if abs(y_[i] - (test_predictions_[i]+mae_)) <= 1:
+                            print(f'胜 | 实际值：{y_[i]} | 预测值：{test_predictions_[i]} | 误差：{y_[i]-test_predictions_[i]}')
+                        else:
+                            print(f'负 | 实际值：{y_[i]} | 预测值：{test_predictions_[i]} | 误差：{y_[i]-test_predictions_[i]}')
+                else:
+                    for i in range(len(y_)):
+                        if abs(y_[i] - (test_predictions_[i]+mae_)) <= 1:
+                            print(f'胜 | 实际值：{y_[i]} | 预测值：{test_predictions_[i]} | 误差：{y_[i]-test_predictions_[i]}')
+                        else:
+                            print(f'负 | 实际值：{y_[i]} | 预测值：{test_predictions_[i]} | 误差：{y_[i]-test_predictions_[i]}')
+                print('*'*30)
+
+                # 预测下回合数据
+                next_ = inlib.calc_next_datetime(start_timestamp, 58)
+                line_for_pred = [[next_] + diffs[1:] + [0]]
+                lpred = pd.DataFrame(line_for_pred, columns=header)
+                _, x_lpred, _ = windowed_df_to_date_X_y(lpred)
+                prediction_ = model.predict(x_lpred).flatten()
+                prediction = prediction_.tolist()
+                print(f'下回合预测值：{prediction} | 下回合预测值（含误差）：{prediction+mae_}')
+                validation.append([round(prediction+mae_,3)])
+                if mae_ <= 1.5:
+                    print('可信度较高')
+                    try:
+                        mae_record = open(mae_log, 'a', encoding='utf8')
+                        mae_record.write(f'高,mae={mae_},预测值={prediction},')
+                        mae_record.close()
+                        validation = 1
+                    except Exception as e:
+                        print(e)
+                else:
+                    print('可信度较低')
+                    try:
+                        mae_record = open(mae_log, 'a', encoding='utf8')
+                        mae_record.write(f'低,mae={mae_},预测值={prediction},')
+                        mae_record.close()
+                    except Exception as e:
+                        print(e)
+                if len(validation) > 20:
+                    validation.pop(0)
+                print(f'预测历史：{validation}')
+
             # 根据Diff值的预测：
             reg_predict = inlib.load_rf_reg_model(diff_model_path,diffs[-20:]).tolist()[0]
             if reg_predict == 0:
