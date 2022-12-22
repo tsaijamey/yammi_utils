@@ -34,15 +34,7 @@ def windowed_df_to_date_X_y(windowed_dataframe):
 
     return dates, X.astype(np.float32), Y.astype(np.float32)
 
-model = Sequential([layers.Input((20, 1)),
-    layers.LSTM(64),
-    layers.Dense(32, activation='relu'),
-    layers.Dense(32, activation='relu'),
-    layers.Dense(1)])
 
-model.compile(loss='mse', 
-            optimizer=Adam(learning_rate=0.0005),
-            metrics=['mean_absolute_error'])
 
 # 预定义变量
 header = ['time']
@@ -169,7 +161,7 @@ if __name__ == '__main__':
             recent_result = []
             try_times = 0
 
-            if total % 500 == 0:
+            if total % 100 == 0:
                 pdc.main()
                 start_timestamp = 0
                 item_history = []
@@ -234,6 +226,7 @@ if __name__ == '__main__':
                     InVest_Agreed = 0
                     win_records=[]
                     win_times = 0
+                    validation = []
                     CONFIGS['buy'] = 'no'
                     write_config(CONFIGS,if_buy)
 
@@ -340,6 +333,7 @@ if __name__ == '__main__':
 
             # diff2条数超过40时，才开始预测（前20条资源要丢弃）
             if len(diff2) > 40:
+                diff2.pop(0)
                 df2 = pd.DataFrame(diff2[20:], columns=header)
                 dates, X, y = windowed_df_to_date_X_y(df2)
                 q_80 = int(len(dates) * .8)
@@ -350,7 +344,18 @@ if __name__ == '__main__':
                 dates_val, X_val, y_val = dates[q_80:q_90], X[q_80:q_90], y[q_80:q_90]
                 dates_test, X_test, y_test = dates[q_90:], X[q_90:], y[q_90:]
 
+                model = Sequential([layers.Input((20, 1)),
+                    layers.LSTM(64),
+                    layers.Dense(32, activation='relu'),
+                    layers.Dense(32, activation='relu'),
+                    layers.Dense(1)])
+
+                model.compile(loss='mse', 
+                            optimizer=Adam(learning_rate=0.0005),
+                            metrics=['mean_absolute_error'])
+
                 model.fit(X_train, y_train, validation_data=(X_val, y_val), epochs=100, verbose=0)
+                # model.save(DIR+"\\model\\"+'RNN-Realtime-'+current_date+'.h5')
 
                 # 用测试集验证
                 test_predictions = model.predict(X_test).flatten()
@@ -380,7 +385,7 @@ if __name__ == '__main__':
                 lpred = pd.DataFrame(line_for_pred, columns=header)
                 _, x_lpred, _ = windowed_df_to_date_X_y(lpred)
                 prediction_ = model.predict(x_lpred).flatten()
-                prediction = prediction_.tolist()
+                prediction = prediction_.tolist()[0]
                 print(f'下回合预测值：{prediction} | 下回合预测值（含误差）：{prediction+mae_}')
                 validation.append([round(prediction+mae_,3)])
                 if mae_ <= 1.5:
@@ -389,7 +394,6 @@ if __name__ == '__main__':
                         mae_record = open(mae_log, 'a', encoding='utf8')
                         mae_record.write(f'高,mae={mae_},预测值={prediction},')
                         mae_record.close()
-                        validation = 1
                     except Exception as e:
                         print(e)
                 else:
