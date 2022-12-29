@@ -52,7 +52,7 @@ def send_wechat_self(msg):
 def init_stock():
     stock   = 2
     times   = 2
-    rate    = 0.10
+    rate    = 0.1
     top     = stock
     for i in range(times):
         top = int(top/rate)
@@ -94,7 +94,7 @@ def check_screen_via_adb():
 def treasure_result_ocr(file_path:str) -> list:
     '''寻宝记录进行ocr识别
     输入：文件路径
-    输出：list
+    输出：list=[物品名, [时间文本,时间戳]]
     '''
     ocr = CnOcr()
     items = ['钢琴','小提琴','吉他','贝斯','架子鼓','竖琴','萨克斯风','圆号']

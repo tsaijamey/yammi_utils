@@ -1,0 +1,944 @@
+,time=2022-12-24 13:32:02,obs=-1,item=贝斯,反,time=2022-12-24 13:33:00,obs=-2,item=架子鼓,反
+direction=反,mae=1.369,pred=1.956,opt=['贝斯', '吉他', '小提琴', '大'],time=2022-12-24 13:33:58,obs=-1,item=萨克斯风,反
+direction=反,mae=1.493,pred=4.405,opt=['钢琴', '贝斯', '吉他', '小提琴', '大'],time=2022-12-24 13:34:56,obs=0,item=架子鼓,反
+direction=反,mae=3.68,pred=1.891,opt=['钢琴', '吉他', '贝斯', '小提琴', '大'],time=2022-12-24 13:35:54,obs=4,item=钢琴,反
+direction=反,mae=3.257,pred=0.264,opt=['吉他', '钢琴', '贝斯', '小提琴', '大'],time=2022-12-24 13:36:52,obs=-2,item=贝斯,反
+direction=反,mae=2.187,pred=1.875,opt=['吉他', '钢琴', '小提琴', '大', '贝斯'],time=2022-12-24 13:37:50,obs=2,item=吉他,反
+direction=反,mae=1.195,pred=-2.456,opt=['钢琴', '大', '贝斯'],time=2022-12-24 13:38:48,obs=0,item=钢琴,反
+direction=反,mae=1.29,pred=-2.351,opt=['钢琴', '小提琴', '大'],time=2022-12-24 13:39:46,obs=0,item=钢琴,反
+direction=反,mae=2.403,pred=-0.871,opt=['小提琴', '贝斯', '吉他', '钢琴', '大'],time=2022-12-24 13:40:44,obs=-2,item=吉他,反
+direction=反,mae=1.74,pred=0.389,opt=['贝斯', '钢琴', '大', '吉他'],time=2022-12-24 13:41:42,obs=-1,item=架子鼓,反
+direction=反,mae=1.259,pred=2.019,opt=['贝斯', '吉他', '钢琴', '大'],time=2022-12-24 13:42:40,obs=-1,item=竖琴,反
+direction=反,mae=2.204,pred=2.652,opt=['贝斯', '吉他', '钢琴', '大'],time=2022-12-24 13:43:38,obs=1,item=钢琴,反
+direction=反,mae=2.335,pred=1.679,opt=['小提琴', '贝斯', '吉他', '钢琴', '大'],time=2022-12-24 13:44:36,obs=0,item=钢琴,反
+direction=反,mae=1.665,pred=1.355,opt=['贝斯', '吉他', '大', '钢琴'],time=2022-12-24 13:45:34,obs=1,item=吉他,反
+direction=反,mae=1.017,pred=-0.082,opt=['小提琴', '吉他', '钢琴'],time=2022-12-24 13:46:32,obs=2,item=小提琴,反
+direction=反,mae=1.218,pred=0.014,opt=['小提琴', '贝斯', '大', '吉他', '钢琴'],time=2022-12-24 13:47:30,obs=-4,item=钢琴,反
+direction=反,mae=3.048,pred=3.383,opt=['小提琴', '贝斯', '吉他', '大', '钢琴'],time=2022-12-24 13:48:28,obs=0,item=钢琴,反
+direction=反,mae=3.698,pred=2.995,opt=['小提琴', '贝斯', '吉他', '大', '钢琴'],time=2022-12-24 13:49:26,obs=4,item=小提琴,反
+direction=反,mae=2.194,pred=0.573,opt=['贝斯', '小提琴', '吉他', '大', '钢琴'],time=2022-12-24 13:50:24,obs=-3,item=竖琴,反
+direction=反,mae=2.289,pred=1.368,opt=['小提琴', '吉他', '大', '钢琴'],time=2022-12-24 13:51:22,obs=-1,item=钢琴,反
+direction=反,mae=2.97,pred=3.69,opt=['贝斯', '小提琴', '吉他', '大', '钢琴'],time=2022-12-24 13:52:20,obs=4,item=贝斯,反
+direction=反,mae=1.339,pred=-1.286,opt=['小提琴', '吉他', '大', '钢琴'],time=2022-12-24 13:53:18,obs=-2,item=吉他,反
+direction=反,mae=0.512,pred=1.114,opt=['大', '吉他', '钢琴'],time=2022-12-24 13:54:16,obs=2,item=贝斯,正
+direction=,mae=0.8,pred=-1.47,opt=[],time=2022-12-24 13:55:14,obs=0,item=小提琴,正
+direction=正,mae=1.178,pred=-2.572,opt=['贝斯', '小提琴'],time=2022-12-24 13:56:12,obs=-1,item=贝斯,正
+direction=正,mae=1.521,pred=0.203,opt=['大'],time=2022-12-24 13:57:10,obs=0,item=贝斯,反
+direction=,mae=0.888,pred=1.72,opt=[],time=2022-12-24 13:58:08,obs=-1,item=小提琴,反
+direction=反,mae=1.462,pred=1.591,opt=['大', '吉他', '贝斯', '小提琴', '钢琴'],time=2022-12-24 13:59:06,obs=-1,item=小提琴,反
+direction=反,mae=2.656,pred=1.42,opt=['大', '吉他', '贝斯', '小提琴', '钢琴'],time=2022-12-24 14:00:04,obs=3,item=架子鼓,反
+direction=反,mae=2.086,pred=-0.434,opt=['吉他', '大', '贝斯', '小提琴', '钢琴'],time=2022-12-24 14:01:02,obs=0,item=吉他,反
+direction=反,mae=1.007,pred=-1.737,opt=['贝斯', '小提琴', '钢琴'],time=2022-12-24 14:02:00,obs=-3,item=小提琴,反
+direction=反,mae=0.849,pred=1.807,opt=['贝斯', '钢琴', '小提琴'],time=2022-12-24 14:02:58,obs=3,item=架子鼓,正
+direction=,mae=1.228,pred=-2.0,opt=[],time=2022-12-24 14:03:56,obs=0,item=架子鼓,正
+direction=正,mae=1.597,pred=-0.59,opt=[],time=2022-12-24 14:04:54,obs=-2,item=架子鼓,反
+direction=,mae=1.705,pred=0.04,opt=[],time=2022-12-24 14:05:52,obs=0,item=贝斯,反
+direction=反,mae=0.725,pred=1.449,opt=['钢琴', '大', '贝斯', '小提琴'],time=2022-12-24 14:06:50,obs=2,item=吉他,正
+direction=,mae=0.295,pred=-1.44,opt=[],time=2022-12-24 14:07:48,obs=0,item=钢琴,反
+direction=,mae=0.996,pred=-0.731,opt=[],time=2022-12-24 14:08:46,obs=-1,item=吉他,反
+direction=反,mae=0.854,pred=-0.491,opt=['小提琴', '大', '贝斯'],time=2022-12-24 14:09:44,obs=0,item=吉他,正
+direction=,mae=0.38,pred=0.429,opt=[],time=2022-12-24 14:10:42,obs=1,item=钢琴,正
+direction=正,mae=0.531,pred=-0.142,opt=['钢琴'],time=2022-12-24 14:11:40,obs=0,item=钢琴,正
+direction=正,mae=0.357,pred=-2.063,opt=['大', '贝斯'],time=2022-12-24 14:12:38,obs=0,item=钢琴,反
+direction=,mae=1.103,pred=-1.995,opt=[],time=2022-12-24 14:13:36,obs=-1,item=贝斯,正
+direction=,mae=1.529,pred=1.348,opt=[],time=2022-12-24 14:14:34,obs=-3,item=钢琴,反
+direction=,mae=2.672,pred=2.64,opt=[],time=2022-12-24 14:15:32,obs=4,item=小提琴,反
+direction=反,mae=2.854,pred=-1.931,opt=['大', '吉他', '小提琴', '钢琴'],time=2022-12-24 14:16:30,obs=0,item=贝斯,正
+direction=,mae=1.646,pred=-1.228,opt=[],time=2022-12-24 14:17:28,obs=-2,item=吉他,反
+direction=,mae=1.352,pred=0.882,opt=[],time=2022-12-24 14:18:26,obs=1,item=小提琴,反
+direction=反,mae=0.445,pred=-1.489,opt=['贝斯', '小提琴', '钢琴'],time=2022-12-24 14:19:24,obs=0,item=小提琴,反
+direction=反,mae=0.803,pred=1.234,opt=['大', '贝斯', '小提琴', '吉他', '钢琴'],time=2022-12-24 14:20:22,obs=-2,item=吉他,反
+direction=反,mae=2.361,pred=0.626,opt=['小提琴', '吉他', '钢琴'],time=2022-12-24 14:21:20,obs=-1,item=钢琴,反
+direction=反,mae=2.43,pred=1.166,opt=['小提琴', '吉他', '钢琴'],time=2022-12-24 14:22:18,obs=2,item=小提琴,反
+direction=反,mae=1.23,pred=0.428,opt=['小提琴', '吉他', '钢琴'],time=2022-12-24 14:23:16,obs=1,item=贝斯,正
+direction=,mae=0.703,pred=-0.759,opt=[],time=2022-12-24 14:24:14,obs=-2,item=吉他,反
+direction=,mae=0.906,pred=0.237,opt=[],time=2022-12-24 14:25:12,obs=0,item=吉他,反
+direction=反,mae=0.739,pred=0.799,opt=['大', '钢琴', '吉他'],time=2022-12-24 14:26:10,obs=-1,item=吉他,反
+direction=反,mae=1.018,pred=2.382,opt=['小提琴', '钢琴', '吉他'],time=2022-12-24 14:27:08,obs=3,item=贝斯,正
+direction=,mae=1.208,pred=-2.016,opt=[],time=2022-12-24 14:28:06,obs=-2,item=钢琴,反
+direction=,mae=0.317,pred=0.356,opt=[],time=2022-12-24 14:29:04,obs=1,item=小提琴,正
+direction=,mae=0.33,pred=0.238,opt=[],time=2022-12-24 14:30:02,obs=-2,item=钢琴,反
+direction=,mae=1.441,pred=1.169,opt=[],time=2022-12-24 14:31:00,obs=1,item=小提琴,反
+direction=反,mae=1.204,pred=1.976,opt=['贝斯', '吉他', '钢琴', '小提琴'],time=2022-12-24 14:31:58,obs=1,item=吉他,反
+direction=反,mae=0.572,pred=0.677,opt=['钢琴', '吉他', '小提琴'],time=2022-12-24 14:32:56,obs=0,item=钢琴,反
+direction=反,mae=0.827,pred=0.434,opt=['钢琴', '吉他', '小提琴'],time=2022-12-24 14:33:54,obs=0,item=钢琴,反
+direction=反,mae=0.556,pred=-0.77,opt=['大', '贝斯', '小提琴'],time=2022-12-24 14:34:52,obs=2,item=架子鼓,反
+direction=反,mae=1.602,pred=-3.713,opt=['大', '贝斯', '吉他'],time=2022-12-24 14:35:50,obs=0,item=萨克斯风,反
+direction=反,mae=3.242,pred=-2.205,opt=['大', '贝斯', '小提琴', '钢琴', '吉他'],time=2022-12-24 14:36:48,obs=0,item=架子鼓,反
+direction=反,mae=2.959,pred=-2.55,opt=['大', '吉他', '小提琴', '钢琴'],time=2022-12-24 14:37:46,obs=-2,item=吉他,反
+direction=反,mae=1.377,pred=-0.8,opt=['贝斯', '钢琴', '吉他'],time=2022-12-24 14:38:44,obs=-1,item=钢琴,反
+direction=反,mae=0.375,pred=2.809,opt=['大', '小提琴', '吉他', '钢琴'],time=2022-12-24 14:39:42,obs=1,item=小提琴,反
+direction=反,mae=1.004,pred=0.612,opt=['小提琴', '吉他', '钢琴'],time=2022-12-24 14:40:40,obs=-1,item=吉他,反
+direction=反,mae=1.71,pred=0.687,opt=['小提琴', '钢琴', '吉他'],time=2022-12-24 14:41:38,obs=3,item=贝斯,正
+direction=,mae=1.962,pred=-2.457,opt=[],time=2022-12-24 14:42:36,obs=0,item=架子鼓,正
+direction=正,mae=2.385,pred=-1.589,opt=['贝斯'],time=2022-12-24 14:43:34,obs=-1,item=小提琴,反
+direction=,mae=1.523,pred=0.263,opt=[],time=2022-12-24 14:44:32,obs=-1,item=小提琴,反
+direction=反,mae=0.926,pred=1.293,opt=['大', '吉他', '小提琴', '钢琴'],time=2022-12-24 14:45:30,obs=1,item=架子鼓,反
+direction=反,mae=0.778,pred=0.955,opt=['吉他', '大', '小提琴', '钢琴'],time=2022-12-24 14:46:28,obs=1,item=贝斯,正
+direction=,mae=0.169,pred=0.889,opt=[],time=2022-12-24 14:47:26,obs=-1,item=吉他,反
+direction=,mae=0.967,pred=2.174,opt=[]
+direction=,mae=0.698,pred=1.461,opt=[],time=2022-12-24 15:08:42,obs=3,item=吉他,正
+direction=,mae=0.823,pred=-2.584,opt=[],time=2022-12-24 15:09:40,obs=-2,item=小提琴,正
+direction=正,mae=1.061,pred=0.644,opt=['大', '吉他'],time=2022-12-24 15:10:38,obs=2,item=萨克斯风,正
+direction=正,mae=0.97,pred=-2.43,opt=['大', '小提琴'],time=2022-12-24 15:11:36,obs=-1,item=圆号,正
+direction=正,mae=1.393,pred=-0.726,opt=['吉他', '小提琴'],time=2022-12-24 15:12:34,obs=-1,item=萨克斯风,反
+direction=,mae=0.852,pred=0.7,opt=[],time=2022-12-24 15:13:32,obs=-2,item=钢琴,反
+direction=反,mae=1.487,pred=0.917,opt=['吉他', '贝斯', '钢琴'],time=2022-12-24 15:14:30,obs=0,item=钢琴,反
+direction=反,mae=1.809,pred=1.874,opt=['大', '贝斯', '钢琴'],time=2022-12-24 15:15:28,obs=4,item=吉他,正
+direction=,mae=1.522,pred=-2.473,opt=[],time=2022-12-24 15:16:26,obs=-4,item=钢琴,反
+direction=,mae=1.827,pred=0.1,opt=[],time=2022-12-24 15:17:24,obs=0,item=钢琴,反
+direction=反,mae=0.814,pred=1.493,opt=['小提琴', '大', '钢琴'],time=2022-12-24 15:18:22,obs=2,item=吉他,正
+direction=,mae=0.304,pred=-1.689,opt=[],time=2022-12-24 15:19:20,obs=0,item=吉他,反
+direction=,mae=1.098,pred=-1.724,opt=[],time=2022-12-24 15:20:18,obs=0,item=圆号,正
+direction=,mae=1.706,pred=-1.738,opt=[],time=2022-12-24 15:21:16,obs=2,item=小提琴,反
+direction=,mae=2.731,pred=-1.681,opt=[],time=2022-12-24 15:22:14,obs=-4,item=钢琴,反
+direction=反,mae=3.029,pred=1.215,opt=['小提琴', '吉他', '大', '钢琴'],time=2022-12-24 15:23:12,obs=2,item=吉他,反
+direction=反,mae=1.552,pred=-1.435,opt=['贝斯', '吉他', '钢琴'],time=2022-12-24 15:24:10,obs=0,item=架子鼓,正
+direction=,mae=1.11,pred=-0.887,opt=[],time=2022-12-24 15:25:08,obs=-2,item=钢琴,反
+direction=,mae=1.274,pred=3.401,opt=[],time=2022-12-24 15:26:06,obs=0,item=钢琴,反
+direction=反,mae=2.257,pred=2.759,opt=['贝斯', '小提琴', '大', '吉他', '钢琴'],time=2022-12-24 15:27:04,obs=2,item=竖琴,反
+direction=反,mae=2.08,pred=-1.91,opt=['贝斯', '大', '钢琴'],time=2022-12-24 15:28:02,obs=-1,item=竖琴,反
+direction=反,mae=0.835,pred=1.3,opt=['吉他', '大', '钢琴'],time=2022-12-24 15:29:00,obs=0,item=竖琴,反
+direction=反,mae=1.105,pred=-0.569,opt=['贝斯', '小提琴', '大'],time=2022-12-24 15:29:58,obs=3,item=贝斯,反
+direction=反,mae=2.434,pred=-4.601,opt=['贝斯', '小提琴', '钢琴'],time=2022-12-24 15:30:56,obs=0,item=贝斯,反
+direction=反,mae=4.085,pred=-2.033,opt=['小提琴', '贝斯', '吉他', '大', '钢琴'],time=2022-12-24 15:31:54,obs=-2,item=吉他,反
+direction=反,mae=2.317,pred=-0.175,opt=['贝斯', '大', '吉他', '钢琴'],time=2022-12-24 15:32:52,obs=2,item=小提琴,正
+direction=,mae=1.104,pred=-3.472,opt=[],time=2022-12-24 15:33:50,obs=-4,item=钢琴,反
+direction=,mae=1.352,pred=0.793,opt=[],time=2022-12-24 15:34:48,obs=2,item=圆号,正
+direction=,mae=0.868,pred=-0.81,opt=[],time=2022-12-24 15:35:46,obs=-2,item=钢琴,反
+direction=,mae=1.199,pred=1.215,opt=[],time=2022-12-24 15:36:44,obs=4,item=贝斯,反
+direction=反,mae=1.988,pred=-3.695,opt=['小提琴', '钢琴', '大'],time=2022-12-24 15:37:42,obs=-4,item=架子鼓,反
+direction=反,mae=1.545,pred=1.661,opt=['吉他', '钢琴', '大'],time=2022-12-24 15:38:40,obs=2,item=吉他,反
+direction=反,mae=0.322,pred=0.646,opt=['小提琴', '钢琴', '大'],time=2022-12-24 15:39:38,obs=-2,item=圆号,反
+direction=反,mae=1.493,pred=1.429,opt=['小提琴', '钢琴', '大'],time=2022-12-24 15:40:36,obs=3,item=贝斯,正
+direction=,mae=2.109,pred=-0.207,opt=[],time=2022-12-24 15:41:34,obs=-1,item=贝斯,反
+direction=,mae=1.182,pred=1.147,opt=[],time=2022-12-24 15:42:32,obs=1,item=吉他,反
+direction=反,mae=0.47,pred=-2.442,opt=['小提琴', '吉他', '大'],time=2022-12-24 15:43:30,obs=1,item=小提琴,反
+direction=反,mae=1.794,pred=-3.973,opt=['小提琴', '吉他', '大'],time=2022-12-24 15:44:28,obs=-1,item=吉他,反
+direction=反,mae=3.207,pred=-2.089,opt=['钢琴', '吉他', '贝斯', '大'],time=2022-12-24 15:45:26,obs=-2,item=贝斯,反
+direction=反,mae=1.531,pred=0.202,opt=['小提琴', '大', '贝斯'],time=2022-12-24 15:46:24,obs=2,item=钢琴,正
+direction=,mae=0.944,pred=0.437,opt=[],time=2022-12-24 15:47:22,obs=0,item=钢琴,反
+direction=,mae=1.117,pred=-1.273,opt=[],time=2022-12-24 15:48:20,obs=0,item=竖琴,正
+direction=,mae=0.855,pred=-1.93,opt=[],time=2022-12-24 15:49:18,obs=0,item=架子鼓,反
+direction=,mae=1.601,pred=-0.68,opt=[],time=2022-12-24 15:50:16,obs=0,item=吉他,正
+direction=,mae=1.305,pred=-0.758,opt=[],time=2022-12-24 15:51:14,obs=-2,item=竖琴,反
+direction=,mae=0.961,pred=0.306,opt=[],time=2022-12-24 15:52:12,obs=1,item=吉他,正
+direction=,mae=0.968,pred=-2.073,opt=[],time=2022-12-24 15:53:10,obs=2,item=小提琴,反
+direction=,mae=2.384,pred=-2.388,opt=[],time=2022-12-24 15:54:08,obs=-3,item=吉他,反
+direction=反,mae=2.343,pred=1.693,opt=['小提琴', '钢琴', '贝斯', '大', '吉他'],time=2022-12-24 15:55:06,obs=0,item=架子鼓,反
+direction=反,mae=1.153,pred=0.045,opt=['小提琴', '大', '吉他'],time=2022-12-24 15:56:04,obs=1,item=贝斯,正
+direction=,mae=1.324,pred=0.368,opt=[],time=2022-12-24 15:57:02,obs=1,item=钢琴,正
+direction=正,mae=0.793,pred=-0.611,opt=['小提琴', '钢琴'],time=2022-12-24 15:58:00,obs=1,item=小提琴,正
+direction=正,mae=1.122,pred=-1.464,opt=['小提琴', '钢琴'],time=2022-12-24 15:58:58,obs=-2,item=贝斯,反
+direction=,mae=1.073,pred=-0.337,opt=[],time=2022-12-24 15:59:56,obs=2,item=小提琴,反
+direction=反,mae=1.436,pred=-2.558,opt=['钢琴', '小提琴', '吉他'],time=2022-12-24 16:00:54,obs=-4,item=吉他,反
+direction=反,mae=1.889,pred=1.148,opt=['大', '小提琴', '吉他'],time=2022-12-24 16:01:52,obs=1,item=小提琴,反
+direction=反,mae=0.795,pred=-0.827,opt=['贝斯', '钢琴', '大'],time=2022-12-24 16:02:50,obs=-1,item=小提琴,正
+direction=,mae=0.16,pred=2.435,opt=[],time=2022-12-24 16:03:48,obs=2,item=架子鼓,正
+direction=正,mae=0.304,pred=0.21,opt=['钢琴', '吉他'],time=2022-12-24 16:04:46,obs=-2,item=小提琴,反
+direction=,mae=1.322,pred=1.305,opt=[],time=2022-12-24 16:05:44,obs=0,item=小提琴,反
+direction=反,mae=1.757,pred=3.157,opt=['钢琴', '吉他', '大', '小提琴'],time=2022-12-24 16:06:42,obs=0,item=小提琴,反
+direction=反,mae=2.231,pred=2.793,opt=['钢琴', '贝斯', '吉他', '大', '小提琴'],time=2022-12-24 16:07:40,obs=1,item=架子鼓,反
+direction=反,mae=2.475,pred=1.849,opt=['钢琴', '贝斯', '吉他', '大', '小提琴'],time=2022-12-24 16:08:38,obs=3,item=钢琴,反
+direction=反,mae=1.472,pred=-1.712,opt=['大', '吉他', '小提琴'],time=2022-12-24 16:09:36,obs=0,item=贝斯,正
+direction=,mae=1.432,pred=-4.246,opt=[],time=2022-12-24 16:10:34,obs=0,item=钢琴,反
+direction=,mae=2.979,pred=-1.957,opt=[],time=2022-12-24 16:11:32,obs=-4,item=小提琴,反
+direction=反,mae=3.145,pred=1.941,opt=['吉他', '大', '贝斯', '钢琴', '小提琴'],time=2022-12-24 16:12:30,obs=3,item=竖琴,反
+direction=反,mae=1.551,pred=1.262,opt=['吉他', '贝斯', '钢琴', '大', '小提琴'],time=2022-12-24 16:13:28,obs=-1,item=钢琴,反
+direction=反,mae=1.661,pred=-2.085,opt=['吉他', '贝斯', '小提琴'],time=2022-12-24 16:14:26,obs=1,item=贝斯,反
+direction=反,mae=2.673,pred=-2.912,opt=['吉他', '钢琴', '小提琴'],time=2022-12-24 16:15:24,obs=-2,item=钢琴,反
+direction=反,mae=1.998,pred=-0.047,opt=['吉他', '钢琴', '小提琴'],time=2022-12-24 16:16:22,obs=1,item=贝斯,正
+direction=,mae=0.98,pred=0.391,opt=[],time=2022-12-24 16:17:20,obs=-1,item=钢琴,反
+direction=,mae=1.219,pred=0.881,opt=[],time=2022-12-24 16:18:18,obs=1,item=贝斯,反
+direction=反,mae=0.755,pred=0.267,opt=['贝斯', '钢琴', '小提琴'],time=2022-12-24 16:19:16,obs=2,item=吉他,正
+direction=,mae=0.926,pred=-2.926,opt=[],time=2022-12-24 16:20:14,obs=-1,item=竖琴,正
+direction=正,mae=1.829,pred=-3.56,opt=['贝斯', '钢琴'],time=2022-12-24 16:21:12,obs=-3,item=小提琴,反
+direction=,mae=1.243,pred=3.937,opt=[],time=2022-12-24 16:22:10,obs=0,item=小提琴,反
+direction=反,mae=2.248,pred=2.855,opt=['吉他', '大', '贝斯', '钢琴', '小提琴'],time=2022-12-24 16:23:08,obs=0,item=小提琴,反
+direction=反,mae=3.396,pred=3.877,opt=['吉他', '大', '贝斯', '钢琴', '小提琴'],time=2022-12-24 16:24:06,obs=4,item=吉他,反
+direction=反,mae=1.489,pred=-1.997,opt=['贝斯', '钢琴', '小提琴']
+direction=反,mae=2.219,pred=-1.537,opt=['钢琴', '大', '贝斯', '吉他'],time=2022-12-24 16:45:22,obs=-4,item=吉他,反
+direction=反,mae=2.683,pred=4.756,opt=['小提琴', '钢琴', '大', '贝斯', '吉他'],time=2022-12-24 16:46:20,obs=3,item=钢琴,反
+direction=反,mae=2.109,pred=-0.667,opt=['大', '贝斯', '钢琴', '吉他'],time=2022-12-24 16:47:18,obs=-3,item=吉他,反
+direction=反,mae=2.044,pred=1.501,opt=['贝斯', '钢琴', '吉他'],time=2022-12-24 16:48:16,obs=0,item=吉他,反
+direction=反,mae=1.917,pred=2.213,opt=['大', '贝斯', '钢琴', '吉他'],time=2022-12-24 16:49:14,obs=4,item=小提琴,正
+direction=,mae=1.644,pred=-1.734,opt=[],time=2022-12-24 16:50:12,obs=0,item=小提琴,正
+direction=正,mae=1.761,pred=-0.368,opt=[],time=2022-12-24 16:51:10,obs=0,item=圆号,反
+direction=,mae=1.051,pred=-2.322,opt=[],time=2022-12-24 16:52:08,obs=0,item=架子鼓,反
+direction=反,mae=1.345,pred=-2.2,opt=['钢琴', '大', '吉他'],time=2022-12-24 16:53:06,obs=-1,item=小提琴,正
+direction=,mae=1.761,pred=-1.735,opt=[],time=2022-12-24 16:54:04,obs=-1,item=架子鼓,反
+direction=,mae=0.968,pred=0.791,opt=[],time=2022-12-24 16:55:02,obs=-2,item=吉他,反
+direction=反,mae=1.763,pred=2.425,opt=['钢琴', '小提琴', '大', '吉他'],time=2022-12-24 16:56:00,obs=3,item=钢琴,反
+direction=反,mae=1.683,pred=-2.078,opt=['贝斯', '大', '吉他'],time=2022-12-24 16:56:58,obs=1,item=贝斯,反
+direction=反,mae=1.827,pred=-1.728,opt=['小提琴', '钢琴', '大', '吉他'],time=2022-12-24 16:57:56,obs=-1,item=小提琴,反
+direction=反,mae=1.903,pred=-0.72,opt=['钢琴', '小提琴', '大', '吉他'],time=2022-12-24 16:58:54,obs=-1,item=小提琴,反
+direction=反,mae=0.504,pred=1.738,opt=['钢琴', '大', '小提琴', '吉他'],time=2022-12-24 16:59:52,obs=-2,item=吉他,反
+direction=反,mae=2.009,pred=1.1,opt=['大', '小提琴', '吉他'],time=2022-12-24 17:00:50,obs=2,item=竖琴,反
+direction=反,mae=2.319,pred=3.263,opt=['贝斯', '钢琴', '大', '小提琴', '吉他'],time=2022-12-24 17:01:48,obs=-1,item=小提琴,反
+direction=反,mae=2.581,pred=1.351,opt=['钢琴', '大', '吉他', '小提琴'],time=2022-12-24 17:02:46,obs=3,item=贝斯,正
+direction=,mae=2.956,pred=-2.884,opt=[],time=2022-12-24 17:03:44,obs=-3,item=吉他,反
+direction=,mae=0.882,pred=1.12,opt=[],time=2022-12-24 17:04:42,obs=2,item=钢琴,正
+direction=,mae=0.498,pred=0.107,opt=[],time=2022-12-24 17:05:40,obs=0,item=钢琴,正
+direction=正,mae=0.493,pred=0.141,opt=['贝斯', '钢琴'],time=2022-12-24 17:06:38,obs=-1,item=架子鼓,反
+direction=,mae=0.624,pred=0.955,opt=[],time=2022-12-24 17:07:36,obs=2,item=贝斯,正
+direction=,mae=1.093,pred=-1.748,opt=[],time=2022-12-24 17:08:34,obs=-4,item=小提琴,反
+direction=,mae=1.648,pred=2.947,opt=[],time=2022-12-24 17:09:32,obs=4,item=贝斯,正
+direction=,mae=1.652,pred=-2.662,opt=[],time=2022-12-24 17:10:30,obs=0,item=吉他,反
+direction=,mae=1.857,pred=0.482,opt=[],time=2022-12-24 17:11:28,obs=-2,item=贝斯,反
+direction=反,mae=2.572,pred=0.805,opt=['大', '钢琴', '吉他', '贝斯', '小提琴'],time=2022-12-24 17:12:26,obs=-1,item=贝斯,反
+direction=反,mae=2.144,pred=1.934,opt=['大', '钢琴', '吉他', '小提琴', '贝斯'],time=2022-12-24 17:13:24,obs=2,item=钢琴,反
+direction=反,mae=0.936,pred=-1.177,opt=['大', '钢琴', '贝斯'],time=2022-12-24 17:14:22,obs=1,item=萨克斯风,反
+direction=反,mae=1.121,pred=-3.143,opt=['大', '吉他', '贝斯'],time=2022-12-24 17:15:20,obs=0,item=竖琴,反
+direction=反,mae=2.66,pred=-3.509,opt=['大', '小提琴', '贝斯'],time=2022-12-24 17:16:18,obs=-3,item=小提琴,反
+direction=反,mae=1.826,pred=0.325,opt=['大', '贝斯', '小提琴'],time=2022-12-24 17:17:16,obs=1,item=圆号,反
+direction=反,mae=0.592,pred=-0.157,opt=['吉他', '大', '贝斯'],time=2022-12-24 17:18:14,obs=2,item=吉他,反
+direction=反,mae=1.416,pred=-2.366,opt=['吉他', '大', '贝斯'],time=2022-12-24 17:19:12,obs=0,item=小提琴,正
+direction=,mae=2.262,pred=-1.36,opt=[],time=2022-12-24 17:20:10,obs=0,item=吉他,正
+direction=正,mae=1.863,pred=-0.566,opt=[],time=2022-12-24 17:21:08,obs=-4,item=贝斯,反
+direction=,mae=2.397,pred=0.018,opt=[],time=2022-12-24 17:22:06,obs=3,item=钢琴,正
+direction=,mae=3.208,pred=0.516,opt=[],time=2022-12-24 17:23:04,obs=0,item=竖琴,反
+direction=,mae=1.749,pred=-0.512,opt=[],time=2022-12-24 17:24:02,obs=1,item=吉他,正
+direction=,mae=1.014,pred=-1.163,opt=[],time=2022-12-24 17:25:00,obs=-2,item=吉他,反
+direction=,mae=1.175,pred=1.414,opt=[],time=2022-12-24 17:25:58,obs=2,item=钢琴,正
+direction=,mae=0.712,pred=-2.749,opt=[],time=2022-12-24 17:26:56,obs=-4,item=吉他,反
+direction=,mae=0.919,pred=1.263,opt=[],time=2022-12-24 17:27:54,obs=4,item=小提琴,反
+direction=反,mae=1.994,pred=-2.771,opt=['大', '贝斯', '吉他'],time=2022-12-24 17:28:52,obs=-2,item=竖琴,反
+direction=反,mae=1.754,pred=0.745,opt=['小提琴', '钢琴', '大', '吉他'],time=2022-12-24 17:29:50,obs=0,item=钢琴,反
+direction=反,mae=0.758,pred=0.855,opt=['钢琴', '大', '吉他'],time=2022-12-24 17:30:48,obs=2,item=贝斯,正
+direction=,mae=0.945,pred=0.187,opt=[],time=2022-12-24 17:31:46,obs=-1,item=小提琴,反
+direction=,mae=1.166,pred=-1.319,opt=[],time=2022-12-24 17:32:44,obs=0,item=小提琴,正
+direction=,mae=1.253,pred=-1.567,opt=[],time=2022-12-24 17:33:42,obs=1,item=贝斯,反
+direction=,mae=1.943,pred=-2.83,opt=[],time=2022-12-24 17:34:40,obs=-1,item=钢琴,正
+direction=,mae=2.199,pred=-2.082,opt=[],time=2022-12-24 17:35:38,obs=0,item=贝斯,正
+direction=正,mae=1.956,pred=0.985,opt=[],time=2022-12-24 17:36:36,obs=-2,item=钢琴,反
+direction=,mae=2.534,pred=0.68,opt=[],time=2022-12-24 17:37:34,obs=-1,item=钢琴,反
+direction=反,mae=2.332,pred=2.052,opt=['贝斯', '吉他', '小提琴', '钢琴'],time=2022-12-24 17:38:32,obs=1,item=小提琴,反
+direction=反,mae=1.366,pred=0.012,opt=['大', '小提琴', '钢琴'],time=2022-12-24 17:39:30,obs=3,item=竖琴,反
+direction=反,mae=2.02,pred=-1.665,opt=['吉他', '贝斯', '小提琴', '钢琴'],time=2022-12-24 17:40:28,obs=-3,item=小提琴,反
+direction=反,mae=2.162,pred=1.588,opt=['贝斯', '吉他', '小提琴', '钢琴'],time=2022-12-24 17:41:26,obs=1,item=吉他,反
+direction=反,mae=0.962,pred=1.542,opt=['贝斯', '吉他', '小提琴', '钢琴'],time=2022-12-24 17:42:24,obs=2,item=架子鼓,正
+direction=,mae=0.523,pred=-0.447,opt=[],time=2022-12-24 17:43:22,obs=-1,item=贝斯,反
+direction=,mae=0.506,pred=-2.23,opt=[],time=2022-12-24 17:44:20,obs=1,item=萨克斯风,反
+direction=反,mae=1.891,pred=-1.854,opt=['大', '贝斯', '小提琴', '钢琴'],time=2022-12-24 17:45:18,obs=-1,item=圆号,反
+direction=反,mae=2.042,pred=-1.811,opt=['钢琴', '大', '小提琴'],time=2022-12-24 17:46:16,obs=-1,item=钢琴,反
+direction=反,mae=0.832,pred=0.624,opt=['大', '小提琴', '钢琴'],time=2022-12-24 17:47:14,obs=-1,item=小提琴,反
+direction=反,mae=1.218,pred=1.097,opt=['大', '小提琴', '钢琴'],time=2022-12-24 17:48:12,obs=-1,item=钢琴,反
+direction=反,mae=1.86,pred=-0.025,opt=['吉他', '大', '钢琴'],time=2022-12-24 17:49:10,obs=0,item=钢琴,反
+direction=反,mae=1.061,pred=0.452,opt=['吉他', '大', '钢琴'],time=2022-12-24 17:50:08,obs=0,item=钢琴,反
+direction=反,mae=0.238,pred=1.385,opt=['吉他', '贝斯', '钢琴'],time=2022-12-24 17:51:06,obs=2,item=萨克斯风,正
+direction=,mae=0.533,pred=-0.897,opt=[],time=2022-12-24 17:52:04,obs=-1,item=竖琴,正
+direction=正,mae=0.359,pred=0.893,opt=['贝斯', '小提琴'],time=2022-12-24 17:53:02,obs=3,item=吉他,反
+direction=,mae=1.105,pred=-1.567,opt=[],time=2022-12-24 17:54:00,obs=-1,item=吉他,正
+direction=,mae=1.337,pred=-2.302,opt=[],time=2022-12-24 17:54:58,obs=0,item=吉他,正
+direction=正,mae=1.434,pred=0.321,opt=['贝斯'],time=2022-12-24 17:55:56,obs=-1,item=吉他,反
+direction=,mae=1.811,pred=0.433,opt=[],time=2022-12-24 17:56:54,obs=-1,item=钢琴,反
+direction=反,mae=1.377,pred=2.006,opt=['小提琴', '吉他', '钢琴', '大'],time=2022-12-24 17:57:52,obs=-1,item=竖琴,反
+direction=反,mae=2.219,pred=0.51,opt=['贝斯', '钢琴', '大'],time=2022-12-24 17:58:50,obs=1,item=钢琴,反
+direction=反,mae=1.748,pred=1.426,opt=['小提琴', '吉他', '大', '钢琴'],time=2022-12-24 17:59:48,obs=1,item=吉他,反
+direction=反,mae=0.458,pred=-0.286,opt=['贝斯', '吉他', '钢琴'],time=2022-12-24 18:00:46,obs=0,item=架子鼓,正
+direction=,mae=0.356,pred=1.995,opt=[]
+direction=,mae=1.659,pred=0.832,opt=[],time=2022-12-24 18:23:00,obs=3,item=贝斯,正
+direction=正,mae=2.175,pred=-2.498,opt=['吉他', '贝斯'],time=2022-12-24 18:23:58,obs=-2,item=小提琴,反
+direction=,mae=1.333,pred=-0.422,opt=[],time=2022-12-24 18:24:56,obs=3,item=吉他,反
+direction=反,mae=1.96,pred=-3.211,opt=['大', '小提琴', '钢琴'],time=2022-12-24 18:25:54,obs=0,item=萨克斯风,反
+direction=反,mae=3.317,pred=-2.677,opt=['吉他', '大', '小提琴', '钢琴'],time=2022-12-24 18:26:52,obs=-3,item=小提琴,反
+direction=反,mae=1.767,pred=1.031,opt=['大', '钢琴', '小提琴'],time=2022-12-24 18:27:50,obs=0,item=钢琴,反
+direction=反,mae=0.677,pred=2.402,opt=['贝斯', '大', '小提琴', '钢琴'],time=2022-12-24 18:28:48,obs=2,item=贝斯,反
+direction=反,mae=0.717,pred=-0.214,opt=['贝斯', '小提琴', '钢琴'],time=2022-12-24 18:29:46,obs=1,item=吉他,正
+direction=,mae=0.808,pred=-2.571,opt=[],time=2022-12-24 18:30:44,obs=0,item=吉他,反
+direction=,mae=1.892,pred=-0.78,opt=[],time=2022-12-24 18:31:42,obs=-2,item=吉他,反
+direction=反,mae=1.895,pred=-1.33,opt=['大', '吉他', '小提琴'],time=2022-12-24 18:32:40,obs=2,item=架子鼓,反
+direction=反,mae=2.275,pred=-1.755,opt=['钢琴', '贝斯', '吉他', '小提琴'],time=2022-12-24 18:33:38,obs=-1,item=钢琴,反
+direction=反,mae=2.043,pred=-1.036,opt=['贝斯', '小提琴', '钢琴', '吉他'],time=2022-12-24 18:34:36,obs=-1,item=小提琴,反
+direction=反,mae=0.396,pred=-0.958,opt=['大', '贝斯', '小提琴'],time=2022-12-24 18:35:34,obs=-1,item=吉他,正
+direction=,mae=0.039,pred=0.122,opt=[],time=2022-12-24 18:36:32,obs=3,item=萨克斯风,反
+direction=,mae=1.46,pred=-3.294,opt=[],time=2022-12-24 18:37:30,obs=-1,item=钢琴,正
+direction=,mae=2.586,pred=-2.086,opt=[],time=2022-12-24 18:38:28,obs=-1,item=钢琴,反
+direction=,mae=1.69,pred=1.911,opt=[],time=2022-12-24 18:39:26,obs=1,item=萨克斯风,反
+direction=反,mae=0.999,pred=0.181,opt=['大', '小提琴', '吉他', '钢琴'],time=2022-12-24 18:40:24,obs=0,item=萨克斯风,反
+direction=反,mae=0.546,pred=-0.035,opt=['大', '吉他', '钢琴'],time=2022-12-24 18:41:22,obs=0,item=小提琴,正
+direction=,mae=0.108,pred=-0.556,opt=[],time=2022-12-24 18:42:20,obs=-1,item=钢琴,正
+direction=正,mae=0.239,pred=1.686,opt=['贝斯', '小提琴'],time=2022-12-24 18:43:18,obs=-1,item=吉他,反
+direction=,mae=1.565,pred=0.454,opt=[],time=2022-12-24 18:44:16,obs=3,item=贝斯,正
+direction=,mae=2.616,pred=-1.616,opt=[],time=2022-12-24 18:45:14,obs=-2,item=架子鼓,反
+direction=,mae=1.465,pred=0.522,opt=[],time=2022-12-24 18:46:12,obs=1,item=小提琴,正
+direction=,mae=0.431,pred=-1.103,opt=[],time=2022-12-24 18:47:10,obs=-3,item=钢琴,反
+direction=,mae=1.187,pred=0.717,opt=[],time=2022-12-24 18:48:08,obs=3,item=小提琴,反
+direction=反,mae=2.09,pred=-0.224,opt=['小提琴', '大', '吉他', '钢琴'],time=2022-12-24 18:49:06,obs=-3,item=钢琴,反
+direction=反,mae=2.529,pred=0.202,opt=['贝斯', '大', '钢琴'],time=2022-12-24 18:50:04,obs=1,item=架子鼓,反
+direction=反,mae=1.787,pred=-0.522,opt=['贝斯', '大', '钢琴'],time=2022-12-24 18:51:02,obs=1,item=小提琴,正
+direction=,mae=1.16,pred=-1.372,opt=[],time=2022-12-24 18:52:00,obs=1,item=吉他,反
+direction=,mae=1.947,pred=-1.494,opt=[],time=2022-12-24 18:52:58,obs=0,item=吉他,正
+direction=,mae=1.933,pred=-2.13,opt=[],time=2022-12-24 18:53:56,obs=0,item=吉他,正
+direction=正,mae=1.812,pred=-1.93,opt=['小提琴', '大'],time=2022-12-24 18:54:54,obs=1,item=贝斯,反
+direction=,mae=2.53,pred=-2.116,opt=[],time=2022-12-24 18:55:52,obs=0,item=贝斯,正
+direction=,mae=2.523,pred=-0.782,opt=[],time=2022-12-24 18:56:50,obs=-4,item=钢琴,反
+direction=,mae=2.667,pred=0.709,opt=[],time=2022-12-24 18:57:48,obs=0,item=钢琴,反
+direction=反,mae=1.964,pred=2.849,opt=['大', '吉他', '小提琴', '钢琴'],time=2022-12-24 18:58:46,obs=2,item=吉他,反
+direction=反,mae=0.779,pred=0.233,opt=['小提琴', '吉他', '钢琴'],time=2022-12-24 18:59:44,obs=1,item=贝斯,正
+direction=,mae=0.808,pred=-0.141,opt=[],time=2022-12-24 19:00:42,obs=-1,item=小提琴,反
+direction=,mae=0.813,pred=0.8,opt=[],time=2022-12-24 19:01:40,obs=0,item=小提琴,反
+direction=反,mae=0.83,pred=-1.059,opt=['大', '贝斯', '小提琴'],time=2022-12-24 19:02:38,obs=0,item=钢琴,正
+direction=,mae=0.929,pred=0.533,opt=[],time=2022-12-24 19:03:36,obs=0,item=吉他,反
+direction=,mae=0.796,pred=-1.114,opt=[],time=2022-12-24 19:04:34,obs=1,item=贝斯,反
+direction=反,mae=1.324,pred=-2.08,opt=['大', '小提琴', '钢琴'],time=2022-12-24 19:05:32,obs=-3,item=钢琴,反
+direction=反,mae=1.517,pred=0.647,opt=['大', '吉他', '钢琴'],time=2022-12-24 19:06:30,obs=4,item=竖琴,反
+direction=反,mae=2.137,pred=-2.392,opt=['小提琴', '吉他', '钢琴'],time=2022-12-24 19:07:28,obs=-4,item=钢琴,反
+direction=反,mae=2.48,pred=2.802,opt=['大', '小提琴', '贝斯', '吉他', '钢琴'],time=2022-12-24 19:08:26,obs=4,item=架子鼓,反
+direction=反,mae=1.403,pred=-1.35,opt=['小提琴', '贝斯', '吉他', '钢琴'],time=2022-12-24 19:09:24,obs=0,item=竖琴,正
+direction=,mae=1.274,pred=-0.54,opt=[],time=2022-12-24 19:10:22,obs=-2,item=贝斯,反
+direction=,mae=1.405,pred=-1.376,opt=[],time=2022-12-24 19:11:20,obs=-2,item=钢琴,反
+direction=反,mae=1.042,pred=2.634,opt=['吉他', '贝斯', '钢琴'],time=2022-12-24 19:12:18,obs=1,item=贝斯,反
+direction=反,mae=1.129,pred=2.473,opt=['大', '吉他', '贝斯', '钢琴'],time=2022-12-24 19:13:16,obs=1,item=吉他,反
+direction=反,mae=1.553,pred=1.044,opt=['大', '吉他', '贝斯', '钢琴'],time=2022-12-24 19:14:14,obs=1,item=架子鼓,反
+direction=反,mae=0.758,pred=0.88,opt=['吉他', '大', '贝斯', '钢琴'],time=2022-12-24 19:15:12,obs=-3,item=钢琴,反
+direction=反,mae=1.962,pred=-0.245,opt=['小提琴', '吉他', '钢琴'],time=2022-12-24 19:16:10,obs=3,item=吉他,反
+direction=反,mae=3.563,pred=-0.16,opt=['小提琴', '大', '贝斯', '吉他', '钢琴'],time=2022-12-24 19:17:08,obs=-1,item=贝斯,反
+direction=反,mae=2.042,pred=-1.152,opt=['小提琴', '贝斯', '钢琴'],time=2022-12-24 19:18:06,obs=0,item=吉他,正
+direction=,mae=0.996,pred=2.508,opt=[],time=2022-12-24 19:19:04,obs=2,item=小提琴,反
+direction=,mae=0.83,pred=-2.348,opt=[],time=2022-12-24 19:20:02,obs=-1,item=架子鼓,正
+direction=,mae=0.928,pred=0.261,opt=[],time=2022-12-24 19:21:00,obs=-1,item=吉他,反
+direction=,mae=1.304,pred=1.493,opt=[],time=2022-12-24 19:21:58,obs=0,item=圆号,反
+direction=反,mae=1.377,pred=0.202,opt=['钢琴', '吉他', '大'],time=2022-12-24 19:22:56,obs=2,item=小提琴,正
+direction=,mae=1.646,pred=-2.062,opt=[],time=2022-12-24 19:23:54,obs=-1,item=贝斯,正
+direction=正,mae=1.43,pred=-0.591,opt=['小提琴', '贝斯'],time=2022-12-24 19:24:52,obs=1,item=小提琴,正
+direction=正,mae=1.327,pred=-2.044,opt=['小提琴', '钢琴'],time=2022-12-24 19:25:50,obs=-4,item=架子鼓,反
+direction=,mae=1.774,pred=0.168,opt=[],time=2022-12-24 19:26:48,obs=2,item=贝斯,正
+direction=,mae=1.894,pred=-0.311,opt=[],time=2022-12-24 19:27:46,obs=1,item=小提琴,正
+direction=正,mae=1.571,pred=1.962,opt=[],time=2022-12-24 19:28:44,obs=0,item=吉他,反
+direction=,mae=1.636,pred=2.699,opt=[],time=2022-12-24 19:29:42,obs=1,item=钢琴,反
+direction=反,mae=1.83,pred=-1.049,opt=['大', '贝斯', '小提琴', '吉他'],time=2022-12-24 19:30:40,obs=-3,item=小提琴,反
+direction=反,mae=1.825,pred=0.817,opt=['贝斯', '吉他', '小提琴'],time=2022-12-24 19:31:38,obs=0,item=吉他,反
+direction=反,mae=1.384,pred=1.905,opt=['贝斯', '大', '小提琴', '吉他'],time=2022-12-24 19:32:36,obs=1,item=架子鼓,反
+direction=反,mae=0.861,pred=0.054,opt=['钢琴', '吉他', '小提琴'],time=2022-12-24 19:33:34,obs=-1,item=吉他,反
+direction=反,mae=0.979,pred=1.551,opt=['大', '小提琴', '吉他'],time=2022-12-24 19:34:32,obs=1,item=架子鼓,反
+direction=反,mae=0.803,pred=-0.211,opt=['钢琴', '小提琴', '吉他'],time=2022-12-24 19:35:30,obs=-2,item=吉他,反
+direction=反,mae=1.17,pred=3.051,opt=['贝斯', '大', '小提琴', '吉他'],time=2022-12-24 19:36:28,obs=4,item=钢琴,正
+direction=,mae=1.369,pred=-0.141,opt=[],time=2022-12-24 19:37:26,obs=-4,item=吉他,反
+direction=,mae=2.404,pred=3.498,opt=[],time=2022-12-24 19:38:24,obs=3,item=钢琴,反
+direction=反,mae=2.179,pred=-2.216,opt=['贝斯', '大', '吉他']
+direction=反,mae=1.071,pred=1.199,opt=['大', '贝斯', '小提琴'],time=2022-12-24 20:02:34,obs=2,item=吉他,正
+direction=,mae=0.846,pred=-1.248,opt=[],time=2022-12-24 20:03:32,obs=0,item=竖琴,正
+direction=正,mae=1.024,pred=-1.229,opt=['吉他', '大'],time=2022-12-24 20:04:30,obs=0,item=吉他,正
+direction=正,mae=1.239,pred=-1.302,opt=['大', '贝斯'],time=2022-12-24 20:05:28,obs=-2,item=吉他,反
+direction=,mae=0.964,pred=1.182,opt=[]
+direction=,mae=0.716,pred=-0.511,opt=[],time=2022-12-24 20:29:38,obs=-1,item=小提琴,反
+direction=反,mae=0.892,pred=0.39,opt=['吉他', '小提琴', '大', '贝斯'],time=2022-12-24 20:30:36,obs=-1,item=小提琴,反
+direction=反,mae=0.939,pred=-0.611,opt=['钢琴', '大', '小提琴'],time=2022-12-24 20:31:34,obs=0,item=吉他,正
+direction=,mae=1.001,pred=-0.826,opt=[],time=2022-12-24 20:32:32,obs=-2,item=小提琴,反
+direction=,mae=0.893,pred=1.079,opt=[],time=2022-12-24 20:33:30,obs=3,item=贝斯,反
+direction=反,mae=1.548,pred=-1.704,opt=['钢琴', '吉他', '小提琴'],time=2022-12-24 20:34:28,obs=1,item=钢琴,反
+direction=反,mae=2.313,pred=0.778,opt=['大', '钢琴', '贝斯', '吉他', '小提琴'],time=2022-12-24 20:35:26,obs=-2,item=贝斯,反
+direction=反,mae=2.741,pred=1.623,opt=['大', '钢琴', '吉他', '贝斯', '小提琴'],time=2022-12-24 20:36:24,obs=-2,item=小提琴,反
+direction=反,mae=3.2,pred=2.148,opt=['大', '吉他', '钢琴', '贝斯', '小提琴'],time=2022-12-24 20:37:22,obs=2,item=钢琴,反
+direction=反,mae=1.885,pred=-1.0,opt=['大', '贝斯', '小提琴'],time=2022-12-24 20:38:20,obs=-1,item=贝斯,反
+direction=反,mae=0.074,pred=1.031,opt=['大', '贝斯', '小提琴'],time=2022-12-24 20:39:18,obs=3,item=竖琴,反
+direction=反,mae=0.985,pred=-1.413,opt=['钢琴', '贝斯', '小提琴'],time=2022-12-24 20:40:16,obs=-4,item=小提琴,反
+direction=反,mae=2.278,pred=2.923,opt=['大', '吉他', '钢琴', '贝斯', '小提琴'],time=2022-12-24 20:41:14,obs=3,item=吉他,反
+direction=反,mae=1.332,pred=0.103,opt=['吉他', '贝斯', '钢琴', '小提琴'],time=2022-12-24 20:42:12,obs=-2,item=钢琴,反
+direction=反,mae=1.09,pred=0.448,opt=['大', '钢琴', '小提琴'],time=2022-12-24 20:43:10,obs=1,item=吉他,正
+direction=,mae=1.327,pred=0.354,opt=[],time=2022-12-24 20:44:08,obs=1,item=贝斯,正
+direction=正,mae=0.599,pred=-0.843,opt=['吉他', '贝斯'],time=2022-12-24 20:45:06,obs=0,item=吉他,正
+direction=正,mae=0.745,pred=-1.166,opt=['贝斯', '吉他'],time=2022-12-24 20:46:04,obs=-2,item=钢琴,反
+direction=,mae=0.839,pred=2.674,opt=[],time=2022-12-24 20:47:02,obs=0,item=钢琴,反
+direction=反,mae=1.754,pred=3.141,opt=['大', '贝斯', '吉他', '钢琴', '小提琴'],time=2022-12-24 20:48:00,obs=2,item=贝斯,反
+direction=反,mae=1.908,pred=-0.971,opt=['贝斯', '小提琴', '钢琴'],time=2022-12-24 20:48:58,obs=0,item=吉他,正
+direction=,mae=1.056,pred=-1.272,opt=[],time=2022-12-24 20:49:56,obs=-3,item=钢琴,反
+direction=,mae=1.35,pred=1.928,opt=[],time=2022-12-24 20:50:54,obs=2,item=贝斯,反
+direction=反,mae=0.9,pred=-0.977,opt=['大', '小提琴', '钢琴'],time=2022-12-24 20:51:52,obs=2,item=架子鼓,反
+direction=反,mae=1.525,pred=-2.99,opt=['大', '贝斯', '钢琴'],time=2022-12-24 20:52:50,obs=-2,item=吉他,正
+direction=,mae=1.984,pred=0.303,opt=[],time=2022-12-24 20:53:48,obs=1,item=小提琴,反
+direction=,mae=0.844,pred=-1.142,opt=[],time=2022-12-24 20:54:46,obs=-2,item=吉他,反
+direction=反,mae=0.778,pred=2.144,opt=['贝斯', '钢琴', '吉他'],time=2022-12-24 20:55:44,obs=0,item=钢琴,反
+direction=反,mae=1.501,pred=0.793,opt=['贝斯', '吉他', '钢琴'],time=2022-12-24 20:56:42,obs=3,item=架子鼓,正
+direction=,mae=2.176,pred=-1.552,opt=[],time=2022-12-24 20:57:40,obs=-2,item=贝斯,反
+direction=,mae=1.328,pred=1.29,opt=[],time=2022-12-24 20:58:38,obs=-2,item=吉他,反
+direction=反,mae=1.869,pred=2.959,opt=['小提琴', '贝斯', '钢琴', '吉他'],time=2022-12-24 20:59:36,obs=0,item=吉他,反
+direction=反,mae=3.125,pred=4.379,opt=['小提琴', '大', '贝斯', '钢琴', '吉他'],time=2022-12-24 21:00:34,obs=3,item=萨克斯风,反
+direction=反,mae=2.169,pred=-0.252,opt=['大', '贝斯', '钢琴', '吉他'],time=2022-12-24 21:01:32,obs=1,item=小提琴,正
+direction=,mae=1.315,pred=-1.568,opt=[],time=2022-12-24 21:02:30,obs=-1,item=架子鼓,正
+direction=正,mae=0.91,pred=-0.615,opt=['小提琴', '大'],time=2022-12-24 21:03:28,obs=1,item=小提琴,正
+direction=正,mae=1.091,pred=-2.65,opt=['小提琴', '大'],time=2022-12-24 21:04:26,obs=-3,item=钢琴,反
+direction=,mae=0.983,pred=-0.245,opt=[],time=2022-12-24 21:05:24,obs=-1,item=钢琴,反
+direction=反,mae=0.553,pred=3.529,opt=['小提琴', '大', '吉他', '钢琴'],time=2022-12-24 21:06:22,obs=1,item=吉他,反
+direction=反,mae=1.642,pred=2.757,opt=['贝斯', '小提琴', '大', '钢琴', '吉他'],time=2022-12-24 21:07:20,obs=2,item=小提琴,反
+direction=反,mae=1.643,pred=0.57,opt=['贝斯', '大', '小提琴', '钢琴', '吉他'],time=2022-12-24 21:08:18,obs=-3,item=吉他,反
+direction=反,mae=2.163,pred=2.912,opt=['贝斯', '大', '小提琴', '钢琴', '吉他'],time=2022-12-24 21:09:16,obs=0,item=吉他,反
+direction=反,mae=3.241,pred=3.274,opt=['贝斯', '钢琴', '大', '小提琴', '吉他'],time=2022-12-24 21:10:14,obs=0,item=吉他,反
+direction=反,mae=3.093,pred=2.312,opt=['贝斯', '钢琴', '大', '小提琴', '吉他'],time=2022-12-24 21:11:12,obs=1,item=小提琴,反
+direction=反,mae=2.293,pred=1.315,opt=['大', '钢琴', '小提琴', '吉他'],time=2022-12-24 21:12:10,obs=0,item=小提琴,反
+direction=反,mae=1.314,pred=3.57,opt=['贝斯', '大', '钢琴', '小提琴', '吉他'],time=2022-12-24 21:13:08,obs=0,item=小提琴,反
+direction=反,mae=2.443,pred=1.358,opt=['大', '钢琴', '小提琴', '吉他'],time=2022-12-24 21:14:06,obs=3,item=贝斯,正
+direction=,mae=2.606,pred=-0.583,opt=[],time=2022-12-24 21:15:04,obs=-2,item=钢琴,反
+direction=,mae=1.529,pred=-0.302,opt=[],time=2022-12-24 21:16:02,obs=1,item=萨克斯风,正
+direction=,mae=1.359,pred=0.727,opt=[],time=2022-12-24 21:17:00,obs=-1,item=钢琴,反
+direction=,mae=1.514,pred=1.18,opt=[],time=2022-12-24 21:17:58,obs=0,item=钢琴,反
+direction=反,mae=1.453,pred=2.161,opt=['贝斯', '大', '吉他', '钢琴', '小提琴'],time=2022-12-24 21:18:56,obs=-2,item=小提琴,反
+direction=反,mae=2.67,pred=2.675,opt=['贝斯', '大', '吉他', '钢琴', '小提琴'],time=2022-12-24 21:19:54,obs=4,item=贝斯,反
+direction=反,mae=2.743,pred=-3.483,opt=['吉他', '钢琴', '小提琴'],time=2022-12-24 21:20:52,obs=-3,item=钢琴,反
+direction=反,mae=0.904,pred=3.217,opt=['大', '贝斯', '吉他', '小提琴', '钢琴'],time=2022-12-24 21:21:50,obs=-1,item=钢琴,反
+direction=反,mae=2.35,pred=2.423,opt=['贝斯', '吉他', '小提琴', '钢琴'],time=2022-12-24 21:22:48,obs=0,item=钢琴,反
+direction=反,mae=3.32,pred=2.366,opt=['大', '贝斯', '吉他', '小提琴', '钢琴'],time=2022-12-24 21:23:46,obs=4,item=竖琴,反
+direction=反,mae=2.029,pred=-1.316,opt=['贝斯', '吉他', '小提琴', '钢琴'],time=2022-12-24 21:24:44,obs=-1,item=贝斯,反
+direction=反,mae=0.975,pred=-0.473,opt=['吉他', '小提琴', '钢琴'],time=2022-12-24 21:25:42,obs=-3,item=钢琴,反
+direction=反,mae=1.422,pred=-1.078,opt=['大', '贝斯', '吉他'],time=2022-12-24 21:26:40,obs=3,item=贝斯,反
+direction=反,mae=3.302,pred=-2.133,opt=['吉他', '贝斯', '小提琴', '钢琴'],time=2022-12-24 21:27:38,obs=1,item=架子鼓,正
+direction=,mae=3.605,pred=0.619,opt=[],time=2022-12-24 21:28:36,obs=-4,item=钢琴,反
+direction=,mae=3.876,pred=-0.064,opt=[],time=2022-12-24 21:29:34,obs=4,item=吉他,正
+direction=,mae=4.341,pred=-1.22,opt=[],time=2022-12-24 21:30:32,obs=-1,item=圆号,反
+direction=,mae=2.142,pred=0.161,opt=[],time=2022-12-24 21:31:30,obs=-2,item=贝斯,反
+direction=反,mae=1.191,pred=0.32,opt=['吉他', '贝斯', '钢琴'],time=2022-12-24 21:32:28,obs=0,item=贝斯,反
+direction=反,mae=1.241,pred=2.221,opt=['小提琴', '大', '贝斯', '钢琴'],time=2022-12-24 21:33:26,obs=1,item=架子鼓,反
+direction=反,mae=0.77,pred=0.699,opt=['大', '贝斯', '钢琴'],time=2022-12-24 21:34:24,obs=1,item=小提琴,正
+direction=,mae=0.761,pred=-1.691,opt=[],time=2022-12-24 21:35:22,obs=-1,item=架子鼓,正
+direction=正,mae=0.496,pred=-1.695,opt=['贝斯', '钢琴'],time=2022-12-24 21:36:20,obs=-2,item=钢琴,正
+direction=正,mae=0.498,pred=3.064,opt=['吉他', '小提琴'],time=2022-12-24 21:37:18,obs=0,item=钢琴,反
+direction=,mae=1.685,pred=3.007,opt=[],time=2022-12-24 21:38:16,obs=3,item=小提琴,反
+direction=反,mae=1.535,pred=-1.824,opt=['吉他', '贝斯', '钢琴']
+direction=反,mae=1.215,pred=-2.39,opt=['吉他', '小提琴', '钢琴'],time=2022-12-24 21:59:32,obs=1,item=小提琴,反
+direction=反,mae=2.588,pred=0.32,opt=['吉他', '小提琴', '钢琴', '贝斯', '大'],time=2022-12-24 22:00:30,obs=-1,item=钢琴,反
+direction=反,mae=2.355,pred=1.311,opt=['吉他', '小提琴', '钢琴', '大', '贝斯'],time=2022-12-24 22:01:28,obs=-2,item=贝斯,反
+direction=反,mae=2.316,pred=1.058,opt=['大', '钢琴', '贝斯'],time=2022-12-24 22:02:26,obs=3,item=小提琴,正
+direction=,mae=2.626,pred=-2.518,opt=[],time=2022-12-24 22:03:24,obs=0,item=钢琴,正
+direction=正,mae=2.23,pred=-1.874,opt=['大', '吉他'],time=2022-12-24 22:04:22,obs=-3,item=贝斯,反
+direction=,mae=1.822,pred=0.55,opt=[],time=2022-12-24 22:05:20,obs=4,item=架子鼓,反
+direction=反,mae=2.288,pred=-3.385,opt=['吉他', '小提琴', '贝斯'],time=2022-12-24 22:06:18,obs=-2,item=萨克斯风,正
+direction=,mae=2.418,pred=0.759,opt=[],time=2022-12-24 22:07:16,obs=0,item=小提琴,反
+direction=,mae=1.072,pred=1.545,opt=[],time=2022-12-24 22:08:14,obs=-2,item=贝斯,反
+direction=反,mae=2.152,pred=2.296,opt=['钢琴', '大', '小提琴', '贝斯'],time=2022-12-24 22:09:12,obs=3,item=钢琴,反
+direction=反,mae=2.125,pred=-1.609,opt=['大', '钢琴', '贝斯'],time=2022-12-24 22:10:10,obs=-3,item=贝斯,反
+direction=反,mae=1.048,pred=1.557,opt=['大', '钢琴', '贝斯'],time=2022-12-24 22:11:08,obs=3,item=吉他,正
+direction=,mae=1.417,pred=-0.461,opt=[],time=2022-12-24 22:12:06,obs=-3,item=贝斯,反
+direction=,mae=1.991,pred=-0.127,opt=[],time=2022-12-24 22:13:04,obs=0,item=贝斯,反
+direction=反,mae=1.333,pred=1.458,opt=['大', '钢琴', '贝斯'],time=2022-12-24 22:14:02,obs=4,item=架子鼓,反
+direction=反,mae=1.335,pred=-2.001,opt=['小提琴', '钢琴', '贝斯'],time=2022-12-24 22:15:00,obs=-2,item=小提琴,反
+direction=反,mae=1.272,pred=-0.298,opt=['大', '小提琴', '贝斯'],time=2022-12-24 22:15:58,obs=0,item=钢琴,正
+direction=,mae=0.15,pred=-0.395,opt=[],time=2022-12-24 22:16:56,obs=1,item=萨克斯风,反
+direction=,mae=0.847,pred=-0.983,opt=[],time=2022-12-24 22:17:54,obs=0,item=架子鼓,正
+direction=,mae=1.189,pred=-2.237,opt=[],time=2022-12-24 22:18:52,obs=1,item=吉他,反
+direction=,mae=2.11,pred=-0.484,opt=[],time=2022-12-24 22:19:50,obs=-1,item=小提琴,反
+direction=反,mae=1.876,pred=-4.287,opt=['吉他', '钢琴', '小提琴'],time=2022-12-24 22:20:48,obs=-3,item=贝斯,正
+direction=,mae=0.901,pred=2.22,opt=[],time=2022-12-24 22:21:46,obs=2,item=小提琴,反
+direction=,mae=0.754,pred=1.337,opt=[],time=2022-12-24 22:22:44,obs=0,item=小提琴,反
+direction=反,mae=0.779,pred=-1.808,opt=['吉他', '钢琴', '大'],time=2022-12-24 22:23:42,obs=-2,item=贝斯,正
+direction=,mae=0.765,pred=1.651,opt=[],time=2022-12-24 22:24:40,obs=4,item=吉他,反
+direction=,mae=1.271,pred=0.653,opt=[],time=2022-12-24 22:25:38,obs=-4,item=贝斯,反
+direction=反,mae=3.501,pred=3.367,opt=['钢琴', '大', '吉他', '小提琴', '贝斯'],time=2022-12-24 22:26:36,obs=4,item=钢琴,反
+direction=反,mae=2.643,pred=0.601,opt=['大', '吉他', '钢琴', '小提琴', '贝斯'],time=2022-12-24 22:27:34,obs=-1,item=吉他,反
+direction=反,mae=1.117,pred=-0.239,opt=['吉他', '小提琴', '贝斯'],time=2022-12-24 22:28:32,obs=0,item=钢琴,正
+direction=,mae=0.92,pred=-0.238,opt=[],time=2022-12-24 22:29:30,obs=0,item=钢琴,正
+direction=正,mae=0.238,pred=-0.625,opt=['吉他', '小提琴'],time=2022-12-24 22:30:28,obs=1,item=架子鼓,反
+direction=,mae=0.932,pred=-0.299,opt=[],time=2022-12-24 22:31:26,obs=-4,item=贝斯,反
+direction=反,mae=2.663,pred=2.815,opt=['吉他', '大', '小提琴', '钢琴', '贝斯'],time=2022-12-24 22:32:24,obs=1,item=钢琴,反
+direction=反,mae=2.758,pred=0.24,opt=['贝斯', '小提琴', '钢琴'],time=2022-12-24 22:33:22,obs=-1,item=钢琴,反
+direction=反,mae=1.527,pred=2.166,opt=['贝斯', '小提琴', '钢琴'],time=2022-12-24 22:34:20,obs=1,item=小提琴,反
+direction=反,mae=1.203,pred=1.306,opt=['贝斯', '小提琴', '钢琴'],time=2022-12-24 22:35:18,obs=1,item=贝斯,反
+direction=反,mae=0.736,pred=0.242,opt=['大', '贝斯', '钢琴'],time=2022-12-24 22:36:16,obs=-1,item=贝斯,反
+direction=反,mae=0.774,pred=1.759,opt=['小提琴', '钢琴', '贝斯'],time=2022-12-24 22:37:14,obs=0,item=钢琴,反
+direction=反,mae=1.501,pred=1.715,opt=['吉他', '小提琴', '贝斯', '钢琴'],time=2022-12-24 22:38:12,obs=2,item=吉他,反
+direction=反,mae=1.022,pred=-2.432,opt=['大', '吉他', '钢琴'],time=2022-12-24 22:39:10,obs=-2,item=贝斯,正
+direction=,mae=0.358,pred=-0.559,opt=[],time=2022-12-24 22:40:08,obs=1,item=小提琴,反
+direction=,mae=0.995,pred=2.205,opt=[],time=2022-12-24 22:41:06,obs=-2,item=钢琴,反
+direction=反,mae=2.882,pred=0.625,opt=['小提琴', '贝斯', '钢琴'],time=2022-12-24 22:42:04,obs=4,item=架子鼓,正
+direction=,mae=3.79,pred=-3.264,opt=[],time=2022-12-24 22:43:02,obs=-3,item=贝斯,反
+direction=,mae=1.82,pred=1.563,opt=[],time=2022-12-24 22:44:00,obs=0,item=贝斯,反
+direction=反,mae=0.913,pred=1.843,opt=['小提琴', '贝斯', '钢琴'],time=2022-12-24 22:44:58,obs=-1,item=钢琴,反
+direction=反,mae=2.203,pred=3.241,opt=['大', '吉他', '小提琴', '贝斯', '钢琴'],time=2022-12-24 22:45:56,obs=2,item=小提琴,反
+direction=反,mae=2.042,pred=-1.472,opt=['大', '贝斯', '钢琴'],time=2022-12-24 22:46:54,obs=0,item=小提琴,正
+direction=,mae=1.356,pred=1.29,opt=[],time=2022-12-24 22:47:52,obs=1,item=竖琴,反
+direction=,mae=0.881,pred=-2.135,opt=[],time=2022-12-24 22:48:50,obs=-3,item=钢琴,反
+direction=反,mae=0.577,pred=1.275,opt=['吉他', '大', '钢琴'],time=2022-12-24 22:49:48,obs=4,item=吉他,反
+direction=反,mae=1.795,pred=-3.113,opt=['大', '贝斯', '钢琴'],time=2022-12-24 22:50:46,obs=-1,item=吉他,正
+direction=,mae=2.419,pred=1.535,opt=[],time=2022-12-24 22:51:44,obs=-2,item=贝斯,反
+direction=,mae=2.824,pred=-1.102,opt=[],time=2022-12-24 22:52:42,obs=-1,item=贝斯,反
+direction=反,mae=1.818,pred=2.2,opt=['吉他', '小提琴', '钢琴', '贝斯'],time=2022-12-24 22:53:40,obs=0,item=贝斯,反
+direction=反,mae=1.151,pred=2.355,opt=['小提琴', '钢琴', '贝斯'],time=2022-12-24 22:54:38,obs=1,item=钢琴,反
+direction=反,mae=1.777,pred=1.131,opt=['小提琴', '钢琴', '贝斯'],time=2022-12-24 22:55:36,obs=3,item=架子鼓,正
+direction=,mae=1.612,pred=1.805,opt=[],time=2022-12-24 22:56:34,obs=-2,item=小提琴,反
+direction=,mae=2.837,pred=0.617,opt=[],time=2022-12-24 22:57:32,obs=0,item=小提琴,反
+direction=反,mae=2.211,pred=0.155,opt=['大', '钢琴', '小提琴', '贝斯'],time=2022-12-24 22:58:30,obs=0,item=钢琴,反
+direction=反,mae=0.386,pred=0.757,opt=['贝斯', '小提琴', '钢琴'],time=2022-12-24 22:59:28,obs=-1,item=小提琴,反
+direction=反,mae=0.956,pred=1.103,opt=['贝斯', '小提琴', '钢琴'],time=2022-12-24 23:00:26,obs=-1,item=钢琴,反
+direction=反,mae=1.93,pred=1.595,opt=['贝斯', '小提琴', '钢琴'],time=2022-12-24 23:01:24,obs=4,item=吉他,正
+direction=,mae=2.254,pred=-3.203,opt=[],time=2022-12-24 23:02:22,obs=-3,item=小提琴,反
+direction=,mae=1.304,pred=1.255,opt=[],time=2022-12-24 23:03:20,obs=2,item=吉他,正
+direction=,mae=0.474,pred=-1.026,opt=[],time=2022-12-24 23:04:18,obs=-2,item=钢琴,反
+direction=,mae=0.859,pred=-0.23,opt=[],time=2022-12-24 23:05:16,obs=2,item=贝斯,反
+direction=反,mae=1.602,pred=-2.059,opt=['大', '小提琴', '钢琴'],time=2022-12-24 23:06:14,obs=-3,item=钢琴,反
+direction=反,mae=1.585,pred=0.846,opt=['大', '小提琴', '钢琴'],time=2022-12-24 23:07:12,obs=3,item=贝斯,正
+direction=,mae=1.548,pred=-0.458,opt=[],time=2022-12-24 23:08:10,obs=-2,item=贝斯,反
+direction=,mae=1.848,pred=-1.39,opt=[],time=2022-12-24 23:09:08,obs=2,item=吉他,反
+direction=反,mae=2.466,pred=-2.508,opt=['大', '钢琴', '贝斯'],time=2022-12-24 23:10:06,obs=1,item=圆号,反
+direction=反,mae=3.449,pred=-3.097,opt=['吉他', '小提琴', '钢琴', '贝斯'],time=2022-12-24 23:11:04,obs=-3,item=钢琴,反
+direction=反,mae=1.802,pred=1.194,opt=['小提琴', '贝斯', '钢琴'],time=2022-12-24 23:12:02,obs=1,item=小提琴,反
+direction=反,mae=0.145,pred=-0.324,opt=['大', '吉他', '钢琴'],time=2022-12-24 23:13:00,obs=-1,item=小提琴,正
+direction=,mae=0.435,pred=-1.353,opt=[],time=2022-12-24 23:13:58,obs=1,item=吉他,反
+direction=,mae=1.514,pred=-1.26,opt=[],time=2022-12-24 23:14:56,obs=1,item=贝斯,正
+direction=,mae=2.306,pred=-2.212,opt=[]
+direction=,mae=4.712,pred=-1.337,opt=[],time=2022-12-24 23:36:12,obs=-1,item=吉他,反
+direction=,mae=2.288,pred=0.219,opt=[],time=2022-12-24 23:37:10,obs=2,item=萨克斯风,正
+direction=,mae=1.059,pred=-1.901,opt=[],time=2022-12-24 23:38:08,obs=-3,item=吉他,反
+direction=,mae=1.44,pred=1.6,opt=[],time=2022-12-24 23:39:06,obs=2,item=贝斯,反
+direction=反,mae=0.749,pred=1.025,opt=['贝斯', '小提琴', '吉他'],time=2022-12-24 23:40:04,obs=0,item=贝斯,反
+direction=反,mae=0.712,pred=-1.615,opt=['钢琴', '大', '吉他'],time=2022-12-24 23:41:02,obs=-1,item=小提琴,正
+direction=,mae=0.82,pred=-0.465,opt=[],time=2022-12-24 23:42:00,obs=1,item=贝斯,正
+direction=正,mae=1.04,pred=-0.261,opt=['大', '小提琴'],time=2022-12-24 23:42:58,obs=1,item=架子鼓,正
+direction=正,mae=1.363,pred=-0.159,opt=['钢琴'],time=2022-12-24 23:43:56,obs=-1,item=小提琴,反
+direction=,mae=1.051,pred=-0.905,opt=[],time=2022-12-24 23:44:54,obs=1,item=竖琴,正
+direction=,mae=1.373,pred=-1.108,opt=[],time=2022-12-24 23:45:52,obs=0,item=圆号,正
+direction=正,mae=1.507,pred=-0.078,opt=['钢琴'],time=2022-12-24 23:46:50,obs=1,item=钢琴,正
+direction=正,mae=1.093,pred=-3.851,opt=['大', '贝斯'],time=2022-12-24 23:47:48,obs=-3,item=贝斯,正
+direction=正,mae=0.964,pred=-0.872,opt=['大', '吉他'],time=2022-12-24 23:48:46,obs=0,item=吉他,正
+direction=正,mae=0.861,pred=-0.511,opt=['大', '吉他'],time=2022-12-24 23:49:44,obs=2,item=小提琴,反
+direction=,mae=1.692,pred=-0.763,opt=[],time=2022-12-24 23:50:42,obs=-1,item=竖琴,反
+direction=反,mae=1.374,pred=0.924,opt=['吉他', '小提琴', '贝斯', '大'],time=2022-12-24 23:51:40,obs=-1,item=贝斯,反
+direction=反,mae=1.081,pred=1.532,opt=['小提琴', '贝斯', '大'],time=2022-12-24 23:52:38,obs=2,item=吉他,正
+direction=,mae=1.196,pred=-1.989,opt=[],time=2022-12-24 23:53:36,obs=1,item=钢琴,反
+direction=,mae=1.729,pred=-0.381,opt=[],time=2022-12-24 23:54:34,obs=-4,item=吉他,反
+direction=反,mae=3.304,pred=0.979,opt=['小提琴', '大', '贝斯', '吉他'],time=2022-12-24 23:55:32,obs=0,item=吉他,反
+direction=反,mae=2.299,pred=2.239,opt=['小提琴', '大', '贝斯', '吉他'],time=2022-12-24 23:56:30,obs=2,item=萨克斯风,反
+direction=反,mae=0.609,pred=-1.291,opt=['钢琴', '小提琴', '吉他'],time=2022-12-24 23:57:28,obs=0,item=圆号,正
+direction=,mae=0.765,pred=-0.662,opt=[],time=2022-12-24 23:58:26,obs=1,item=小提琴,正
+direction=正,mae=1.477,pred=-0.785,opt=['钢琴', '贝斯'],time=2022-12-24 23:59:24,obs=1,item=钢琴,正
+direction=正,mae=1.724,pred=-3.912,opt=['吉他', '小提琴'],time=2022-12-25 00:00:22,obs=0,item=贝斯,反
+direction=,mae=2.849,pred=-2.565,opt=[],time=2022-12-25 00:01:20,obs=-1,item=钢琴,反
+direction=反,mae=2.739,pred=-3.788,opt=['贝斯', '小提琴', '大'],time=2022-12-25 00:02:18,obs=-3,item=竖琴,反
+direction=反,mae=1.176,pred=3.541,opt=['小提琴', '吉他', '钢琴', '大'],time=2022-12-25 00:03:16,obs=0,item=架子鼓,反
+direction=反,mae=2.165,pred=2.76,opt=['贝斯', '吉他', '钢琴', '大'],time=2022-12-25 00:04:14,obs=4,item=小提琴,正
+direction=,mae=2.39,pred=0.078,opt=[],time=2022-12-25 00:05:12,obs=-4,item=萨克斯风,反
+direction=,mae=2.659,pred=2.145,opt=[],time=2022-12-25 00:06:10,obs=1,item=钢琴,反
+direction=反,mae=2.612,pred=2.597,opt=['贝斯', '小提琴', '吉他', '钢琴', '大'],time=2022-12-25 00:07:08,obs=0,item=钢琴,反
+direction=反,mae=1.871,pred=1.423,opt=['小提琴', '吉他', '钢琴', '大'],time=2022-12-25 00:08:06,obs=1,item=吉他,反
+direction=反,mae=1.51,pred=-0.646,opt=['贝斯', '钢琴', '大'],time=2022-12-25 00:09:04,obs=1,item=小提琴,正
+direction=,mae=1.034,pred=-1.623,opt=[],time=2022-12-25 00:10:02,obs=0,item=小提琴,正
+direction=正,mae=1.634,pred=-1.257,opt=['贝斯', '吉他'],time=2022-12-25 00:11:00,obs=-2,item=竖琴,反
+direction=,mae=1.183,pred=0.864,opt=[],time=2022-12-25 00:11:58,obs=1,item=小提琴,反
+direction=反,mae=0.44,pred=-1.646,opt=['贝斯', '吉他', '小提琴'],time=2022-12-25 00:12:56,obs=-1,item=钢琴,正
+direction=,mae=0.391,pred=1.338,opt=[],time=2022-12-25 00:13:54,obs=2,item=吉他,正
+direction=正,mae=0.654,pred=-2.071,opt=['小提琴', '钢琴'],time=2022-12-25 00:14:52,obs=0,item=吉他,反
+direction=,mae=1.366,pred=-1.809,opt=[],time=2022-12-25 00:15:50,obs=1,item=贝斯,反
+direction=反,mae=2.44,pred=-4.189,opt=['贝斯', '小提琴', '钢琴'],time=2022-12-25 00:16:48,obs=-2,item=萨克斯风,正
+direction=,mae=2.499,pred=0.952,opt=[],time=2022-12-25 00:17:46,obs=0,item=架子鼓,反
+direction=,mae=1.571,pred=-3.147,opt=[],time=2022-12-25 00:18:44,obs=1,item=吉他,反
+direction=反,mae=2.549,pred=-0.461,opt=['贝斯', '吉他', '小提琴', '钢琴', '大'],time=2022-12-25 00:19:42,obs=-1,item=小提琴,反
+direction=反,mae=2.343,pred=1.192,opt=['贝斯', '吉他', '钢琴', '小提琴', '大'],time=2022-12-25 00:20:40,obs=-2,item=架子鼓,反
+direction=反,mae=1.866,pred=3.823,opt=['贝斯', '钢琴', '吉他', '小提琴', '大'],time=2022-12-25 00:21:38,obs=2,item=吉他,反
+direction=反,mae=2.508,pred=-0.92,opt=['吉他', '小提琴', '大'],time=2022-12-25 00:22:36,obs=-1,item=小提琴,反
+direction=反,mae=0.952,pred=3.071,opt=['贝斯', '钢琴', '大', '吉他', '小提琴'],time=2022-12-25 00:23:34,obs=-1,item=小提琴,反
+direction=反,mae=2.075,pred=3.401,opt=['贝斯', '钢琴', '大', '吉他', '小提琴'],time=2022-12-25 00:24:32,obs=3,item=钢琴,反
+direction=反,mae=2.236,pred=-1.531,opt=['钢琴', '吉他', '小提琴'],time=2022-12-25 00:25:30,obs=0,item=竖琴,正
+direction=,mae=0.966,pred=-3.316,opt=[],time=2022-12-25 00:26:28,obs=0,item=钢琴,反
+direction=,mae=2.423,pred=-2.662,opt=[],time=2022-12-25 00:27:26,obs=-1,item=竖琴,正
+direction=,mae=2.489,pred=1.163,opt=[],time=2022-12-25 00:28:24,obs=1,item=钢琴,反
+direction=,mae=0.913,pred=-1.94,opt=[],time=2022-12-25 00:29:22,obs=-1,item=钢琴,正
+direction=,mae=0.552,pred=1.969,opt=[],time=2022-12-25 00:30:20,obs=-1,item=钢琴,反
+direction=,mae=1.955,pred=0.962,opt=[],time=2022-12-25 00:31:18,obs=0,item=架子鼓,反
+direction=反,mae=1.965,pred=-0.862,opt=['贝斯', '大', '钢琴'],time=2022-12-25 00:32:16,obs=3,item=贝斯,反
+direction=反,mae=2.412,pred=-3.484,opt=['贝斯', '钢琴', '大'],time=2022-12-25 00:33:14,obs=-3,item=钢琴,反
+direction=反,mae=2.173,pred=1.009,opt=['吉他', '小提琴', '大', '钢琴'],time=2022-12-25 00:34:12,obs=-1,item=钢琴,反
+direction=反,mae=1.247,pred=1.726,opt=['贝斯', '大', '钢琴'],time=2022-12-25 00:35:10,obs=3,item=吉他,正
+direction=,mae=1.642,pred=-0.654,opt=[],time=2022-12-25 00:36:08,obs=0,item=吉他,正
+direction=正,mae=0.964,pred=-0.805,opt=['贝斯', '小提琴'],time=2022-12-25 00:37:06,obs=-1,item=吉他,反
+direction=,mae=0.425,pred=0.836,opt=[],time=2022-12-25 00:38:04,obs=2,item=贝斯,正
+direction=,mae=0.68,pred=-4.833,opt=[],time=2022-12-25 00:39:02,obs=-1,item=小提琴,反
+direction=,mae=2.498,pred=-0.475,opt=[],time=2022-12-25 00:40:00,obs=-2,item=吉他,反
+direction=反,mae=2.679,pred=1.831,opt=['贝斯', '大', '小提琴', '吉他', '钢琴'],time=2022-12-25 00:40:58,obs=0,item=吉他,反
+direction=反,mae=1.678,pred=1.981,opt=['大', '小提琴', '吉他', '钢琴'],time=2022-12-25 00:41:56,obs=1,item=小提琴,反
+direction=反,mae=1.406,pred=0.787,opt=['大', '小提琴', '吉他', '钢琴'],time=2022-12-25 00:42:54,obs=-2,item=钢琴,反
+direction=反,mae=1.884,pred=1.882,opt=['大', '吉他', '钢琴'],time=2022-12-25 00:43:52,obs=3,item=小提琴,正
+direction=,mae=1.952,pred=0.701,opt=[],time=2022-12-25 00:44:50,obs=-2,item=吉他,反
+direction=,mae=1.909,pred=0.088,opt=[],time=2022-12-25 00:45:48,obs=0,item=吉他,反
+direction=反,mae=1.394,pred=0.659,opt=['小提琴', '钢琴', '吉他'],time=2022-12-25 00:46:46,obs=1,item=小提琴,反
+direction=反,mae=0.214,pred=0.748,opt=['大', '钢琴', '吉他'],time=2022-12-25 00:47:44,obs=-2,item=吉他,反
+direction=反,mae=1.545,pred=3.289,opt=['贝斯', '小提琴', '钢琴', '吉他'],time=2022-12-25 00:48:42,obs=1,item=钢琴,反
+direction=反,mae=2.518,pred=0.047,opt=['小提琴', '钢琴', '吉他'],time=2022-12-25 00:49:40,obs=2,item=贝斯,正
+direction=,mae=2.121,pred=-1.976,opt=[],time=2022-12-25 00:50:38,obs=-2,item=钢琴,反
+direction=,mae=0.989,pred=1.737,opt=[],time=2022-12-25 00:51:36,obs=2,item=贝斯,正
+direction=,mae=0.144,pred=-1.839,opt=[]
+direction=,mae=1.46,pred=-0.208,opt=[],time=2022-12-25 01:14:48,obs=-2,item=小提琴,反
+direction=,mae=1.363,pred=0.258,opt=[],time=2022-12-25 01:15:46,obs=2,item=萨克斯风,正
+direction=,mae=1.767,pred=-1.842,opt=[],time=2022-12-25 01:16:44,obs=2,item=吉他,反
+direction=,mae=2.792,pred=-3.533,opt=[]
+direction=,mae=1.35,pred=-0.232,opt=[],time=2022-12-25 01:41:52,obs=0,item=吉他,反
+direction=反,mae=0.548,pred=1.274,opt=['钢琴', '吉他', '小提琴'],time=2022-12-25 01:42:50,obs=-1,item=吉他,反
+direction=反,mae=1.253,pred=2.228,opt=['贝斯', '钢琴', '吉他', '小提琴'],time=2022-12-25 01:43:48,obs=3,item=圆号,正
+direction=,mae=1.523,pred=-2.59,opt=[],time=2022-12-25 01:44:46,obs=-4,item=小提琴,反
+direction=,mae=1.091,pred=3.579,opt=[],time=2022-12-25 01:45:44,obs=3,item=钢琴,反
+direction=反,mae=0.995,pred=-0.72,opt=['贝斯', '吉他', '小提琴'],time=2022-12-25 01:46:42,obs=-3,item=小提琴,反
+direction=反,mae=1.43,pred=0.999,opt=['大', '吉他', '小提琴'],time=2022-12-25 01:47:40,obs=3,item=钢琴,正
+direction=,mae=2.14,pred=-2.303,opt=[],time=2022-12-25 01:48:38,obs=-1,item=贝斯,正
+direction=正,mae=1.652,pred=2.366,opt=[],time=2022-12-25 01:49:36,obs=-1,item=小提琴,反
+direction=,mae=2.334,pred=3.634,opt=[],time=2022-12-25 01:50:34,obs=1,item=贝斯,反
+direction=反,mae=3.0,pred=2.602,opt=['大', '钢琴', '吉他', '贝斯', '小提琴'],time=2022-12-25 01:51:32,obs=2,item=圆号,反
+direction=反,mae=1.618,pred=-3.871,opt=['大', '钢琴', '小提琴'],time=2022-12-25 01:52:30,obs=-4,item=小提琴,反
+direction=反,mae=0.365,pred=0.906,opt=['大', '钢琴', '小提琴'],time=2022-12-25 01:53:28,obs=3,item=钢琴,反
+direction=反,mae=1.111,pred=-0.777,opt=['吉他', '钢琴', '小提琴'],time=2022-12-25 01:54:26,obs=0,item=贝斯,正
+direction=,mae=1.435,pred=-0.859,opt=[],time=2022-12-25 01:55:24,obs=1,item=架子鼓,正
+direction=正,mae=1.318,pred=-2.462,opt=['钢琴', '吉他'],time=2022-12-25 01:56:22,obs=-1,item=钢琴,正
+direction=正,mae=1.661,pred=-2.875,opt=['钢琴', '贝斯'],time=2022-12-25 01:57:20,obs=-3,item=小提琴,反
+direction=,mae=0.794,pred=0.096,opt=[],time=2022-12-25 01:58:18,obs=1,item=钢琴,正
+direction=,mae=0.515,pred=1.259,opt=[],time=2022-12-25 01:59:16,obs=0,item=钢琴,反
+direction=,mae=1.082,pred=0.198,opt=[],time=2022-12-25 02:00:14,obs=1,item=吉他,正
+direction=,mae=1.03,pred=-1.211,opt=[],time=2022-12-25 02:01:12,obs=-1,item=小提琴,正
+direction=正,mae=0.506,pred=0.47,opt=['贝斯', '小提琴'],time=2022-12-25 02:02:10,obs=0,item=小提琴,正
+direction=正,mae=0.34,pred=1.661,opt=['吉他', '大'],time=2022-12-25 02:03:08,obs=3,item=吉他,正
+direction=正,mae=0.904,pred=-3.371,opt=['贝斯', '钢琴'],time=2022-12-25 02:04:06,obs=-4,item=小提琴,反
+direction=,mae=0.984,pred=1.764,opt=[],time=2022-12-25 02:05:04,obs=0,item=小提琴,反
+direction=反,mae=1.197,pred=2.875,opt=['吉他', '贝斯', '钢琴', '小提琴'],time=2022-12-25 02:06:02,obs=4,item=架子鼓,正
+direction=,mae=1.445,pred=-1.238,opt=[],time=2022-12-25 02:07:00,obs=0,item=吉他,正
+direction=正,mae=1.182,pred=-1.208,opt=['大', '贝斯'],time=2022-12-25 02:07:58,obs=-3,item=钢琴,反
+direction=,mae=1.515,pred=0.598,opt=[],time=2022-12-25 02:08:56,obs=2,item=圆号,正
+direction=,mae=1.597,pred=-0.673,opt=[],time=2022-12-25 02:09:54,obs=0,item=吉他,正
+direction=正,mae=1.037,pred=-0.383,opt=['贝斯', '大'],time=2022-12-25 02:10:52,obs=-1,item=吉他,反
+direction=,mae=0.645,pred=-0.867,opt=[],time=2022-12-25 02:11:50,obs=1,item=架子鼓,反
+direction=反,mae=1.242,pred=-0.691,opt=['吉他', '小提琴', '钢琴'],time=2022-12-25 02:12:48,obs=0,item=架子鼓,正
+direction=,mae=1.279,pred=-0.953,opt=[],time=2022-12-25 02:13:46,obs=0,item=钢琴,正
+direction=正,mae=0.822,pred=-2.003,opt=['吉他', '小提琴'],time=2022-12-25 02:14:44,obs=-3,item=钢琴,反
+direction=,mae=0.975,pred=1.118,opt=[],time=2022-12-25 02:15:42,obs=4,item=贝斯,反
+direction=反,mae=1.94,pred=-2.539,opt=['吉他', '小提琴', '钢琴'],time=2022-12-25 02:16:40,obs=-3,item=小提琴,反
+direction=反,mae=1.672,pred=0.904,opt=['吉他', '小提琴', '钢琴'],time=2022-12-25 02:17:38,obs=1,item=吉他,反
+direction=反,mae=0.279,pred=-1.034,opt=['贝斯', '大', '吉他'],time=2022-12-25 02:18:36,obs=-1,item=小提琴,正
+direction=,mae=0.065,pred=-0.578,opt=[],time=2022-12-25 02:19:34,obs=3,item=贝斯,反
+direction=,mae=1.806,pred=-1.681,opt=[]
+direction=,mae=1.266,pred=-3.59,opt=[],time=2022-12-25 02:41:48,obs=-1,item=贝斯,反
+direction=反,mae=2.165,pred=-1.378,opt=['贝斯', '小提琴', '大'],time=2022-12-25 02:42:46,obs=-3,item=架子鼓,反
+direction=反,mae=2.106,pred=1.426,opt=['贝斯', '小提琴', '大'],time=2022-12-25 02:43:44,obs=3,item=钢琴,正
+direction=,mae=1.598,pred=-0.957,opt=[],time=2022-12-25 02:44:42,obs=0,item=贝斯,正
+direction=正,mae=1.265,pred=-1.932,opt=['小提琴', '钢琴'],time=2022-12-25 02:45:40,obs=-2,item=架子鼓,反
+direction=,mae=0.512,pred=1.674,opt=[],time=2022-12-25 02:46:38,obs=0,item=贝斯,反
+direction=反,mae=0.871,pred=1.73,opt=['钢琴', '大', '贝斯'],time=2022-12-25 02:47:36,obs=-1,item=贝斯,反
+direction=反,mae=2.202,pred=2.534,opt=['小提琴', '钢琴', '大', '贝斯'],time=2022-12-25 02:48:34,obs=0,item=贝斯,反
+direction=反,mae=2.632,pred=2.352,opt=['小提琴', '钢琴', '大', '贝斯'],time=2022-12-25 02:49:32,obs=1,item=萨克斯风,反
+direction=反,mae=1.943,pred=-0.497,opt=['吉他', '大', '贝斯'],time=2022-12-25 02:50:30,obs=1,item=钢琴,正
+direction=,mae=1.424,pred=-0.183,opt=[],time=2022-12-25 02:51:28,obs=1,item=小提琴,正
+direction=正,mae=1.34,pred=-1.44,opt=['小提琴', '钢琴'],time=2022-12-25 02:52:26,obs=0,item=小提琴,正
+direction=正,mae=1.311,pred=-2.656,opt=['小提琴', '大'],time=2022-12-25 02:53:24,obs=-3,item=贝斯,反
+direction=,mae=0.892,pred=1.36,opt=[],time=2022-12-25 02:54:22,obs=2,item=架子鼓,正
+direction=,mae=0.492,pred=-3.147,opt=[],time=2022-12-25 02:55:20,obs=-2,item=贝斯,正
+direction=正,mae=0.893,pred=2.055,opt=['钢琴', '小提琴'],time=2022-12-25 02:56:18,obs=0,item=贝斯,反
+direction=,mae=1.601,pred=3.83,opt=[],time=2022-12-25 02:57:16,obs=4,item=吉他,反
+direction=反,mae=1.112,pred=-0.724,opt=['钢琴', '小提琴', '大', '贝斯'],time=2022-12-25 02:58:14,obs=-1,item=钢琴,反
+direction=反,mae=0.223,pred=-0.647,opt=['吉他', '大', '贝斯'],time=2022-12-25 02:59:12,obs=1,item=吉他,反
+direction=反,mae=0.962,pred=-2.624,opt=['吉他', '大', '贝斯'],time=2022-12-25 03:00:10,obs=-2,item=钢琴,正
+direction=,mae=1.136,pred=0.342,opt=[],time=2022-12-25 03:01:08,obs=0,item=竖琴,反
+direction=,mae=0.483,pred=-3.706,opt=[],time=2022-12-25 03:02:06,obs=1,item=小提琴,反
+direction=反,mae=2.524,pred=-0.572,opt=['小提琴', '大', '钢琴', '贝斯'],time=2022-12-25 03:03:04,obs=-1,item=架子鼓,反
+direction=反,mae=2.567,pred=0.282,opt=['小提琴', '钢琴', '大', '贝斯'],time=2022-12-25 03:04:02,obs=0,item=钢琴,反
+direction=反,mae=0.355,pred=1.444,opt=['钢琴', '大', '贝斯'],time=2022-12-25 03:05:00,obs=-1,item=架子鼓,反
+direction=反,mae=1.363,pred=2.405,opt=['小提琴', '钢琴', '大', '贝斯'],time=2022-12-25 03:05:58,obs=-1,item=贝斯,反
+direction=反,mae=2.924,pred=2.393,opt=['吉他', '小提琴', '钢琴', '大', '贝斯'],time=2022-12-25 03:06:56,obs=2,item=钢琴,反
+direction=反,mae=1.899,pred=-1.008,opt=['吉他', '贝斯', '钢琴'],time=2022-12-25 03:07:54,obs=1,item=小提琴,正
+direction=,mae=1.201,pred=-1.795,opt=[],time=2022-12-25 03:08:52,obs=-3,item=钢琴,反
+direction=,mae=1.607,pred=-0.003,opt=[],time=2022-12-25 03:09:50,obs=2,item=贝斯,正
+direction=,mae=1.604,pred=0.154,opt=[],time=2022-12-25 03:10:48,obs=2,item=吉他,正
+direction=正,mae=1.924,pred=-0.345,opt=[],time=2022-12-25 03:11:46,obs=-4,item=钢琴,反
+direction=,mae=2.75,pred=0.489,opt=[],time=2022-12-25 03:12:44,obs=0,item=钢琴,反
+direction=反,mae=2.072,pred=2.064,opt=['吉他', '大', '贝斯', '钢琴'],time=2022-12-25 03:13:42,obs=2,item=萨克斯风,反
+direction=反,mae=0.276,pred=-0.155,opt=['小提琴', '贝斯', '钢琴'],time=2022-12-25 03:14:40,obs=-2,item=钢琴,反
+direction=反,mae=0.954,pred=-0.267,opt=['小提琴', '贝斯', '吉他'],time=2022-12-25 03:15:38,obs=2,item=吉他,反
+direction=反,mae=2.056,pred=-1.413,opt=['贝斯', '吉他', '钢琴'],time=2022-12-25 03:16:36,obs=-2,item=钢琴,反
+direction=反,mae=1.427,pred=4.59,opt=['贝斯', '小提琴', '吉他', '大', '钢琴'],time=2022-12-25 03:17:34,obs=4,item=贝斯,反
+direction=反,mae=0.589,pred=-2.993,opt=['小提琴', '贝斯', '钢琴'],time=2022-12-25 03:18:32,obs=0,item=小提琴,反
+direction=反,mae=1.791,pred=-4.14,opt=['吉他', '贝斯', '钢琴'],time=2022-12-25 03:19:30,obs=-2,item=小提琴,正
+direction=,mae=2.566,pred=-1.323,opt=[],time=2022-12-25 03:20:28,obs=-2,item=钢琴,反
+direction=,mae=1.409,pred=2.837,opt=[],time=2022-12-25 03:21:26,obs=2,item=贝斯,反
+direction=反,mae=0.757,pred=1.957,opt=['大', '小提琴', '贝斯', '钢琴'],time=2022-12-25 03:22:24,obs=2,item=吉他,正
+direction=,mae=0.44,pred=-0.908,opt=[],time=2022-12-25 03:23:22,obs=-2,item=小提琴,反
+direction=,mae=0.567,pred=2.649,opt=[],time=2022-12-25 03:24:20,obs=0,item=贝斯,反
+direction=反,mae=1.87,pred=0.777,opt=['吉他', '小提琴', '贝斯', '钢琴'],time=2022-12-25 03:25:18,obs=-1,item=贝斯,反
+direction=反,mae=2.213,pred=-0.966,opt=['大', '贝斯', '钢琴'],time=2022-12-25 03:26:16,obs=0,item=贝斯,反
+direction=反,mae=1.372,pred=3.216,opt=['大', '吉他', '小提琴', '贝斯', '钢琴'],time=2022-12-25 03:27:14,obs=-1,item=钢琴,反
+direction=反,mae=2.591,pred=4.946,opt=['大', '吉他', '小提琴', '贝斯', '钢琴'],time=2022-12-25 03:28:12,obs=3,item=吉他,反
+direction=反,mae=3.081,pred=-2.435,opt=['吉他', '贝斯', '钢琴'],time=2022-12-25 03:29:10,obs=0,item=小提琴,正
+direction=,mae=2.191,pred=-0.724,opt=[],time=2022-12-25 03:30:08,obs=-2,item=贝斯,反
+direction=,mae=1.855,pred=-1.27,opt=[],time=2022-12-25 03:31:06,obs=1,item=小提琴,正
+direction=,mae=1.773,pred=0.678,opt=[],time=2022-12-25 03:32:04,obs=0,item=小提琴,反
+direction=,mae=1.474,pred=0.614,opt=[],time=2022-12-25 03:33:02,obs=2,item=架子鼓,正
+direction=,mae=1.032,pred=-1.455,opt=[],time=2022-12-25 03:34:00,obs=-2,item=钢琴,反
+direction=,mae=0.966,pred=-0.796,opt=[],time=2022-12-25 03:34:58,obs=2,item=架子鼓,反
+direction=反,mae=1.67,pred=-1.817,opt=['钢琴', '贝斯', '小提琴'],time=2022-12-25 03:35:56,obs=-1,item=吉他,正
+direction=,mae=1.806,pred=-0.013,opt=[],time=2022-12-25 03:36:54,obs=1,item=竖琴,正
+direction=正,mae=0.915,pred=-2.493,opt=['吉他', '钢琴'],time=2022-12-25 03:37:52,obs=-1,item=吉他,正
+direction=正,mae=1.253,pred=0.117,opt=['大'],time=2022-12-25 03:38:50,obs=-3,item=小提琴,反
+direction=,mae=2.305,pred=1.61,opt=[],time=2022-12-25 03:39:48,obs=0,item=小提琴,反
+direction=反,mae=2.364,pred=2.339,opt=['大', '吉他', '贝斯', '小提琴'],time=2022-12-25 03:40:46,obs=1,item=贝斯,反
+direction=反,mae=1.474,pred=0.528,opt=['吉他', '贝斯', '小提琴'],time=2022-12-25 03:41:44,obs=3,item=钢琴,正
+direction=,mae=1.905,pred=-0.373,opt=[],time=2022-12-25 03:42:42,obs=0,item=竖琴,反
+direction=,mae=1.422,pred=-1.087,opt=[],time=2022-12-25 03:43:40,obs=-4,item=小提琴,反
+direction=反,mae=1.643,pred=-0.313,opt=['吉他', '钢琴', '小提琴'],time=2022-12-25 03:44:38,obs=3,item=钢琴,反
+direction=反,mae=3.113,pred=-0.108,opt=['贝斯', '吉他', '大', '钢琴', '小提琴'],time=2022-12-25 03:45:36,obs=0,item=吉他,反
+direction=反,mae=1.71,pred=0.628,opt=['贝斯', '大', '吉他', '钢琴', '小提琴'],time=2022-12-25 03:46:34,obs=-1,item=吉他,反
+direction=反,mae=0.868,pred=0.21,opt=['大', '吉他', '小提琴'],time=2022-12-25 03:47:32,obs=-1,item=吉他,反
+direction=反,mae=1.419,pred=2.062,opt=['钢琴', '大', '吉他', '小提琴'],time=2022-12-25 03:48:30,obs=3,item=贝斯,正
+direction=,mae=1.074,pred=-3.167,opt=[],time=2022-12-25 03:49:28,obs=-2,item=萨克斯风,正
+direction=正,mae=1.053,pred=1.239,opt=['贝斯'],time=2022-12-25 03:50:26,obs=0,item=架子鼓,反
+direction=,mae=1.203,pred=1.196,opt=[],time=2022-12-25 03:51:24,obs=-2,item=萨克斯风,反
+direction=反,mae=2.218,pred=2.416,opt=['小提琴', '钢琴', '吉他', '大'],time=2022-12-25 03:52:22,obs=1,item=吉他,反
+direction=反,mae=2.306,pred=1.999,opt=['贝斯', '小提琴', '钢琴', '大', '吉他'],time=2022-12-25 03:53:20,obs=3,item=贝斯,反
+direction=反,mae=1.208,pred=-2.001,opt=['小提琴', '大', '吉他'],time=2022-12-25 03:54:18,obs=-3,item=架子鼓,反
+direction=反,mae=1.0,pred=-1.296,opt=['钢琴', '贝斯', '小提琴'],time=2022-12-25 03:55:16,obs=-1,item=吉他,正
+direction=,mae=0.647,pred=1.435,opt=[],time=2022-12-25 03:56:14,obs=2,item=小提琴,正
+direction=正,mae=0.43,pred=0.928,opt=['钢琴', '贝斯'],time=2022-12-25 03:57:12,obs=0,item=小提琴,反
+direction=,mae=0.747,pred=1.006,opt=[]
+direction=,mae=1.472,pred=-0.059,opt=[],time=2022-12-25 04:18:28,obs=0,item=小提琴,反
+direction=反,mae=0.791,pred=-1.811,opt=['贝斯', '大', '吉他'],time=2022-12-25 04:19:26,obs=-2,item=钢琴,正
+direction=,mae=0.124,pred=-0.587,opt=[],time=2022-12-25 04:20:24,obs=3,item=贝斯,反
+direction=,mae=1.888,pred=-1.73,opt=[],time=2022-12-25 04:21:22,obs=-4,item=吉他,反
+direction=反,mae=2.928,pred=1.833,opt=['小提琴', '大', '钢琴', '吉他'],time=2022-12-25 04:22:20,obs=1,item=钢琴,反
+direction=反,mae=1.551,pred=0.663,opt=['大', '钢琴', '吉他'],time=2022-12-25 04:23:18,obs=2,item=小提琴,正
+direction=,mae=1.085,pred=-1.795,opt=[],time=2022-12-25 04:24:16,obs=1,item=贝斯,反
+direction=,mae=2.066,pred=-3.127,opt=[],time=2022-12-25 04:25:14,obs=-4,item=吉他,反
+direction=反,mae=1.834,pred=0.248,opt=['大', '钢琴', '吉他'],time=2022-12-25 04:26:12,obs=2,item=小提琴,正
+direction=,mae=1.312,pred=-0.536,opt=[],time=2022-12-25 04:27:10,obs=1,item=贝斯,正
+direction=正,mae=1.644,pred=-1.258,opt=['大', '贝斯'],time=2022-12-25 04:28:08,obs=-3,item=小提琴,反
+direction=,mae=1.639,pred=3.517,opt=[],time=2022-12-25 04:29:06,obs=1,item=吉他,反
+direction=反,mae=2.13,pred=3.492,opt=['大', '钢琴', '贝斯', '吉他', '小提琴'],time=2022-12-25 04:30:04,obs=3,item=竖琴,反
+direction=反,mae=1.504,pred=-3.523,opt=['大', '贝斯', '小提琴'],time=2022-12-25 04:31:02,obs=0,item=架子鼓,反
+direction=反,mae=2.007,pred=-2.872,opt=['大', '吉他', '小提琴'],time=2022-12-25 04:32:00,obs=-1,item=贝斯,正
+direction=,mae=2.697,pred=-1.425,opt=[],time=2022-12-25 04:32:58,obs=0,item=圆号,反
+direction=,mae=1.649,pred=-1.303,opt=[],time=2022-12-25 04:33:56,obs=0,item=萨克斯风,正
+direction=,mae=1.364,pred=0.079,opt=[],time=2022-12-25 04:34:54,obs=-2,item=萨克斯风,反
+direction=,mae=1.691,pred=2.539,opt=[],time=2022-12-25 04:35:52,obs=-1,item=竖琴,反
+direction=反,mae=2.809,pred=0.383,opt=['贝斯', '小提琴', '大'],time=2022-12-25 04:36:50,obs=2,item=贝斯,反
+direction=反,mae=2.578,pred=-1.788,opt=['钢琴', '贝斯', '大'],time=2022-12-25 04:37:48,obs=2,item=钢琴,反
+direction=反,mae=2.702,pred=-0.342,opt=['吉他', '小提琴', '钢琴', '贝斯', '大'],time=2022-12-25 04:38:46,obs=-4,item=架子鼓,反
+direction=反,mae=3.723,pred=2.595,opt=['钢琴', '吉他', '小提琴', '贝斯', '大'],time=2022-12-25 04:39:44,obs=3,item=吉他,反
+direction=反,mae=2.032,pred=-0.271,opt=['小提琴', '贝斯', '吉他', '大'],time=2022-12-25 04:40:42,obs=1,item=钢琴,正
+direction=,mae=0.838,pred=0.753,opt=[],time=2022-12-25 04:41:40,obs=-2,item=钢琴,反
+direction=,mae=2.012,pred=0.066,opt=[],time=2022-12-25 04:42:38,obs=0,item=钢琴,反
+direction=反,mae=1.409,pred=-2.504,opt=['小提琴', '吉他', '贝斯'],time=2022-12-25 04:43:36,obs=1,item=吉他,反
+direction=反,mae=1.785,pred=-1.494,opt=['吉他', '钢琴', '大'],time=2022-12-25 04:44:34,obs=1,item=小提琴,正
+direction=,mae=2.999,pred=-2.4,opt=[],time=2022-12-25 04:45:32,obs=-3,item=钢琴,反
+direction=,mae=1.547,pred=0.568,opt=[],time=2022-12-25 04:46:30,obs=1,item=吉他,反
+direction=反,mae=0.516,pred=-2.446,opt=['贝斯', '小提琴', '吉他'],time=2022-12-25 04:47:28,obs=-1,item=钢琴,正
+direction=,mae=0.939,pred=1.185,opt=[],time=2022-12-25 04:48:26,obs=1,item=吉他,反
+direction=,mae=0.815,pred=1.197,opt=[],time=2022-12-25 04:49:24,obs=1,item=贝斯,反
+direction=反,mae=0.191,pred=0.166,opt=['吉他', '大', '钢琴'],time=2022-12-25 04:50:22,obs=0,item=贝斯,正
+direction=,mae=0.182,pred=-2.444,opt=[],time=2022-12-25 04:51:20,obs=0,item=贝斯,反
+direction=,mae=1.305,pred=-1.626,opt=[],time=2022-12-25 04:52:18,obs=0,item=贝斯,正
+direction=,mae=2.035,pred=-1.782,opt=[],time=2022-12-25 04:53:16,obs=0,item=架子鼓,正
+direction=正,mae=1.704,pred=-1.281,opt=['小提琴', '大'],time=2022-12-25 04:54:14,obs=-3,item=钢琴,反
+direction=,mae=1.751,pred=4.797,opt=[],time=2022-12-25 04:55:12,obs=2,item=吉他,反
+direction=反,mae=2.258,pred=0.326,opt=['大', '贝斯', '吉他', '钢琴'],time=2022-12-25 04:56:10,obs=1,item=竖琴,反
+direction=反,mae=1.735,pred=-0.425,opt=['大', '贝斯', '吉他', '钢琴'],time=2022-12-25 04:57:08,obs=-1,item=贝斯,反
+direction=反,mae=0.624,pred=1.072,opt=['贝斯', '吉他', '钢琴'],time=2022-12-25 04:58:06,obs=-1,item=吉他,反
+direction=反,mae=1.324,pred=1.015,opt=['贝斯', '吉他', '钢琴'],time=2022-12-25 04:59:04,obs=0,item=吉他,反
+direction=反,mae=1.544,pred=1.788,opt=['大', '贝斯', '吉他', '钢琴'],time=2022-12-25 05:00:02,obs=3,item=小提琴,正
+direction=,mae=1.113,pred=-3.759,opt=[],time=2022-12-25 05:01:00,obs=-2,item=贝斯,正
+direction=正,mae=1.485,pred=-0.383,opt=['大', '小提琴'],time=2022-12-25 05:01:58,obs=-1,item=贝斯,反
+direction=,mae=1.188,pred=1.341,opt=[],time=2022-12-25 05:02:56,obs=3,item=萨克斯风,正
+direction=,mae=1.138,pred=-2.325,opt=[],time=2022-12-25 05:03:54,obs=-1,item=架子鼓,正
+direction=正,mae=1.492,pred=1.52,opt=[],time=2022-12-25 05:04:52,obs=-1,item=竖琴,反
+direction=,mae=1.923,pred=0.415,opt=[],time=2022-12-25 05:05:50,obs=1,item=钢琴,反
+direction=反,mae=1.553,pred=-1.292,opt=['吉他', '大', '贝斯'],time=2022-12-25 05:06:48,obs=0,item=钢琴,正
+direction=,mae=0.939,pred=-1.661,opt=[],time=2022-12-25 05:07:46,obs=-2,item=架子鼓,反
+direction=,mae=0.815,pred=0.977,opt=[],time=2022-12-25 05:08:44,obs=0,item=架子鼓,反
+direction=反,mae=0.658,pred=1.265,opt=['小提琴', '贝斯', '大'],time=2022-12-25 05:09:42,obs=1,item=钢琴,正
+direction=,mae=0.621,pred=1.56,opt=[],time=2022-12-25 05:10:40,obs=-1,item=贝斯,反
+direction=,mae=1.412,pred=2.87,opt=[],time=2022-12-25 05:11:38,obs=1,item=钢琴,反
+direction=反,mae=2.215,pred=2.33,opt=['小提琴', '吉他', '贝斯', '钢琴', '大'],time=2022-12-25 05:12:36,obs=1,item=吉他,反
+direction=反,mae=1.6,pred=-0.847,opt=['吉他', '钢琴', '大'],time=2022-12-25 05:13:34,obs=0,item=贝斯,正
+direction=,mae=1.089,pred=-1.991,opt=[],time=2022-12-25 05:14:32,obs=-2,item=贝斯,反
+direction=,mae=0.428,pred=2.134,opt=[],time=2022-12-25 05:15:30,obs=2,item=吉他,正
+direction=,mae=0.072,pred=-3.237,opt=[],time=2022-12-25 05:16:28,obs=-3,item=贝斯,正
+direction=正,mae=0.186,pred=0.555,opt=['大', '贝斯'],time=2022-12-25 05:17:26,obs=3,item=吉他,反
+direction=,mae=1.341,pred=-2.633,opt=[],time=2022-12-25 05:18:24,obs=0,item=吉他,反
+direction=反,mae=2.539,pred=-2.106,opt=['钢琴', '大', '贝斯'],time=2022-12-25 05:19:22,obs=1,item=小提琴,正
+direction=,mae=2.87,pred=-1.509,opt=[],time=2022-12-25 05:20:20,obs=0,item=小提琴,反
+direction=,mae=2.308,pred=-1.634,opt=[],time=2022-12-25 05:21:18,obs=-4,item=贝斯,反
+direction=反,mae=1.937,pred=4.435,opt=['小提琴', '吉他', '钢琴', '大', '贝斯'],time=2022-12-25 05:22:16,obs=2,item=钢琴,反
+direction=反,mae=2.4,pred=1.966,opt=['小提琴', '大', '吉他', '贝斯', '钢琴'],time=2022-12-25 05:23:14,obs=-2,item=钢琴,反
+direction=反,mae=3.201,pred=0.438,opt=['吉他', '贝斯', '钢琴'],time=2022-12-25 05:24:12,obs=3,item=竖琴,正
+direction=,mae=3.264,pred=-1.246,opt=[],time=2022-12-25 05:25:10,obs=-3,item=钢琴,反
+direction=,mae=2.158,pred=0.676,opt=[],time=2022-12-25 05:26:08,obs=0,item=钢琴,反
+direction=反,mae=1.215,pred=4.587,opt=['小提琴', '大', '吉他', '贝斯', '钢琴'],time=2022-12-25 05:27:06,obs=4,item=小提琴,反
+direction=反,mae=0.632,pred=-2.564,opt=['大', '贝斯', '钢琴'],time=2022-12-25 05:28:04,obs=-1,item=小提琴,正
+direction=,mae=1.076,pred=0.185,opt=[],time=2022-12-25 05:29:02,obs=-1,item=小提琴,反
+direction=,mae=1.374,pred=-2.428,opt=[],time=2022-12-25 05:30:00,obs=0,item=贝斯,反
+direction=反,mae=1.806,pred=-1.703,opt=['大', '小提琴', '钢琴'],time=2022-12-25 05:30:58,obs=0,item=贝斯,正
+direction=,mae=2.065,pred=-0.022,opt=[],time=2022-12-25 05:31:56,obs=-2,item=贝斯,反
+direction=,mae=1.84,pred=3.269,opt=[],time=2022-12-25 05:32:54,obs=0,item=贝斯,反
+direction=反,mae=2.624,pred=1.792,opt=['吉他', '钢琴', '小提琴', '贝斯'],time=2022-12-25 05:33:52,obs=2,item=钢琴,反
+direction=反,mae=1.739,pred=-0.252,opt=['小提琴', '钢琴', '贝斯']
+direction=反,mae=2.516,pred=-1.78,opt=['大', '吉他', '钢琴', '小提琴'],time=2022-12-25 05:55:08,obs=-2,item=吉他,反
+direction=反,mae=1.465,pred=-0.805,opt=['贝斯', '吉他', '小提琴'],time=2022-12-25 05:56:06,obs=1,item=架子鼓,正
+direction=,mae=1.012,pred=-0.878,opt=[],time=2022-12-25 05:57:04,obs=0,item=小提琴,正
+direction=正,mae=1.342,pred=0.356,opt=['贝斯'],time=2022-12-25 05:58:02,obs=-3,item=小提琴,反
+direction=,mae=2.117,pred=0.735,opt=[],time=2022-12-25 05:59:00,obs=1,item=吉他,反
+direction=反,mae=1.81,pred=2.075,opt=['钢琴', '大', '吉他', '小提琴'],time=2022-12-25 05:59:58,obs=-1,item=小提琴,反
+direction=反,mae=1.67,pred=1.76,opt=['大', '吉他', '小提琴'],time=2022-12-25 06:00:56,obs=4,item=贝斯,正
+direction=,mae=2.658,pred=-0.815,opt=[],time=2022-12-25 06:01:54,obs=-1,item=钢琴,反
+direction=,mae=1.213,pred=-1.236,opt=[],time=2022-12-25 06:02:52,obs=0,item=钢琴,正
+direction=,mae=0.71,pred=-0.449,opt=[],time=2022-12-25 06:03:50,obs=-3,item=小提琴,反
+direction=,mae=1.893,pred=0.782,opt=[],time=2022-12-25 06:04:48,obs=0,item=小提琴,反
+direction=反,mae=1.667,pred=3.815,opt=['贝斯', '钢琴', '大', '吉他', '小提琴'],time=2022-12-25 06:05:46,obs=0,item=小提琴,反
+direction=反,mae=2.299,pred=4.653,opt=['贝斯', '大', '钢琴', '吉他', '小提琴'],time=2022-12-25 06:06:44,obs=0,item=小提琴,反
+direction=反,mae=4.234,pred=2.389,opt=['贝斯', '大', '钢琴', '吉他', '小提琴'],time=2022-12-25 06:07:42,obs=4,item=贝斯,反
+direction=反,mae=3.132,pred=-0.124,opt=['钢琴', '大', '贝斯', '吉他', '小提琴'],time=2022-12-25 06:08:40,obs=-1,item=架子鼓,反
+direction=反,mae=1.244,pred=-1.673,opt=['钢琴', '吉他', '小提琴'],time=2022-12-25 06:09:38,obs=-3,item=小提琴,反
+direction=反,mae=1.101,pred=2.889,opt=['大', '吉他', '小提琴'],time=2022-12-25 06:10:36,obs=3,item=钢琴,正
+direction=,mae=0.719,pred=0.145,opt=[],time=2022-12-25 06:11:34,obs=-1,item=钢琴,反
+direction=,mae=0.628,pred=-1.503,opt=[],time=2022-12-25 06:12:32,obs=0,item=吉他,正
+direction=,mae=1.324,pred=0.805,opt=[],time=2022-12-25 06:13:30,obs=-2,item=小提琴,反
+direction=,mae=2.154,pred=2.883,opt=[],time=2022-12-25 06:14:28,obs=0,item=小提琴,反
+direction=反,mae=2.844,pred=1.92,opt=['贝斯', '吉他', '钢琴', '小提琴'],time=2022-12-25 06:15:26,obs=1,item=钢琴,反
+direction=反,mae=1.901,pred=2.756,opt=['大', '贝斯', '吉他', '钢琴', '小提琴'],time=2022-12-25 06:16:24,obs=3,item=架子鼓,反
+direction=反,mae=0.582,pred=-2.346,opt=['大', '钢琴', '小提琴'],time=2022-12-25 06:17:22,obs=-3,item=钢琴,反
+direction=反,mae=0.449,pred=2.311,opt=['吉他', '钢琴', '小提琴'],time=2022-12-25 06:18:20,obs=0,item=钢琴,反
+direction=反,mae=1.483,pred=1.901,opt=['大', '贝斯', '钢琴', '小提琴'],time=2022-12-25 06:19:18,obs=3,item=吉他,正
+direction=,mae=1.705,pred=-3.236,opt=[],time=2022-12-25 06:20:16,obs=-4,item=钢琴,反
+direction=,mae=0.931,pred=2.174,opt=[],time=2022-12-25 06:21:14,obs=2,item=吉他,反
+direction=反,mae=0.469,pred=-2.538,opt=['贝斯', '大', '吉他', '小提琴'],time=2022-12-25 06:22:12,obs=2,item=贝斯,反
+direction=反,mae=2.356,pred=-2.029,opt=['贝斯', '吉他', '钢琴', '小提琴'],time=2022-12-25 06:23:10,obs=-4,item=小提琴,反
+direction=反,mae=3.255,pred=0.331,opt=['吉他', '钢琴', '小提琴'],time=2022-12-25 06:24:08,obs=1,item=钢琴,反
+direction=反,mae=1.32,pred=-0.287,opt=['大', '小提琴', '钢琴'],time=2022-12-25 06:25:06,obs=0,item=小提琴,反
+direction=反,mae=0.478,pred=0.18,opt=['大', '贝斯', '钢琴'],time=2022-12-25 06:26:04,obs=-1,item=钢琴,反
+direction=反,mae=0.734,pred=2.238,opt=['大', '小提琴', '钢琴'],time=2022-12-25 06:27:02,obs=1,item=小提琴,反
+direction=反,mae=1.209,pred=2.151,opt=['大', '吉他', '小提琴', '钢琴'],time=2022-12-25 06:28:00,obs=0,item=小提琴,反
+direction=反,mae=1.694,pred=-0.073,opt=['大', '小提琴', '钢琴'],time=2022-12-25 06:28:58,obs=1,item=吉他,正
+direction=,mae=1.612,pred=-2.966,opt=[],time=2022-12-25 06:29:56,obs=0,item=吉他,反
+direction=,mae=2.019,pred=-2.032,opt=[],time=2022-12-25 06:30:54,obs=2,item=圆号,反
+direction=反,mae=3.499,pred=-3.075,opt=['大', '吉他', '小提琴', '钢琴'],time=2022-12-25 06:31:52,obs=-3,item=小提琴,反
+direction=反,mae=2.053,pred=-1.535,opt=['贝斯', '大', '小提琴'],time=2022-12-25 06:32:50,obs=3,item=贝斯,反
+direction=反,mae=2.305,pred=-5.215,opt=['大', '贝斯', '钢琴'],time=2022-12-25 06:33:48,obs=-2,item=吉他,正
+direction=,mae=3.875,pred=-0.977,opt=[],time=2022-12-25 06:34:46,obs=-1,item=小提琴,反
+direction=,mae=1.619,pred=0.112,opt=[],time=2022-12-25 06:35:44,obs=0,item=钢琴,反
+direction=反,mae=0.067,pred=2.181,opt=['吉他', '小提琴', '钢琴'],time=2022-12-25 06:36:42,obs=2,item=贝斯,正
+direction=,mae=0.147,pred=-0.183,opt=[],time=2022-12-25 06:37:40,obs=-1,item=吉他,正
+direction=正,mae=0.499,pred=0.489,opt=['贝斯', '钢琴'],time=2022-12-25 06:38:38,obs=1,item=贝斯,正
+direction=正,mae=0.664,pred=0.069,opt=['大', '贝斯'],time=2022-12-25 06:39:36,obs=-1,item=钢琴,反
+direction=,mae=0.79,pred=0.997,opt=[],time=2022-12-25 06:40:34,obs=2,item=架子鼓,正
+direction=,mae=1.036,pred=-3.536,opt=[],time=2022-12-25 06:41:32,obs=-2,item=吉他,正
+direction=正,mae=1.27,pred=0.604,opt=['大', '贝斯'],time=2022-12-25 06:42:30,obs=-1,item=吉他,反
+direction=,mae=1.57,pred=1.142,opt=[],time=2022-12-25 06:43:28,obs=2,item=贝斯,正
+direction=,mae=1.231,pred=-1.856,opt=[],time=2022-12-25 06:44:26,obs=1,item=圆号,反
+direction=,mae=1.857,pred=-2.182,opt=[],time=2022-12-25 06:45:24,obs=-3,item=小提琴,反
+direction=反,mae=1.837,pred=1.577,opt=['大', '贝斯', '小提琴', '吉他'],time=2022-12-25 06:46:22,obs=0,item=小提琴,反
+direction=反,mae=1.197,pred=0.883,opt=['贝斯', '小提琴', '吉他'],time=2022-12-25 06:47:20,obs=0,item=小提琴,反
+direction=反,mae=1.23,pred=1.538,opt=['贝斯', '小提琴', '吉他'],time=2022-12-25 06:48:18,obs=0,item=小提琴,反
+direction=反,mae=1.211,pred=2.423,opt=['大', '贝斯', '吉他', '小提琴'],time=2022-12-25 06:49:16,obs=-1,item=小提琴,反
+direction=反,mae=2.48,pred=2.756,opt=['钢琴', '大', '贝斯', '吉他', '小提琴'],time=2022-12-25 06:50:14,obs=1,item=吉他,反
+direction=反,mae=2.589,pred=2.56,opt=['大', '钢琴', '贝斯', '吉他', '小提琴'],time=2022-12-25 06:51:12,obs=3,item=架子鼓,反
+direction=反,mae=1.098,pred=0.727,opt=['钢琴', '大', '贝斯', '吉他', '小提琴'],time=2022-12-25 06:52:10,obs=-1,item=圆号,反
+direction=反,mae=1.083,pred=-2.485,opt=['钢琴', '贝斯', '小提琴'],time=2022-12-25 06:53:08,obs=0,item=贝斯,反
+direction=反,mae=2.106,pred=-1.286,opt=['贝斯', '吉他', '小提琴'],time=2022-12-25 06:54:06,obs=-1,item=贝斯,反
+direction=反,mae=1.386,pred=1.438,opt=['大', '吉他', '贝斯', '小提琴'],time=2022-12-25 06:55:04,obs=0,item=吉他,反
+direction=反,mae=0.862,pred=1.717,opt=['大', '贝斯', '吉他', '小提琴'],time=2022-12-25 06:56:02,obs=0,item=贝斯,反
+direction=反,mae=1.578,pred=1.826,opt=['钢琴', '大', '贝斯', '吉他', '小提琴'],time=2022-12-25 06:57:00,obs=1,item=竖琴,反
+direction=反,mae=1.272,pred=-0.298,opt=['大', '贝斯', '小提琴'],time=2022-12-25 06:57:58,obs=1,item=钢琴,正
+direction=,mae=1.062,pred=-1.797,opt=[],time=2022-12-25 06:58:56,obs=-4,item=小提琴,反
+direction=,mae=1.751,pred=2.778,opt=[],time=2022-12-25 06:59:54,obs=4,item=钢琴,正
+direction=,mae=1.713,pred=-0.07,opt=[],time=2022-12-25 07:00:52,obs=-2,item=贝斯,反
+direction=,mae=1.576,pred=0.005,opt=[],time=2022-12-25 07:01:50,obs=0,item=架子鼓,反
+direction=反,mae=0.967,pred=-1.526,opt=['吉他', '钢琴', '小提琴'],time=2022-12-25 07:02:48,obs=1,item=钢琴,反
+direction=反,mae=1.265,pred=0.087,opt=['钢琴', '贝斯', '大', '小提琴'],time=2022-12-25 07:03:46,obs=1,item=吉他,正
+direction=,mae=1.719,pred=-4.099,opt=[],time=2022-12-25 07:04:44,obs=-3,item=贝斯,正
+direction=正,mae=1.006,pred=0.357,opt=['钢琴', '大'],time=2022-12-25 07:05:42,obs=0,item=贝斯,反
+direction=,mae=0.728,pred=0.575,opt=[],time=2022-12-25 07:06:40,obs=0,item=小提琴,反
+direction=反,mae=0.466,pred=-0.077,opt=['吉他', '钢琴', '贝斯'],time=2022-12-25 07:07:38,obs=0,item=小提琴,正
+direction=,mae=0.326,pred=0.079,opt=[],time=2022-12-25 07:08:36,obs=1,item=萨克斯风,正
+direction=正,mae=0.499,pred=-0.39,opt=['小提琴', '钢琴'],time=2022-12-25 07:09:34,obs=0,item=钢琴,正
+direction=正,mae=0.655,pred=-0.587,opt=['小提琴', '钢琴'],time=2022-12-25 07:10:32,obs=-2,item=贝斯,反
+direction=,mae=0.901,pred=4.014,opt=[]
+direction=,mae=2.991,pred=0.449,opt=[],time=2022-12-25 07:31:48,obs=-4,item=贝斯,反
+direction=反,mae=3.715,pred=3.76,opt=['吉他', '大', '小提琴', '钢琴', '贝斯'],time=2022-12-25 07:32:46,obs=2,item=小提琴,反
+direction=反,mae=3.104,pred=-0.367,opt=['大', '小提琴', '钢琴', '贝斯'],time=2022-12-25 07:33:44,obs=-1,item=钢琴,反
+direction=反,mae=1.196,pred=0.602,opt=['吉他', '钢琴', '贝斯'],time=2022-12-25 07:34:42,obs=2,item=架子鼓,正
+direction=,mae=1.015,pred=-1.681,opt=[],time=2022-12-25 07:35:40,obs=0,item=竖琴,正
+direction=正,mae=1.539,pred=-4.157,opt=['钢琴', '贝斯'],time=2022-12-25 07:36:38,obs=0,item=架子鼓,反
+direction=,mae=2.919,pred=-2.531,opt=[],time=2022-12-25 07:37:36,obs=1,item=吉他,正
+direction=,mae=3.844,pred=-3.933,opt=[],time=2022-12-25 07:38:34,obs=-2,item=小提琴,反
+direction=,mae=2.732,pred=1.185,opt=[],time=2022-12-25 07:39:32,obs=-1,item=架子鼓,反
+direction=反,mae=2.059,pred=3.247,opt=['贝斯', '吉他', '钢琴', '小提琴', '大'],time=2022-12-25 07:40:30,obs=3,item=贝斯,反
+direction=反,mae=1.216,pred=-0.861,opt=['吉他', '贝斯', '小提琴', '大'],time=2022-12-25 07:41:28,obs=-3,item=小提琴,反
+direction=反,mae=1.193,pred=1.715,opt=['贝斯', '小提琴', '大'],time=2022-12-25 07:42:26,obs=3,item=钢琴,正
+direction=,mae=1.712,pred=-1.687,opt=[],time=2022-12-25 07:43:24,obs=0,item=吉他,正
+direction=正,mae=1.486,pred=-1.525,opt=['贝斯', '钢琴'],time=2022-12-25 07:44:22,obs=-3,item=小提琴,反
+direction=,mae=1.581,pred=-0.179,opt=[],time=2022-12-25 07:45:20,obs=0,item=小提琴,反
+direction=反,mae=0.827,pred=2.843,opt=['贝斯', '钢琴', '大', '小提琴'],time=2022-12-25 07:46:18,obs=3,item=吉他,正
+direction=,mae=0.168,pred=-3.502,opt=[],time=2022-12-25 07:47:16,obs=-4,item=小提琴,正
+direction=正,mae=0.328,pred=1.891,opt=['钢琴', '吉他'],time=2022-12-25 07:48:14,obs=4,item=贝斯,反
+direction=,mae=1.304,pred=-0.261,opt=[],time=2022-12-25 07:49:12,obs=-2,item=吉他,反
+direction=反,mae=1.924,pred=-0.626,opt=['吉他', '大', '小提琴'],time=2022-12-25 07:50:10,obs=0,item=吉他,反
+direction=反,mae=1.182,pred=0.405,opt=['大', '吉他', '小提琴'],time=2022-12-25 07:51:08,obs=1,item=贝斯,正
+direction=,mae=0.61,pred=1.977,opt=[],time=2022-12-25 07:52:06,obs=1,item=钢琴,反
+direction=,mae=0.786,pred=-1.814,opt=[],time=2022-12-25 07:53:04,obs=-1,item=钢琴,正
+direction=,mae=0.895,pred=0.055,opt=[],time=2022-12-25 07:54:02,obs=-2,item=吉他,反
+direction=,mae=1.434,pred=0.386,opt=[],time=2022-12-25 07:55:00,obs=3,item=架子鼓,反
+direction=反,mae=2.335,pred=-0.037,opt=['大', '贝斯', '钢琴', '小提琴', '吉他'],time=2022-12-25 07:55:58,obs=-1,item=贝斯,反
+direction=反,mae=1.789,pred=-1.407,opt=['贝斯', '小提琴', '吉他'],time=2022-12-25 07:56:56,obs=-3,item=吉他,反
+direction=反,mae=1.278,pred=3.234,opt=['钢琴', '贝斯', '小提琴', '吉他'],time=2022-12-25 07:57:54,obs=0,item=吉他,反
+direction=反,mae=2.413,pred=2.007,opt=['钢琴', '贝斯', '小提琴', '吉他'],time=2022-12-25 07:58:52,obs=3,item=钢琴,反
+direction=反,mae=2.113,pred=-2.323,opt=['大', '钢琴', '吉他'],time=2022-12-25 07:59:50,obs=-1,item=小提琴,正
+direction=,mae=1.158,pred=-1.019,opt=[],time=2022-12-25 08:00:48,obs=-1,item=小提琴,反
+direction=,mae=0.671,pred=1.826,opt=[],time=2022-12-25 08:01:46,obs=-1,item=吉他,反
+direction=反,mae=1.423,pred=0.431,opt=['大', '贝斯', '吉他'],time=2022-12-25 08:02:44,obs=3,item=贝斯,反
+direction=反,mae=2.698,pred=-1.023,opt=['钢琴', '贝斯', '小提琴', '吉他'],time=2022-12-25 08:03:42,obs=-2,item=小提琴,反
+direction=反,mae=1.773,pred=0.818,opt=['贝斯', '小提琴', '吉他'],time=2022-12-25 08:04:40,obs=3,item=架子鼓,正
+direction=,mae=1.58,pred=-3.132,opt=[],time=2022-12-25 08:05:38,obs=0,item=架子鼓,反
+direction=,mae=2.657,pred=-0.762,opt=[],time=2022-12-25 08:06:36,obs=-1,item=钢琴,反
+direction=反,mae=1.685,pred=1.032,opt=['大', '小提琴', '贝斯', '钢琴', '吉他'],time=2022-12-25 08:07:34,obs=1,item=架子鼓,反
+direction=反,mae=0.135,pred=-2.035,opt=['贝斯', '钢琴', '吉他'],time=2022-12-25 08:08:32,obs=-4,item=吉他,反
+direction=反,mae=0.998,pred=-0.657,opt=['贝斯', '小提琴', '大'],time=2022-12-25 08:09:30,obs=4,item=贝斯,反
+direction=反,mae=3.311,pred=-0.879,opt=['小提琴', '大', '贝斯', '钢琴', '吉他'],time=2022-12-25 08:10:28,obs=0,item=小提琴,反
+direction=反,mae=2.768,pred=-3.089,opt=['小提琴', '钢琴', '吉他'],time=2022-12-25 08:11:26,obs=-1,item=架子鼓,正
+direction=,mae=1.484,pred=-0.545,opt=[],time=2022-12-25 08:12:24,obs=-1,item=小提琴,反
+direction=,mae=1.272,pred=-1.439,opt=[],time=2022-12-25 08:13:22,obs=0,item=架子鼓,正
+direction=,mae=0.947,pred=1.398,opt=[],time=2022-12-25 08:14:20,obs=0,item=吉他,反
+direction=,mae=1.418,pred=-1.091,opt=[],time=2022-12-25 08:15:18,obs=0,item=架子鼓,正
+direction=,mae=1.244,pred=-0.718,opt=[],time=2022-12-25 08:16:16,obs=-2,item=架子鼓,反
+direction=,mae=1.186,pred=4.533,opt=[],time=2022-12-25 08:17:14,obs=0,item=架子鼓,反
+direction=反,mae=2.907,pred=3.463,opt=['贝斯', '钢琴', '吉他', '小提琴', '大'],time=2022-12-25 08:18:12,obs=0,item=架子鼓,反
+direction=反,mae=3.998,pred=1.532,opt=['钢琴', '贝斯', '吉他', '小提琴', '大'],time=2022-12-25 08:19:10,obs=3,item=贝斯,反
+direction=反,mae=2.465,pred=-1.713,opt=['吉他', '小提琴', '大'],time=2022-12-25 08:20:08,obs=-1,item=吉他,反
+direction=反,mae=1.09,pred=-1.236,opt=['钢琴', '贝斯', '大'],time=2022-12-25 08:21:06,obs=-2,item=萨克斯风,反
+direction=反,mae=0.738,pred=1.224,opt=['钢琴', '贝斯', '大'],time=2022-12-25 08:22:04,obs=0,item=架子鼓,反
+direction=反,mae=0.994,pred=1.927,opt=['钢琴', '小提琴', '大'],time=2022-12-25 08:23:02,obs=1,item=小提琴,反
+direction=反,mae=1.075,pred=1.182,opt=['吉他', '小提琴', '大'],time=2022-12-25 08:24:00,obs=2,item=贝斯,正
+direction=,mae=0.872,pred=1.017,opt=[],time=2022-12-25 08:24:58,obs=-2,item=小提琴,反
+direction=,mae=1.917,pred=0.798,opt=[],time=2022-12-25 08:25:56,obs=-1,item=架子鼓,反
+direction=反,mae=2.407,pred=1.55,opt=['吉他', '小提琴', '大'],time=2022-12-25 08:26:54,obs=2,item=吉他,反
+direction=反,mae=1.124,pred=0.938,opt=['贝斯', '吉他', '小提琴', '大'],time=2022-12-25 08:27:52,obs=1,item=贝斯,反
+direction=反,mae=0.256,pred=-3.843,opt=['钢琴', '吉他', '贝斯', '小提琴'],time=2022-12-25 08:28:50,obs=1,item=钢琴,反
+direction=反,mae=2.452,pred=-5.116,opt=['钢琴', '贝斯', '大'],time=2022-12-25 08:29:48,obs=-1,item=贝斯,反
+direction=反,mae=4.479,pred=-1.223,opt=['钢琴', '吉他', '小提琴', '贝斯', '大'],time=2022-12-25 08:30:46,obs=-2,item=贝斯,反
+direction=反,mae=2.447,pred=0.874,opt=['吉他', '小提琴', '贝斯', '大'],time=2022-12-25 08:31:44,obs=2,item=吉他,反
+direction=反,mae=0.952,pred=-1.543,opt=['钢琴', '贝斯', '大'],time=2022-12-25 08:32:42,obs=1,item=钢琴,反
+direction=反,mae=1.835,pred=-0.621,opt=['小提琴', '钢琴', '吉他', '贝斯', '大'],time=2022-12-25 08:33:40,obs=0,item=小提琴,反
+direction=反,mae=1.582,pred=-0.733,opt=['吉他', '小提琴', '贝斯', '大'],time=2022-12-25 08:34:38,obs=-1,item=吉他,反
+direction=反,mae=0.444,pred=0.331,opt=['吉他', '贝斯', '大'],time=2022-12-25 08:35:36,obs=1,item=钢琴,正
+direction=,mae=0.468,pred=-4.084,opt=[],time=2022-12-25 08:36:34,obs=-4,item=贝斯,正
+direction=正,mae=0.376,pred=2.36,opt=['钢琴', '大'],time=2022-12-25 08:37:32,obs=3,item=钢琴,正
+direction=正,mae=0.362,pred=-2.231,opt=['吉他', '钢琴'],time=2022-12-25 08:38:30,obs=0,item=小提琴,反
+direction=,mae=1.436,pred=-0.08,opt=[],time=2022-12-25 08:39:28,obs=-3,item=贝斯,反
+direction=反,mae=2.576,pred=1.642,opt=['吉他', '小提琴', '钢琴', '贝斯'],time=2022-12-25 08:40:26,obs=0,item=贝斯,反
+direction=反,mae=2.281,pred=1.755,opt=['吉他', '小提琴', '钢琴', '贝斯'],time=2022-12-25 08:41:24,obs=4,item=架子鼓,正
+direction=,mae=1.943,pred=-3.309,opt=[],time=2022-12-25 08:42:22,obs=-1,item=吉他,正
+direction=正,mae=2.277,pred=-2.782,opt=['小提琴', '吉他'],time=2022-12-25 08:43:20,obs=0,item=小提琴,正
+direction=正,mae=2.546,pred=-2.911,opt=['吉他', '小提琴'],time=2022-12-25 08:44:18,obs=1,item=圆号,反
+direction=,mae=3.347,pred=-2.919,opt=[],time=2022-12-25 08:45:16,obs=-1,item=小提琴,反
+direction=反,mae=2.915,pred=0.069,opt=['大', '吉他', '小提琴', '钢琴', '贝斯'],time=2022-12-25 08:46:14,obs=-1,item=小提琴,反
+direction=反,mae=1.494,pred=-0.413,opt=['钢琴', '小提琴', '贝斯'],time=2022-12-25 08:47:12,obs=-2,item=贝斯,反
+direction=反,mae=1.328,pred=2.069,opt=['钢琴', '小提琴', '贝斯']
+direction=反,mae=2.222,pred=-2.583,opt=['大', '钢琴', '吉他'],time=2022-12-25 09:27:48,obs=-3,item=钢琴,反
+direction=反,mae=1.074,pred=2.737,opt=['大', '小提琴', '吉他', '钢琴'],time=2022-12-25 09:28:46,obs=0,item=吉他,反
+direction=反,mae=1.577,pred=2.199,opt=['大', '小提琴', '吉他', '钢琴'],time=2022-12-25 09:29:44,obs=-1,item=钢琴,反
+direction=反,mae=2.968,pred=4.284,opt=['贝斯', '大', '小提琴', '吉他', '钢琴'],time=2022-12-25 09:30:42,obs=1,item=吉他,反
+direction=反,mae=3.242,pred=2.36,opt=['贝斯', '大', '小提琴', '吉他', '钢琴'],time=2022-12-25 09:31:40,obs=0,item=吉他,反
+direction=反,mae=2.822,pred=3.504,opt=['贝斯', '小提琴', '大', '吉他', '钢琴'],time=2022-12-25 09:32:38,obs=0,item=吉他,反
+direction=反,mae=2.932,pred=3.868,opt=['贝斯', '小提琴', '大', '钢琴', '吉他'],time=2022-12-25 09:33:36,obs=3,item=贝斯,反
+direction=反,mae=2.186,pred=0.247,opt=['大', '小提琴', '贝斯', '钢琴', '吉他'],time=2022-12-25 09:34:34,obs=-2,item=贝斯,反
+direction=反,mae=1.558,pred=-2.307,opt=['大', '小提琴', '吉他'],time=2022-12-25 09:35:32,obs=0,item=贝斯,正
+direction=,mae=2.277,pred=0.017,opt=[],time=2022-12-25 09:36:30,obs=-1,item=钢琴,反
+direction=,mae=1.662,pred=2.638,opt=[],time=2022-12-25 09:37:28,obs=1,item=贝斯,反
+direction=反,mae=1.327,pred=1.48,opt=['小提琴', '贝斯', '吉他', '钢琴'],time=2022-12-25 09:38:26,obs=0,item=贝斯,反
+direction=反,mae=1.559,pred=1.449,opt=['大', '小提琴', '贝斯', '吉他', '钢琴'],time=2022-12-25 09:39:24,obs=-1,item=吉他,反
+direction=反,mae=1.965,pred=2.626,opt=['大', '小提琴', '贝斯', '吉他', '钢琴'],time=2022-12-25 09:40:22,obs=3,item=架子鼓,反
+direction=反,mae=1.411,pred=-2.119,opt=['贝斯', '钢琴', '吉他'],time=2022-12-25 09:41:20,obs=-4,item=吉他,反
+direction=反,mae=1.127,pred=1.739,opt=['大', '钢琴', '吉他'],time=2022-12-25 09:42:18,obs=4,item=架子鼓,反
+direction=反,mae=2.071,pred=-1.245,opt=['大', '贝斯', '钢琴', '吉他'],time=2022-12-25 09:43:16,obs=-4,item=吉他,反
+direction=反,mae=2.508,pred=2.359,opt=['大', '钢琴', '贝斯', '吉他'],time=2022-12-25 09:44:14,obs=1,item=贝斯,反
+direction=反,mae=2.057,pred=1.044,opt=['大', '钢琴', '贝斯', '吉他'],time=2022-12-25 09:45:12,obs=3,item=小提琴,正
+direction=,mae=1.657,pred=-1.336,opt=[],time=2022-12-25 09:46:10,obs=-1,item=小提琴,反
+direction=,mae=1.146,pred=-0.412,opt=[],time=2022-12-25 09:47:08,obs=-2,item=贝斯,反
+direction=反,mae=0.962,pred=-0.189,opt=['大', '小提琴', '吉他']

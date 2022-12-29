@@ -1,3 +1,6 @@
-bullet=0
+bullet=970
 buy=no
 chat=no
+chip=2
+times=2
+rate=0.1

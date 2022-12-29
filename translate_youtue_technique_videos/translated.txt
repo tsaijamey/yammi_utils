@@ -1,0 +1,726 @@
+Hey everyone, my name is Greg Hogg and welcome to my channel.
+大家好，我的名字是Greg Hogg，欢迎来到我的频道。
+
+Today we'll be forecasting Microsoft stock using LSTM neural networks.
+今天我们将使用LSTM神经网络对微软股票进行预测。
+
+This is a very important project to put on your resume, so I'd really highly recommend watching the video in its entirety.
+这是一个非常重要的项目，可以放在你的简历上，所以我真的强烈建议你完整地观看这个视频。
+
+I made it as clear and concise as I possibly could, so I really think you're going to find this useful.
+我尽可能地使其清晰和简洁，所以我真的认为你会发现这很有用。
+
+Enjoy the video, I'll see you in there.
+请欣赏视频，我们在里面见。
+
+We first want to grab the dataset which we can get from this Yahoo Finance link here, which will bring us to Microsoft Corporation stock page.
+我们首先要抓取数据集，我们可以从这个雅虎财经的链接中获得，这将把我们带到微软公司的股票页面。
+
+We can scroll down and change the time period from one year to max to get all of the information and then click apply.
+我们可以向下滚动，将时间段从一年改为最长，以获得所有的信息，然后点击应用。
+
+We want to download, which will bring a csv to your computer.
+我们要下载，这将带来一个csv到你的电脑。
+
+We need to bring that csv into our environment, so in Google Collab we go here and then upload the file.
+我们需要把这个csv带入我们的环境，所以在Google Collab中，我们去这里，然后上传文件。
+
+We can simply rename it by deleting those extra characters and pressing enter.
+我们可以通过删除这些多余的字符并按回车键来简单地重命名。
+
+So we will do import pandas as pd and make df equal to dot read csv passing the file name of msft.csv, close that and then outputting df.
+所以我们将做导入pandas作为pd，并使df等于点读csv，传递msft.csv的文件名，关闭它，然后输出df。
+
+9082 rows of stock information, it goes all the way from the beginning (1986) all the way till now (today which is 2022 March 23rd).
+9082行股票信息，它从一开始（1986年）一直到现在（今天是2022年3月23日）。
+
+If you're following along you might see a different date here, closer to your today.
+如果你一直在关注，你可能会在这里看到一个不同的日期，更接近于你的今天。
+
+Notice that we don't trade stocks every single day, there's a gap here (19 and 20 don't exist) and many other pieces in the middle don't exist as well.
+请注意，我们不是每天都在交易股票，这里有一个缺口（19和20不存在），中间的许多其他作品也不存在。
+
+That is okay.
+那也没关系。
+
+Looking at the different columns of the data set, we have the date and on that date what the stock opened at, the highest value for that day, the lowest value for that day, what it closed at, the adjusted closing value, and then the volume of stocks traded that day.
+看一下数据集的不同栏目，我们有日期和在该日期的股票开盘价，当天的最高值，当天的最低值，收盘价，调整后的收盘价，然后是当天的股票交易量。
+
+We're going to keep things simple by just using the closing value, so we'll have the date and what that value was at the end of that date.
+我们要保持简单，只使用收盘价值，所以我们将有日期和该日期结束时的价值。
+
+We're going to discard the other columns.
+我们要舍弃其他的列。
+
+We can do that by doing df is equal to df and just the name of those two columns, which is date and then close.
+我们可以通过做df等于df，只做这两列的名字，也就是date，然后关闭。
+
+We'll set that and then outputting df, we should see only those two different columns.
+我们将设置这个，然后输出df，我们应该只看到这两个不同的列。
+
+We currently have a problem with our date column as it's actually not a date, it's just a string that has the year then the month then the day.
+目前，我们的日期列有一个问题，因为它实际上不是一个日期，它只是一个字符串，有年、月、日。
+
+We can see this if we type df sub date, we should see 'name of date' except it's a d type of object.
+我们可以看到，如果我们输入df sub date，我们应该看到'name of date'，只不过它是一个d类型的对象。
+
+We want that to be a date, we usually use this thing called date time.
+我们希望那是一个日期，我们通常使用这个叫做日期时间的东西。
+
+So we will import date time and then make a function.
+所以我们将导入日期时间，然后制作一个函数。
+
+So we will define a function called 'string_to_datetime' which is going to take a string 's' which will be any of these strings here, any string that looks like this.
+因此，我们将定义一个名为 "string_to_datetime "的函数，它将接收一个字符串 "s"，它将是这里的任何字符串，任何看起来像这样的字符串。
+
+We're going to pass that to the function in 's' and it's going to return the associated date time for that string.
+我们将把它传递给's'中的函数，它将返回该字符串的相关日期时间。
+
+So in this function we'll create a variable called 'split' and set that equal to the 's.split' the hyphen which is the separator for each of these.
+因此，在这个函数中，我们将创建一个名为'split'的变量，并将其设置为's.split'，即连字符，这是每个人的分隔符。
+
+So a 'split' is going to be the list of the year and then the month and then the day.
+因此，"拆分 "将是年的清单，然后是月的清单，然后是日的清单。
+
+We can extract those three pieces, 'year', 'month', and 'day' equal to the 'split' of zero, 'split' of one, and 'split' of two.
+我们可以提取这三块，'年'、'月'、'日'等于'分'为0，'分'为1，'分'为2。
+
+These objects are actually strings right now, we want to make them integers so we'll just wrap each of them in 'int'.
+这些对象现在实际上是字符串，我们想把它们变成整数，所以我们要用'int'把它们每个人包起来。
+
+so we can just return the datetime.datetime and then pass the year equal to our year the month equal to our month and the day equal to our day.
+所以我们可以直接返回datetime.datetime，然后把年份传给我们，月份传给我们，日期传给我们。
+
+We'll now test out our function by creating an object called date time underscore object equal to the string to date time.
+现在，我们将通过创建一个名为date time underscore object的对象来测试我们的函数，该对象等于日期时间的字符串。
+
+So, calling our function and we'll pass the first day in our data set which happens to be 1986-03-19.
+因此，调用我们的函数，我们将传递我们的数据集中的第一天，刚好是1986-03-19。
+
+If we output this date time object we should see that it outputs datetime.datetime of 1986 319 and this is for the time but we don't need any of that now.
+如果我们输出这个日期时间对象，我们应该看到它输出的是1986年3月的datetime.datetime，这是针对时间的，但我们现在不需要这些了。
+
+What we need to do is apply this function to everything in our date column because we have in df this whole date column we want to make all of these date strings actual date objects.
+我们需要做的是将这个函数应用于我们的日期列中的所有内容，因为我们在df中拥有整个日期列，我们想让所有这些日期字符串成为实际的日期对象。
+
+So, we'll set df subdate equal to itself so df subdate dot apply.
+所以，我们要把df subdate设置为等于自己，这样df subdate点就可以应用。
+
+So, we're applying a function to that column just the one that we made above.
+所以，我们要对那一列应用一个函数，就像我们上面做的那个。
+
+We can pass string to date time into this function.
+我们可以在这个函数中传递字符串到日期时间。
+
+Note that we're not calling the function here we're passing the function itself to the supply function.
+注意，我们不是在这里调用函数，而是将函数本身传递给供应函数。
+
+Now, if we were to output our data frame column again df sub date should now show us the following.
+现在，如果我们再次输出我们的数据框架列，df sub date现在应该向我们显示如下。
+
+It looks like this is an error but this is just a warning this is okay.
+看起来这是一个错误，但这只是一个警告，这是可以的。
+
+It looks like our column is the same as it was before but actually the d type is now date time 64.
+看起来我们的列和以前一样，但实际上现在的d类型是日期时间64。
+
+This is just what pandas converts it to.
+这只是熊猫将其转换为的东西。
+
+This is actually what we want.
+这实际上是我们所希望的。
+
+Our data frame is almost ready we just have one more step.
+我们的数据框架几乎已经准备好了，我们只剩下一个步骤。
+
+If you look at df you can see that it's index this column right here is actually integers.
+如果你看一下df，你可以看到它的索引这一列在这里实际上是整数。
+
+We want to replace that column and make that date column the index.
+我们想替换那一列，让那一列日期成为索引。
+
+We can do that very easily by setting df.index equal to the df.pop which means we take away the column and return it.
+我们可以通过设置df.index等于df.pop来非常容易地做到这一点，这意味着我们拿走了这一列并将其返回。
+
+So df.pop passing the date and then outputting df we'll see that it did exactly what we desired make that date column the index and then we just have the closing value as a column.
+所以df.pop传递了日期，然后输出df，我们会看到它完全做到了我们所期望的，使日期列成为索引，然后我们只是把结束值作为一个列。
+
+Now that we did that we can quickly plot our data using matplotlib.
+现在我们做到了，我们可以用matplotlib快速绘制我们的数据。
+
+If we do import matpotlib.pyplot as plt we can do a plt.plot of the df.index and the df sub close.
+如果我们把matpotlib.pyplot导入为plt，我们就可以对df.index和df.sub close进行plt.绘图。
+
+What we can see is from 1986 all the way up until 2022 the stock goes absolutely crazy after it hits about 2016 or so and then there's a little bit of a drop at the end.
+我们可以看到的是，从1986年一直到2022年，股票在进入2016年左右后绝对是疯狂的，然后在最后有一点下降。
+
+Now, because we're using the lstm model we need to convert this into a supervised learning problem.
+现在，由于我们使用的是lstm模型，我们需要将其转换为一个监督学习问题。
+
+We're going to do this by making a new function.
+我们将通过建立一个新的函数来做到这一点。
+
+We'll call it define df to windowed df.
+我们把它称为定义df到窗口化df。
+
+It's going to take the data frame which will just pass df.
+它将采取数据框架，这将只是通过df。
+
+It'll take a first date string and a last date string and then a positive integer we'll set it equal to 3 by default.
+它将接受一个第一个日期字符串和最后一个日期字符串，然后是一个正整数，我们将默认设置它等于3。
+
+This function is also going to need numpy so we're going to import numpy as np.
+这个函数也将需要numpy，所以我们要把numpy导入为np。
+
+Now it turns out that this code is extremely difficult to write.
+现在，事实证明，这种代码是非常难写的。
+
+And again, we want all the rows, so we'll put a colon.
+再说一遍，我们想要所有的行，所以我们要放一个冒号。
+
+But we only want to start at the first column because we don't want that date column.
+但我们只想从第一列开始，因为我们不想要那个日期列。
+
+And then we want to go up until, but not include, the last one.
+然后我们要一直到，但不包括，最后一个。
+
+So, 1: -1 says all of these rows here, that's what the colon does.
+所以，1：-1表示这里的所有这些行，这就是冒号的作用。
+
+And then 1: -1 says just this piece of information in the middle.
+然后1：-1说的只是中间的这段信息。
+
+So, all of this piece.
+所以，所有这一块。
+
+Now, unfortunately, what you'll find if you go through like that is that it's actually the wrong shape for the LSTM.
+现在，不幸的是，如果你这样去看，你会发现它实际上是LSTM的错误形状。
+
+We need x equal to middle matrix, but then we need to do a reshape.
+我们需要x等于中间矩阵，但这样我们就需要做一个重塑。
+
+So, we'll do a reshape where the first dimension is the length of dates.
+因此，我们将做一个重塑，第一个维度是日期的长度。
+
+So, this is the number of observations.
+所以，这就是观察的数量。
+
+That's pretty common for any tensorflow model.
+这对任何tensorflow模型来说都很常见。
+
+But now we need the second piece of this shape to be middle_matrix.shape[1].
+但现在我们需要这个形状的第二块是 middle_matrix.shape[1]。
+
+That's just however many columns we had, and it would be the same as that n our window value.
+这只是我们有多少列，它将与那n个我们的窗口值相同。
+
+I'm just making it this because we have access to that.
+我之所以这样做，是因为我们有机会接触到这个。
+
+The last piece just has to be a 1 here because we are technically only using one variable.
+最后一块只是在这里必须是1，因为技术上我们只使用一个变量。
+
+We have three different values of that variable and how it changes over time, but we're still only doing what we call univariate forecasting because we're just looking at how the closing value changes over time.
+我们有该变量的三个不同的值，以及它是如何随时间变化的，但我们仍然只是在做我们所谓的单变量预测，因为我们只是在看收盘值是如何随时间变化的。
+
+If instead we had used some of those values at the very beginning, like the open, the high, the volume, and those variables, well then we'd have to put a different number down here.
+如果我们一开始就使用其中的一些数值，比如开盘价、最高价、成交量，以及这些变量，那么我们就必须在这里写上一个不同的数字。
+
+We'd have to put 2, 3, or 4 as this number.
+我们必须把2，3，或4作为这个数字。
+
+We're just doing 1 because we're doing univariate forecasting.
+我们只是在做1，因为我们在做单变量预测。
+
+Now, luckily, from here this function is very easy.
+现在，幸运的是，从这里开始，这个功能是非常容易的。
+
+We can just get our output vector y equal to df.as_matrix(), where again we want all of the rows but we only want the last column.
+我们可以直接得到我们的输出向量y等于df.as_matrix()，同样我们想要所有的行，但我们只想要最后一列。
+
+That we can just do return dates, x, y.
+我们可以只做返回日期，X，Y。
+
+There's just a minor difficulty if you go on later.
+只是如果你继续往下走，会有一个小小的困难。
+
+You'll see that has an error that we can fix with .astype(np.float32) actually np.float32 if we change those for x, and you also do that for y, y.astype(np.float32), you'll fix a weird error you'll find later.
+你会看到有一个错误，我们可以用.astype(np.float32)实际上是np.float32，如果我们为x改变这些，你也为y这样做，y.astype(np.float32)，你会修复一个奇怪的错误，你以后会发现。
+
+Now, to call this function we again want those three things.
+现在，为了调用这个函数，我们又需要这三样东西。
+
+We'll get dates, x, y, and set that equal to windowed_df_to_date_x_y, just our function there.
+我们将得到日期，x，y，并将其设置为windowed_df_to_date_x_y，就是我们的函数。
+
+And we'll pass in our window_df from before.
+我们将传入之前的window_df。
+
+These three things should be numpy arrays, so we will get dates.shape, x.shape, and y.shape, and see that we have 9079 of each of these three things, our input matrix, and then 3x1, because we're looking three steps in the past, but for only one type of variable.
+这三样东西应该是numpy数组，所以我们会得到dates.shape、x.shape和y.shape，看到这三样东西各有9079个，我们的输入矩阵，然后是3x1，因为我们要看三步，但只针对一种类型的变量。
+
+Now, we're going to split the data into train, validation, and testing partitions.
+现在，我们要把数据分成训练区、验证区和测试区。
+
+The training will train the model, the validation will help train the model, and then the testing is what we're going to use to really evaluate the performance of the model.
+训练将训练模型，验证将帮助训练模型，然后测试是我们要用来真正评估模型的性能。
+
+We need two integers to help with the split.
+我们需要两个整数来帮助进行分割。
+
+We'll get q80 first, that's going to be the integer of the length of dates times 0.8.
+我们先得到q80，这将是日期长度的整数乘以0.8。
+
+Then we'll get q90, which is equal to the int of the length of dates times 0.9.
+然后我们会得到q90，它等于日期长度的int乘以0.9。
+
+So we'll make the training partition the first 80 percent.
+因此，我们将把培训分区作为前80%。
+
+So we'll get dates train, x train, and y train.
+因此，我们会得到日期火车、X火车和Y火车。
+
+Each of those are going to be each of their pieces.
+每一个人都要成为他们的每一件作品。
+
+So this will be dates, but then only up until q80 to make it the first 80 percent.
+因此，这将是日期，但然后只到q80，使其成为前80％。
+
+We'll do the same thing with x, so x up until q80, and then y up until q80.
+我们将对x做同样的事情，所以x一直到q80，然后y一直到q80。
+
+Because it's a little bit slow, I'm just going to paste in these two lines to get val, dates, val x, file and y about by going dates q80 to q90, then x q80 to q90, and y q80 to q90.
+因为它有点慢，我只是要粘贴这两行，通过日期q80到q90，然后x q80到q90，以及y q80到q90，得到val、dates、val x、file和y大约。
+
+That's all that information between the 80 and 90 pieces.
+这就是80和90件之间的所有信息。
+
+Then we just get the testing information by saying q90 onward to get that last 10%.
+然后我们就通过说q90往后的测试信息来获得最后的10%。
+
+So you can see it's ordered: the first training piece is up until the first eighty percent, the validation is the eighty to ninety percent (10%), and then the test is that final ten percent from the ninety onward.
+所以你可以看到它是有顺序的：第一块训练是到前百分之八十，验证是百分之八十到九十（10%），然后测试是九十以后的最后百分之十。
+
+We can visualize and color this very well with matplotlib, so we'll do plt.plot.
+我们可以用matplotlib很好地将其可视化和着色，所以我们将做plt.plot。
+
+Then we're going to get dates train, and then y train.
+然后我们要去买枣子车，再去买Y车。
+
+We'll do the same for val, so dates underscore val and y val.
+我们将对val做同样的处理，所以日期下划线val和y val。
+
+Finally, the same for test, plt.plot dates test, and y test.
+最后，对test、plt.plot dates test和y test也是如此。
+
+And we'll just add in a legend, so that you can see which is which.
+我们将添加一个图例，这样你就可以看到哪个是哪个。
+
+Although it should be pretty obvious.
+虽然这应该是很明显的。
+
+Plt.legend train, then validation, then test.
+Plt.legend训练，然后是验证，然后是测试。
+
+If you plot that, you're going to see that train is all this information here marked by the blue, then validation is this piece, and then test is this piece here.
+如果你绘制这个图，你会看到火车是这里所有的信息，由蓝色标记，然后验证是这一块，然后测试是这里这一块。
+
+It's time to create and train our model.
+现在是创建和训练我们的模型的时候了。
+
+We can do a few imports from tensorflow: from tensorflow.comstep models get sequential.
+我们可以从tensorflow做一些导入：从tensorflow.comstep模型中获取顺序。
+
+We're going to build a sequential model from tensorflow.curious.optimizers, we'll get atom.
+我们要从tensorflow.curious.optimizers中建立一个顺序模型，我们会得到atom。
+
+That's the optimizer we're going to use.
+这就是我们要使用的优化器。
+
+And then from tensorflow.kira's import layers.
+然后从tensorflow.kira的导入层。
+
+We'll make a model that is sequential and built up of many layers.
+我们将制作一个有顺序的、由许多层组成的模型。
+
+So we'll define our model and we're going to call it model is equal to a sequential, and then we'll pass that a list of layers.
+所以我们将定义我们的模型，我们将称它为模型等于顺序，然后我们将传递给它一个层的列表。
+
+So the first one is just the input layers.dot.input, and we need to specify the shape of the input.
+所以第一个只是输入层.点.输入，我们需要指定输入的形状。
+
+Remember, we don't need to specify the batch number or how many examples.
+记住，我们不需要指定批号或多少个例子。
+
+Three by one, again it's three because we're doing three days in the past, and that's one because we need only one feature, only univariate forecasting.
+三乘以一，又是三，因为我们在做过去三天的工作，那是一，因为我们只需要一个功能，只需要单变量预测。
+
+Now that we've specified the input layer, we're ready to do an lstm layer.
+现在我们已经指定了输入层，我们准备做一个lstm层。
+
+So we will do layers.dot.lstm and capitals, and this number is relatively arbitrary.
+因此，我们将做layer.dot.lstm和capitals，而这个数字是相对随意的。
+
+But we will choose 64, which is a relatively big (but not super big) number of neurons for the LSTM.
+但我们将选择64个，这对LSTM来说是一个相对较大（但不是超级大）的神经元数量。
+
+All that you really need to know about this number is the bigger the number, the more complicated the model is, the more prone it is to overfitting, and the more heavy-duty it is considered.
+关于这个数字，你真正需要知道的是，这个数字越大，模型就越复杂，越容易过度拟合，而且被认为是越重的。
+
+We will add instead of an LSTM, a dense layer (layers.dense).
+我们将添加一个密集层（layer.dense），而不是LSTM。
+
+We will choose 32 for a similar reason as above.
+我们将选择32，理由与上述类似。
+
+You're also very welcome to stack dense layers, and so we'll just actually paste that in again and have another 32.
+我们也非常欢迎你把密集层堆积起来，所以我们就把这个再贴上，再来个32。
+
+We're not going to mess with the activation functions for the LSTM, but for the dense layers, it's usually a good idea to set activation equal to relu, so we will do that for both of those dense layers.
+我们不打算弄乱LSTM的激活函数，但对于密集层，通常是一个好主意，设置激活等于relu，所以我们将为这两个密集层做这个。
+
+Now we must specify the output of our model, and since we are only forecasting one variable (we're just trying to predict say the next value), we only want this to be a layers.dense of one, where we don't change the activation function, as by default it's linear, which is desired.
+现在我们必须指定我们模型的输出，由于我们只预测一个变量（我们只是想预测说下一个值），我们只希望这是一的层.密，在这里我们不改变激活函数，因为默认情况下它是线性的，这是所希望的。
+
+We can now close this up and specify that the model is going to be compiled.
+我们现在可以关闭这个，并指定模型要被编译。
+
+To compile the model, we must set the loss function, and the loss function we want to minimize is the mean squared error (MSE), so we will just write the string of mse for mean squared error.
+为了编译模型，我们必须设置损失函数，而我们想要最小化的损失函数是平均平方误差（MSE），所以我们只需写出平均平方误差的字符串mse。
+
+We also need to specify the optimizer, so we will set the optimizer equal to the Adam optimizer, where we specify that the learning rate is equal to 0.001.
+我们还需要指定优化器，所以我们将设置优化器等于亚当优化器，其中我们指定学习率等于0.001。
+
+It turns out that 0.001 is going to work out pretty well for this example, but if you're doing a different problem, the learning rate is something you definitely want to play around with, as well as these values here.
+事实证明，在这个例子中，0.001的效果很好，但如果你在做一个不同的问题，学习率是你肯定要玩的东西，还有这里的这些值。
+
+We also want to specify a new metric, which is going to be metrics equals, we need to put it in a list, the mean absolute error (MAE).
+我们还想指定一个新的度量，这将是度量的等值，我们需要把它放在一个列表中，平均绝对误差（MAE）。
+
+This number tells us on average how much we're off by, rather than the squared distance.
+这个数字告诉我们平均偏差多少，而不是距离的平方。
+
+We'd rather look at this, although we need to minimize the MSE as this is not differentiable.
+我们宁愿看这个，虽然我们需要最小化MSE，因为这不是可分的。
+
+We're now ready to fit the model, so we can do model.fit.
+我们现在准备拟合模型，所以我们可以做model.fit。
+
+We pass our inputs of x_train and y_train, and then we specify that the validation data is equal to the tuple of x_val and y_val.
+我们传递x_train和y_train的输入，然后我们指定验证数据等于x_val和y_val的元组。
+
+We're going to let this run for 100 epochs, which means 100 runs through the data set.
+我们要让它运行100个epochs，也就是在数据集上运行100次。
+
+I'm going to press enter and we can see what happens.
+我将按下回车键，我们可以看看会发生什么。
+
+As we can see at this point, it looks like it's not really changed very much, so we can actually cancel this, and it is going to save whatever progress it's done so far.
+我们可以看到，在这一点上，它看起来并没有真正改变多少，所以我们实际上可以取消这个，它将保存到目前为止的任何进展。
+
+Now, to briefly analyze this, we mostly care about the validation mean absolute error going down.
+现在，简单分析一下，我们主要关心的是验证的平均绝对误差会下降。
+
+We can see it's at 14 at the beginning, then it goes to 11, 10, 9.
+我们可以看到它一开始是14，然后是11、10、9。
+
+And then it hovers around 8, 9, 10, and that's when I was ready to stop it because it wasn't really changing all that much.
+然后它在8、9、10左右徘徊，这时我准备停止它，因为它并没有真正改变那么多。
+
+It's much easier to visualize what's going on instead with graphs, so before worrying about the code, I'm just going to show you the pretty picture we can make for it predicting on the training set.
+用图表来直观地了解情况要容易得多，所以在担心代码之前，我只想给你看看我们可以为它在训练集上预测的漂亮图片。
+
+So the orange is the actual observed observations; it's what really happened from 1986 to 2016.
+因此，橙色是实际观察到的数据；这是从1986年到2016年真实发生的情况。
+
+The blue is what we predicted.
+蓝色是我们预测的。
+
+So each time, it got the three previous, and it tried to predict the next one.
+因此，每次它都能得到之前的三个，并试图预测下一个。
+
+That's also what it was trained on.
+这也是它被训练的内容。
+
+To make that run, we simply get the training predictions with model.predict on x_train, and then we have to do a flatten.
+为了使其运行，我们只需在x_train上用model.predict获得训练预测，然后我们必须做一个flatten。
+
+Then we can do a plot of dates_train and the train_predictions and dates_train and y_train.
+然后我们可以做一个dates_train和train_predictions以及dates_train和y_train的图。
+
+That's that blue and the orange curve, and then we just create the legend.
+这就是那个蓝色和橙色的曲线，然后我们就创建图例。
+
+Since I explained that code for the train, I feel no real need to explain it much for the validation, as this is literally the same thing, but replacing the word "train" with "val".
+既然我解释了火车的代码，我觉得没有必要对验证进行过多的解释，因为这实际上是同样的事情，只是把 "火车 "这个词换成了 "val"。
+
+So for the validation, we get this graph.
+所以为了验证，我们得到了这个图。
+
+Or, it follows it until you know about 2017, and then it just really flattens off, which is the same time when it actually starts to pick up.
+或者说，它一直跟着它，直到你知道2017年，然后它就真的变平了，这也是它真正开始回升的时间。
+
+So the observations, what really happened, is it went up like this, but the predictions, it actually just started to zone off and it couldn't follow it anymore.
+因此，观察结果，真正发生的是它像这样上升，但预测，它实际上只是开始分区，它不能再跟随它。
+
+If we were to look at the test, this is again just replacing that word "train" with "test".
+如果我们看一下测试，这又只是把 "训练 "这个词替换成 "测试"。
+
+This picture is even worse; it doesn't follow it at all.
+这张照片更糟糕，它完全没有遵循它。
+
+It actually thinks it's going down a little bit, whereas it's going up a lot, and then it goes down.
+它实际上认为它正在下降一点，而它却上升了很多，然后它又下降了。
+
+I'm now going to put all three of those pictures on the same graph.
+我现在要把这三张图片放在同一个图上。
+
+Again, the code is not hard; it's just annoying.
+同样，代码并不难，只是很烦人。
+
+Where we first plot the training predictions and the observations, the validation predictions and the observations, same for the test, and then we create the legend.
+我们首先绘制训练预测和观察结果，验证预测和观察结果，对测试也是如此，然后我们创建图例。
+
+We see that this picture, again for the training, it follows it very closely.
+我们看到这张图，同样是训练，它非常紧跟它。
+
+And for the red piece, is what actually happened in validation.
+而对于红色这块，是在验证中实际发生的。
+
+The green is what it thought happened.
+绿色是它认为发生了什么。
+
+Not good at all.
+一点都不好。
+
+The brown is what really happened, and the purple is what it thought for the test.
+棕色的是真实发生的情况，紫色的是它认为的测试情况。
+
+Really, really bad at that point.
+在这一点上，真的非常糟糕。
+
+It turns out that these LSTM models are very bad at what we call extrapolating, and so if it was trained on data only in this range here, only up until like the 50 value, it's not going to be good at predicting stuff this high, even though it is given, say, his input, these three values here, and has no idea what to do with them, because it's not going to extrapolate well.
+事实证明，这些LSTM模型非常不擅长我们所说的外推，因此，如果它只在这个范围内的数据上进行训练，只到像50的数值，它就不擅长预测这么高的东西，即使它被给予，比如说，他的输入，这里的这三个数值，也不知道该怎么处理，因为它不会很好地进行外推。
+
+Extrapolate means basically learn data outside its range.
+外推的意思是基本上在其范围之外学习数据。
+
+A line extrapolates well, because if we drew a line here, we could just continue drawing that line up like that.
+一条线可以很好地推断，因为如果我们在这里画了一条线，我们就可以像这样继续往上画这条线。
+
+But if the LSTM is only trained on this data here, it will have no idea what to do when the values are increasing and are this big.
+但是，如果LSTM只在这里的这个数据上进行训练，那么，当数值不断增加并且如此之大时，它将不知道该怎么做。
+
+Another way to think about it is that all this information here, it might actually not be that helpful, because over here the values are way up like this, and the pattern starts changing a lot.
+另一种思考方式是，所有这些信息在这里，实际上可能没有那么大的帮助，因为在这里，价值像这样一路上升，模式开始变化很大。
+
+So, maybe we don't want to train it on all of this.
+所以，也许我们不希望在这些方面对它进行训练。
+
+Maybe we just want to train it on say this information here, and then validate over here.
+也许我们只是想训练它，比如说这里的信息，然后在这里进行验证。
+
+So, we'll do just that.
+因此，我们就这样做。
+
+We're going to pick some day over here to start training at.
+我们要在这里挑选一些日子开始训练。
+
+We do need to know that this date is actually in the data set, and for that we'll go to our data set over here and select the time period of one year.
+我们确实需要知道这个日期确实在数据集中，为此我们将进入我们的数据集，选择一年的时间段。
+
+And if we apply that, we just need to scroll back all the way to the bottom and see that one date that we know exists is March 25th, 2021.
+如果我们应用这一点，我们只需要一直向后滚动到底部，看到我们知道存在的一个日期是2021年3月25日。
+
+We will use that as our starting value instead.
+我们将使用这个值作为我们的起始值。
+
+So, that means we need to change our windowed function above, or not actually change the windowed function itself, but just change how we're calling it.
+所以，这意味着我们需要改变上面的窗口化函数，或者说，实际上并没有改变窗口化函数本身，只是改变了我们调用它的方式。
+
+We need to change this value here to be the year is going to be 2021, 03 is fine, and then 2 5 is a date we know exists as you can see here.
+我们需要改变这里的值，使之成为2021年，03年就可以了，然后2 5是一个我们知道存在的日期，你可以在这里看到。
+
+I had this in a comment for me to remember.
+我在评论中为我记住了这一点。
+
+So, now the first date will be 2021 0325 and these are its corresponding information.
+因此，现在第一个日期将是2021年0325年，这些是它的相应信息。
+
+The end date is exactly the same, and we only have 252 rows this time, way less information.
+结束日期完全相同，而这次我们只有252行，信息量少了很多。
+
+We should have no problem just re-running the cells we already did.
+我们只需重新运行我们已经做过的细胞就应该没有问题了。
+
+So, we're going to do that, which gets dates x and y.
+所以，我们要做的是，得到日期x和y。
+
+Note that they're smaller this time.
+请注意，这一次它们更小了。
+
+We'll again split the data set and make sure that we plot it properly.
+我们将再次分割数据集，并确保我们正确地绘制它。
+
+So, our starting date up until about the middle over here is train, then validation, then test.
+所以，我们的起始日期到这里的中间是训练，然后是验证，然后是测试。
+
+And note that we've already seen values in this range, so it should be okay to predict values in the same range over here since we only change the number of things the model is seeing.
+请注意，我们已经看到了这个范围内的数值，所以在这里预测相同范围内的数值应该是没有问题的，因为我们只是改变了模型看到的东西的数量。
+
+The model is actually fine as is.
+该模型实际上很好，因为它是。
+
+We can run that again and it's going to run a lot faster now.
+我们可以再次运行，而且现在会运行得更快。
+
+We'll see again that our mean absolute error goes down pretty low and for the validation a lot better than it was before.
+我们会再次看到，我们的平均绝对误差下降得很低，对于验证来说，比以前好了很多。
+
+We can recreate all of our graphs.
+我们可以重新创建我们所有的图表。
+
+So, to plot the training, we can see here the train it doesn't follow it quite as well as before, but that's totally okay.
+因此，为了绘制训练图，我们可以看到这里的火车它并不像以前那样跟随它，但这完全没有问题。
+
+If we see here for the validation, it got so much better.
+如果我们看到这里的验证，它就会变得好得多。
+
+Now look at how zoomed in this is.
+现在看看这是多放大的画面。
+
+These values are extremely close to each other, and if we were to do it for the test as well, the tests are also extremely close to each other.
+这些数值极其接近，如果我们对测试也这样做，测试结果也是极其接近的。
+
+If we were to plot them all on the same graph again, we would see here zoomed out that they're all very close to each other.
+如果我们再把它们绘制在同一张图上，我们会看到这里放大后，它们都非常接近。
+
+The predicted first, the observation is very, very close, no matter whether it's the train, the validation, or the test.
+预测的第一，观察的结果是非常非常接近的，不管是火车，验证，还是测试。
+
+Now the video could be done here, but I want to show you how you could try and predict long term, because all of these values, any of these predictions we're assuming we had the actual three days before and that data was real, then we used those three days before to make the prediction and then the next day we would have the actual three.
+现在视频可以在这里完成，但我想告诉你，你可以尝试长期预测，因为所有这些价值，任何这些预测我们都假设我们有前三天的实际情况，而且这些数据是真实的，然后我们用前三天的数据来进行预测，然后第二天我们会有实际的三。
+
+And then, we'd use that to predict the next day.
+然后，我们会用这个来预测第二天的情况。
+
+Well, what we're actually going to do is train here and then pretend that's all the data that we have and let the model recursively predict the future and see what it has to say.
+好吧，我们实际上要做的是在这里进行训练，然后假装这是我们拥有的所有数据，让模型递归地预测未来，看看它有什么要说的。
+
+So, to make that function, we're first going to do from copy import deepcopy.
+因此，为了实现这个功能，我们首先要做的是，从copy导入deepcopy。
+
+We'll make a list and start to build this up called recursive_predictions is equal to an empty list.
+我们会做一个列表，并开始建立这个叫做递归_预测等于空的列表。
+
+And then, we'll get recursive_dates.
+然后，我们会得到递归日期。
+
+These are the dates on which we're predicting.
+这些是我们预测的日期。
+
+For this, it's already known and this is equal to np.concatenate(dates_val, test_val).
+对于这一点，已经知道，这等于np.concatenate（dates_val，test_val）。
+
+This is because the dates we're predicting are here onward, so we're training on all of this.
+这是因为我们预测的日期是在这里开始的，所以我们正在对所有这些进行培训。
+
+In fact, we've already trained on all of that and then the recursive_predictions are going to be for these following dates.
+事实上，我们已经对所有这些进行了训练，然后递归_预测将是对以下这些日期的预测。
+
+So now, we can loop through those dates: for target_date in recursive_dates: We'll get our most recent input, so the last, we'll call it window.
+所以现在，我们可以循环浏览这些日期：for target_date in recursive_dates: 我们将得到我们最近的输入，所以最后一个，我们将称之为窗口。
+
+I'm just copying it so we don't change anything, deepcopy(x_train[-1]) because the last window that we actually had access to was the very last three over here that is stored in x_train[-1].
+我只是复制它，所以我们不改变任何东西，deepcopy(x_train[-1])，因为我们真正能访问的最后一个窗口是这里的最后三个，它被存储在x_train[-1]中。
+
+And we need to start predicting for the future, so we need to get our next prediction.
+而我们需要开始对未来进行预测，所以我们需要得到下一个预测。
+
+That will be equal to model.predict(np.array([window])).flatten().
+这将等同于model.predict(np.array([window])).flatten()。
+
+Unfortunately, we actually have to make it the numpy.array of the list of the last window, but really it's just the last window.
+不幸的是，我们实际上必须让它成为最后一个窗口的列表的numpy.array，但实际上它只是最后一个窗口。
+
+Don't worry too much about that piece.
+不要太担心这一块。
+
+And then flatten it like before.
+然后像以前一样把它压平。
+
+Then, what we can do is recursive_predictions.append(next_prediction).
+然后，我们可以做的是recursive_predictions.append（next_prediction）。
+
+So, add that to our list with next_prediction.
+所以，用next_prediction把它加入我们的列表。
+
+Then, we need to update this last window because we just made a prediction for the next day.
+然后，我们需要更新这最后一个窗口，因为我们刚刚对第二天进行了预测。
+
+Well, now we need to move on to the previous two informations that were actually seen and then the next predicted value, because we need to start using the values that we're predicting.
+好了，现在我们需要转到前面两个实际看到的信息，然后是下一个预测值，因为我们需要开始使用我们预测的值。
+
+That's why it's called recursive predicting.
+这就是为什么它被称为递归预测。
+
+So, we'll actually set last_window[-1] = next_prediction.
+所以，我们实际上会设置last_window[-1] = next_prediction。
+
+Sorry, I have an error here.
+对不起，我这里有一个错误。
+
+This should actually be dates test.
+这实际上应该是对枣的测试。
+
+And then if we run that, I'm now going to paste in again some annoying code, but it'll look very familiar.
+然后如果我们运行这个，我现在要再次粘贴一些恼人的代码，但它看起来会非常熟悉。
+
+It's exactly the same as that big graph as before, except I added in the recursive dates and the recursive predictions, and that put that in the legend as well.
+它和之前的大图完全一样，只是我加入了递归日期和递归预测，并把它也放在图例中。
+
+If I were to plot this, you will see something very funny.
+如果我绘制这个图，你会看到非常有趣的东西。
+
+This piece right here is the recursive predictions.
+这一块就在这里，是递归的预测。
+
+The model has absolutely no idea on how to predict in the future.
+该模型完全不知道如何在未来进行预测。
+
+It just thinks it'll be what it was before, and actually that's a reasonable prediction.
+它只是认为会和以前一样，实际上这也是一个合理的预测。
+
+Predicting stocks is incredibly difficult.
+预测股票是非常困难的。
+
+There is of course the trend we can analyze.
+当然，还有我们可以分析的趋势。
+
+We saw before that the graph really started to go up, and that would indicate to you that it's a good stock to buy.
+我们之前看到，该图真的开始上升，这将向你表明，这是一个值得购买的好股票。
+
+But that doesn't mean I can guarantee that, and I don't want to be liable for you predicting any sort of stocks with any sort of model.
+但这并不意味着我可以保证，我不想为你用任何一种模式预测任何一种股票而承担责任。
+
+And by no means is the model we made useless.
+而且，我们做的模型绝不是毫无用处。
+
+It's just on the micro scale of per day, should I sell or buy.
+只是在每天的微观尺度上，我应该卖出还是买入。
+
+Of course, in general, people generally think of stocks for the long term, what should I do to make money in the long term.
+当然，一般来说，人们普遍认为股票是长期的，我应该怎么做才能长期赚钱。
+
+But on a micro scale, it's important to know as well.
+但从微观上看，知道这一点也很重要。
+
+So I hope you enjoyed that video.
+所以我希望你喜欢这个视频。
+
+If it brought you value, please drop a like and consider subscribing.
+如果它给你带来了价值，请留下一个赞并考虑订阅。
+
+It really really helps, and I'll see you next time, guys.
+这真的非常有帮助，下次见，伙计们。
+

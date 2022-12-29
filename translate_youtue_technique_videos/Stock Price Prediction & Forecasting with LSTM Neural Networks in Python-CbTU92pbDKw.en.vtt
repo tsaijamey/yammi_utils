@@ -1,0 +1,1108 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:00.000 --> 00:00:05.360
+Hey everyone my name is Greg Hogg and welcome to&nbsp;
+my channel today we'll be forecasting Microsoft&nbsp;&nbsp;
+
+00:00:05.360 --> 00:00:10.720
+stock using LSTM neural networks this is a&nbsp;
+very important project to put on your resume&nbsp;&nbsp;
+
+00:00:10.720 --> 00:00:16.080
+so i'd really highly recommend watching the video&nbsp;
+in its entirety i made it as clear and concise as&nbsp;&nbsp;
+
+00:00:16.080 --> 00:00:20.880
+i possibly could so i really think you're going to&nbsp;
+find this useful enjoy the video i'll see you in&nbsp;&nbsp;
+
+00:00:20.880 --> 00:00:26.960
+there. We first want to grab the dataset which&nbsp;
+we can get from this Yahoo Finance link here&nbsp;&nbsp;
+
+00:00:26.960 --> 00:00:31.840
+which will bring us to Microsoft Corporation&nbsp;
+stock page we can scroll down and change the&nbsp;&nbsp;
+
+00:00:31.840 --> 00:00:37.840
+time period from one year to max to get all of&nbsp;
+the information and then click apply we want to&nbsp;&nbsp;
+
+00:00:37.840 --> 00:00:43.360
+download which will bring a csv to your computer&nbsp;
+we need to bring that csv into our environment&nbsp;&nbsp;
+
+00:00:43.360 --> 00:00:48.960
+so in google collab we go here and then upload&nbsp;
+the file we can simply rename it by deleting&nbsp;&nbsp;
+
+00:00:48.960 --> 00:00:56.240
+those extra characters and pressing enter so we&nbsp;
+will do import pandas as pd and make df equal to&nbsp;&nbsp;
+
+00:00:57.200 --> 00:01:07.280
+dot read csv passing the file name of msft.csv&nbsp;
+close that and then outputting df 9082 rows&nbsp;&nbsp;
+
+00:01:07.280 --> 00:01:14.240
+of stock information it goes all the way from&nbsp;
+the beginning 1986 all the way till now today&nbsp;&nbsp;
+
+00:01:14.240 --> 00:01:20.080
+which is 2022 march 23rd if you're following&nbsp;
+along you might see a different date here&nbsp;&nbsp;
+
+00:01:20.080 --> 00:01:26.320
+closer to your today notice that we don't trade&nbsp;
+stocks every single day there's a gap here 19&nbsp;&nbsp;
+
+00:01:26.320 --> 00:01:31.680
+and 20 don't exist and many other pieces in&nbsp;
+the middle don't exist as well that is okay&nbsp;&nbsp;
+
+00:01:31.680 --> 00:01:36.960
+looking at the different columns of the data&nbsp;
+set we have the date and on that date what the&nbsp;&nbsp;
+
+00:01:36.960 --> 00:01:43.760
+stock opened at the highest value for that day&nbsp;
+the lowest value for that day what it closed at&nbsp;&nbsp;
+
+00:01:43.760 --> 00:01:48.800
+the adjusted closing value and then the volume&nbsp;
+of stocks traded that day we're going to keep&nbsp;&nbsp;
+
+00:01:48.800 --> 00:01:54.640
+things simple by just using the closing value&nbsp;
+so we'll have the date and what that value was&nbsp;&nbsp;
+
+00:01:54.640 --> 00:02:00.640
+at the end of that date we're going to discard the&nbsp;
+other columns we can do that by doing df is equal&nbsp;&nbsp;
+
+00:02:00.640 --> 00:02:07.120
+to df and just the name of those two columns&nbsp;
+which is date and then close we'll set that&nbsp;&nbsp;
+
+00:02:07.120 --> 00:02:12.480
+and then outputting df we should see only those&nbsp;
+two different columns we currently have a problem&nbsp;&nbsp;
+
+00:02:12.480 --> 00:02:17.600
+with our date column as it's actually not a date&nbsp;
+it's just a string that has the year then the&nbsp;&nbsp;
+
+00:02:17.600 --> 00:02:24.960
+month then the day we can see this if we type df&nbsp;
+sub date we should see name of date except it's&nbsp;&nbsp;
+
+00:02:24.960 --> 00:02:31.680
+a d type of object we want that to be a date we&nbsp;
+usually use this thing called date time so we will&nbsp;&nbsp;
+
+00:02:31.680 --> 00:02:40.000
+import date time and then make a function so we&nbsp;
+will define a function called string to date time&nbsp;&nbsp;
+
+00:02:40.000 --> 00:02:45.440
+which is going to take a string s which will be&nbsp;
+any of these strings here any string that looks&nbsp;&nbsp;
+
+00:02:45.440 --> 00:02:50.960
+like this we're going to pass that to the function&nbsp;
+in s and it's going to return the associated date&nbsp;&nbsp;
+
+00:02:50.960 --> 00:02:56.400
+time for that string so in this function we'll&nbsp;
+create a variable called split and set that&nbsp;&nbsp;
+
+00:02:56.400 --> 00:03:03.120
+equal to the s dot split the hyphen which is the&nbsp;
+separator for each of these so a split is going to&nbsp;&nbsp;
+
+00:03:03.120 --> 00:03:09.040
+be the list of the year and then the month and&nbsp;
+then the day we can extract those three pieces&nbsp;&nbsp;
+
+00:03:09.040 --> 00:03:18.480
+year month and day equal to the split of zero&nbsp;
+split of one and split of two these objects are&nbsp;&nbsp;
+
+00:03:18.480 --> 00:03:23.920
+actually strings right now we want to make them&nbsp;
+integers so we'll just wrap each of them in int
+
+00:03:26.880 --> 00:03:34.400
+so we can just return the datetime.datetime&nbsp;
+and then pass the year equal to our year&nbsp;&nbsp;
+
+00:03:34.400 --> 00:03:40.560
+the month equal to our month and the day equal&nbsp;
+to our day we'll now test out our function&nbsp;&nbsp;
+
+00:03:40.560 --> 00:03:48.000
+by creating an object called date time underscore&nbsp;
+object equal to the string to date time so calling&nbsp;&nbsp;
+
+00:03:48.000 --> 00:03:56.720
+our function and we'll pass the first day in&nbsp;
+our data set which happens to be 1986-03-19
+
+00:03:56.720 --> 00:04:04.240
+if we output this date time object we should see&nbsp;
+that it outputs datetime.datetime of 1986 319 and&nbsp;&nbsp;
+
+00:04:04.240 --> 00:04:09.600
+this is for the time but we don't need any of that&nbsp;
+now what we need to do is apply this function to&nbsp;&nbsp;
+
+00:04:09.600 --> 00:04:15.920
+everything in our date column because we have in&nbsp;
+df this whole date column we want to make all of&nbsp;&nbsp;
+
+00:04:15.920 --> 00:04:24.640
+these date strings actual date objects so we'll&nbsp;
+set df subdate equal to itself so df subdate dot&nbsp;&nbsp;
+
+00:04:24.640 --> 00:04:30.160
+apply so we're applying a function to that column&nbsp;
+just the one that we made above we can pass string&nbsp;&nbsp;
+
+00:04:30.160 --> 00:04:35.280
+to date time into this function note that we're&nbsp;
+not calling the function here we're passing the&nbsp;&nbsp;
+
+00:04:35.280 --> 00:04:42.160
+function itself to the supply function now if we&nbsp;
+were to output our data frame column again df sub&nbsp;&nbsp;
+
+00:04:42.160 --> 00:04:47.440
+date should now show us the following it looks&nbsp;
+like this is an error but this is just a warning&nbsp;&nbsp;
+
+00:04:47.440 --> 00:04:53.840
+this is okay it looks like our column is the same&nbsp;
+as it was before but actually the d type is now&nbsp;&nbsp;
+
+00:04:53.840 --> 00:05:00.080
+date time 64. this is just what pandas converts&nbsp;
+it to this is actually what we want our data frame&nbsp;&nbsp;
+
+00:05:00.080 --> 00:05:06.000
+is almost ready we just have one more step if you&nbsp;
+look at df you can see that it's index this column&nbsp;&nbsp;
+
+00:05:06.000 --> 00:05:12.880
+right here is actually integers we want to replace&nbsp;
+that column and make that date column the index we&nbsp;&nbsp;
+
+00:05:12.880 --> 00:05:21.280
+can do that very easily by setting df.index equal&nbsp;
+to the df.pop which means we take away the column&nbsp;&nbsp;
+
+00:05:21.280 --> 00:05:29.040
+and return it so df.pop passing the date and then&nbsp;
+outputting df we'll see that it did exactly what&nbsp;&nbsp;
+
+00:05:29.040 --> 00:05:34.560
+we desired make that date column the index and&nbsp;
+then we just have the closing value as a column&nbsp;&nbsp;
+
+00:05:34.560 --> 00:05:42.400
+now that we did that we can quickly plot our data&nbsp;
+using matplotlib if we do import matpotlib.pyplot&nbsp;&nbsp;
+
+00:05:42.400 --> 00:05:52.960
+as plt we can do a plt.plot of the df.index and&nbsp;
+the df sub close what we can see is from 1986&nbsp;&nbsp;
+
+00:05:52.960 --> 00:06:00.320
+all the way up until 2022 the stock goes&nbsp;
+absolutely crazy after it hits about 2016 or so&nbsp;&nbsp;
+
+00:06:00.320 --> 00:06:05.520
+and then there's a little bit of a drop at the end&nbsp;
+now because we're using the lstm model we need to&nbsp;&nbsp;
+
+00:06:05.520 --> 00:06:11.040
+convert this into a supervised learning problem&nbsp;
+we're going to do this by making a new function&nbsp;&nbsp;
+
+00:06:11.040 --> 00:06:18.720
+we'll call it define df to windowed df it's going&nbsp;
+to take the data frame which will just pass df&nbsp;&nbsp;
+
+00:06:18.720 --> 00:06:25.760
+it'll take a first date string and a last date&nbsp;
+string and then a positive integer we'll set&nbsp;&nbsp;
+
+00:06:25.760 --> 00:06:31.040
+it equal to 3 by default this function is&nbsp;
+also going to need numpy so we're going to&nbsp;&nbsp;
+
+00:06:31.040 --> 00:06:37.280
+import numpy as np now it turns out that&nbsp;
+this code is extremely difficult to write&nbsp;&nbsp;
+
+00:06:37.280 --> 00:06:42.560
+so i'm going to just go in here and paste in&nbsp;
+the code if you need to know what that code is&nbsp;&nbsp;
+
+00:06:42.560 --> 00:06:46.960
+make sure you go to the video description and&nbsp;
+check out the tutorial and look at it there&nbsp;&nbsp;
+
+00:06:46.960 --> 00:06:52.480
+i also pasted in how to create this object called&nbsp;
+window df which is calling this function with&nbsp;&nbsp;
+
+00:06:52.480 --> 00:06:58.480
+certain parameters i'll explain that very shortly&nbsp;
+i just need to show you the result of window df&nbsp;&nbsp;
+
+00:06:58.480 --> 00:07:05.280
+window df is now a data frame where we have a&nbsp;
+target date column a target minus 3 minus 2 minus&nbsp;&nbsp;
+
+00:07:05.280 --> 00:07:11.360
+1 and then the target these are all the stock&nbsp;
+closing values from before so this target date&nbsp;&nbsp;
+
+00:07:11.360 --> 00:07:20.400
+corresponds to that value here if we look above&nbsp;
+at 3 18 it should be 0.099 so 0 3 18 let's take it&nbsp;&nbsp;
+
+00:07:20.400 --> 00:07:29.040
+one more time for me to remember oh 3 18 is 0.099&nbsp;
+why don't we have this row that row and that row&nbsp;&nbsp;
+
+00:07:29.040 --> 00:07:35.920
+well that is all about what this windowed function&nbsp;
+is so this window data frame is converting a date&nbsp;&nbsp;
+
+00:07:35.920 --> 00:07:43.840
+into getting its three previous values and then&nbsp;
+what it actually was so if we go back again 0.097&nbsp;&nbsp;
+
+00:07:44.400 --> 00:07:50.960
+if we look at what .097 is that is three&nbsp;
+days before this is the target date&nbsp;&nbsp;
+
+00:07:50.960 --> 00:07:56.400
+this is three days before if we were to look at&nbsp;
+target minus two this would be target minus two&nbsp;&nbsp;
+
+00:07:56.400 --> 00:08:03.200
+for that date and this is target minus 1 and this&nbsp;
+is the target we have that for every single date&nbsp;&nbsp;
+
+00:08:03.200 --> 00:08:09.760
+that it allows for so of course we couldn't have&nbsp;
+dates previous than this because we didn't have a&nbsp;&nbsp;
+
+00:08:09.760 --> 00:08:15.200
+whole three values before it this was the first&nbsp;
+date that we could start with hence we actually&nbsp;&nbsp;
+
+00:08:15.200 --> 00:08:21.520
+called that as the starting date there as the&nbsp;
+last date that's the last one we wanted which is&nbsp;&nbsp;
+
+00:08:21.520 --> 00:08:27.120
+right here the three previous and then its target&nbsp;
+value right there the reason i started calling&nbsp;&nbsp;
+
+00:08:27.120 --> 00:08:31.920
+it target is to think about this column as the&nbsp;
+output because that's what our machine learning&nbsp;&nbsp;
+
+00:08:31.920 --> 00:08:38.880
+model needs we have what led up to it so three&nbsp;
+days before two days before one day before what&nbsp;&nbsp;
+
+00:08:38.880 --> 00:08:45.040
+is our corresponding output because this is the&nbsp;
+input that's fed into the model and this is the&nbsp;&nbsp;
+
+00:08:45.040 --> 00:08:50.800
+corresponding output it's just like a regression&nbsp;
+problem or any other supervised learning problem&nbsp;&nbsp;
+
+00:08:50.800 --> 00:08:57.280
+you have an input and then you have an output you&nbsp;
+have another input you have another output this&nbsp;&nbsp;
+
+00:08:57.280 --> 00:09:03.280
+is just the whole data frame which displays the&nbsp;
+inputs the outputs and the corresponding date for&nbsp;&nbsp;
+
+00:09:03.280 --> 00:09:08.720
+that output so that was really how we converted&nbsp;
+this problem to a supervised learning problem&nbsp;&nbsp;
+
+00:09:08.720 --> 00:09:14.960
+we set up its output date with that output and&nbsp;
+its corresponding input for that row now we just&nbsp;&nbsp;
+
+00:09:14.960 --> 00:09:20.640
+need to convert this into numpy arrays so that we&nbsp;
+can feed it directly into a tensorflow model so&nbsp;&nbsp;
+
+00:09:20.640 --> 00:09:27.040
+to do that we're going to create a function we're&nbsp;
+going to call it windowed df so it takes a window&nbsp;&nbsp;
+
+00:09:27.040 --> 00:09:34.800
+df like above and converts it to date x y okay so&nbsp;
+this is actually three things we're going to get a&nbsp;&nbsp;
+
+00:09:34.800 --> 00:09:40.720
+list of dates we're going to get an input matrix&nbsp;
+x actually it's going to be a three-dimensional&nbsp;&nbsp;
+
+00:09:40.720 --> 00:09:48.080
+tensor we'll see shortly and y is going to be the&nbsp;
+output vector so x is going to be this matrix here&nbsp;&nbsp;
+
+00:09:48.080 --> 00:09:53.600
+except it's actually going to be three-dimensional&nbsp;
+y is going to be this output vector here and dates&nbsp;&nbsp;
+
+00:09:53.600 --> 00:09:58.400
+we want to keep those so dates is going to be&nbsp;
+this column here this function is just going to&nbsp;&nbsp;
+
+00:09:58.400 --> 00:10:05.920
+take one parameter called window data frame first&nbsp;
+is going to do df as numpy it's going to convert&nbsp;&nbsp;
+
+00:10:05.920 --> 00:10:14.480
+the whole data frame into a numpy array we do that&nbsp;
+with windowed data frame dot 2 underscore numpy&nbsp;&nbsp;
+
+00:10:14.480 --> 00:10:21.920
+bracket bracket to get the dates it's very easy&nbsp;
+we just set dates equal to df underscore as numpy&nbsp;&nbsp;
+
+00:10:21.920 --> 00:10:27.040
+and then we need to get all of the rows so we put&nbsp;
+a colon and then we put 0 to say just the first&nbsp;&nbsp;
+
+00:10:27.040 --> 00:10:32.720
+column because it's this column right here getting&nbsp;
+the input matrix is a little bit more confusing so&nbsp;&nbsp;
+
+00:10:32.720 --> 00:10:40.400
+we're going to call it first middle matrix not our&nbsp;
+final input matrix middle matrix is equal to df&nbsp;&nbsp;
+
+00:10:40.400 --> 00:10:46.000
+underscore as numpy and again we want all the rows&nbsp;
+so we'll put a colon but we only want to start at&nbsp;&nbsp;
+
+00:10:46.000 --> 00:10:51.600
+the first column because we don't want that date&nbsp;
+column and then we want to go up until but not&nbsp;&nbsp;
+
+00:10:51.600 --> 00:10:58.400
+include the last one so 1 until negative 1 says&nbsp;
+all of these rows here that's what the colon does&nbsp;&nbsp;
+
+00:10:58.400 --> 00:11:05.360
+and then 1 to negative 1 says just this piece of&nbsp;
+information in the middle so all of this piece now&nbsp;&nbsp;
+
+00:11:05.360 --> 00:11:09.760
+unfortunately what you'll find if you go through&nbsp;
+like that is that it's actually the wrong shape&nbsp;&nbsp;
+
+00:11:09.760 --> 00:11:16.320
+for the lstm we need x is equal to middle matrix&nbsp;
+but then we need to do a reshape so we'll do a&nbsp;&nbsp;
+
+00:11:16.320 --> 00:11:23.040
+reshape where the first dimension is the length&nbsp;
+of dates so this is the number of observations&nbsp;&nbsp;
+
+00:11:23.040 --> 00:11:28.080
+that's pretty common for any tensorflow model but&nbsp;
+now we need the second piece of this shape to be&nbsp;&nbsp;
+
+00:11:28.080 --> 00:11:34.080
+middle matrix dot shape sub 1. that's just&nbsp;
+however many columns we had and it would be&nbsp;&nbsp;
+
+00:11:34.080 --> 00:11:38.960
+the same as that n our window value i'm just&nbsp;
+making it this because we have access to that&nbsp;&nbsp;
+
+00:11:38.960 --> 00:11:45.280
+the last piece just has to be a 1 here because we&nbsp;
+are technically only using one variable we have&nbsp;&nbsp;
+
+00:11:45.280 --> 00:11:50.560
+three different values of that variable and how&nbsp;
+it changes over time but we're still only doing&nbsp;&nbsp;
+
+00:11:50.560 --> 00:11:56.000
+what we call univariate forecasting because we're&nbsp;
+just looking at how the closing value changes over&nbsp;&nbsp;
+
+00:11:56.000 --> 00:12:02.480
+time if instead we had used some of those values&nbsp;
+at the very beginning like the open the high the&nbsp;&nbsp;
+
+00:12:02.480 --> 00:12:07.440
+volume and those variables well then we'd have&nbsp;
+to put a different number down here we'd have to&nbsp;&nbsp;
+
+00:12:07.440 --> 00:12:12.480
+put two or three or four as this number we're&nbsp;
+just doing one because we're doing univariate&nbsp;&nbsp;
+
+00:12:12.480 --> 00:12:18.000
+forecasting now luckily from here this function&nbsp;
+is very easy we can just get our output vector&nbsp;&nbsp;
+
+00:12:18.000 --> 00:12:25.200
+y is equal to df as numpy where again we want&nbsp;
+all of the rows but we only want the last column&nbsp;&nbsp;
+
+00:12:25.200 --> 00:12:32.160
+that we can just do return three things dates x&nbsp;
+and y there's just a minor difficulty if you go&nbsp;&nbsp;
+
+00:12:32.160 --> 00:12:39.840
+on later you'll see that has an error that we&nbsp;
+can fix with dot as type float 32 actually np&nbsp;&nbsp;
+
+00:12:39.840 --> 00:12:47.840
+dot float32 if we change those for x and you&nbsp;
+also do that for y y dot as type numpy.float32&nbsp;&nbsp;
+
+00:12:47.840 --> 00:12:52.560
+you'll fix a weird error you'll find later now&nbsp;
+to call this function we again want those three&nbsp;&nbsp;
+
+00:12:52.560 --> 00:13:02.000
+things we'll get dates x and y and set that equal&nbsp;
+to windowed df to date x y just our function there&nbsp;&nbsp;
+
+00:13:02.000 --> 00:13:07.600
+and we'll pass in our window df from before these&nbsp;
+three things should be numpy arrays so we will get&nbsp;&nbsp;
+
+00:13:07.600 --> 00:13:15.120
+dates.shape x dot shape and y dot shape and see&nbsp;
+that we have 9079 of each of these three things&nbsp;&nbsp;
+
+00:13:15.120 --> 00:13:21.040
+our input matrix and then three by one because&nbsp;
+we're looking three steps in the past but for only&nbsp;&nbsp;
+
+00:13:21.040 --> 00:13:27.440
+one type of variable now we're going to split the&nbsp;
+data into train validation and testing partitions&nbsp;&nbsp;
+
+00:13:27.440 --> 00:13:33.120
+the training will train the model the validation&nbsp;
+will help train the model and then the testing&nbsp;&nbsp;
+
+00:13:33.120 --> 00:13:38.480
+is what we're going to use to really evaluate the&nbsp;
+performance of the model we need two integers to&nbsp;&nbsp;
+
+00:13:38.480 --> 00:13:44.960
+help with the split we'll get q80 first that's&nbsp;
+going to be the integer of the length of dates&nbsp;&nbsp;
+
+00:13:44.960 --> 00:13:51.920
+times 0.8 then we'll get q90 which is equal&nbsp;
+to the int of the length of dates times 0.9&nbsp;&nbsp;
+
+00:13:52.560 --> 00:13:59.040
+so we'll make the training partition the first&nbsp;
+80 percent so we'll get dates train x train and&nbsp;&nbsp;
+
+00:13:59.040 --> 00:14:04.240
+y train each of those are going to be each of&nbsp;
+their pieces so this will be dates but then&nbsp;&nbsp;
+
+00:14:04.240 --> 00:14:12.240
+only up until q80 to make it the first 80 percent&nbsp;
+we'll do the same thing with x so x up until q80&nbsp;&nbsp;
+
+00:14:12.240 --> 00:14:18.080
+and then y up until q80 because it's a little bit&nbsp;
+slow i'm just going to paste in these two lines&nbsp;&nbsp;
+
+00:14:18.080 --> 00:14:26.000
+to get vowel and test which we can get val dates&nbsp;
+val x file and y about by going dates q 80 to q 90&nbsp;&nbsp;
+
+00:14:26.000 --> 00:14:33.280
+then x q a to q 90 and y q to q82 q90 that's&nbsp;
+all that information between the 80 and 90&nbsp;&nbsp;
+
+00:14:33.280 --> 00:14:40.240
+pieces then we just get the testing information by&nbsp;
+saying q90 onward to get that last 10 so you can&nbsp;&nbsp;
+
+00:14:40.240 --> 00:14:46.400
+see it's ordered the first training piece is up&nbsp;
+until the first eighty percent the validation is&nbsp;&nbsp;
+
+00:14:46.400 --> 00:14:52.480
+the eighty to ninety percent ten percent and then&nbsp;
+the test is that final ten percent from the ninety&nbsp;&nbsp;
+
+00:14:52.480 --> 00:14:58.800
+onward we can visualize and color this very well&nbsp;
+with matplotlib so we'll do plt.plot then we're&nbsp;&nbsp;
+
+00:14:58.800 --> 00:15:06.880
+going to get dates train and then y train we'll do&nbsp;
+the same so plt.plot for val so dates underscore&nbsp;&nbsp;
+
+00:15:06.880 --> 00:15:15.200
+val and y val finally the same for test plt.plot&nbsp;
+dates test and y test and we'll just add in a&nbsp;&nbsp;
+
+00:15:15.200 --> 00:15:20.880
+legend so that you can see which is which although&nbsp;
+it should be pretty obvious plt.legend train then&nbsp;&nbsp;
+
+00:15:20.880 --> 00:15:26.720
+validation then test if you plot that you're going&nbsp;
+to see that train is all this information here&nbsp;&nbsp;
+
+00:15:26.720 --> 00:15:32.160
+marked by the blue then validation is this piece&nbsp;
+and then test is this piece here it's time to&nbsp;&nbsp;
+
+00:15:32.160 --> 00:15:38.240
+create and train our model we can do a few imports&nbsp;
+from tensorflow from tensorflow.comstep models&nbsp;&nbsp;
+
+00:15:38.240 --> 00:15:43.760
+get sequential we're going to build a sequential&nbsp;
+model from tensorflow.curious.optimizers&nbsp;&nbsp;
+
+00:15:43.760 --> 00:15:49.760
+we'll get atom that's the optimizer we're going to&nbsp;
+use and then from tensorflow.kira's import layers&nbsp;&nbsp;
+
+00:15:49.760 --> 00:15:55.440
+we'll make a model that is sequential and built up&nbsp;
+of many layers so we'll define our model and we're&nbsp;&nbsp;
+
+00:15:55.440 --> 00:16:01.440
+going to call it model is equal to a sequential&nbsp;
+and then we'll pass that a list of layers so the&nbsp;&nbsp;
+
+00:16:01.440 --> 00:16:07.360
+first one is just the input layers dot input&nbsp;
+and we need to specify the shape of the input&nbsp;&nbsp;
+
+00:16:07.360 --> 00:16:14.400
+remember we don't need to specify the batch number&nbsp;
+or how many examples three by one again it's three&nbsp;&nbsp;
+
+00:16:14.400 --> 00:16:20.080
+because we're doing three days in the past and&nbsp;
+that's one because we need only one feature only&nbsp;&nbsp;
+
+00:16:20.080 --> 00:16:26.080
+univariate forecasting now that we've specified&nbsp;
+the input layer we're ready to do an lstm layer so&nbsp;&nbsp;
+
+00:16:26.080 --> 00:16:32.560
+we will do layers dot lstm and capitals and this&nbsp;
+number is relatively arbitrary but we will choose&nbsp;&nbsp;
+
+00:16:32.560 --> 00:16:40.080
+64 which is a relatively big but not super big&nbsp;
+number of neurons for the lstm all that you really&nbsp;&nbsp;
+
+00:16:40.080 --> 00:16:45.280
+need to know about this number is the bigger&nbsp;
+the number the more complicated the model is&nbsp;&nbsp;
+
+00:16:45.280 --> 00:16:51.040
+the more prone it is to overfitting and the more&nbsp;
+heavy duty it is considered we will add instead&nbsp;&nbsp;
+
+00:16:51.040 --> 00:16:58.560
+of an lstm a dense layer layers.dense will choose&nbsp;
+32 for a similar reason as above you're also very&nbsp;&nbsp;
+
+00:16:58.560 --> 00:17:03.600
+welcome to stack dense layers and so we'll just&nbsp;
+actually paste that in again and have another&nbsp;&nbsp;
+
+00:17:03.600 --> 00:17:09.360
+32. we're not going to mess with the activation&nbsp;
+functions for the lstm but for the dents it's&nbsp;&nbsp;
+
+00:17:09.360 --> 00:17:15.840
+usually a good idea to set activation equal to&nbsp;
+relu so we will do that for both of those dense&nbsp;&nbsp;
+
+00:17:15.840 --> 00:17:22.080
+layers now we must specify the output of our model&nbsp;
+and since we are only forecasting one variable&nbsp;&nbsp;
+
+00:17:22.080 --> 00:17:29.600
+we're just trying to predict say the next value&nbsp;
+we only want this to be a layers dot dense of one&nbsp;&nbsp;
+
+00:17:29.600 --> 00:17:35.520
+where we don't change the activation function as&nbsp;
+by default it's linear which is desired we can now&nbsp;&nbsp;
+
+00:17:35.520 --> 00:17:42.080
+close this up and specify that the model is going&nbsp;
+to be compiled to compile the model we must set&nbsp;&nbsp;
+
+00:17:42.080 --> 00:17:47.040
+the loss function and the loss function we want&nbsp;
+to minimize is the mean squared error so we will&nbsp;&nbsp;
+
+00:17:47.040 --> 00:17:52.320
+just write the string of mse for mean squared&nbsp;
+error we also need to specify the optimizer&nbsp;&nbsp;
+
+00:17:52.320 --> 00:17:58.960
+so we will set the optimizer equal to the atom&nbsp;
+optimizer where we specify that the learning rate&nbsp;&nbsp;
+
+00:17:58.960 --> 00:18:05.600
+is equal to for this example it turns out that&nbsp;
+0.001 is going to work out pretty well if you're&nbsp;&nbsp;
+
+00:18:05.600 --> 00:18:10.000
+doing a different problem the learning rate is&nbsp;
+something you definitely want to play around with&nbsp;&nbsp;
+
+00:18:10.000 --> 00:18:17.200
+as well as these values here we also want to&nbsp;
+specify a new metric is going to be metrics equals&nbsp;&nbsp;
+
+00:18:17.200 --> 00:18:23.920
+we need to put it in a list it's the mean absolute&nbsp;
+error this number tells us on average how much&nbsp;&nbsp;
+
+00:18:23.920 --> 00:18:29.600
+we're off by rather than the squared distance we'd&nbsp;
+rather look at this although we need to minimize&nbsp;&nbsp;
+
+00:18:29.600 --> 00:18:35.520
+the mse as this is not differentiable we're now&nbsp;
+ready to fit the model so we can do model dot&nbsp;&nbsp;
+
+00:18:35.520 --> 00:18:42.320
+fit we pass our inputs of x train and y train&nbsp;
+and then we specify that the validation data&nbsp;&nbsp;
+
+00:18:42.320 --> 00:18:48.880
+is equal to the tuple of x val and y val&nbsp;
+we're going to let this run for 100 epochs&nbsp;&nbsp;
+
+00:18:48.880 --> 00:18:55.840
+which means 100 runs through the data set i'm&nbsp;
+going to press enter and we can see what happens
+
+00:19:01.520 --> 00:19:05.680
+as we can see at this point it looks&nbsp;
+like it's not really changed very much&nbsp;&nbsp;
+
+00:19:05.680 --> 00:19:10.800
+so we can actually cancel this and it is going&nbsp;
+to save whatever progress it's done so far now&nbsp;&nbsp;
+
+00:19:10.800 --> 00:19:16.640
+to briefly analyze this we mostly care about&nbsp;
+the validation mean absolute error going down&nbsp;&nbsp;
+
+00:19:16.640 --> 00:19:23.120
+we can see it's at 14 at the beginning then it&nbsp;
+goes to 11 10 9 and then it hovers around 8 9&nbsp;&nbsp;
+
+00:19:23.120 --> 00:19:27.840
+10 and that's when i was ready to stop it&nbsp;
+because it wasn't really changing all that much&nbsp;&nbsp;
+
+00:19:27.840 --> 00:19:33.120
+it's much easier to visualize what's going on&nbsp;
+instead with graphs so before worrying about the&nbsp;&nbsp;
+
+00:19:33.120 --> 00:19:38.800
+code i'm just going to show you the pretty picture&nbsp;
+we can make for it predicting on the training set&nbsp;&nbsp;
+
+00:19:38.800 --> 00:19:47.040
+so the orange is the actual observed observations&nbsp;
+it's what really happened from 1986 to 2016. the&nbsp;&nbsp;
+
+00:19:47.040 --> 00:19:52.960
+blue is what we predicted so each time it got the&nbsp;
+three previous and it tried to predict the next&nbsp;&nbsp;
+
+00:19:52.960 --> 00:19:58.880
+one that's also what it was trained on to make&nbsp;
+that run we simply get the training predictions&nbsp;&nbsp;
+
+00:19:58.880 --> 00:20:05.520
+with model.predict on x train and then we have to&nbsp;
+do a flatten then we can do a plot of dates train&nbsp;&nbsp;
+
+00:20:05.520 --> 00:20:10.800
+and the train predictions and dates train and&nbsp;
+y train that's that blue and the orange curve&nbsp;&nbsp;
+
+00:20:10.800 --> 00:20:15.600
+and then we just create the legend since i&nbsp;
+explained that code for the train i feel no real&nbsp;&nbsp;
+
+00:20:15.600 --> 00:20:21.040
+need to explain it much for the validation as this&nbsp;
+is literally the same thing but replacing the word&nbsp;&nbsp;
+
+00:20:21.040 --> 00:20:28.400
+train with val so for the validation we get this&nbsp;
+graph or it follows it until you know about 2017&nbsp;&nbsp;
+
+00:20:28.400 --> 00:20:33.360
+and then it just really flattens off which is&nbsp;
+the same time when it actually starts to pick&nbsp;&nbsp;
+
+00:20:33.360 --> 00:20:39.600
+up so the observations what really happened is it&nbsp;
+went up like this but the predictions it actually&nbsp;&nbsp;
+
+00:20:39.600 --> 00:20:44.560
+just started to zone off and it couldn't follow&nbsp;
+it anymore if we were to look at the test this&nbsp;&nbsp;
+
+00:20:44.560 --> 00:20:51.440
+is again just replacing that word train with test&nbsp;
+this picture is even worse it doesn't follow it at&nbsp;&nbsp;
+
+00:20:51.440 --> 00:20:56.400
+all it actually thinks it's going down a little&nbsp;
+bit whereas it's going up a lot and then it goes&nbsp;&nbsp;
+
+00:20:56.400 --> 00:21:01.440
+down i'm now going to put all three of those&nbsp;
+pictures on the same graph again the code is&nbsp;&nbsp;
+
+00:21:01.440 --> 00:21:07.120
+not hard it's just annoying where we first plot&nbsp;
+the training predictions and the observations&nbsp;&nbsp;
+
+00:21:07.120 --> 00:21:12.320
+the validation predictions and the observations&nbsp;
+same for the test and then we create the legend&nbsp;&nbsp;
+
+00:21:12.320 --> 00:21:17.760
+we see that this picture again for the training&nbsp;
+it follows it very closely and for the red piece&nbsp;&nbsp;
+
+00:21:17.760 --> 00:21:23.280
+is what actually happened in validation the green&nbsp;
+is what it thought happened not good at all the&nbsp;&nbsp;
+
+00:21:23.280 --> 00:21:28.320
+brown is what really happened and the purple is&nbsp;
+what it thought for the test really really bad&nbsp;&nbsp;
+
+00:21:28.320 --> 00:21:35.040
+at that point it turns out that these lstm models&nbsp;
+are very bad at what we call extrapolating and so&nbsp;&nbsp;
+
+00:21:35.040 --> 00:21:41.280
+if it was trained on data only in this range here&nbsp;
+only up until like the 50 value it's not going to&nbsp;&nbsp;
+
+00:21:41.280 --> 00:21:47.760
+be good at predicting stuff this high even though&nbsp;
+it is given say his input these three values here&nbsp;&nbsp;
+
+00:21:47.760 --> 00:21:53.760
+and has no idea what to do with them because it's&nbsp;
+not going to extrapolate well extrapolate means&nbsp;&nbsp;
+
+00:21:53.760 --> 00:22:00.160
+basically learn data outside its range a line&nbsp;
+extrapolates well because if we drew a line here&nbsp;&nbsp;
+
+00:22:00.160 --> 00:22:05.840
+we could just continue drawing that line up like&nbsp;
+that but if the lstm is only trained on this data&nbsp;&nbsp;
+
+00:22:05.840 --> 00:22:11.600
+here it will have no idea what to do when the&nbsp;
+values are increasing and are this big another&nbsp;&nbsp;
+
+00:22:11.600 --> 00:22:17.440
+way to think about it is that all this information&nbsp;
+here it might actually not be that helpful because&nbsp;&nbsp;
+
+00:22:17.440 --> 00:22:23.280
+over here the values are way up like this and the&nbsp;
+pattern starts changing a lot so maybe we don't&nbsp;&nbsp;
+
+00:22:23.280 --> 00:22:28.240
+want to train it on all of this maybe we just&nbsp;
+want to train it on say this information here&nbsp;&nbsp;
+
+00:22:28.240 --> 00:22:34.000
+and then validate over here so we'll do just that&nbsp;
+we're going to pick some day over here to start&nbsp;&nbsp;
+
+00:22:34.000 --> 00:22:39.680
+training at we do need to know that this date is&nbsp;
+actually in the data set and for that we'll go to&nbsp;&nbsp;
+
+00:22:39.680 --> 00:22:46.000
+our data set over here and select the time period&nbsp;
+of one year and if we apply that we just need to&nbsp;&nbsp;
+
+00:22:46.000 --> 00:22:53.280
+scroll back all the way to the bottom and see that&nbsp;
+one date that we know exists is march 25th 2021&nbsp;&nbsp;
+
+00:22:53.280 --> 00:22:59.040
+we will use that as our starting value instead so&nbsp;
+that means we need to change our windowed function&nbsp;&nbsp;
+
+00:22:59.040 --> 00:23:03.680
+above or not actually change the windowed&nbsp;
+function itself but just change how we're&nbsp;&nbsp;
+
+00:23:03.680 --> 00:23:11.600
+calling it we need to change this value here to&nbsp;
+be the year is going to be 2021 03 is fine and&nbsp;&nbsp;
+
+00:23:11.600 --> 00:23:17.600
+then 2 5 is a date we know exists as you can see&nbsp;
+here i had this in a comment for me to remember&nbsp;&nbsp;
+
+00:23:17.600 --> 00:23:24.960
+so now the first date will be 2021 0325 and these&nbsp;
+are its corresponding information the end date&nbsp;&nbsp;
+
+00:23:24.960 --> 00:23:31.600
+is exactly the same and we only have 252 rows&nbsp;
+this time way less information we should have no&nbsp;&nbsp;
+
+00:23:31.600 --> 00:23:37.280
+problem just re-running the cells we already did&nbsp;
+so we're going to do that which gets dates x and y&nbsp;&nbsp;
+
+00:23:37.280 --> 00:23:42.480
+note that they're smaller this time we'll again&nbsp;
+split the data set and make sure that we plot&nbsp;&nbsp;
+
+00:23:42.480 --> 00:23:48.320
+it properly so our starting date up until about&nbsp;
+the middle over here is train then validation&nbsp;&nbsp;
+
+00:23:48.320 --> 00:23:54.000
+then test and note that we've already seen values&nbsp;
+in this range so it should be okay to predict&nbsp;&nbsp;
+
+00:23:54.000 --> 00:23:59.360
+values in the same range over here since we only&nbsp;
+change the number of things the model is seeing&nbsp;&nbsp;
+
+00:23:59.360 --> 00:24:04.640
+the model is actually fine as is we can run&nbsp;
+that again and it's going to run a lot faster&nbsp;&nbsp;
+
+00:24:04.640 --> 00:24:10.640
+now we'll see again that our mean absolute error&nbsp;
+goes down pretty low and for the validation a lot&nbsp;&nbsp;
+
+00:24:10.640 --> 00:24:15.440
+better than it was before we can recreate&nbsp;
+all of our graphs so to plot the training&nbsp;&nbsp;
+
+00:24:15.440 --> 00:24:21.440
+we can see here the train it doesn't follow it&nbsp;
+quite as well as before but that's totally okay&nbsp;&nbsp;
+
+00:24:21.440 --> 00:24:27.040
+if we see here for the validation it got so&nbsp;
+much better now look at how zoomed in this is&nbsp;&nbsp;
+
+00:24:27.040 --> 00:24:32.320
+these values are extremely close to each other and&nbsp;
+if we were to do it for the test as well the tests&nbsp;&nbsp;
+
+00:24:32.320 --> 00:24:38.000
+are also extremely close to each other if we were&nbsp;
+to plot them all on the same graph again we would&nbsp;&nbsp;
+
+00:24:38.000 --> 00:24:44.880
+see here zoomed out that they're all very close to&nbsp;
+each other the predicted first the observation is&nbsp;&nbsp;
+
+00:24:44.880 --> 00:24:50.800
+very very close no matter whether it's the train&nbsp;
+the validation or the test now the video could be&nbsp;&nbsp;
+
+00:24:50.800 --> 00:24:57.200
+done here but i want to show you how you could try&nbsp;
+and predict long term because all of these values&nbsp;&nbsp;
+
+00:24:57.200 --> 00:25:03.360
+any of these predictions we're assuming we had the&nbsp;
+actual three days before and that data was real&nbsp;&nbsp;
+
+00:25:03.360 --> 00:25:09.040
+then we used those three days before to make the&nbsp;
+prediction and then the next day we would have the&nbsp;&nbsp;
+
+00:25:09.040 --> 00:25:13.840
+actual three and then we'd use that predict the&nbsp;
+next day well what we're actually going to do&nbsp;&nbsp;
+
+00:25:13.840 --> 00:25:19.760
+is train here and then pretend that's all the&nbsp;
+data that we have and let the model recursively&nbsp;&nbsp;
+
+00:25:19.760 --> 00:25:25.680
+predict the future and see what it has to say so&nbsp;
+to make that function we're first going to do from&nbsp;&nbsp;
+
+00:25:25.680 --> 00:25:32.880
+copy import deep copy we'll make a list and start&nbsp;
+to build this up called recursive predictions&nbsp;&nbsp;
+
+00:25:32.880 --> 00:25:38.240
+is equal to an empty list and then we'll get&nbsp;
+recursive dates these are the dates on which&nbsp;&nbsp;
+
+00:25:38.240 --> 00:25:45.040
+we're predicting for this is already known and&nbsp;
+this is equal to np dot concatenate the dates val&nbsp;&nbsp;
+
+00:25:45.040 --> 00:25:51.600
+and the test val this is because the dates we're&nbsp;
+predicting are here onward so we're training on&nbsp;&nbsp;
+
+00:25:51.600 --> 00:25:55.920
+all of this in fact we've already trained on&nbsp;
+all of that and then the recursive predictions&nbsp;&nbsp;
+
+00:25:55.920 --> 00:26:01.200
+are going to be for these following dates so&nbsp;
+now we can loop through those dates for target&nbsp;&nbsp;
+
+00:26:01.200 --> 00:26:07.920
+date in the recursive dates we'll get our most&nbsp;
+recent input so the last we'll call it window i'm&nbsp;&nbsp;
+
+00:26:07.920 --> 00:26:14.640
+just copying it so we don't change anything deep&nbsp;
+copy of x train sub negative one because the last&nbsp;&nbsp;
+
+00:26:14.640 --> 00:26:21.360
+window that we actually had access to was the very&nbsp;
+last three over here that is stored in x trains of&nbsp;&nbsp;
+
+00:26:21.360 --> 00:26:26.560
+negative one and we need to start predicting for&nbsp;
+the future so we need to get our next prediction&nbsp;&nbsp;
+
+00:26:26.560 --> 00:26:32.320
+so the prediction for the next day that will be&nbsp;
+equal to model.predict unfortunately we actually&nbsp;&nbsp;
+
+00:26:32.320 --> 00:26:39.520
+have to make it the numpy.array of the list of the&nbsp;
+last window but really it's just the last window&nbsp;&nbsp;
+
+00:26:39.520 --> 00:26:44.560
+don't worry too much about that piece that and&nbsp;
+then flatten it like before then what we can do&nbsp;&nbsp;
+
+00:26:44.560 --> 00:26:52.800
+is recursive predictions dot append so add that&nbsp;
+to our list with next prediction then we need to&nbsp;&nbsp;
+
+00:26:52.800 --> 00:26:58.000
+update this last window because we just made a&nbsp;
+prediction for the next day well now we need to&nbsp;&nbsp;
+
+00:26:58.000 --> 00:27:04.160
+move on to the previous two informations that&nbsp;
+were actually seen and then the next predicted&nbsp;&nbsp;
+
+00:27:04.160 --> 00:27:09.280
+value because we need to start using the values&nbsp;
+that we're predicting that's why it's called&nbsp;&nbsp;
+
+00:27:09.280 --> 00:27:16.960
+recursive predicting so we'll actually set last&nbsp;
+window sub negative one equal to next prediction&nbsp;&nbsp;
+
+00:27:17.760 --> 00:27:23.040
+sorry i have an error here this should actually&nbsp;
+be dates test and then if we run that i'm now&nbsp;&nbsp;
+
+00:27:23.040 --> 00:27:27.920
+going to paste in again some annoying code but&nbsp;
+it'll look very familiar it's exactly the same&nbsp;&nbsp;
+
+00:27:27.920 --> 00:27:34.000
+as that big graph as before except i added in&nbsp;
+the recursive dates and the recursive predictions&nbsp;&nbsp;
+
+00:27:34.000 --> 00:27:39.600
+and that put that in the legend as well if i were&nbsp;
+to plot this you will see something very funny&nbsp;&nbsp;
+
+00:27:39.600 --> 00:27:46.080
+this piece right here is the recursive predictions&nbsp;
+the model has absolutely no idea on how to predict&nbsp;&nbsp;
+
+00:27:46.080 --> 00:27:52.160
+in the future it just thinks it'll be what it was&nbsp;
+before and actually that's a reasonable prediction&nbsp;&nbsp;
+
+00:27:52.160 --> 00:27:58.240
+predicting stocks is incredibly difficult there is&nbsp;
+of course the trend we can analyze we saw before&nbsp;&nbsp;
+
+00:27:58.240 --> 00:28:03.040
+that the graph really started to go up and that&nbsp;
+would indicate to you that it's a good stock to&nbsp;&nbsp;
+
+00:28:03.040 --> 00:28:08.080
+buy but that doesn't mean i can guarantee that&nbsp;
+and i don't want to be liable for you predicting&nbsp;&nbsp;
+
+00:28:08.080 --> 00:28:14.080
+any sort of stocks with any sort of model and by&nbsp;
+no means is the model we made useless it's just&nbsp;&nbsp;
+
+00:28:14.080 --> 00:28:20.080
+on the micro scale of per day should i sell or&nbsp;
+buy of course in general people generally think&nbsp;&nbsp;
+
+00:28:20.080 --> 00:28:25.840
+of stocks for the long term what should i do to&nbsp;
+make money in the long term but on a micro scale&nbsp;&nbsp;
+
+00:28:25.840 --> 00:28:30.720
+it's important to know as well so i hope you&nbsp;
+enjoyed that video if it brought you value please&nbsp;&nbsp;
+
+00:28:30.720 --> 00:28:35.440
+drop a like and consider subscribing it really&nbsp;
+really helps and i'll see you next time guys
+
